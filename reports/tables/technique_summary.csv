@@ -1,0 +1,10 @@
+technique_code,technique_name,source_column,confirmed_present,confirmed_absent,unknown,missing,invalid,prevalence_among_selected
+opencast,Opencast / surface,techniqueOpencast,420,153,0,357,0,0.4516129032
+underground,Underground,techniqueUnderground,139,436,0,355,0,0.1494623656
+hydraulic,Hydraulic,techniqueHydraulic,426,342,0,162,0,0.4580645161
+hushing,Hushing,techniqueHushing,67,459,0,404,0,0.07204301075
+ground_sluicing,Ground sluicing,techniqueGroundSluicing,55,477,0,398,0,0.05913978495
+ruina_montium,Ruina montium,techniqueRuinaMontium,6,540,0,384,0,0.006451612903
+rake_comb,Rake / comb,techniqueRakeComb,72,468,0,390,0,0.07741935484
+gold_washing,Gold washing,techniqueGoldWashing,1,542,0,387,0,0.001075268817
+other,Other,techniqueOther,2,343,0,585,0,0.002150537634

@@ -1,0 +1,10 @@
+commodity_code,commodity_name,source_column,confirmed_present,confirmed_absent,unknown,missing,invalid,prevalence_among_selected
+Au,Gold,metalMinedGold,598,329,3,0,0,0.6430107527
+Ag,Silver,metalMinedSilver,174,756,0,0,0,0.1870967742
+Pb,Lead,metalMinedLead,169,761,0,0,0,0.1817204301
+Cu,Copper,metalMinedCopper,169,759,0,2,0,0.1817204301
+Sn,Tin,metalMinedTin,9,921,0,0,0,0.009677419355
+Fe,Iron,metalMinedIron,15,915,0,0,0,0.01612903226
+Hg,Mercury/cinnabar,metalMinedMercuryCinnabar,5,925,0,0,0,0.005376344086
+Zn,Zinc,metalMinedZinc,3,927,0,0,0,0.003225806452
+Other,Other,metalMinedOther,0,930,0,0,0,0

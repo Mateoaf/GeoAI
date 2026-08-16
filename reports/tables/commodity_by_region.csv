@@ -1,0 +1,343 @@
+region,commodity_code,records,confirmed_present
+Alicante,Au,1,0
+Alicante,Ag,1,0
+Alicante,Pb,1,0
+Alicante,Cu,1,0
+Alicante,Sn,1,0
+Alicante,Fe,1,1
+Alicante,Hg,1,0
+Alicante,Zn,1,0
+Alicante,Other,1,0
+Almería,Au,6,0
+Almería,Ag,6,4
+Almería,Pb,6,3
+Almería,Cu,6,3
+Almería,Sn,6,0
+Almería,Fe,6,0
+Almería,Hg,6,0
+Almería,Zn,6,0
+Almería,Other,6,0
+Avila,Au,1,0
+Avila,Ag,1,0
+Avila,Pb,1,0
+Avila,Cu,1,1
+Avila,Sn,1,0
+Avila,Fe,1,0
+Avila,Hg,1,0
+Avila,Zn,1,0
+Avila,Other,1,0
+Badajoz,Au,52,0
+Badajoz,Ag,52,46
+Badajoz,Pb,52,45
+Badajoz,Cu,52,8
+Badajoz,Sn,52,0
+Badajoz,Fe,52,2
+Badajoz,Hg,52,0
+Badajoz,Zn,52,0
+Badajoz,Other,52,0
+Balearics,Au,2,0
+Balearics,Ag,2,2
+Balearics,Pb,2,2
+Balearics,Cu,2,0
+Balearics,Sn,2,0
+Balearics,Fe,2,0
+Balearics,Hg,2,0
+Balearics,Zn,2,0
+Balearics,Other,2,0
+Bilbao,Au,2,0
+Bilbao,Ag,2,0
+Bilbao,Pb,2,1
+Bilbao,Cu,2,0
+Bilbao,Sn,2,0
+Bilbao,Fe,2,1
+Bilbao,Hg,2,0
+Bilbao,Zn,2,1
+Bilbao,Other,2,0
+Ciudad Real,Au,37,1
+Ciudad Real,Ag,37,33
+Ciudad Real,Pb,37,32
+Ciudad Real,Cu,37,3
+Ciudad Real,Sn,37,0
+Ciudad Real,Fe,37,0
+Ciudad Real,Hg,37,4
+Ciudad Real,Zn,37,0
+Ciudad Real,Other,37,0
+Cuenca,Au,3,0
+Cuenca,Ag,3,0
+Cuenca,Pb,3,0
+Cuenca,Cu,3,1
+Cuenca,Sn,3,0
+Cuenca,Fe,3,2
+Cuenca,Hg,3,0
+Cuenca,Zn,3,0
+Cuenca,Other,3,0
+Cáceres,Au,1,0
+Cáceres,Ag,1,1
+Cáceres,Pb,1,1
+Cáceres,Cu,1,0
+Cáceres,Sn,1,0
+Cáceres,Fe,1,0
+Cáceres,Hg,1,0
+Cáceres,Zn,1,0
+Cáceres,Other,1,0
+Córdoba,Au,82,0
+Córdoba,Ag,82,36
+Córdoba,Pb,82,35
+Córdoba,Cu,82,61
+Córdoba,Sn,82,0
+Córdoba,Fe,82,0
+Córdoba,Hg,82,0
+Córdoba,Zn,82,0
+Córdoba,Other,82,0
+Gerona,Au,7,6
+Gerona,Ag,7,1
+Gerona,Pb,7,0
+Gerona,Cu,7,1
+Gerona,Sn,7,0
+Gerona,Fe,7,0
+Gerona,Hg,7,0
+Gerona,Zn,7,0
+Gerona,Other,7,0
+Granada,Au,4,3
+Granada,Ag,4,0
+Granada,Pb,4,0
+Granada,Cu,4,0
+Granada,Sn,4,0
+Granada,Fe,4,1
+Granada,Hg,4,0
+Granada,Zn,4,0
+Granada,Other,4,0
+Guadalajara,Au,2,1
+Guadalajara,Ag,2,0
+Guadalajara,Pb,2,0
+Guadalajara,Cu,2,1
+Guadalajara,Sn,2,0
+Guadalajara,Fe,2,0
+Guadalajara,Hg,2,0
+Guadalajara,Zn,2,0
+Guadalajara,Other,2,0
+Huelva,Au,50,0
+Huelva,Ag,50,7
+Huelva,Pb,50,3
+Huelva,Cu,50,50
+Huelva,Sn,50,0
+Huelva,Fe,50,1
+Huelva,Hg,50,0
+Huelva,Zn,50,0
+Huelva,Other,50,0
+Jaén,Au,30,0
+Jaén,Ag,30,19
+Jaén,Pb,30,19
+Jaén,Cu,30,14
+Jaén,Sn,30,1
+Jaén,Fe,30,0
+Jaén,Hg,30,0
+Jaén,Zn,30,0
+Jaén,Other,30,0
+La Coruña,Au,8,3
+La Coruña,Ag,8,0
+La Coruña,Pb,8,0
+La Coruña,Cu,8,3
+La Coruña,Sn,8,2
+La Coruña,Fe,8,0
+La Coruña,Hg,8,0
+La Coruña,Zn,8,0
+La Coruña,Other,8,0
+La Rioja,Au,1,0
+La Rioja,Ag,1,1
+La Rioja,Pb,1,1
+La Rioja,Cu,1,0
+La Rioja,Sn,1,0
+La Rioja,Fe,1,0
+La Rioja,Hg,1,0
+La Rioja,Zn,1,0
+La Rioja,Other,1,0
+Leon,Au,1,1
+Leon,Ag,1,0
+Leon,Pb,1,0
+Leon,Cu,1,0
+Leon,Sn,1,0
+Leon,Fe,1,0
+Leon,Hg,1,0
+Leon,Zn,1,0
+Leon,Other,1,0
+León,Au,304,303
+León,Ag,304,0
+León,Pb,304,0
+León,Cu,304,1
+León,Sn,304,0
+León,Fe,304,0
+León,Hg,304,0
+León,Zn,304,0
+León,Other,304,0
+"León, Orense, Lugo",Au,3,3
+"León, Orense, Lugo",Ag,3,0
+"León, Orense, Lugo",Pb,3,0
+"León, Orense, Lugo",Cu,3,0
+"León, Orense, Lugo",Sn,3,0
+"León, Orense, Lugo",Fe,3,0
+"León, Orense, Lugo",Hg,3,0
+"León, Orense, Lugo",Zn,3,0
+"León, Orense, Lugo",Other,3,0
+Lugo,Au,61,60
+Lugo,Ag,61,1
+Lugo,Pb,61,1
+Lugo,Cu,61,0
+Lugo,Sn,61,0
+Lugo,Fe,61,0
+Lugo,Hg,61,0
+Lugo,Zn,61,0
+Lugo,Other,61,0
+Lérida,Au,1,0
+Lérida,Ag,1,0
+Lérida,Pb,1,0
+Lérida,Cu,1,1
+Lérida,Sn,1,0
+Lérida,Fe,1,0
+Lérida,Hg,1,0
+Lérida,Zn,1,0
+Lérida,Other,1,0
+Madrid,Au,2,0
+Madrid,Ag,2,1
+Madrid,Pb,2,1
+Madrid,Cu,2,1
+Madrid,Sn,2,0
+Madrid,Fe,2,0
+Madrid,Hg,2,0
+Madrid,Zn,2,0
+Madrid,Other,2,0
+Murcia,Au,9,0
+Murcia,Ag,9,7
+Murcia,Pb,9,7
+Murcia,Cu,9,3
+Murcia,Sn,9,1
+Murcia,Fe,9,2
+Murcia,Hg,9,0
+Murcia,Zn,9,0
+Murcia,Other,9,0
+Navarra,Au,1,0
+Navarra,Ag,1,0
+Navarra,Pb,1,0
+Navarra,Cu,1,1
+Navarra,Sn,1,0
+Navarra,Fe,1,0
+Navarra,Hg,1,0
+Navarra,Zn,1,0
+Navarra,Other,1,0
+Orense,Au,45,42
+Orense,Ag,45,0
+Orense,Pb,45,0
+Orense,Cu,45,0
+Orense,Sn,45,2
+Orense,Fe,45,1
+Orense,Hg,45,0
+Orense,Zn,45,0
+Orense,Other,45,0
+Oviedo,Au,168,162
+Oviedo,Ag,168,2
+Oviedo,Pb,168,2
+Oviedo,Cu,168,3
+Oviedo,Sn,168,1
+Oviedo,Fe,168,0
+Oviedo,Hg,168,1
+Oviedo,Zn,168,0
+Oviedo,Other,168,0
+Palencia,Au,3,2
+Palencia,Ag,3,1
+Palencia,Pb,3,1
+Palencia,Cu,3,0
+Palencia,Sn,3,0
+Palencia,Fe,3,0
+Palencia,Hg,3,0
+Palencia,Zn,3,0
+Palencia,Other,3,0
+Pontevedra,Au,10,9
+Pontevedra,Ag,10,0
+Pontevedra,Pb,10,0
+Pontevedra,Cu,10,0
+Pontevedra,Sn,10,1
+Pontevedra,Fe,10,0
+Pontevedra,Hg,10,0
+Pontevedra,Zn,10,0
+Pontevedra,Other,10,0
+Salamanca,Au,4,1
+Salamanca,Ag,4,2
+Salamanca,Pb,4,2
+Salamanca,Cu,4,0
+Salamanca,Sn,4,1
+Salamanca,Fe,4,0
+Salamanca,Hg,4,0
+Salamanca,Zn,4,0
+Salamanca,Other,4,0
+Santander,Au,2,0
+Santander,Ag,2,0
+Santander,Pb,2,2
+Santander,Cu,2,0
+Santander,Sn,2,0
+Santander,Fe,2,0
+Santander,Hg,2,0
+Santander,Zn,2,2
+Santander,Other,2,0
+Segovia,Au,2,0
+Segovia,Ag,2,0
+Segovia,Pb,2,0
+Segovia,Cu,2,2
+Segovia,Sn,2,0
+Segovia,Fe,2,0
+Segovia,Hg,2,0
+Segovia,Zn,2,0
+Segovia,Other,2,0
+Sevilla,Au,12,0
+Sevilla,Ag,12,6
+Sevilla,Pb,12,4
+Sevilla,Cu,12,7
+Sevilla,Sn,12,0
+Sevilla,Fe,12,2
+Sevilla,Hg,12,0
+Sevilla,Zn,12,0
+Sevilla,Other,12,0
+Tarragona,Au,3,0
+Tarragona,Ag,3,0
+Tarragona,Pb,3,2
+Tarragona,Cu,3,1
+Tarragona,Sn,3,0
+Tarragona,Fe,3,0
+Tarragona,Hg,3,0
+Tarragona,Zn,3,0
+Tarragona,Other,3,0
+Toledo,Au,3,1
+Toledo,Ag,3,2
+Toledo,Pb,3,2
+Toledo,Cu,3,0
+Toledo,Sn,3,0
+Toledo,Fe,3,0
+Toledo,Hg,3,0
+Toledo,Zn,3,0
+Toledo,Other,3,0
+Zamorra,Au,2,0
+Zamorra,Ag,2,2
+Zamorra,Pb,2,2
+Zamorra,Cu,2,0
+Zamorra,Sn,2,0
+Zamorra,Fe,2,0
+Zamorra,Hg,2,0
+Zamorra,Zn,2,0
+Zamorra,Other,2,0
+Zaragoza,Au,2,0
+Zaragoza,Ag,2,0
+Zaragoza,Pb,2,0
+Zaragoza,Cu,2,1
+Zaragoza,Sn,2,0
+Zaragoza,Fe,2,1
+Zaragoza,Hg,2,0
+Zaragoza,Zn,2,0
+Zaragoza,Other,2,0
+<Missing>,Au,3,0
+<Missing>,Ag,3,0
+<Missing>,Pb,3,1
+<Missing>,Cu,3,2
+<Missing>,Sn,3,0
+<Missing>,Fe,3,1
+<Missing>,Hg,3,0
+<Missing>,Zn,3,0
+<Missing>,Other,3,0

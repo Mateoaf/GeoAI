@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Visor de Grafo Semántico CIDOC-CRM + OGC GeoSciML</title>
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0f172a;
+      color: #f8fafc;
+      overflow: hidden;
+    }
+    #header {
+      padding: 14px 24px;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #38bdf8;
+    }
+    .legend {
+      display: flex;
+      gap: 16px;
+      font-size: 0.82rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    #network {
+      width: 100vw;
+      height: calc(100vh - 65px);
+      background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+    }
+    #info-panel {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid #334155;
+      padding: 12px 18px;
+      border-radius: 8px;
+      backdrop-filter: blur(8px);
+      font-size: 0.85rem;
+      max-width: 320px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <div>
+      <h1>🕸️ Grafo Semántico de Minería Romana (Linked Open Data)</h1>
+      <span style="color: #94a3b8; font-size: 0.8rem;">Estándares: CIDOC-CRM v7.1 (ISO 21127) · OGC GeoSciML v4.1 · W3C PROV-O</span>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><span class="dot" style="background: #2B6CB0;"></span> Mina (crm:E22)</div>
+      <div class="legend-item"><span class="dot" style="background: #D69E2E;"></span> Metal (gsml:Commodity)</div>
+      <div class="legend-item"><span class="dot" style="background: #805AD5;"></span> Técnica (crm:E55)</div>
+      <div class="legend-item"><span class="dot" style="background: #319795;"></span> Provincia (crm:E53)</div>
+    </div>
+  </div>
+
+  <div id="network"></div>
+
+  <div id="info-panel">
+    <b style="color: #38bdf8;">💡 Interacción:</b><br>
+    • Haz clic y arrastra los nodos para explorar relaciones.<br>
+    • Usa la rueda del ratón para hacer zoom.<br>
+    • Pasa el cursor por encima de cualquier nodo para ver sus URIs ontológicas.
+  </div>
+
+  <script type="text/javascript">
+    const nodesData = [{"id": "http://oxrep.classics.ox.ac.uk/id/mine/1", "label": "Aljustrel", "title": "<b>Aljustrel</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/1<br>Certeza: Alta Certeza (Grado I) (0.845)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "place_Lusitania", "label": "Lusitania", "title": "<b>crm:E53_Place</b><br>Provincia: Lusitania", "group": "Place", "color": "#319795", "shape": "box", "font": {"color": "#ffffff"}}, {"id": "comm_Oro", "label": "Metal: Oro", "title": "<b>gsml:Commodity</b><br>URI: http://resource.geosciml.org/classifier/cgi/commodity-code/gold<br>Wikidata: https://www.wikidata.org/wiki/Q208045", "group": "Commodity", "color": "#D69E2E", "shape": "diamond", "size": 18}, {"id": "comm_Plata", "label": "Metal: Plata", "title": "<b>gsml:Commodity</b><br>URI: http://resource.geosciml.org/classifier/cgi/commodity-code/silver<br>Wikidata: https://www.wikidata.org/wiki/Q1090", "group": "Commodity", "color": "#D69E2E", "shape": "diamond", "size": 18}, {"id": "comm_Cobre", "label": "Metal: Cobre", "title": "<b>gsml:Commodity</b><br>URI: http://resource.geosciml.org/classifier/cgi/commodity-code/copper<br>Wikidata: https://www.wikidata.org/wiki/Q753", "group": "Commodity", "color": "#D69E2E", "shape": "diamond", "size": 18}, {"id": "comm_Hierro", "label": "Metal: Hierro", "title": "<b>gsml:Commodity</b><br>URI: http://resource.geosciml.org/classifier/cgi/commodity-code/iron<br>Wikidata: https://www.wikidata.org/wiki/Q677", "group": "Commodity", "color": "#D69E2E", "shape": "diamond", "size": 18}, {"id": "tech_Minería_Subterr", "label": "Minería Subterránea ...", "title": "<b>crm:E55_Type (Técnica Minera)</b><br>Minería Subterránea (Pozos y Galerías con Entibación)<br>AAT URI: http://vocab.getty.edu/aat/300053915", "group": "Technique", "color": "#805AD5", "shape": "ellipse", "size": 15}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/2", "label": "Atalaia de Alte", "title": "<b>Atalaia de Alte</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/2<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/3", "label": "Avintes", "title": "<b>Avintes</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/3<br>Certeza: Alta Certeza (Grado I) (0.845)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "tech_Ruina_Montium_(", "label": "Ruina Montium (Miner...", "title": "<b>crm:E55_Type (Técnica Minera)</b><br>Ruina Montium (Minería Hidráulica / Hushing)<br>AAT URI: http://vocab.getty.edu/aat/300053913", "group": "Technique", "color": "#805AD5", "shape": "ellipse", "size": 15}, {"id": "tech_Corta_y_Explota", "label": "Corta y Explotación ...", "title": "<b>crm:E55_Type (Técnica Minera)</b><br>Corta y Explotación a Cielo Abierto<br>AAT URI: http://vocab.getty.edu/aat/300053914", "group": "Technique", "color": "#805AD5", "shape": "ellipse", "size": 15}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/4", "label": "Belmonte - Colmeal - Maçainhas", "title": "<b>Belmonte - Colmeal - Maçainhas</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/4<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "place_Hispania_Tarraconensis", "label": "Hispania Tarraconensis", "title": "<b>crm:E53_Place</b><br>Provincia: Hispania Tarraconensis", "group": "Place", "color": "#319795", "shape": "box", "font": {"color": "#ffffff"}}, {"id": "comm_Estaño_/_Casiterita", "label": "Metal: Estaño / Casiterita", "title": "<b>gsml:Commodity</b><br>URI: http://resource.geosciml.org/classifier/cgi/commodity-code/tin<br>Wikidata: https://www.wikidata.org/wiki/Q1096", "group": "Commodity", "color": "#D69E2E", "shape": "diamond", "size": 18}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/5", "label": "Brancanes", "title": "<b>Brancanes</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/5<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/6", "label": "Buraco dos Mouros de Urros", "title": "<b>Buraco dos Mouros de Urros</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/6<br>Certeza: Alta Certeza (Grado I) (0.965)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/7", "label": "Cabeço de Mua", "title": "<b>Cabeço de Mua</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/7<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/8", "label": "Carvalhelos", "title": "<b>Carvalhelos</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/8<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/9", "label": "Cerro da Mina", "title": "<b>Cerro da Mina</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/9<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/10", "label": "Cisterna dos Cães", "title": "<b>Cisterna dos Cães</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/10<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/11", "label": "Corta da Torre", "title": "<b>Corta da Torre</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/11<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/12", "label": "Corta do Penedo das Bruxas", "title": "<b>Corta do Penedo das Bruxas</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/12<br>Certeza: Alta Certeza (Grado I) (0.845)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/13", "label": "Covas de Mouros de Monte da Nó", "title": "<b>Covas de Mouros de Monte da Nó</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/13<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/14", "label": "Crugeira", "title": "<b>Crugeira</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/14<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "place_Hispania_Baetica", "label": "Hispania Baetica", "title": "<b>crm:E53_Place</b><br>Provincia: Hispania Baetica", "group": "Place", "color": "#319795", "shape": "box", "font": {"color": "#ffffff"}}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/15", "label": "Ervedosa", "title": "<b>Ervedosa</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/15<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/16", "label": "Escadia Grande", "title": "<b>Escadia Grande</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/16<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/18", "label": "Folgadouro", "title": "<b>Folgadouro</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/18<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/19", "label": "Forca", "title": "<b>Forca</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/19<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/20", "label": "França", "title": "<b>França</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/20<br>Certeza: Alta Certeza (Grado I) (0.845)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/21", "label": "Furados de Pombeiro", "title": "<b>Furados de Pombeiro</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/21<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/22", "label": "Grovelas", "title": "<b>Grovelas</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/22<br>Certeza: Alta Certeza (Grado I) (0.845)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/23", "label": "Herdade da Tinoca", "title": "<b>Herdade da Tinoca</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/23<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/24", "label": "Herdade do Montinho", "title": "<b>Herdade do Montinho</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/24<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/25", "label": "Jales", "title": "<b>Jales</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/25<br>Certeza: Alta Certeza (Grado I) (0.8)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}, {"id": "http://oxrep.classics.ox.ac.uk/id/mine/26", "label": "Juliana", "title": "<b>Juliana</b><br>ID: http://oxrep.classics.ox.ac.uk/id/mine/26<br>Certeza: Media Certeza (Grado II) (0.765)<br>Tipos: crm:E22_Human-Made_Object, gsml:MineralOccurrence", "group": "Mine", "color": "#2B6CB0", "shape": "dot", "size": 22}];
+    const edgesData = [{"from": "http://oxrep.classics.ox.ac.uk/id/mine/1", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/1", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/1", "to": "comm_Plata", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/1", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/1", "to": "comm_Hierro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/1", "to": "tech_Minería_Subterr", "label": "crm:P2_has_type", "color": {"color": "#805AD5"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/2", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/2", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/3", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/3", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/3", "to": "tech_Ruina_Montium_(", "label": "crm:P2_has_type", "color": {"color": "#805AD5"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/3", "to": "tech_Corta_y_Explota", "label": "crm:P2_has_type", "color": {"color": "#805AD5"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/4", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/4", "to": "comm_Estaño_/_Casiterita", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/5", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/5", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/5", "to": "tech_Minería_Subterr", "label": "crm:P2_has_type", "color": {"color": "#805AD5"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/6", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/6", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/6", "to": "tech_Minería_Subterr", "label": "crm:P2_has_type", "color": {"color": "#805AD5"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/7", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/7", "to": "comm_Hierro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/8", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/8", "to": "comm_Estaño_/_Casiterita", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/9", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/9", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/9", "to": "tech_Minería_Subterr", "label": "crm:P2_has_type", "color": {"color": "#805AD5"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/10", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/10", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/11", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/11", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/12", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/12", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/13", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/13", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/14", "to": "place_Hispania_Baetica", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/14", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/15", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/15", "to": "comm_Estaño_/_Casiterita", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/16", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/16", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/16", "to": "comm_Plata", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/18", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/18", "to": "comm_Estaño_/_Casiterita", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/19", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/19", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/20", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/20", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/21", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/21", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/22", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/22", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/23", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/23", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/24", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/24", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/25", "to": "place_Hispania_Tarraconensis", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/25", "to": "comm_Oro", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/25", "to": "comm_Plata", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/25", "to": "tech_Minería_Subterr", "label": "crm:P2_has_type", "color": {"color": "#805AD5"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/26", "to": "place_Lusitania", "label": "crm:P89_falls_within", "color": {"color": "#A0AEC0"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/26", "to": "comm_Cobre", "label": "gsml:exploitsCommodity", "color": {"color": "#D69E2E"}, "arrows": "to"}, {"from": "http://oxrep.classics.ox.ac.uk/id/mine/26", "to": "tech_Minería_Subterr", "label": "crm:P2_has_type", "color": {"color": "#805AD5"}, "arrows": "to"}];
+
+    const container = document.getElementById('network');
+    const data = {
+      nodes: new vis.DataSet(nodesData),
+      edges: new vis.DataSet(edgesData)
+    };
+
+    const options = {
+      nodes: {
+        font: { color: '#f8fafc', face: 'Arial', size: 12 },
+        borderWidth: 2,
+        shadow: true
+      },
+      edges: {
+        font: { color: '#94a3b8', size: 9, align: 'middle' },
+        smooth: { type: 'continuous' },
+        arrows: { to: { enabled: true, scaleFactor: 0.6 } }
+      },
+      physics: {
+        stabilization: false,
+        barnesHut: {
+          gravitationalConstant: -3000,
+          springConstant: 0.04,
+          springLength: 120
+        }
+      },
+      interaction: {
+        hover: true,
+        tooltipDelay: 100,
+        zoomView: true,
+        dragView: true
+      }
+    };
+
+    const network = new vis.Network(container, data, options);
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+flag,severity,definition
+flag_country_override,review,Included by an explicit mineID override because the OxREP country field contains a subnational Spanish territory rather than 'Spain'.
+flag_coordinate_missing,high,Latitude or longitude is missing/non-numeric; no point geometry is exported.
+flag_coordinate_outside_broad_spain_envelope,high,Coordinate falls outside broad QA envelopes for Spain. These envelopes are not an administrative point-in-polygon test.
+flag_coordinate_accuracy_missing,medium,OxREP coordinateAccuracy is missing/non-numeric.
+flag_coordinate_accuracy_zero,review,OxREP reports coordinateAccuracy=0. Its semantics are not inferred as either perfect precision or missingness.
+flag_coordinate_accuracy_gt_1000,medium,Reported coordinateAccuracy is greater than 1000 (unit is not encoded in the worksheet schema).
+flag_location_source_missing,medium,locationDataSource is empty.
+flag_metal_unknown_or_invalid,medium,At least one commodity indicator is '?' or an unrecognised value.
+flag_metal_missing,medium,At least one commodity indicator is blank.
+flag_no_confirmed_commodity,medium,No commodity indicator is confirmed present.
+flag_technique_unknown_or_invalid,medium,At least one technique indicator is '?' or an unrecognised value.
+flag_technique_incomplete,review,At least one technique field is blank; blank is not treated as FALSE.
+flag_no_confirmed_technique,review,No technique indicator is confirmed present.
+flag_chronology_missing,review,All four chronology bounds and inUseDate are empty.
+flag_chronology_invalid,high,Available numeric chronology bounds are internally inconsistent.
+flag_geology_missing,review,geology is empty.
+flag_deposit_type_missing,review,depositType is empty.
+flag_deposit_type_unexpected,medium,depositType is populated but outside the observed Primary/Secondary vocabulary.
+flag_exploitation_type_missing,review,exploitationType is empty.
+flag_exploitation_type_unexpected,medium,exploitationType is populated but outside the observed Selective/Extensive vocabulary.
+flag_possible_column_shift,high,"Values resemble a one-column shift between geology, depositType and exploitationType; requires source review."
+flag_source_uncertainty_text,review,Source text contains an explicit uncertainty/possible-duplicate/work-in-progress phrase.
+flag_duplicate_mine_id,high,mineID is duplicated within the selected dataset.
+flag_duplicate_coordinates,review,Another selected record has exactly the same numeric latitude and longitude.
+flag_duplicate_site_name,review,Another selected record has the same accent-insensitive normalised site name.
+flag_nearby_record_100m,review,Another selected record lies within the configured 100 m candidate-review threshold.
+flag_text_encoding_artifact,medium,At least one source text field contains a replacement/control artefact pattern.

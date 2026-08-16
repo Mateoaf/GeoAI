@@ -1,0 +1,337 @@
+ANEXO TÉCNICO
+Extracción de conocimiento geológico para los modelos romanos por commodity
+YAu · YAg · YCu · YPb
+Fuente principal
+Walter L. Pohl (2011), Economic Geology: Principles and Practice
+Finalidad
+Identificar relaciones geológicas, geoquímicas, geofísicas, estructurales y de alteración relevantes para justificar la selección de variables X en modelos de prospectividad mineral entrenados con evidencias de minería romana por commodity.
+1. Alcance y criterio de lectura
+Este documento sintetiza exclusivamente la información del libro de Pohl relevante para los cuatro commodities priorizados en el proyecto: oro (Au), plata (Ag), cobre (Cu) y plomo (Pb). El objetivo no es reproducir los capítulos completos, sino convertir la geología económica descrita por el autor en una base de conocimiento útil para el diseño de un sistema GeoAI.
+La estructura distingue dos niveles: (1) conocimiento directamente soportado por el libro y (2) una traducción analítica a posibles variables predictoras de Machine Learning. Esta segunda capa es una inferencia metodológica del proyecto y no debe atribuirse literalmente a Pohl.
+Principio metodológico
+OxREP aporta los positivos históricos (YAu, YAg, YCu, YPb). Pohl aporta conocimiento experto para justificar qué características del territorio tiene sentido representar como X. El libro no define un Random Forest ni una matriz de features; esa traducción corresponde al diseño GeoAI del proyecto.
+2. Localización de los contenidos en la obra
+Commodity
+Sección
+Página del libro
+Enfoque principal
+Cu
+2.2.1 Copper
+185
+Geoquímica, tipos de depósito, VMS, IOCG, pórfidos, exploración
+Pb
+2.2.2 Lead and zinc
+195
+Pb-Zn-Ag, SEDEX, carbonatos, salmueras, vetas, controles estructurales
+Au
+2.3.1 Gold
+207
+Geoquímica, pathfinders, oro orogénico, epitermal, intrusivo y placeres
+Ag
+2.3.2 Silver
+221
+Geoquímica, asociación polimetálica, skarn, epitermal, SEDEX y supergénesis
+3. Cobre (YCu)
+3.1 Geoquímica y asociaciones
+Pohl caracteriza el cobre como elemento calcófilo y lo sitúa dentro de una asociación amplia con otros elementos afines al azufre. Bajo condiciones oxidantes, Cu puede movilizarse; su precipitación e inmovilización se favorece cuando los fluidos encuentran azufre reducido o carbonatos. El autor también señala que el Cu puede ser transportado en complejos clorurados en sistemas hidrotermales.
+Fuente directa del libro: 
+Pohl, 2011, pp. 185-186.
+Asociaciones geoquímicas directamente relevantes: 
+Cu, Zn, Ag, Cd, In, Hg, Tl, Pb, Bi, As, Se, Sb y Te.
+3.2 Tipos de depósitos
+Sulfuros ortomagmáticos Cu-Ni-Co-Fe (± PGM) en rocas máficas.
+Skarn y reemplazamientos magmático-hidrotermales.
+Pórfidos Cu-(Mo-Au).
+Depósitos IOCG (iron oxide-copper-gold).
+Vetas de cobre, generalmente relacionadas con intrusiones.
+VMS y otros sulfuros masivos submarinos, frecuentemente polimetálicos.
+SEDEX y depósitos sediment-hosted.
+Sistemas hidrotermales/metamorfogénicos y enriquecimiento supergénico.
+Fuente directa del libro: 
+Pohl, 2011, pp. 186-187.
+3.3 Evidencia de alto valor para geofísica
+El caso de Olympic Dam es especialmente útil para justificar capas geofísicas en un modelo de prospectividad. Pohl describe que la exploración perforó anomalías Bouguer y magnéticas de alta amplitud, localizando un sistema mineral cubierto por cientos de metros de sedimentos no mineralizados. Esto vincula de forma explícita la gravimetría y la magnetometría con la detección de sistemas profundos.
+Fuente directa del libro: 
+Pohl, 2011, p. 188.
+3.4 La Faja Pirítica Ibérica
+El libro dedica un pasaje especialmente relevante para el proyecto español a la Faja Pirítica Ibérica. La describe como una provincia de más de 250 km, desde Sevilla hacia Portugal, en el margen meridional del orógeno Varisco y asociada a un complejo volcano-sedimentario. El autor distingue configuraciones alojadas en shales y otras vinculadas a domos, sills y materiales dacítico-riolíticos.
+La paragénesis y la metalización descritas incluyen Cu, Pb, Zn, Ag y Au, con pirita dominante y minerales como calcopirita, esfalerita, galena, arsenopirita, pirrotita, tetraedrita y sulfosales de Pb. Pohl también resalta silicificación, cloritización, sericitización, stockworks, brechas y zonación Cu-Zn-Pb.
+Fuente directa del libro: 
+Pohl, 2011, pp. 190-191.
+Traducción a X para YCu (inferencia del proyecto)
+Priorizar litología y unidades volcano-sedimentarias; distancia y densidad de fallas; distancia a contactos; Cu, Zn, Pb, Ag, As, Sb, Bi, Mo y Au cuando estén disponibles; anomalías magnéticas y gravimétricas; y proxies de alteración hidrotermal (silicificación, sericita, clorita) cuando la resolución de los datos lo permita.
+4. Plomo (YPb)
+4.1 El sistema Pb-Zn-Ag
+Pohl trata plomo y zinc en una misma sección porque son poco frecuentes los depósitos económicamente relevantes que contienen exclusivamente uno de los dos. La galena (PbS) es el principal mineral de plomo y puede constituir también una fuente importante de plata. El texto describe Ag en la red cristalina o en inclusiones microscópicas y registra además asociaciones con As, Sb, Zn, Cd, Bi, Fe y Cu.
+Fuente directa del libro: 
+Pohl, 2011, p. 195.
+4.2 Geoquímica y movilidad
+En fluidos hidrotermales, Pb y Zn suelen transportarse mediante complejos de cloruro o bisulfuro. Pohl menciona como mecanismos de precipitación los cambios de pH, enfriamiento, dilución y mezcla con fluidos portadores de azufre reducido. En la zona supergénica, el Pb tiende a ser relativamente retenido, mientras que el Zn es más móvil y puede producir halos de dispersión más amplios.
+Fuente directa del libro: 
+Pohl, 2011, pp. 196-197.
+4.3 Tipos de depósitos
+SEDEX y otros depósitos sedimentario-exhalativos.
+Depósitos hidrotermales de baja temperatura en rocas carbonatadas.
+Depósitos estratoligados en sedimentos siliciclásticos.
+Sistemas volcanogénicos, incluidos contextos de la Faja Pirítica Ibérica.
+Skarn y depósitos de contacto-metasomatismo.
+Vetas hidrotermales en distintos contextos genéticos.
+Mineralización secundaria y oxidada en la zona superficial.
+Fuente directa del libro: 
+Pohl, 2011, pp. 197-200.
+4.4 Controles litológicos y estructurales
+Para varios depósitos Pb-Zn alojados en carbonatos, el libro subraya el control de horizontes litológicos, factores paleogeográficos y fallas. En los modelos de tipo MVT e Irish Type, las rocas permeables y las estructuras canalizan salmueras y fluidos hidrotermales, mientras que dolomitización, silicificación y cavidades pueden intervenir en el emplazamiento de la mena.
+Fuente directa del libro: 
+Pohl, 2011, pp. 198-199.
+4.5 Salmueras, evaporitas y tectónica
+Pohl también describe depósitos Pb-Zn relacionados con diapirismo salino y migración de salmueras. En estos sistemas pueden coexistir control estructural por fallas, brechas y chimeneas mineralizadas, junto con carbonatos y evaporitas.
+Fuente directa del libro: 
+Pohl, 2011, p. 200.
+Traducción a X para YPb (inferencia del proyecto)
+Incluir Zn como variable candidata aunque la Y sea Pb; litología carbonatada y siliciclástica; distancia a fallas y contactos; relación con dolomías/calizas; indicadores de silicificación o dolomitización cuando existan; y geoquímica de Ag, Zn, As, Sb, Bi y Cu. La mayor movilidad superficial del Zn sugiere que puede actuar como señal indirecta de sistemas Pb-Zn.
+5. Oro (YAu)
+5.1 Geoquímica
+Pohl define el oro como elemento fuertemente siderófilo, con una concentración cortical media extremadamente baja. En rocas magmáticas, el Au puede alojarse en sulfuros, magnetita, biotita, piroxeno y hornblenda. En fluidos hidrotermales, su transporte se produce mediante complejos, especialmente con azufre y cloro, y su precipitación puede estar asociada a cambios de temperatura, presión, actividad del azufre, mezcla de fluidos, oxidación o sulfidación de las rocas encajantes.
+Fuente directa del libro: 
+Pohl, 2011, pp. 208-209.
+5.2 Pathfinders
+Para exploración geoquímica de oro, el libro considera especialmente valioso el concepto de elementos pathfinder. Ag, As, Bi y Sb pueden mostrar distribuciones menos erráticas, halos mayores y concentraciones más altas que el propio Au. En contextos específicos se añaden asociaciones con Hg, Te, Tl, W, B, Pb y Zn.
+Fuente directa del libro: 
+Pohl, 2011, pp. 213 y 220.
+5.3 Tipos de depósitos
+Depósitos magmático-hidrotermales: vetas de cuarzo, stockworks, brechas, pórfidos Cu-Au, IOCG y skarn.
+Depósitos epitermales y asociados a fuentes termales.
+Au como subproducto en VMS y SEDEX.
+Depósitos metamorfogénicos/orogénicos.
+Oro en rocas sedimentarias y ciertos sistemas de reemplazamiento.
+Depósitos lateríticos y enriquecimiento residual.
+Placeres residuales, coluviales, aluviales y costeros.
+Fuente directa del libro: 
+Pohl, 2011, pp. 209-210.
+5.4 Control estructural del oro orogénico
+En el modelo orogénico/metamorfogénico, Pohl destaca el papel de fallas de escala cortical y zonas de cizalla como conductos de flujo. La precipitación se asocia a la transición entre comportamiento dúctil y frágil, descenso de presión y temperatura y reacciones con la roca encajante. En varios ejemplos aparecen vetas y stockworks de cuarzo dentro de terrenos metamórficos de facies esquisto verde.
+Fuente directa del libro: 
+Pohl, 2011, pp. 216-217.
+5.5 Alteración y teledetección
+En sistemas epitermales y orogénicos, el libro describe asociaciones de alteración que incluyen silicificación, sericita/illita, clorita, carbonatos, pirita, alunita y alteración argílica. Estas relaciones son especialmente interesantes para convertir información espectral en features, siempre que las capas de teledetección permitan detectar proxies robustos de esos minerales o facies.
+Fuente directa del libro: 
+Pohl, 2011, pp. 213-215 y 217.
+Traducción a X para YAu (inferencia del proyecto)
+Dar prioridad a Ag, As, Bi, Sb y, cuando existan, Hg/Te/Tl/W; distancia a fallas mayores y shear zones; densidad estructural; litología y contexto metamórfico/ígneo; magnetometría en sistemas donde la roca huésped o la alteración lo justifiquen; y proxies de silicificación, sericitización/illita, clorita, alunita o alteración argílica. Evitar asumir que todos los positivos Au pertenecen al mismo sistema genético.
+6. Plata (YAg)
+6.1 Asociación polimetálica
+El libro recalca que gran parte de la plata se produce como subproducto de menas de cobre, plomo, zinc y oro. La Ag puede estar contenida en galena, esfalerita, pirita, calcopirita y tetraedrita, ya sea en la red cristalina o en inclusiones minerales. Esto hace que YAg sea especialmente susceptible de compartir señal con YPb, YCu y YAu.
+Fuente directa del libro: 
+Pohl, 2011, p. 221.
+6.2 Geoquímica
+Pohl describe la plata como elemento calcófilo. Entre los sedimentos con mayores contenidos se mencionan shales negras, fosforitas y oil shales. En sistemas hidrotermales, Ag suele transportarse mediante complejos de sulfuro y cloruro. En superficie es poco móvil salvo condiciones muy ácidas, y puede concentrarse en procesos supergénicos o formar clorargirita en ambientes con halógenos.
+Fuente directa del libro: 
+Pohl, 2011, pp. 221-222.
+6.3 Tipos de depósitos
+Skarn, contacto-metasomatismo y reemplazamiento.
+Sulfuros masivos volcanogénicos polimetálicos.
+Vetas, stockworks, brechas y mineralización diseminada epitermal.
+SEDEX polimetálicos.
+Vetas metamorfogénicas.
+Depósitos de infiltración tipo red-bed.
+Enriquecimiento supergénico.
+Fuente directa del libro: 
+Pohl, 2011, pp. 222-223.
+6.4 Epitermales de plata
+En los sistemas epitermales, el libro vincula la mineralización a cinturones volcánicos, intrusiones subvolcánicas, fallas, vetas, brechas y stockworks. Entre las alteraciones descritas aparecen adularia/potasificación, sericitización, caolinización y propilitización. Pohl también muestra zonación vertical y asociaciones variables con Cu, Pb, Zn, Au, As y Sb.
+Fuente directa del libro: 
+Pohl, 2011, pp. 223-226.
+Traducción a X para YAg (inferencia del proyecto)
+Priorizar Pb, Zn, Cu y Au como variables geoquímicas relacionadas; As y Sb cuando estén disponibles; distancia a fallas, intrusiones y contactos; litologías volcánicas/félsicas y carbonatadas según el sistema; y proxies de sericita, caolinita, propilitización y silicificación. La fuerte condición de subproducto aconseja analizar solapamientos de labels con YPb, YCu y YAu.
+7. Relaciones entre los cuatro commodities
+La lectura conjunta de los cuatro capítulos muestra que Au, Ag, Cu y Pb no deben tratarse como fenómenos geológicamente independientes. Pohl describe numerosos sistemas polimetálicos en los que varias de estas commodities forman parte del mismo evento mineralizante, aunque con zonaciones, controles y asociaciones diferentes.
+Relación
+Soporte geológico en Pohl
+Implicación para el proyecto
+Au <-> Ag
+Electrum, sistemas epitermales y múltiples menas auríferas argentíferas.
+Medir solapamiento YAu∩YAg; no interpretar independencia.
+Ag <-> Pb-Zn
+Ag frecuente en galena y en depósitos Pb-Zn-Ag.
+Zn y Pb son X candidatas relevantes para YAg.
+Cu <-> Au
+Pórfidos Cu-Au, IOCG y VMS con Au.
+Comparar patrones espaciales y asociaciones Cu-Au.
+Cu <-> Pb-Zn-Ag
+VMS/SEDEX y Faja Pirítica Ibérica polimetálica.
+Analizar multi-label y asociaciones metalogenéticas.
+Au <-> As/Sb/Bi/Hg/Te
+Pathfinders y asociaciones epitermales/orogénicas.
+Geoquímica de pathfinders puede ser más robusta que Au aislado.
+8. Feature Knowledge Base propuesta
+La siguiente matriz no es una tabla literal del libro. Es una síntesis operativa derivada de las relaciones descritas por Pohl para orientar el feature engineering del MVP.
+Familia
+Feature candidata
+Au
+Ag
+Cu
+Pb
+Geología
+Litología / unidad geológica
+Alta
+Alta
+Alta
+Alta
+Geología
+Edad / dominio geológico
+Media
+Media
+Alta
+Alta
+Estructural
+Distancia a fallas
+Muy alta
+Muy alta
+Muy alta
+Muy alta
+Estructural
+Densidad de fallas
+Muy alta
+Alta
+Alta
+Alta
+Estructural
+Distancia a contactos
+Alta
+Alta
+Alta
+Alta
+Geoquímica
+Au
+Alta
+Alta
+Media
+Baja
+Geoquímica
+Ag
+Muy alta
+Alta
+Alta
+Alta
+Geoquímica
+Cu
+Media
+Alta
+Muy alta
+Media
+Geoquímica
+Pb
+Media
+Muy alta
+Alta
+Muy alta
+Geoquímica
+Zn
+Media
+Muy alta
+Alta
+Muy alta
+Geoquímica
+As
+Muy alta
+Alta
+Alta
+Media
+Geoquímica
+Sb
+Muy alta
+Alta
+Media
+Media
+Geoquímica
+Bi
+Alta
+Media
+Media
+Media
+Geoquímica
+Hg / Te
+Alta
+Media
+Baja
+Baja
+Geoquímica
+Mo / W
+Media
+Baja
+Alta
+Baja
+Geofísica
+Magnetometría
+Media
+Baja
+Muy alta
+Baja
+Geofísica
+Gravimetría
+Media
+Baja
+Muy alta
+Baja
+Alteración
+Silicificación
+Muy alta
+Muy alta
+Alta
+Alta
+Alteración
+Sericita / illita
+Muy alta
+Muy alta
+Alta
+Media
+Alteración
+Argílica / alunita
+Muy alta
+Muy alta
+Media
+Baja
+Geomorfología
+DEM / pendiente / drenaje
+Contextual
+Contextual
+Contextual
+Contextual
+9. Implicaciones para el diseño de los cuatro Random Forest
+Mantener cuatro targets separados: YAu, YAg, YCu y YPb.
+Utilizar una base común de capas X, pero permitir selección de features específica por commodity.
+Calcular explícitamente los solapamientos multi-label entre los positivos de OxREP.
+No interpretar Y=0 como ausencia de mineralización: sigue siendo background/ausencia de evidencia romana conocida.
+Evitar target leakage: una variable derivada directamente del commodity objetivo no debe introducirse sin justificar cómo estaría disponible en una zona no conocida.
+Aplicar validación espacial, porque muchos sistemas mineralizantes forman distritos o clusters y una partición aleatoria puede inflar el rendimiento.
+Interpretar la importancia de variables en contexto geológico; un predictor importante puede actuar como proxy de un sistema metalogenético y no como causa directa.
+Con menos de dos meses, priorizar features con cobertura nacional, buena calidad y justificación clara antes de añadir variables exóticas o difíciles de armonizar.
+10. Prioridades recomendadas para el MVP
+La amplitud de procesos descrita por Pohl demuestra que construir un modelo exhaustivo de geología económica nacional excedería el alcance temporal disponible. Para un MVP reproducible, se recomienda concentrar el esfuerzo en un núcleo de variables con cobertura española razonable y elevada relación conceptual con los cuatro commodities.
+Prioridad
+Grupo de variables
+Justificación
+1
+Litología/unidad + fallas/contactos
+Cobertura amplia y controles recurrentes en los cuatro commodities.
+2
+Geoquímica multielemento
+Permite representar pathfinders y asociaciones polimetálicas.
+3
+Magnetometría y gravimetría
+Especialmente valiosas para Cu y sistemas enterrados; útiles como señales profundas.
+4
+Alteración / teledetección
+Alta relevancia para Au-Ag y algunos sistemas Cu, si la calidad de las capas es suficiente.
+5
+DEM/geomorfología
+Variables contextuales y de exposición; menor prioridad metalogenética directa.
+11. Conclusión
+La principal aportación de Pohl al proyecto no es indicar qué algoritmo usar, sino proporcionar una base experta para que la selección de X sea geológicamente defendible. Los cuatro commodities priorizados aparecen en una red de sistemas mineralizantes compartidos, asociaciones geoquímicas, controles estructurales y alteraciones. Esto justifica mantener modelos separados por commodity, pero analizar sus solapamientos y dependencias.
+Para el proyecto, la relación conceptual puede resumirse así: OxREP define dónde están las evidencias históricas positivas; Pohl ayuda a decidir qué señales del territorio deben caracterizar esas evidencias; el Random Forest evalúa si dichas combinaciones permiten distinguir zonas con mayor afinidad prospectiva dentro de España.
+Síntesis operativa
+OxREP → YAu, YAg, YCu, YPb · Pohl → conocimiento experto para X · Capas geocientíficas → matriz espacial · Random Forest → mapas de prospectividad por commodity · Validación espacial → estimación realista del rendimiento.
+12. Referencia bibliográfica
+Pohl, W. L. (2011). Economic Geology: Principles and Practice. Metals, Minerals, Coal and Hydrocarbons – Introduction to Formation and Sustainable Exploitation of Mineral Deposits. Wiley-Blackwell.
+Secciones empleadas: 
+2.2.1 Copper; 2.2.2 Lead and zinc; 2.3.1 Gold; 2.3.2 Silver.

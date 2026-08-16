@@ -1,0 +1,372 @@
+{
+  "files": [
+    {
+      "relative_path": ".gitignore",
+      "sha256": "d1d7041921af811cd99259101765a57e8c4087770bccdd33c924440abccd1d7f",
+      "size_bytes": 70
+    },
+    {
+      "relative_path": "config/project.json",
+      "sha256": "a0251eb5f58f7c7646355dca49df75a69e0beab4da20aa5bd3e3aa1098b2c5dc",
+      "size_bytes": 1411
+    },
+    {
+      "relative_path": "data/interim/README.md",
+      "sha256": "b41bc0752c71daffb9a65ecf118602a1c31ebb11b17bc8b687bb6ec7d5d47d0b",
+      "size_bytes": 152
+    },
+    {
+      "relative_path": "data/processed/data_dictionary.csv",
+      "sha256": "33e38cab93a317c84adcdd9fb172ae57301b5d1e802df7b851311e5f8833b756",
+      "size_bytes": 10147
+    },
+    {
+      "relative_path": "data/processed/oxrep_roman_mines_spain.sqlite",
+      "sha256": "d47a050d709e8fa222ebbc018a147ecb4c25c5fdedb90e13751458f66085a2f3",
+      "size_bytes": 1957888
+    },
+    {
+      "relative_path": "data/processed/oxrep_roman_mines_spain_clean.csv",
+      "sha256": "314c19bd218dbd503d5c3032dade5b50514f87c2f6e9e1f0b50343c8994ceaa2",
+      "size_bytes": 1010719
+    },
+    {
+      "relative_path": "data/processed/oxrep_roman_mines_spain_clean.geojson",
+      "sha256": "004e9846d332260f7e71d16038a7c7a393ab29d21bbc5aa3af3c8ac48d6f240c",
+      "size_bytes": 1090407
+    },
+    {
+      "relative_path": "data/processed/oxrep_spain_mine_commodities.csv",
+      "sha256": "a66cff037001580a9f6f76ab8c63b2dc5c191707160c00eea0c2a458a1283277",
+      "size_bytes": 404979
+    },
+    {
+      "relative_path": "data/processed/oxrep_spain_mine_techniques.csv",
+      "sha256": "911791858b2845d2aa18f7c1f7e14669609e8fe621eddb5ebf2be4634036b85b",
+      "size_bytes": 514965
+    },
+    {
+      "relative_path": "data/processed/quality_flag_definitions.csv",
+      "sha256": "d9d542d5910833185337d38fa36bddae2069ae6e9d3a87593c80d8f4723eea79",
+      "size_bytes": 2830
+    },
+    {
+      "relative_path": "docs/decision_log.md",
+      "sha256": "974dbf5c8079437883eef9d722edfa7aa93ac67f0b9107ba7c81ada77e0f73d3",
+      "size_bytes": 4256
+    },
+    {
+      "relative_path": "docs/external_data_sources.md",
+      "sha256": "ff359899d418300f48060821eb1dbdecd569347b7525ab163fc6f459c15dfac0",
+      "size_bytes": 41174
+    },
+    {
+      "relative_path": "docs/methodology_xy.md",
+      "sha256": "2f87591c6f97a6c6ef8fef32e47a874c6a4dd120d45a1be93123f2f280e5facb",
+      "size_bytes": 19118
+    },
+    {
+      "relative_path": "docs/ontology.md",
+      "sha256": "342d4dadf3c4ea46fafa6a8187885836ea94e39094680875f5e837364e830d39",
+      "size_bytes": 5548
+    },
+    {
+      "relative_path": "docs/oxrep_audit.md",
+      "sha256": "e588c8f45566e363c25296bf5674fb636427b64206ed972cf51c528eb0c0c229",
+      "size_bytes": 8039
+    },
+    {
+      "relative_path": "docs/rodriguez_galiano_2015_methodological_reference.md",
+      "sha256": "552ffa04f481cbce7da70c033b6d2bf17aeea4b495f4d641bdc81e21c78973a5",
+      "size_bytes": 14432
+    },
+    {
+      "relative_path": "docs/source_report_summary.md",
+      "sha256": "c9dda043b3de1483a8d47d68d6b9ae943f29b4e0b72533a5fedb480e4eae7562",
+      "size_bytes": 15343
+    },
+    {
+      "relative_path": "docs/spatial_validation.md",
+      "sha256": "f001b404f21b4ac71f5074ef04df6f86b3eb29418231b699c88b57d946703f7d",
+      "size_bytes": 11959
+    },
+    {
+      "relative_path": "notebooks/README.md",
+      "sha256": "c3fb5af15c42edbc0259225b5138494a8206d63f0cab8b66cfd025546ce890ab",
+      "size_bytes": 292
+    },
+    {
+      "relative_path": "pyproject.toml",
+      "sha256": "7ac033afc6cf6d1f65edb2d8ac0d834db7f35c6277c0f904e236c49e26ff310c",
+      "size_bytes": 471
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "83a14fbb1e64a641c821e372e243068db5a4ea2805a7799405fa423d0b90d086",
+      "size_bytes": 7185
+    },
+    {
+      "relative_path": "reports/audit/artifact_workbook_inspection.ndjson",
+      "sha256": "d145200ef840860df92959660df9dedb31d8f3f84e95e11ccd39264fc5747bd2",
+      "size_bytes": 1556
+    },
+    {
+      "relative_path": "reports/audit/column_audit.csv",
+      "sha256": "a011bc895cd00e4270984b447c1af527767c58b4e7f7a0b7b92bccea1011b16f",
+      "size_bytes": 11720
+    },
+    {
+      "relative_path": "reports/audit/duplicate_candidates.csv",
+      "sha256": "d4e8a6d30b9a52bdc674a41391a4862b183e9fc111b3e6143dc570b8255e5be6",
+      "size_bytes": 2034
+    },
+    {
+      "relative_path": "reports/audit/input_manifest.json",
+      "sha256": "87acdf1e4da1082f0d39a0a9632152ef248cf14a2a92acc0f33da613a57e6e59",
+      "size_bytes": 899
+    },
+    {
+      "relative_path": "reports/audit/probe_excel.json",
+      "sha256": "9fd9002db867eb0ac618359d92a3b60ac154b9b335de83b6d2c0797f54201e03",
+      "size_bytes": 80364
+    },
+    {
+      "relative_path": "reports/audit/spain_selection_decisions.csv",
+      "sha256": "e01f719e565a85647971d10c1ef14e04ef488f037e4460ffc760cb11c3816a6b",
+      "size_bytes": 240332
+    },
+    {
+      "relative_path": "reports/audit/validation_report.json",
+      "sha256": "0372059afa5492d2c494cf9709e8eae82d62bfd80c8d1a0a777a5506244ffff7",
+      "size_bytes": 629
+    },
+    {
+      "relative_path": "reports/audit/value_counts_all_columns.csv",
+      "sha256": "56023a0293f9a5eb75ea9543c4513bffa016cb670b4269ee9398c38e9da827cd",
+      "size_bytes": 507257
+    },
+    {
+      "relative_path": "reports/audit/workbook_inventory.json",
+      "sha256": "d9a2943f17b007d30a1bbc176eb5779d9c35f054f67dfd3f11de5edcd9646eef",
+      "size_bytes": 2757
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_A1365_P1400.png",
+      "sha256": "c29149fad126c607d4dd13134bccaba70c8f02c22445f7a44c89a80fce5d29a5",
+      "size_bytes": 278069
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_A1_P35.png",
+      "sha256": "2f8f94e5da7595108b908714ba5c1f0cf1d2f2ee86ca6028fb988999d36d32fe",
+      "size_bytes": 297834
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_A683_P718.png",
+      "sha256": "2c455f102cd29e801b2525203235f7523c4d45a0adf899f7313f1cf576dace4b",
+      "size_bytes": 323154
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_AG1365_AU1400.png",
+      "sha256": "9888e61aacbac6221eaaf96842ae6d39a948737f307c395dd9cd0bc1b62749da",
+      "size_bytes": 344970
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_AG1_AU35.png",
+      "sha256": "3688a42ba4b404a21d64946463f88923e7159ac7bd37d9837f5209e6afce1ba6",
+      "size_bytes": 252702
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_AG683_AU718.png",
+      "sha256": "2f3938d9f437254cbb0fc5b0f08ef38bf53c07764ac192afcf28078cc99abb6c",
+      "size_bytes": 278629
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_Q1365_AF1400.png",
+      "sha256": "379de34f26644690e9186eada1fd7ef4bd4e005ee668f551d974482bebc16b3e",
+      "size_bytes": 280396
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_Q1_AF35.png",
+      "sha256": "724d7e8c82bce57eeb12ae5846d88cd81d48fdedd613c3805cd611fa71fa49d0",
+      "size_bytes": 175171
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/OxREP_Mines_3_0_-_20250408_Q683_AF718.png",
+      "sha256": "36d8e0555e594a6151b8d385139d022569b53fc1df3c3a346c0a6beda3080f26",
+      "size_bytes": 264375
+    },
+    {
+      "relative_path": "reports/audit/workbook_renders/Sheet1_A1_C10.png",
+      "sha256": "214a1bb82b5d33da6b83d13599ed9285e0c38caf3c709672d864999479bb9573",
+      "size_bytes": 3628
+    },
+    {
+      "relative_path": "reports/figures/commodity_counts.png",
+      "sha256": "d4ebed6b919c551aa90c1d53e12373500304419a7e9a89b4e4ff89a4a28dfd01",
+      "size_bytes": 41381
+    },
+    {
+      "relative_path": "reports/figures/coordinate_accuracy.png",
+      "sha256": "1eb30c130e840fcef297ceecfff244c7677bfea6764a9624c6456155426c48c9",
+      "size_bytes": 41583
+    },
+    {
+      "relative_path": "reports/figures/region_counts_top20.png",
+      "sha256": "26f62f470e38574ba3f630b10d6c1c957736941ce29922e194f8344e35c14f87",
+      "size_bytes": 66854
+    },
+    {
+      "relative_path": "reports/figures/spatial_distribution.png",
+      "sha256": "3770c0fb1ff43900678a00dd81305dc20e4f8785485e8f63f2d7e2cea84828ff",
+      "size_bytes": 44789
+    },
+    {
+      "relative_path": "reports/figures/technique_counts.png",
+      "sha256": "abb7c1020333fd27139daf88e0d8b72a62fee58a66d9ac4f58cc751d573a60be",
+      "size_bytes": 46159
+    },
+    {
+      "relative_path": "reports/GeoAI_OxREP_Espana_Base_Tecnica.pdf",
+      "sha256": "6549bc8b45714e944ec74e99f90ef8cbff505bd5492844b12992112a8354f609",
+      "size_bytes": 250921
+    },
+    {
+      "relative_path": "reports/tables/chronology_numeric_summary.csv",
+      "sha256": "6b3dc57b141b8b7248dc82d25284a49f3485ca76444c0ac7d5fd782e14189532",
+      "size_bytes": 225
+    },
+    {
+      "relative_path": "reports/tables/commodity_by_region.csv",
+      "sha256": "24a3dfe31c316b7810a995af3bd03091d8c31025d4a7f59b69478a7d573fe4d8",
+      "size_bytes": 5642
+    },
+    {
+      "relative_path": "reports/tables/commodity_combinations.csv",
+      "sha256": "459b8413d84198cc6e833fc8dd808e13839cf3cbdbe84d1a68df0337d03788b5",
+      "size_bytes": 400
+    },
+    {
+      "relative_path": "reports/tables/commodity_count_distribution.csv",
+      "sha256": "5808058a4ae6fe5d4dde9cdcae1bb6eb7429382e4f35635b7252aded10af61c9",
+      "size_bytes": 120
+    },
+    {
+      "relative_path": "reports/tables/commodity_summary.csv",
+      "sha256": "379d7644c618c5bd9a06c6f031f562d861a4993b376dbe632c28e2d23ba0a756",
+      "size_bytes": 600
+    },
+    {
+      "relative_path": "reports/tables/coordinate_accuracy.csv",
+      "sha256": "717f09f107d739383e3e9855660c0bfd8b2bfef9c95c077d0522a0f3772ecccc",
+      "size_bytes": 396
+    },
+    {
+      "relative_path": "reports/tables/deposit_type_normalized.csv",
+      "sha256": "e2ba18062b56732377bdcd171b0fdf572034a91459bb72ac5c6f311eeca725e8",
+      "size_bytes": 158
+    },
+    {
+      "relative_path": "reports/tables/deposit_type_raw.csv",
+      "sha256": "70cda6374476a8226b95436a38c07faee65cab178d4b11b0413b06a8abf3103e",
+      "size_bytes": 243
+    },
+    {
+      "relative_path": "reports/tables/exploitation_type_normalized.csv",
+      "sha256": "f987e9a810f939136fa20f3a48a372f976bc3379c2c0ef084dcd4fa24e03abdc",
+      "size_bytes": 167
+    },
+    {
+      "relative_path": "reports/tables/exploitation_type_raw.csv",
+      "sha256": "4c1541d95f9727406e5bb56edf25ce545ed60e3ddac5344600548312de15415d",
+      "size_bytes": 224
+    },
+    {
+      "relative_path": "reports/tables/geology.csv",
+      "sha256": "4701b10c5214090bb5bfc4a8cc4925930350b3311508e43679bfd2841f68f5a9",
+      "size_bytes": 1395
+    },
+    {
+      "relative_path": "reports/tables/headline_technique_combinations.csv",
+      "sha256": "d476b85006748d22da7dd526efe53b92985c7dd73ea5aa04c821bc86a4c1ec22",
+      "size_bytes": 284
+    },
+    {
+      "relative_path": "reports/tables/in_use_date.csv",
+      "sha256": "37e0b6c067df97ec57e575d8c6b2acf8d0e237e67a4a560e73552babf0dfd79f",
+      "size_bytes": 229
+    },
+    {
+      "relative_path": "reports/tables/mining_district.csv",
+      "sha256": "45d6c49abed4c4472c1de4b262d8d4a3054e2625fff704eb5e34e934f33cb5b2",
+      "size_bytes": 1809
+    },
+    {
+      "relative_path": "reports/tables/quality_flag_summary.csv",
+      "sha256": "3cdc92dfbc3cc1dd3c8be273a1b16d01f3ef9fe619ca32c1dcfbf785265b0b15",
+      "size_bytes": 3239
+    },
+    {
+      "relative_path": "reports/tables/region.csv",
+      "sha256": "b9c83dd6908ae51dd23e4f2601785989d95fc599e0801f38fc869daae4ed6ae1",
+      "size_bytes": 998
+    },
+    {
+      "relative_path": "reports/tables/roman_province.csv",
+      "sha256": "74e0b7f21b49bdf434e9f85935bf2a475a05b0c798b633bdc97422d6b6219f5d",
+      "size_bytes": 134
+    },
+    {
+      "relative_path": "reports/tables/technique_summary.csv",
+      "sha256": "2dbc3eaa70c8f98c12ee949db564d68cbb1d5ea99126f847ee89c837ce04f63c",
+      "size_bytes": 773
+    },
+    {
+      "relative_path": "requirements.txt",
+      "sha256": "0cf06a98c030c1ce1a9bf52afb9a4b747adfb168beb73a2587ea2204fa09d38c",
+      "size_bytes": 79
+    },
+    {
+      "relative_path": "run_pipeline.py",
+      "sha256": "94e20a0a35702ac36e12db8a5d135fc6f5f6154a2e4e43eea0a554144516fe61",
+      "size_bytes": 386
+    },
+    {
+      "relative_path": "src/geoai_roman_spain/__init__.py",
+      "sha256": "d061d7855490eb74f13cab88ba2d45be25efe95e80f47da6695798467c26935d",
+      "size_bytes": 98
+    },
+    {
+      "relative_path": "src/geoai_roman_spain/pipeline.py",
+      "sha256": "da7f34ac2fc4cc96df69e334c267ec4d78cf6299814d9b63693eade390c06b15",
+      "size_bytes": 79360
+    },
+    {
+      "relative_path": "tests/test_pipeline_outputs.py",
+      "sha256": "091281ef30927fba1e72de33e73a2ed66a35e65c3ddda5df234edef019c7d202",
+      "size_bytes": 5027
+    },
+    {
+      "relative_path": "tools/build_technical_report.py",
+      "sha256": "ed5b006f5a219fe8513b5e64ac8af0c27bd12efbd4813553d0316ea2d954b54d",
+      "size_bytes": 27397
+    },
+    {
+      "relative_path": "tools/inspect_workbook.mjs",
+      "sha256": "c576ace00ab27a4cd6ee65a61361090556bd1b3b82002f58e2bf60ca5fe71623",
+      "size_bytes": 2077
+    },
+    {
+      "relative_path": "tools/probe_excel.py",
+      "sha256": "cfbdc0af026cbe402dfcbb68b18a15ce616c934766a592bac0d743eb5784f957",
+      "size_bytes": 5995
+    }
+  ],
+  "generated_at_utc": "2026-08-14T02:43:57.589535+00:00",
+  "numpy": "2.3.5",
+  "openpyxl": "3.1.5",
+  "pandas": "3.0.1",
+  "pillow": "12.3.0",
+  "pipeline_version": "0.2.0",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]"
+}

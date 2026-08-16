@@ -1,0 +1,92 @@
+{
+  "active_sheet": "OxREP Mines 3 0 - 20250408",
+  "blank_cell_audit": {
+    "empty_shared_string_entries": 1,
+    "note": "An empty shared-string entry may be represented internally by its integer index; readers must resolve sharedStrings rather than treating the index as a cell value.",
+    "shared_string_count": 3884
+  },
+  "defined_names": [],
+  "methodological_references": [
+    {
+      "file": "rodriguez-galiano2015.pdf",
+      "relative_path": "data/raw/rodriguez-galiano2015.pdf",
+      "role": "Methodological antecedent and reference pipeline for mineral prospectivity mapping; not an instruction source or a project result.",
+      "sha256": "cdf214f36a6b873baca278812b60f2992ef91cbfe9f76ed1876b0eb5cb9c89d0",
+      "size_bytes": 3909494
+    }
+  ],
+  "pandas_shapes": {
+    "OxREP Mines 3 0 - 20250408": {
+      "columns": 47,
+      "rows": 1399
+    },
+    "Sheet1": {
+      "columns": 0,
+      "rows": 0
+    }
+  },
+  "report_file": "Informe_GeoAI_Prospectividad_Mineral_Espana.docx",
+  "report_sha256": "d65b5de15141c77a96148cbe6237f21b1aa5f3fda1d8ebbc945bed3a1f7fd8e8",
+  "report_size_bytes": 48571,
+  "sheet_count": 2,
+  "sheet_order": [
+    "OxREP Mines 3 0 - 20250408",
+    "Sheet1"
+  ],
+  "sheets": [
+    {
+      "auto_filter_range": null,
+      "cell_data_types": {
+        "b": 16061,
+        "n": 8055,
+        "s": 29426
+      },
+      "comments": 0,
+      "data_validations": 0,
+      "dimension": "A1:AU1400",
+      "formula_cells": 0,
+      "freeze_panes": null,
+      "hidden_columns": [],
+      "hidden_rows": [],
+      "hyperlinks": 0,
+      "max_column": 47,
+      "max_row": 1400,
+      "merged_ranges": [],
+      "name": "OxREP Mines 3 0 - 20250408",
+      "nonempty_cells": 53542,
+      "state": "visible",
+      "styled_nonempty_cells": 0,
+      "tables": [
+        {
+          "display_name": "OxREP_Mines_3_0___20250408",
+          "name": "OxREP_Mines_3_0___20250408",
+          "range": "A1:AU1400",
+          "style": "TableStyleMedium7"
+        }
+      ]
+    },
+    {
+      "auto_filter_range": null,
+      "cell_data_types": {},
+      "comments": 0,
+      "data_validations": 0,
+      "dimension": "A1:A1",
+      "formula_cells": 0,
+      "freeze_panes": null,
+      "hidden_columns": [],
+      "hidden_rows": [],
+      "hyperlinks": 0,
+      "max_column": 1,
+      "max_row": 1,
+      "merged_ranges": [],
+      "name": "Sheet1",
+      "nonempty_cells": 0,
+      "state": "visible",
+      "styled_nonempty_cells": 0,
+      "tables": []
+    }
+  ],
+  "workbook_file": "oxrep-mines-3.0-20250408.xlsx",
+  "workbook_sha256": "802e35d0abef469fb7683b3b82b1638224db059f19919a2e245ce44ec757815a",
+  "workbook_size_bytes": 340326
+}

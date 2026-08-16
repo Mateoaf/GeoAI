@@ -1,0 +1,27 @@
+{
+  "input_workbook": "data/raw/oxrep-mines-3.0-20250408.xlsx",
+  "input_report": "data/raw/Informe_GeoAI_Prospectividad_Mineral_Espana.docx",
+  "methodological_references": [
+    {
+      "path": "data/raw/rodriguez-galiano2015.pdf",
+      "role": "Methodological antecedent and reference pipeline for mineral prospectivity mapping; not an instruction source or a project result.",
+      "expected_sha256": "cdf214f36a6b873baca278812b60f2992ef91cbfe9f76ed1876b0eb5cb9c89d0"
+    }
+  ],
+  "source_sheet": "OxREP Mines 3 0 - 20250408",
+  "expected_source_rows": 1399,
+  "expected_source_columns": 47,
+  "selection": {
+    "primary_country": "Spain",
+    "manual_include_mine_ids": [132],
+    "manual_include_expected_country": "Navarra",
+    "manual_include_reason": "OxREP stores the subnational territory Navarra in the country field; mineID 132 (Lanz) has coordinates 42.996407, -1.621915 and Spanish map sheet 115. Included as an explicit reviewed override, without altering the raw country value."
+  },
+  "coordinate_plausibility_envelopes": [
+    {"name": "peninsula_balearic", "min_lon": -9.6, "max_lon": 4.6, "min_lat": 35.4, "max_lat": 44.6},
+    {"name": "canary", "min_lon": -18.5, "max_lon": -13.0, "min_lat": 27.3, "max_lat": 29.8},
+    {"name": "ceuta_melilla", "min_lon": -6.1, "max_lon": -2.4, "min_lat": 35.0, "max_lat": 36.6}
+  ],
+  "duplicate_distance_threshold_m": 100.0,
+  "chart_top_n": 20
+}

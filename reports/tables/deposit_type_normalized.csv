@@ -1,0 +1,5 @@
+deposit_type_normalized,count,pct_records
+Secondary,357,0.3838709677
+Primary,335,0.3602150538
+<Missing>,216,0.2322580645
+Primary + Secondary,22,0.02365591398

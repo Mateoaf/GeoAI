@@ -1,0 +1,5 @@
+﻿Commodity,Positivos (Y=1),Spatial_ROC_AUC,Spatial_PR_AUC,Brier_Score,F1_Score,Modelo_Guardado
+🥇 Oro Romano (Y_Au),637,0.9998,0.9992,0.0064,0.9907,model_geoai_Au_Oro.joblib
+🥉 Cobre Romano (Y_Cu),186,0.9998,0.9971,0.0074,0.9786,model_geoai_Cu_Cobre.joblib
+🥈 Plata Romana (Y_Ag),179,0.9999,0.9978,0.0074,0.9755,model_geoai_Ag_Plata.joblib
+⚙️ Plomo Romano (Y_Pb),170,0.9999,0.9981,0.0067,0.9884,model_geoai_Pb_Plomo.joblib

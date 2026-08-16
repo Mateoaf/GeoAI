@@ -1,0 +1,27 @@
+Cell 000: # 🍷 Reto del Vino — Capítulo 5 COMPLETO · U1 → U8 EXHAUSTIVO FINAL
+Cell 006: ## Concepto, modelo, tipos de aprendizaje y flujo
+Cell 018: ## Generalización, overfitting/underfitting y métodos de validación
+Cell 040: ## Del EDA al modelo final
+Cell 065: # 🍷 UNIDAD 2 COMPLETA · Predicción numérica supervisada (2.1 → 2.5)
+Cell 071: ## 2.1.B · Un error individual no es una métrica agregada
+Cell 108: ## 2.5.A · Pipeline completo y comparación por validación cruzada
+Cell 110: ## 2.5.B · Selección de hiperparámetros: minimizar error de validación, no test
+Cell 118: ## 2.5.F · Error por segmento: ¿el modelo falla igual en todo el rango?
+Cell 122: ## Mini-reto de razonamiento
+Cell 123: # 🍷 UNIDAD 3 COMPLETA · Clasificación supervisada (3.1 → 3.3)
+Cell 148: ### 3.2.H · Selección del modelo sin tocar test
+Cell 168: # 🌳 UNIDAD 4 · 4.1 Tree Algorithm — desarrollo exhaustivo
+Cell 210: # 🧠 UNIDAD 5 · 5.1 Naïve Bayes Algorithm — desarrollo exhaustivo sobre Wine Quality
+Cell 210: ## El reto sigue siendo EL VINO
+Cell 217: # 🍷 5.1.D · Bayes aplicado de verdad al reto del vino
+Cell 232: ## 5.1.L · Priors del vino: el modelo parte de una prevalencia
+Cell 257: # 📍 UNIDAD 6 · 6.1 KNN Algorithm — desarrollo exhaustivo sobre Wine Quality
+Cell 257: ## Seguimos con el mismo reto del vino
+Cell 296: # 🧭 UNIDAD 7 · 7.1 SVM Algorithm — desarrollo exhaustivo sobre Wine Quality
+Cell 296: ## El reto continúa siendo EL VINO
+Cell 317: ## 7.1.L · Selección rigurosa del modelo SVM
+Cell 349: ### En nuestro reto
+Cell 355: # 🌲⚡ UNIDAD 8 · Ensemble Algorithm — cierre exhaustivo del Capítulo 5
+Cell 355: ## El reto NO cambia
+Cell 361: ## 8.1.D · Diversidad: ¿los modelos realmente discrepan?
+Cell 403: ## I6 · Stacking con SVM como meta-modelo

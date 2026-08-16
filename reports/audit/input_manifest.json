@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "relative_path": "data/raw/oxrep-mines-3.0-20250408.xlsx",
+      "role": "OxREP source workbook (immutable project copy)",
+      "sha256": "802e35d0abef469fb7683b3b82b1638224db059f19919a2e245ce44ec757815a",
+      "size_bytes": 340326
+    },
+    {
+      "relative_path": "data/raw/Informe_GeoAI_Prospectividad_Mineral_Espana.docx",
+      "role": "Project concept report (immutable project copy)",
+      "sha256": "d65b5de15141c77a96148cbe6237f21b1aa5f3fda1d8ebbc945bed3a1f7fd8e8",
+      "size_bytes": 48571
+    },
+    {
+      "relative_path": "data/raw/rodriguez-galiano2015.pdf",
+      "role": "Methodological antecedent and reference pipeline for mineral prospectivity mapping; not an instruction source or a project result.",
+      "sha256": "cdf214f36a6b873baca278812b60f2992ef91cbfe9f76ed1876b0eb5cb9c89d0",
+      "size_bytes": 3909494
+    }
+  ]
+}

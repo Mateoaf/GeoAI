@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "Y_roman_all_one": true,
+    "commodity_long_rows": 8370,
+    "complete_coordinate_records": 923,
+    "geojson_count_reconciles": true,
+    "geojson_feature_count": 923,
+    "input_workbook_hash_unchanged": true,
+    "methodological_reference_hashes_match_config": true,
+    "mineID_complete": true,
+    "mineID_unique": true,
+    "quality_flag_columns_present": true,
+    "selected_rows": 930,
+    "selection_decision_rows_equal_source": true,
+    "selection_true_equals_output": true,
+    "source_rows_unique": true,
+    "source_shape_matches": true,
+    "technique_long_rows": 8370
+  }
+}

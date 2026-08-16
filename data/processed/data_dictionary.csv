@@ -1,0 +1,149 @@
+column,dtype,role,non_null,unique_non_null,description
+source_excel_row,int64,provenance_or_raw,930,930,
+source_sheet,str,provenance_or_raw,930,1,
+source_file,str,provenance_or_raw,930,1,
+source_file_sha256,str,provenance_or_raw,930,1,
+source_row_sha256,str,provenance_or_raw,930,930,
+mineID,Int64,provenance_or_raw,930,930,
+site,str,provenance_or_raw,930,920,
+ancientName,str,provenance_or_raw,1,1,
+province,str,provenance_or_raw,930,3,
+country,str,provenance_or_raw,930,2,
+region,str,provenance_or_raw,927,37,
+miningDistrict,str,provenance_or_raw,881,54,
+romanianRANID,float64,raw_or_derived,0,0,
+sanchezPalenciaAndOrejasID,str,raw_or_derived,530,508,
+domergueID,str,raw_or_derived,539,499,
+spainMapSheet,float64,raw_or_derived,503,158,
+lambertX,float64,raw_or_derived,501,458,
+lambertY,float64,raw_or_derived,501,442,
+latitude,float64,raw_or_derived,923,921,
+longitude,float64,raw_or_derived,923,921,
+coordinateAccuracy,float64,raw_or_derived,922,14,
+locationDataSource,str,raw_or_derived,923,142,
+locationNotes,str,raw_or_derived,86,78,
+notBeforeOpeningDate,float64,raw_or_derived,32,7,
+notAfterOpeningDate,float64,raw_or_derived,30,5,
+notBeforeClosingDate,float64,raw_or_derived,30,4,
+notAfterClosingDate,float64,raw_or_derived,30,2,
+inUseDate,str,raw_or_derived,11,4,
+metalMinedGold,str,raw_or_derived,930,3,
+metalMinedSilver,float64,raw_or_derived,930,2,
+metalMinedLead,float64,raw_or_derived,930,2,
+metalMinedCopper,float64,raw_or_derived,928,2,
+metalMinedTin,float64,raw_or_derived,930,2,
+metalMinedIron,float64,raw_or_derived,930,2,
+metalMinedMercuryCinnabar,float64,raw_or_derived,930,2,
+metalMinedZinc,float64,raw_or_derived,930,2,
+metalMinedOther,float64,raw_or_derived,930,1,
+description,str,raw_or_derived,71,63,
+references,str,raw_or_derived,915,105,
+techniqueOpencast,float64,raw_or_derived,573,2,
+techniqueUnderground,float64,raw_or_derived,575,2,
+techniqueHydraulic,str,raw_or_derived,768,2,
+techniqueHushing,str,raw_or_derived,526,2,
+techniqueGroundSluicing,str,raw_or_derived,532,2,
+techniqueRuinaMontium,float64,raw_or_derived,546,2,
+techniqueRakeComb,float64,raw_or_derived,540,2,
+techniqueGoldWashing,float64,raw_or_derived,543,2,
+techniqueOther,float64,raw_or_derived,345,2,
+notes,str,raw_or_derived,24,23,
+geology,str,raw_or_derived,449,27,
+depositType,str,raw_or_derived,717,6,
+exploitationType,str,raw_or_derived,522,5,
+site_clean,string,normalised_text,930,920,
+ancient_name_clean,string,normalised_text,1,1,
+roman_province_clean,string,normalised_text,930,3,
+country_clean,string,normalised_text,930,2,
+region_clean,string,normalised_text,927,37,
+mining_district_clean,string,normalised_text,881,54,
+in_use_date_clean,string,normalised_text,11,4,
+geology_clean,string,normalised_text,449,27,
+deposit_type_clean,string,normalised_text,717,6,
+exploitation_type_clean,string,normalised_text,522,5,
+site_match_key,string,raw_or_derived,930,920,
+latitude_decimal,float64,raw_or_derived,923,921,
+longitude_decimal,float64,raw_or_derived,923,921,
+coordinate_accuracy_reported,float64,raw_or_derived,922,14,Numeric copy of OxREP coordinateAccuracy; unit and zero semantics remain unasserted.
+coordinate_in_broad_spain_envelope,bool,raw_or_derived,930,2,
+Y_Au,boolean,provisional_target,927,2,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Au_status,string,indicator_state,930,3,
+Y_Ag,boolean,provisional_target,930,2,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Ag_status,string,indicator_state,930,2,
+Y_Pb,boolean,provisional_target,930,2,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Pb_status,string,indicator_state,930,2,
+Y_Cu,boolean,provisional_target,928,2,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Cu_status,string,indicator_state,930,3,
+Y_Sn,boolean,provisional_target,930,2,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Sn_status,string,indicator_state,930,2,
+Y_Fe,boolean,provisional_target,930,2,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Fe_status,string,indicator_state,930,2,
+Y_Hg,boolean,provisional_target,930,2,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Hg_status,string,indicator_state,930,2,
+Y_Zn,boolean,provisional_target,930,2,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Zn_status,string,indicator_state,930,2,
+Y_Other,boolean,provisional_target,930,1,Nullable multi-label commodity presence derived from the corresponding OxREP indicator.
+commodity_Other_status,string,indicator_state,930,1,
+Y_roman,int64,provisional_target,930,1,Positive-only indicator: all selected OxREP records are Roman-mine presences.
+confirmed_commodity_count,int64,raw_or_derived,930,4,
+commodity_combination,str,raw_or_derived,930,16,
+commodity_information_complete,bool,raw_or_derived,930,2,
+has_technique_opencast,boolean,normalised_indicator,573,2,
+technique_opencast_status,string,indicator_state,930,3,
+has_technique_underground,boolean,normalised_indicator,575,2,
+technique_underground_status,string,indicator_state,930,3,
+has_technique_hydraulic,boolean,normalised_indicator,768,2,
+technique_hydraulic_status,string,indicator_state,930,3,
+has_technique_hushing,boolean,normalised_indicator,526,2,
+technique_hushing_status,string,indicator_state,930,3,
+has_technique_ground_sluicing,boolean,normalised_indicator,532,2,
+technique_ground_sluicing_status,string,indicator_state,930,3,
+has_technique_ruina_montium,boolean,normalised_indicator,546,2,
+technique_ruina_montium_status,string,indicator_state,930,3,
+has_technique_rake_comb,boolean,normalised_indicator,540,2,
+technique_rake_comb_status,string,indicator_state,930,3,
+has_technique_gold_washing,boolean,normalised_indicator,543,2,
+technique_gold_washing_status,string,indicator_state,930,3,
+has_technique_other,boolean,normalised_indicator,345,2,
+technique_other_status,string,indicator_state,930,3,
+confirmed_technique_count,int64,raw_or_derived,930,6,
+headline_technique_combination,str,raw_or_derived,930,7,
+notBeforeOpeningDate_numeric,float64,raw_or_derived,32,7,
+notAfterOpeningDate_numeric,float64,raw_or_derived,30,5,
+notBeforeClosingDate_numeric,float64,raw_or_derived,30,4,
+notAfterClosingDate_numeric,float64,raw_or_derived,30,2,
+chronology_numeric_bounds_count,int64,raw_or_derived,930,3,
+chronology_any_reported,bool,raw_or_derived,930,2,
+deposit_type_normalized,string,normalised_text,714,3,
+exploitation_type_normalized,string,normalised_text,521,3,
+flag_country_override,bool,quality_flag,930,2,Included by an explicit mineID override because the OxREP country field contains a subnational Spanish territory rather than 'Spain'.
+flag_coordinate_missing,bool,quality_flag,930,2,Latitude or longitude is missing/non-numeric; no point geometry is exported.
+flag_coordinate_outside_broad_spain_envelope,bool,quality_flag,930,1,Coordinate falls outside broad QA envelopes for Spain. These envelopes are not an administrative point-in-polygon test.
+flag_coordinate_accuracy_missing,bool,quality_flag,930,2,OxREP coordinateAccuracy is missing/non-numeric.
+flag_coordinate_accuracy_zero,bool,quality_flag,930,2,OxREP reports coordinateAccuracy=0. Its semantics are not inferred as either perfect precision or missingness.
+flag_coordinate_accuracy_gt_1000,bool,quality_flag,930,2,Reported coordinateAccuracy is greater than 1000 (unit is not encoded in the worksheet schema).
+flag_location_source_missing,bool,quality_flag,930,2,locationDataSource is empty.
+flag_metal_unknown_or_invalid,bool,quality_flag,930,2,At least one commodity indicator is '?' or an unrecognised value.
+flag_metal_missing,bool,quality_flag,930,2,At least one commodity indicator is blank.
+flag_no_confirmed_commodity,bool,quality_flag,930,1,No commodity indicator is confirmed present.
+flag_technique_unknown_or_invalid,bool,quality_flag,930,1,At least one technique indicator is '?' or an unrecognised value.
+flag_technique_incomplete,bool,quality_flag,930,2,At least one technique field is blank; blank is not treated as FALSE.
+flag_no_confirmed_technique,bool,quality_flag,930,2,No technique indicator is confirmed present.
+flag_chronology_missing,bool,quality_flag,930,2,All four chronology bounds and inUseDate are empty.
+flag_chronology_invalid,bool,quality_flag,930,1,Available numeric chronology bounds are internally inconsistent.
+flag_geology_missing,bool,quality_flag,930,2,geology is empty.
+flag_deposit_type_missing,bool,quality_flag,930,2,depositType is empty.
+flag_deposit_type_unexpected,bool,quality_flag,930,2,depositType is populated but outside the observed Primary/Secondary vocabulary.
+flag_exploitation_type_missing,bool,quality_flag,930,2,exploitationType is empty.
+flag_exploitation_type_unexpected,bool,quality_flag,930,2,exploitationType is populated but outside the observed Selective/Extensive vocabulary.
+flag_possible_column_shift,bool,quality_flag,930,2,"Values resemble a one-column shift between geology, depositType and exploitationType; requires source review."
+flag_source_uncertainty_text,bool,quality_flag,930,2,Source text contains an explicit uncertainty/possible-duplicate/work-in-progress phrase.
+flag_duplicate_mine_id,bool,quality_flag,930,1,mineID is duplicated within the selected dataset.
+flag_duplicate_coordinates,bool,quality_flag,930,2,Another selected record has exactly the same numeric latitude and longitude.
+flag_duplicate_site_name,bool,quality_flag,930,2,Another selected record has the same accent-insensitive normalised site name.
+flag_nearby_record_100m,bool,quality_flag,930,2,Another selected record lies within the configured 100 m candidate-review threshold.
+text_artifact_columns,str,raw_or_derived,930,5,
+flag_text_encoding_artifact,bool,quality_flag,930,2,At least one source text field contains a replacement/control artefact pattern.
+quality_flag_count,int64,raw_or_derived,930,7,
+quality_high_severity,bool,raw_or_derived,930,2,
+quality_review_required,bool,raw_or_derived,930,1,

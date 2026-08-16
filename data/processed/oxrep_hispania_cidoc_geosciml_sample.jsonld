@@ -1,0 +1,4949 @@
+{
+  "@graph": [
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/1",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Aljustrel",
+      "ancientName": "Vipasca",
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.880874,
+        "geo:long": -8.175981,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Hipotetico"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Hierro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/iron",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q677",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1983: 5-193; Domergue 1990: 62",
+        "domergueID": "POR 2",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/2",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Atalaia de Alte",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.24315224,
+        "geo:long": -8.187164537,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 24",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/3",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Avintes",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 41.099158,
+        "geo:long": -8.544675,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-01"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/4",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Belmonte - Colmeal - Maçainhas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.38963823,
+        "geo:long": -7.340493633,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Estaño / Casiterita",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/tin",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1096",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 15",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/5",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Brancanes",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.55756281,
+        "geo:long": -8.016500588,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 3",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/6",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Buraco dos Mouros de Urros",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.07721,
+        "geo:long": -7.040592,
+        "qudt:uncertaintyInMeters": 50.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-17"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/7",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cabeço de Mua",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.19318578,
+        "geo:long": -6.956601638,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Hierro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/iron",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q677",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 13",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/8",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Carvalhelos",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.68652096,
+        "geo:long": -7.739182189,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Estaño / Casiterita",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/tin",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1096",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 41",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/9",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cerro da Mina",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.44799935,
+        "geo:long": -7.755615659,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 23",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/10",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cisterna dos Cães",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.19050854,
+        "geo:long": -8.438280827,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 26",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/11",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Corta da Torre",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.69245,
+        "geo:long": -8.670924,
+        "qudt:uncertaintyInMeters": 5000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-19"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/12",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Corta do Penedo das Bruxas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.737828,
+        "geo:long": -7.573834,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-11"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/13",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Covas de Mouros de Monte da Nó",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.708911,
+        "geo:long": -8.59835,
+        "qudt:uncertaintyInMeters": 2000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-20"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/14",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Crugeira",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.11068367,
+        "geo:long": -7.317816557,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 61",
+        "domergueID": "POR 10",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/15",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Ervedosa",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.7257388,
+        "geo:long": -7.095970035,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Estaño / Casiterita",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/tin",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1096",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 14",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/16",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Escadia Grande",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.07804448,
+        "geo:long": -8.11552781,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 20",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/18",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Folgadouro",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.7692345,
+        "geo:long": -8.754909308,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Estaño / Casiterita",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/tin",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1096",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 39",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/19",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Forca",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.836843,
+        "geo:long": -8.260849,
+        "qudt:uncertaintyInMeters": 5000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-24"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/20",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "França",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.9014042,
+        "geo:long": -6.7373962,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-18"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/21",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Furados de Pombeiro",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.24195054,
+        "geo:long": -8.110787612,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 19",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/22",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Grovelas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.751727,
+        "geo:long": -8.437788,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-22"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/23",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Herdade da Tinoca",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 39.07860132,
+        "geo:long": -7.142712111,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 29",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/24",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Herdade do Montinho",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.86304358,
+        "geo:long": -8.160350225,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 11",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/25",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Jales",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.46531351,
+        "geo:long": -7.587303241,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.8,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41; Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "POR 44",
+        "sanchezPalenciaID": "NP-08"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/26",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Juliana",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.90716138,
+        "geo:long": -8.045521077,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 6",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/27",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Lagares",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.807087,
+        "geo:long": -7.455047,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-13"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/28",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Macedinho",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.405245,
+        "geo:long": -7.104955,
+        "qudt:uncertaintyInMeters": 2000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-15"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/29",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Malhada",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.74143642,
+        "geo:long": -8.400695101,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 42",
+        "domergueID": "POR 1",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/30",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Meimoa",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.19973244,
+        "geo:long": -7.123086066,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 18",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/32",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Milreu",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.61872097,
+        "geo:long": -8.142422005,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 35",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/33",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Mina da Cabranca",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 41.012513,
+        "geo:long": -8.361867,
+        "qudt:uncertaintyInMeters": 200.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Carvalho and da Veiga Ferreira 1954; Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-07"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/34",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Mina do Bugalho",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.68452182,
+        "geo:long": -7.318251199,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 61",
+        "domergueID": "POR 21",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/35",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Mina do Portal",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 41.039901,
+        "geo:long": -8.404394,
+        "qudt:uncertaintyInMeters": 300.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Carvalho and da Veiga Ferreira 1954; Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-06"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/36",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Minancos",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.16428271,
+        "geo:long": -7.141500915,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 61",
+        "domergueID": "POR 5",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/37",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Monfortinho 1",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.01267954,
+        "geo:long": -6.874035303,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 17.1",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/38",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Monfortinho 2",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.01267954,
+        "geo:long": -6.874035303,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 17.2",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/39",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Monfortinho 3 (Fonte Santa)",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.99651051,
+        "geo:long": -6.877844815,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 17.3",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/40",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Monte Judeu",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.04335366,
+        "geo:long": -7.352737619,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 61",
+        "domergueID": "POR 9",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/133",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Nogueirinha",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 38.53331052,
+        "geo:long": -8.128499598,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Hierro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/iron",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q677",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 22",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/134",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Outeiro Machado",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.750612,
+        "geo:long": -7.515958,
+        "qudt:uncertaintyInMeters": 500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-12"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/135",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Paulinos",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.5488674,
+        "geo:long": -8.493903507,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Estaño / Casiterita",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/tin",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1096",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 12",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/136",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Picalto",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.26293846,
+        "geo:long": -8.240163649,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 25",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/137",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Pirâmide de Santa Justa",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.171439,
+        "geo:long": -8.494012,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-03"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/138",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Poço das Freitas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.73727222,
+        "geo:long": -7.598234313,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.8,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41; Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "POR 42",
+        "sanchezPalenciaID": "NP-10"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/139",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Batocas (Poço das Freitas)",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.75528934,
+        "geo:long": -7.600489841,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41; Lima et al. 2014",
+        "domergueID": "POR 42",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/140",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Quarta Feira",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.35979926,
+        "geo:long": -7.203108594,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 42",
+        "domergueID": "POR 28",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/141",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Recarei",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.157252,
+        "geo:long": -8.434914,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-04"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/142",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Río Miño 3: Rio Mouro",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.07670386,
+        "geo:long": -8.405047143,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 37",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/143",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Río Miño 4: Monção",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.07456039,
+        "geo:long": -8.523459902,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 38",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/144",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Río Ponsul",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.80988767,
+        "geo:long": -7.374041294,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 16",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/145",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Ruy Gomes",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.11467547,
+        "geo:long": -7.375926245,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 61",
+        "domergueID": "POR 8",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/146",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "San Domingos",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 37.66849754,
+        "geo:long": -7.49041657,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 7",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/148",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Santo Estevão",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 37.2194949,
+        "geo:long": -8.371923707,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 27",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/149",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Seixo",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.19008,
+        "geo:long": -7.26548,
+        "qudt:uncertaintyInMeters": 2000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-14"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/150",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Serra de Arga",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.806046,
+        "geo:long": -8.713685,
+        "qudt:uncertaintyInMeters": 3000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-21"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/151",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Serra de Banjas / Mias das Banjas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.09264776,
+        "geo:long": -8.387838816,
+        "qudt:uncertaintyInMeters": 200.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.94,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41; Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "POR 30",
+        "sanchezPalenciaID": "NP-05"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/152",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Serra de Caveira",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 38.11740938,
+        "geo:long": -8.50711216,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 36",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/153",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Serra de Queiriga",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.78431492,
+        "geo:long": -7.742175823,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Estaño / Casiterita",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/tin",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1096",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 42",
+        "domergueID": "POR 46",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/154",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Serra de Santa Justa / Fojo das Pombas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.18239405,
+        "geo:long": -8.497837306,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 1.0,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41; Sanchez-Palencia and Orejas 1994, 198; http://arqueologia.patrimoniocultural.pt/index.php?sid=sitios.resultados&subsid=47630 ; https://aesda.org/tag/valongo/",
+        "domergueID": "POR 31",
+        "sanchezPalenciaID": "NP-02"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/155",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Tagus 1: Mouriscas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.46560039,
+        "geo:long": -8.098241904,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 33",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/156",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Tagus 2: Abrantes",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.47459709,
+        "geo:long": -8.191211683,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 32",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/157",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Tagus 3: Confluence Zêzere-Tagus",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.4789832,
+        "geo:long": -8.307440301,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 34",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/158",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Tinas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.795201,
+        "geo:long": -8.337281,
+        "qudt:uncertaintyInMeters": 5000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 199",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NP-23"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/159",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Três Minas - Corta de Covas",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.496453,
+        "geo:long": -7.525246,
+        "qudt:uncertaintyInMeters": 0.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 1.0,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41; Wahl 1993: 123-157; Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "POR 45",
+        "sanchezPalenciaID": "NP-09"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/160",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Trincheiras",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.98332173,
+        "geo:long": -7.457592038,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 43",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/161",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Vila Mou",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 41.73351537,
+        "geo:long": -8.698071507,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Estaño / Casiterita",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/tin",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1096",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 41",
+        "domergueID": "POR 40",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/162",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Zambujal",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Lusitania",
+        "geo:lat": 38.26209908,
+        "geo:long": -8.021107841,
+        "qudt:uncertaintyInMeters": null
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Hierro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/iron",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q677",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "POR 4",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/391",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Arroyo del Salgueral",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.587941,
+        "geo:long": -6.10518,
+        "qudt:uncertaintyInMeters": 50.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 1.0,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1988, 343; Sanchez-Palencia and Orejas 1994, 190",
+        "domergueID": "LE 58",
+        "sanchezPalenciaID": "AT-13"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/429",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Barranco de Santa Filomena",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.80928761,
+        "geo:long": -1.33769529,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 64",
+        "domergueID": "CU 1",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/430",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Barranco Hondillo",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.38035345,
+        "geo:long": -3.19315217,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 49",
+        "domergueID": "J 27",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/431",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Barreiro",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.455589,
+        "geo:long": -7.327043,
+        "qudt:uncertaintyInMeters": 500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 195",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "MS-045"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/432",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Barrio Nuevo",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.770177,
+        "geo:long": -5.54812106,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 45",
+        "domergueID": "BA 41",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/433",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Begega - El Valle",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 43.28577,
+        "geo:long": -6.299792,
+        "qudt:uncertaintyInMeters": 500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 198",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NA-42"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/434",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Benllera",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.769431,
+        "geo:long": -5.739137,
+        "qudt:uncertaintyInMeters": 500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 189",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "AO-30"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/435",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Berrocoso",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.38853471,
+        "geo:long": -4.89415277,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 47",
+        "domergueID": "CO 15",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/436",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Besullo",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 43.187648,
+        "geo:long": -6.62437,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 197",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NA-23"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/437",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Braña de Avelleras",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 43.137245,
+        "geo:long": -6.668311,
+        "qudt:uncertaintyInMeters": 1500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 197",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NA-10"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/438",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Brañalebrel",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 43.424806,
+        "geo:long": -6.890274,
+        "qudt:uncertaintyInMeters": 1000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.845,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 201",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "PO-01"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/439",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Brués",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.455979,
+        "geo:long": -8.158613,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 194",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "MM-02"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/440",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Buiran",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.930757,
+        "geo:long": -7.072386,
+        "qudt:uncertaintyInMeters": 2000.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 188",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "AN-07"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/441",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Buñola",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 39.70497528,
+        "geo:long": 2.703042203,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 64",
+        "domergueID": "PM 1",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/442",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Burbia",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.792992,
+        "geo:long": -6.774636,
+        "qudt:uncertaintyInMeters": 1500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.765,
+        "certaintyGrade": "Media Certeza (Grado II)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 191",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "CB-07"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/444",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Bustiello de Paredes",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 43.444587,
+        "geo:long": -6.497716,
+        "qudt:uncertaintyInMeters": 500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 193",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "ES-06"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/445",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cabeza del Agua",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 37.53989078,
+        "geo:long": -6.91306989,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 61",
+        "domergueID": "H 18",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/446",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cabezas del Pasto",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 37.6082037,
+        "geo:long": -7.33224915,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "H 39",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/447",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cabezo de la Reina",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 40.7175583,
+        "geo:long": -4.179631046,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 64",
+        "domergueID": "SG 2",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/448",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cabezo de los Silos",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 37.6867135,
+        "geo:long": -7.35899187,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "H 41",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/449",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cabezo Hueca",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 37.58994716,
+        "geo:long": -7.0808167,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "H 8",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/450",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cabezo Rajado",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 37.61656939,
+        "geo:long": -0.900306875,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 64",
+        "domergueID": "MU 4",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/451",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cabo de la Nao",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 38.74237138,
+        "geo:long": 0.22764936,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Hierro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/iron",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q677",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 64",
+        "domergueID": "A 1",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/452",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cádiz",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 37.82466729,
+        "geo:long": -5.08227721,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 45",
+        "domergueID": "CO 83",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/453",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cala Reona",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 37.61551691,
+        "geo:long": -0.718976529,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 64",
+        "domergueID": "MU 7",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/454",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Calamón",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 37.84722783,
+        "geo:long": -5.08044861,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 45",
+        "domergueID": "CO 82",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/455",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Callejón de Matajaca",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.37739882,
+        "geo:long": -4.83783744,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 48",
+        "domergueID": "CO 88",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/456",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Campanario",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 37.54317278,
+        "geo:long": -6.82941041,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 62",
+        "domergueID": "H 45",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/457",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Campo Antigua",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 43.337309,
+        "geo:long": -6.709717,
+        "qudt:uncertaintyInMeters": 500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 200",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "NV-64"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/458",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Campo la Peral",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.56722,
+        "geo:long": -6.258764,
+        "qudt:uncertaintyInMeters": 500.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Ruina Montium (Minería Hidráulica / Hushing)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053913"
+        },
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Corta y Explotación a Cielo Abierto",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053914"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.905,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Sanchez-Palencia and Orejas 1994, 191",
+        "domergueID": "nan",
+        "sanchezPalenciaID": "BO-22"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/459",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Camporredondo",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Tarraconensis",
+        "geo:lat": 42.88780177,
+        "geo:long": -4.752831906,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Oro",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/gold",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q208045",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 42",
+        "domergueID": "P 1",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/460",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Canadá",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.37658115,
+        "geo:long": -4.91570948,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Cobre",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/copper",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q753",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [
+        {
+          "@type": "crm:E55_Type",
+          "rdfs:label": "Minería Subterránea (Pozos y Galerías con Entibación)",
+          "crm:P2_has_type": "http://vocab.getty.edu/aat/300053915"
+        }
+      ],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 47",
+        "domergueID": "CO 18",
+        "sanchezPalenciaID": "nan"
+      }
+    },
+    {
+      "@context": {
+        "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+        "gsml": "http://xmlns.geosciml.org/geosciml-core/4.1",
+        "prov": "http://www.w3.org/ns/prov#",
+        "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/"
+      },
+      "@id": "http://oxrep.classics.ox.ac.uk/id/mine/461",
+      "@type": [
+        "crm:E22_Human-Made_Object",
+        "gsml:MineralOccurrence"
+      ],
+      "rdfs:label": "Cancho Blanco",
+      "ancientName": null,
+      "crm:P89_falls_within": {
+        "@type": "crm:E53_Place",
+        "rdfs:label": "Hispania Baetica",
+        "geo:lat": 38.63919229,
+        "geo:long": -5.81715282,
+        "qudt:uncertaintyInMeters": 100.0
+      },
+      "gsml:exploitsCommodity": [
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plata",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/silver",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q1090",
+          "status": "Confirmado"
+        },
+        {
+          "@type": "gsml:Commodity",
+          "rdfs:label": "Plomo",
+          "gsml:commodityCode": "http://resource.geosciml.org/classifier/cgi/commodity-code/lead",
+          "owl:sameAs": "https://www.wikidata.org/wiki/Q708",
+          "status": "Confirmado"
+        }
+      ],
+      "crm:P2_has_technique": [],
+      "epistemology": {
+        "certaintyScore": 0.965,
+        "certaintyGrade": "Alta Certeza (Grado I)"
+      },
+      "prov:wasDerivedFrom": {
+        "@type": "prov:Entity",
+        "rdfs:label": "Domergue 1990: 45",
+        "domergueID": "BA 50",
+        "sanchezPalenciaID": "nan"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+mineID_left,mineID_right,site_left,site_right,latitude_left,longitude_left,latitude_right,longitude_right,distance_m,candidate_reasons,decision
+502,503,Cerro de la Mina,Cerro de la Mina,38.60604095,-6.51042667,39.83148876,-1.32055691,467312.8208,same_normalised_site,retain_both_pending_domain_review
+564,565,Covas,Covas,43.04589,-6.991571,,,,same_normalised_site,retain_both_pending_domain_review
+594,595,El Barrero,El Barrero,42.500821,-6.166731,42.433849,-6.717874,45816.36283,same_normalised_site,retain_both_pending_domain_review
+711,712,Fornaza,Fornaza,43.02341913,-6.945084042,43.076049,-6.956886,5930.236755,same_normalised_site,retain_both_pending_domain_review
+822,823,La Presa,La Presa,42.345102,-6.32875,43.184306,-6.774191,100149.5638,same_normalised_site,retain_both_pending_domain_review
+829,830,La Romana,La Romana,38.34758658,-4.75148252,38.63461989,-4.35810314,46806.36297,same_normalised_site,retain_both_pending_domain_review
+844,845,Lago,Lago,42.40685074,-8.039627332,43.243693,-6.730794,141602.8364,same_normalised_site,retain_both_pending_domain_review
+849,1169,Lagueiro I,Río Ibias,43.02386,-6.86042,43.0238595,-6.860420204,0.05801807234,within_100_m,retain_both_pending_domain_review
+879,880,Las Minillas,Las Minillas,38.86578022,-5.03505856,38.28298501,-5.61415806,82059.97943,same_normalised_site,retain_both_pending_domain_review
+1021,1022,Navelgas,Navelgas Norte: Mina de Entrepeñas,43.41262417,-6.538659739,43.41262417,-6.538659739,0,exact_same_coordinates;within_100_m,retain_both_pending_domain_review
+1188,1189,Río Miño 2: Salvatierra: Las Nieves,Río Miño 2: Salvatierra: Las Nieves,42.07405709,-8.420913246,42.07462164,-8.429428437,705.6200156,same_normalised_site,retain_both_pending_domain_review
+1354,1355,Valdeinfierno,Valdeinfierno,38.79788627,-4.48872135,38.18033163,-3.57829937,104852.323,same_normalised_site,retain_both_pending_domain_review
+1396,1397,Vieiros I,Vieiros II,42.572755,-7.079755,42.572755,-7.079755,0,exact_same_coordinates;within_100_m,retain_both_pending_domain_review

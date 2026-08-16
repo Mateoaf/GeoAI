@@ -1,0 +1,5 @@
+source_column,non_null_numeric,missing_or_non_numeric,min,median,max
+notBeforeOpeningDate,32,898,-330,-20,1
+notAfterOpeningDate,30,900,-200,200,230
+notBeforeClosingDate,30,900,15,15,300
+notAfterClosingDate,30,900,250,300,300
