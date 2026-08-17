@@ -1,0 +1,17 @@
+{
+  "total_samples": 1793,
+  "positive_mines": 993,
+  "background_samples": 800,
+  "commodities_positives": {
+    "Au_Oro": 637,
+    "Cu_Cobre": 186,
+    "Ag_Plata": 179,
+    "Pb_Plomo": 170
+  },
+  "sampling_qa": {
+    "candidates_generated": 1157,
+    "rejected_outside_land_domain": 314,
+    "rejected_distance_buffer_5km": 43,
+    "accepted_final": 800
+  }
+}

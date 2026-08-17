@@ -1,0 +1,151 @@
+{
+  "model_A_geoscientific_no_coords": {
+    "overall": {
+      "roc_auc": 0.6872,
+      "pr_auc": 0.6649,
+      "brier": 0.2394,
+      "f1": 0.6699,
+      "precision": 0.7107,
+      "recall": 0.6334,
+      "precision_top_k": 0.648,
+      "gain_top_k": 0.1168
+    },
+    "folds": [
+      {
+        "roc_auc": 0.6218,
+        "pr_auc": 0.87,
+        "brier": 0.2926,
+        "f1": 0.7198,
+        "precision": 0.8951,
+        "recall": 0.6019,
+        "precision_top_k": 0.7867,
+        "gain_top_k": 0.0925
+      },
+      {
+        "roc_auc": 0.811,
+        "pr_auc": 0.6094,
+        "brier": 0.1521,
+        "f1": 0.5455,
+        "precision": 0.5745,
+        "recall": 0.5192,
+        "precision_top_k": 0.8,
+        "gain_top_k": 0.3077
+      },
+      {
+        "roc_auc": 0.6246,
+        "pr_auc": 0.6433,
+        "brier": 0.245,
+        "f1": 0.7026,
+        "precision": 0.6623,
+        "recall": 0.7481,
+        "precision_top_k": 0.587,
+        "gain_top_k": 0.1
+      },
+      {
+        "roc_auc": 0.7314,
+        "pr_auc": 0.2927,
+        "brier": 0.1467,
+        "f1": 0.2414,
+        "precision": 0.1667,
+        "recall": 0.4375,
+        "precision_top_k": 0.3333,
+        "gain_top_k": 0.375
+      },
+      {
+        "roc_auc": 0.5882,
+        "pr_auc": 0.1642,
+        "brier": 0.1961,
+        "f1": 0.2278,
+        "precision": 0.1452,
+        "recall": 0.5294,
+        "precision_top_k": 0.1765,
+        "gain_top_k": 0.1765
+      }
+    ],
+    "features_used": [
+      "Real_IGME_Dist_Fault_m",
+      "Real_IGME_Dist_Contact_m",
+      "Real_IGME_Fault_Length_Density_5km",
+      "Real_IGME_Lithology_General",
+      "Real_IGME_Era",
+      "Real_IGME_Dominio"
+    ]
+  },
+  "model_B_with_coords_leakage": {
+    "overall": {
+      "roc_auc": 0.7387,
+      "pr_auc": 0.739,
+      "brier": 0.3118,
+      "f1": 0.3486,
+      "precision": 0.7238,
+      "recall": 0.2296,
+      "precision_top_k": 0.8324,
+      "gain_top_k": 0.1501
+    },
+    "folds": [
+      {
+        "roc_auc": 0.5299,
+        "pr_auc": 0.848,
+        "brier": 0.5016,
+        "f1": 0.1118,
+        "precision": 0.9048,
+        "recall": 0.0596,
+        "precision_top_k": 0.8,
+        "gain_top_k": 0.094
+      },
+      {
+        "roc_auc": 0.7541,
+        "pr_auc": 0.5694,
+        "brier": 0.164,
+        "f1": 0.5067,
+        "precision": 0.8261,
+        "recall": 0.3654,
+        "precision_top_k": 0.8,
+        "gain_top_k": 0.3077
+      },
+      {
+        "roc_auc": 0.7068,
+        "pr_auc": 0.7728,
+        "brier": 0.2416,
+        "f1": 0.6706,
+        "precision": 0.7125,
+        "recall": 0.6333,
+        "precision_top_k": 0.9348,
+        "gain_top_k": 0.1593
+      },
+      {
+        "roc_auc": 0.6064,
+        "pr_auc": 0.1098,
+        "brier": 0.0795,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "precision_top_k": 0.0,
+        "gain_top_k": 0.0
+      },
+      {
+        "roc_auc": 0.6191,
+        "pr_auc": 0.1323,
+        "brier": 0.1042,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "precision_top_k": 0.1765,
+        "gain_top_k": 0.1765
+      }
+    ],
+    "features_used": [
+      "Real_IGME_Dist_Fault_m",
+      "Real_IGME_Dist_Contact_m",
+      "Real_IGME_Fault_Length_Density_5km",
+      "Coord_X",
+      "Coord_Y",
+      "Real_IGME_Lithology_General",
+      "Real_IGME_Era",
+      "Real_IGME_Dominio"
+    ]
+  },
+  "delta_roc_auc": 0.0515,
+  "delta_pr_auc": 0.0741,
+  "interpretation": "Un incremento desproporcionado en el Modelo B confirma que las coordenadas X/Y inducen memorizaci\u00f3n espacial en lugar de aprendizaje de procesos geol\u00f3gicos."
+}

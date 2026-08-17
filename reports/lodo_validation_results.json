@@ -1,0 +1,87 @@
+{
+  "Noroeste_Galaico_Leones": {
+    "district_name": "Noroeste Galaico-Leon\u00e9s (Au orog\u00e9nico / Las M\u00e9dulas, Salave, Teleno)",
+    "status": "ROBUST",
+    "n_train_pos": 380,
+    "n_test_pos": 613,
+    "n_test_bg": 77,
+    "metrics": {
+      "roc_auc": 0.5553,
+      "pr_auc": 0.8864,
+      "brier": 0.3003,
+      "f1": 0.7137,
+      "precision": 0.9135,
+      "recall": 0.5856,
+      "precision_top_k": 0.8551,
+      "gain_top_k": 0.0962
+    }
+  },
+  "Faja_Piritica_Iberica": {
+    "district_name": "Faja Pir\u00edtica Ib\u00e9rica (Cu-VMS / Riotinto, Tharsis, Aznalc\u00f3llar)",
+    "status": "ROBUST",
+    "n_train_pos": 922,
+    "n_test_pos": 71,
+    "n_test_bg": 31,
+    "metrics": {
+      "roc_auc": 0.6742,
+      "pr_auc": 0.762,
+      "brier": 0.1986,
+      "f1": 0.777,
+      "precision": 0.7941,
+      "recall": 0.7606,
+      "precision_top_k": 0.7,
+      "gain_top_k": 0.0986
+    }
+  },
+  "Sierra_Morena_Linares": {
+    "district_name": "Sierra Morena / Linares-La Carolina (Pb-Ag filoniano / Los Pedroches)",
+    "status": "ROBUST",
+    "n_train_pos": 860,
+    "n_test_pos": 133,
+    "n_test_bg": 26,
+    "metrics": {
+      "roc_auc": 0.4232,
+      "pr_auc": 0.8231,
+      "brier": 0.3223,
+      "f1": 0.5943,
+      "precision": 0.7975,
+      "recall": 0.4737,
+      "precision_top_k": 0.8667,
+      "gain_top_k": 0.0977
+    }
+  },
+  "Sureste_Betico": {
+    "district_name": "Sureste B\u00e9tico / Mazarr\u00f3n-Rodalquilar (Au-Ag-Pb epitermal ne\u00f3geno)",
+    "status": "ROBUST",
+    "n_train_pos": 976,
+    "n_test_pos": 17,
+    "n_test_bg": 32,
+    "metrics": {
+      "roc_auc": 0.6535,
+      "pr_auc": 0.5868,
+      "brier": 0.2134,
+      "f1": 0.4667,
+      "precision": 0.5385,
+      "recall": 0.4118,
+      "precision_top_k": 0.75,
+      "gain_top_k": 0.1765
+    }
+  },
+  "Zona_Centroiberica": {
+    "district_name": "Zona Centroib\u00e9rica / Sistema Central (Filones de Cuarzo-Sulfuros)",
+    "status": "EXPLORATORY_LOW_N",
+    "n_train_pos": 979,
+    "n_test_pos": 14,
+    "n_test_bg": 110,
+    "metrics": {
+      "roc_auc": 0.5987,
+      "pr_auc": 0.2035,
+      "brier": 0.3977,
+      "f1": 0.2321,
+      "precision": 0.1327,
+      "recall": 0.9286,
+      "precision_top_k": 0.25,
+      "gain_top_k": 0.2143
+    }
+  }
+}

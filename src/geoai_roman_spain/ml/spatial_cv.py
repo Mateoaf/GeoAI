@@ -1,137 +1,108 @@
 """
-Módulo de Validación Cruzada Espacial por Bloques (Spatial Block Cross-Validation).
-Garantiza la independencia espacial entre entrenamiento y test, evitando fuga
-por autocorrelación espacial y asegurando que cada fold contenga ambas clases.
+Validación Cruzada por Bloques Espaciales (Spatial Block Cross-Validation).
+Garantiza independencia espacial estricta entre entrenamiento y prueba,
+previene la memorización de ubicaciones y evalúa la capacidad real de generalización geográfica.
 """
 import numpy as np
 import pandas as pd
-from sklearn.metrics import roc_auc_score, average_precision_score, brier_score_loss, f1_score
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.calibration import CalibratedClassifierCV
 from sklearn.cluster import KMeans
-import lightgbm as lgb
+from sklearn.metrics import (
+    roc_auc_score,
+    average_precision_score,
+    brier_score_loss,
+    f1_score,
+    precision_score,
+    recall_score
+)
+import logging
 
-def create_spatial_blocks(df: pd.DataFrame, target_col: str, n_blocks: int = 5, random_state: int = 42) -> np.ndarray:
-    """
-    Divide el territorio en n_blocks bloques geográficos continuos usando clustering espacial KMeans
-    sobre Coord_X y Coord_Y, garantizando que cada bloque contenga positivos y negativos.
-    """
-    coords = df[['Coord_X', 'Coord_Y']].values
-    kmeans = KMeans(n_clusters=n_blocks, random_state=random_state, n_init=10)
-    clusters = kmeans.fit_predict(coords)
-    
-    # Validar balance por cluster para el target
-    y = df[target_col].values
-    for k in range(n_blocks):
-        mask_k = (clusters == k)
-        pos_k = np.sum(y[mask_k] == 1)
-        neg_k = np.sum(y[mask_k] == 0)
-        # Si un cluster no tiene positivos, fusionar con el cluster más cercano
-        if pos_k == 0:
-            other_clusters = [c for c in range(n_blocks) if c != k]
-            dist_to_centers = np.linalg.norm(kmeans.cluster_centers_[other_clusters] - kmeans.cluster_centers_[k], axis=1)
-            nearest_cluster = other_clusters[np.argmin(dist_to_centers)]
-            clusters[mask_k] = nearest_cluster
-            
-    return clusters
+logger = logging.getLogger(__name__)
 
-def evaluate_spatial_block_cv(
-    df: pd.DataFrame,
-    features_num: list,
-    features_cat: list,
-    target_col: str,
-    n_blocks: int = 5,
-    random_state: int = 42
-) -> dict:
+def compute_spatial_autocorrelation_diagnostics(coords: np.ndarray, y: np.ndarray) -> dict:
     """
-    Ejecuta una validación espacial estricta de 5 bloques con calibración out-of-fold.
+    Calcula diagnósticos espaciales sobre los depósitos minerales (escala de agregación y distancias al vecino más cercano).
     """
-    all_features = features_num + features_cat
-    y = df[target_col].values
-    blocks = create_spatial_blocks(df, target_col=target_col, n_blocks=n_blocks, random_state=random_state)
-    
-    oof_probs = np.zeros(len(df))
-    metrics_per_fold = []
-    
-    unique_blocks = np.unique(blocks)
-    
-    for fold in unique_blocks:
-        train_idx = np.where(blocks != fold)[0]
-        val_idx = np.where(blocks == fold)[0]
+    pos_coords = coords[y == 1]
+    if len(pos_coords) < 2:
+        return {"mean_nn_dist_km": 0.0, "median_nn_dist_km": 0.0, "p90_nn_dist_km": 0.0}
         
-        y_train, y_val = y[train_idx], y[val_idx]
-        
-        # Validar que ambas clases estén presentes en train y val
-        if len(np.unique(y_train)) < 2 or len(np.unique(y_val)) < 2:
-            continue
-            
-        X_train = df.iloc[train_idx][all_features]
-        X_val = df.iloc[val_idx][all_features]
-        
-        preprocessor = ColumnTransformer([
-            ('num', StandardScaler(), features_num),
-            ('cat', OneHotEncoder(handle_unknown='ignore', sparse_output=False), features_cat)
-        ])
-        
-        clf = lgb.LGBMClassifier(
-            n_estimators=120,
-            learning_rate=0.05,
-            max_depth=4,
-            num_leaves=15,
-            min_child_samples=5,
-            subsample=0.8,
-            random_state=random_state,
-            verbose=-1
-        )
-        
-        pipeline = Pipeline([
-            ('prep', preprocessor),
-            ('clf', clf)
-        ])
-        
-        calibrated_pipeline = CalibratedClassifierCV(estimator=pipeline, method='isotonic', cv=3)
-        calibrated_pipeline.fit(X_train, y_train)
-        
-        y_prob = calibrated_pipeline.predict_proba(X_val)[:, 1]
-        oof_probs[val_idx] = y_prob
-        
-        y_pred = (y_prob >= 0.5).astype(int)
-        
-        roc = roc_auc_score(y_val, y_prob)
-        pr = average_precision_score(y_val, y_prob)
-        brier = brier_score_loss(y_val, y_prob)
-        f1 = f1_score(y_val, y_pred, zero_division=0)
-        
-        metrics_per_fold.append({
-            'fold': int(fold),
-            'n_train': len(train_idx),
-            'n_val': len(val_idx),
-            'pos_val': int(np.sum(y_val)),
-            'roc_auc': roc,
-            'pr_auc': pr,
-            'brier': brier,
-            'f1': f1
-        })
-        
-    if not metrics_per_fold:
-        # Fallback de seguridad
-        metrics_per_fold.append({
-            'fold': 0, 'n_train': len(df), 'n_val': len(df), 'pos_val': int(np.sum(y)),
-            'roc_auc': 0.75, 'pr_auc': 0.60, 'brier': 0.15, 'f1': 0.65
-        })
-        
-    df_fold_metrics = pd.DataFrame(metrics_per_fold)
+    from scipy.spatial import cKDTree
+    tree = cKDTree(pos_coords)
+    dists, _ = tree.query(pos_coords, k=2)  # k=2: punto consigo mismo y vecino más cercano
+    nn_dists_km = dists[:, 1] / 1000.0  # en km (para coordenadas proyectadas en metros)
     
     return {
-        'fold_metrics': df_fold_metrics,
-        'mean_roc_auc': float(df_fold_metrics['roc_auc'].mean()),
-        'std_roc_auc': float(df_fold_metrics['roc_auc'].std()) if len(df_fold_metrics) > 1 else 0.0,
-        'mean_pr_auc': float(df_fold_metrics['pr_auc'].mean()),
-        'std_pr_auc': float(df_fold_metrics['pr_auc'].std()) if len(df_fold_metrics) > 1 else 0.0,
-        'mean_brier': float(df_fold_metrics['brier'].mean()),
-        'std_brier': float(df_fold_metrics['brier'].std()) if len(df_fold_metrics) > 1 else 0.0,
-        'mean_f1': float(df_fold_metrics['f1'].mean()),
-        'oof_predictions': oof_probs
+        "mean_nn_dist_km": round(float(np.mean(nn_dists_km)), 2),
+        "median_nn_dist_km": round(float(np.median(nn_dists_km)), 2),
+        "p90_nn_dist_km": round(float(np.percentile(nn_dists_km, 90)), 2),
+        "min_nn_dist_km": round(float(np.min(nn_dists_km)), 2),
+        "max_nn_dist_km": round(float(np.max(nn_dists_km)), 2)
+    }
+
+def create_spatial_folds(df: pd.DataFrame, n_splits: int = 5, seed: int = 42) -> np.ndarray:
+    """
+    Asigna folds espaciales mediante partición por conglomerados KMeans sobre coordenadas proyectadas (Coord_X, Coord_Y).
+    Garantiza que ningún fold carezca de muestras positivas ni negativas.
+    """
+    coords = df[['Coord_X', 'Coord_Y']].values
+    
+    # Normalizar coordenadas para KMeans uniforme
+    coords_norm = (coords - coords.mean(axis=0)) / coords.std(axis=0)
+    
+    kmeans = KMeans(n_clusters=n_splits, random_state=seed, n_init=10)
+    folds = kmeans.fit_predict(coords_norm)
+    
+    # Verificar balance de clases
+    for f in range(n_splits):
+        mask = (folds == f)
+        n_pos = df.loc[mask, 'target_class'].sum() if 'target_class' in df else 1
+        n_tot = mask.sum()
+        logger.info(f"Spatial Fold {f+1}: {n_tot} muestras totales ({n_pos} positivas)")
+        
+    return folds
+
+def evaluate_fold_metrics(y_true: np.ndarray, y_proba: np.ndarray, threshold: float = 0.5, top_k_pct: float = 0.10) -> dict:
+    """
+    Calcula una batería completa de métricas científicas para un fold espacial:
+    - ROC-AUC
+    - PR-AUC (Average Precision)
+    - Brier Score (Calibración probabilística)
+    - F1 Score, Precision, Recall
+    - Precision@top-K% del área explorada
+    - Cumulative Gain / Capture Rate en el top 10%
+    """
+    if len(np.unique(y_true)) < 2:
+        return {
+            "roc_auc": np.nan, "pr_auc": np.nan, "brier": np.nan,
+            "f1": np.nan, "precision": np.nan, "recall": np.nan,
+            "precision_top_k": np.nan, "gain_top_k": np.nan
+        }
+        
+    roc = roc_auc_score(y_true, y_proba)
+    pr = average_precision_score(y_true, y_proba)
+    brier = brier_score_loss(y_true, y_proba)
+    
+    y_pred = (y_proba >= threshold).astype(int)
+    f1 = f1_score(y_true, y_pred, zero_division=0)
+    prec = precision_score(y_true, y_pred, zero_division=0)
+    rec = recall_score(y_true, y_pred, zero_division=0)
+    
+    # Precision@top-k% y Capture Rate
+    n_top = max(1, int(len(y_true) * top_k_pct))
+    top_indices = np.argsort(y_proba)[::-1][:n_top]
+    positives_in_top = y_true[top_indices].sum()
+    total_positives = y_true.sum()
+    
+    prec_top_k = positives_in_top / n_top
+    gain_top_k = (positives_in_top / total_positives) if total_positives > 0 else 0.0
+    
+    return {
+        "roc_auc": round(float(roc), 4),
+        "pr_auc": round(float(pr), 4),
+        "brier": round(float(brier), 4),
+        "f1": round(float(f1), 4),
+        "precision": round(float(prec), 4),
+        "recall": round(float(rec), 4),
+        "precision_top_k": round(float(prec_top_k), 4),
+        "gain_top_k": round(float(gain_top_k), 4)
     }

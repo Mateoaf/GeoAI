@@ -1,28 +1,33 @@
 """
 Módulo GIS de Análisis Estructural y Tectónico.
-Calcula distancias euclidianas exactas a fallas y contactos reales del IGME,
-así como densidades multiescala (2.5 km y 5 km) sin fuga de información.
+Calcula distancias geométricas euclidianas exactas a trazas de fallas y contactos lineales reales del IGME,
+así como densidad de longitud de fracturación (km de falla / km2) mediante Shapely STRtree.
 """
+import math
+import logging
 from pathlib import Path
 import numpy as np
 import geopandas as gpd
 from shapely.geometry import Point
 from shapely.strtree import STRtree
-from scipy.spatial import cKDTree
+
+logger = logging.getLogger(__name__)
 
 _FAULT_TREE = None
-_FAULT_LINES_GDF = None
+_FAULT_GEOMS = None
 _CONTACT_TREE = None
+_CONTACT_GEOMS = None
+_FAULT_LINES_GDF = None
 
 def load_spatial_structures(cache_path: Path):
     """
-    Carga y construye el índice espacial a partir de geometrías vectoriales lineales reales del IGME.
+    Carga y construye el índice espacial R-Tree (STRtree) a partir de geometrías vectoriales lineales reales del IGME.
     Garantiza que la fuente de datos es exclusivamente la cartografía geológica oficial.
     """
-    global _FAULT_TREE, _FAULT_LINES_GDF, _CONTACT_TREE
+    global _FAULT_TREE, _FAULT_GEOMS, _CONTACT_TREE, _CONTACT_GEOMS, _FAULT_LINES_GDF
     
-    if _FAULT_TREE is not None and _FAULT_LINES_GDF is not None:
-        return _FAULT_TREE, _CONTACT_TREE
+    if _FAULT_TREE is not None and _FAULT_GEOMS is not None:
+        return _FAULT_TREE, _FAULT_GEOMS, _CONTACT_TREE, _CONTACT_GEOMS
         
     if not cache_path.exists():
         from ..data_sources.igme_client import fetch_and_cache_igme_fault_lines
@@ -33,59 +38,69 @@ def load_spatial_structures(cache_path: Path):
     if _FAULT_LINES_GDF.crs is None or _FAULT_LINES_GDF.crs.to_epsg() != 25830:
         _FAULT_LINES_GDF = _FAULT_LINES_GDF.to_crs("EPSG:25830")
         
-    # Extraer vértices densificados a lo largo de las líneas reales para búsqueda espacial rápida
-    fault_coords = []
-    contact_coords = []
+    fault_mask = _FAULT_LINES_GDF["is_fault"] == 1
+    contact_mask = _FAULT_LINES_GDF["is_fault"] == 0
     
-    for _, row in _FAULT_LINES_GDF.iterrows():
-        geom = row.geometry
-        is_fault = row.get("is_fault", 1)
-        if geom is not None and not geom.is_empty:
-            # Densificar puntos a lo largo de la línea cada 250 metros
-            length = geom.length
-            if length > 0:
-                num_points = max(2, int(length / 250.0))
-                distances = np.linspace(0, length, num_points)
-                for d in distances:
-                    pt = geom.interpolate(d)
-                    if is_fault:
-                        fault_coords.append([pt.x, pt.y])
-                    else:
-                        contact_coords.append([pt.x, pt.y])
-                        
-    if not fault_coords:
-        fault_coords = [[500000.0, 4400000.0]]
-    if not contact_coords:
-        contact_coords = fault_coords
+    fault_subset = _FAULT_LINES_GDF[fault_mask]
+    contact_subset = _FAULT_LINES_GDF[contact_mask]
+    
+    if len(fault_subset) == 0:
+        fault_subset = _FAULT_LINES_GDF
         
-    _FAULT_TREE = cKDTree(np.array(fault_coords))
-    _CONTACT_TREE = cKDTree(np.array(contact_coords))
+    if len(contact_subset) == 0:
+        contact_subset = _FAULT_LINES_GDF
+        
+    _FAULT_GEOMS = list(fault_subset.geometry.values)
+    _CONTACT_GEOMS = list(contact_subset.geometry.values)
     
-    return _FAULT_TREE, _CONTACT_TREE
+    _FAULT_TREE = STRtree(_FAULT_GEOMS)
+    _CONTACT_TREE = STRtree(_CONTACT_GEOMS)
+    
+    logger.info(f"Índices espaciales STRtree listos: {len(_FAULT_GEOMS)} fallas, {len(_CONTACT_GEOMS)} contactos.")
+    return _FAULT_TREE, _FAULT_GEOMS, _CONTACT_TREE, _CONTACT_GEOMS
 
 def compute_structural_features(x_utm: float, y_utm: float, cache_path: Path) -> dict:
     """
-    Calcula las variables estructurales para una coordenada proyectada en EPSG:25830:
-    - Real_IGME_Dist_Fault_m: Distancia mínima a falla más cercana.
-    - Real_IGME_Dist_Contact_m: Distancia mínima a contacto litológico.
-    - Real_IGME_Fault_Density_5km: Número de trazas de falla en r=5km.
-    - Real_IGME_Fault_Density_2_5km: Número de trazas de falla en r=2.5km.
+    Calcula las variables estructurales observadas/derivadas para una coordenada proyectada en EPSG:25830:
+    1. Real_IGME_Dist_Fault_m: Distancia euclidiana mínima exacta en metros a la traza de falla más cercana.
+    2. Real_IGME_Dist_Contact_m: Distancia euclidiana mínima exacta en metros al contacto litológico más cercano.
+    3. Real_IGME_Fault_Length_Density_5km: Densidad lineal de fallas en radio de 5 km (km de falla / km2).
+       Fórmula: Longitud total de fallas intersectadas en buffer 5 km (en km) / (pi * 5^2 km2).
     """
-    fault_tree, contact_tree = load_spatial_structures(cache_path)
+    fault_tree, fault_geoms, contact_tree, contact_geoms = load_spatial_structures(cache_path)
     
-    # 1. Distancia a falla más cercana
-    dist_fault_m, _ = fault_tree.query([x_utm, y_utm])
+    pt = Point(x_utm, y_utm)
     
-    # 2. Distancia a contacto más cercano
-    dist_contact_m, _ = contact_tree.query([x_utm, y_utm])
+    # 1. Distancia geométrica exacta a la falla más cercana
+    nearest_fault_idx = fault_tree.nearest(pt)
+    nearest_fault_geom = fault_geoms[nearest_fault_idx]
+    dist_fault_m = float(nearest_fault_geom.distance(pt))
     
-    # 3. Densidades multiescala
-    count_5km = len(fault_tree.query_ball_point([x_utm, y_utm], r=5000.0))
-    count_2_5km = len(fault_tree.query_ball_point([x_utm, y_utm], r=2500.0))
+    # 2. Distancia geométrica exacta al contacto más cercano
+    nearest_contact_idx = contact_tree.nearest(pt)
+    nearest_contact_geom = contact_geoms[nearest_contact_idx]
+    dist_contact_m = float(nearest_contact_geom.distance(pt))
+    
+    # 3. Densidad de longitud de fallas en buffer r=5000 m (área = pi * 25 km2 = 78.5398 km2)
+    buffer_5km = pt.buffer(5000.0)
+    candidate_indices = fault_tree.query(buffer_5km)
+    
+    total_length_m = 0.0
+    for idx in candidate_indices:
+        line = fault_geoms[idx]
+        if buffer_5km.contains(line):
+            total_length_m += line.length
+        elif buffer_5km.intersects(line):
+            inter = line.intersection(buffer_5km)
+            if not inter.is_empty:
+                total_length_m += inter.length
+            
+    buffer_area_km2 = math.pi * (5.0 ** 2)  # 78.54 km2
+    fault_length_km = total_length_m / 1000.0
+    fault_density_km_per_km2 = fault_length_km / buffer_area_km2
     
     return {
-        "dist_fault_m": round(float(dist_fault_m), 1),
-        "dist_contact_m": round(float(dist_contact_m), 1),
-        "fault_density_5km": int(count_5km),
-        "fault_density_2_5km": int(count_2_5km)
+        "dist_fault_m": round(dist_fault_m, 1),
+        "dist_contact_m": round(dist_contact_m, 1),
+        "fault_length_density_5km": round(float(fault_density_km_per_km2), 4)
     }
