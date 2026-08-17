@@ -1,0 +1,5 @@
+﻿Commodity,Positivos_Reales,Spatial_ROC_AUC,Spatial_PR_AUC,Brier_Score,F1_Score,Capas_Integradas
+🥇 Oro (Y_Au),637,0.9157,0.3849,0.1029,0.0897,14 Capas Completas (Litología + Fallas + Altimetría + Geofísica + Geoquímica + Teledetección)
+🥉 Cobre (Y_Cu),186,0.8524,0.4392,0.0869,0.2258,14 Capas Completas (Litología + Fallas + Altimetría + Geofísica + Geoquímica + Teledetección)
+🥈 Plata (Y_Ag),179,0.8876,0.5922,0.0775,0.4808,14 Capas Completas (Litología + Fallas + Altimetría + Geofísica + Geoquímica + Teledetección)
+⚙️ Plomo (Y_Pb),170,0.8925,0.602,0.09,0.4623,14 Capas Completas (Litología + Fallas + Altimetría + Geofísica + Geoquímica + Teledetección)
