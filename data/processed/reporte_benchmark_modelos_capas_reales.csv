@@ -1,0 +1,5 @@
+﻿Commodity,Positivos_Reales,Spatial_ROC_AUC,Spatial_PR_AUC,Brier_Score,F1_Score,Capas_Entrenamiento
+🥇 Oro (Y_Au),637,0.8292,0.4314,0.0416,0.2384,IGME Litología 1M (Polígonos) + Era + Dominio + Copernicus DEM Real
+🥉 Cobre (Y_Cu),186,0.8708,0.4589,0.0806,0.34,IGME Litología 1M (Polígonos) + Era + Dominio + Copernicus DEM Real
+🥈 Plata (Y_Ag),179,0.8811,0.6139,0.0866,0.5337,IGME Litología 1M (Polígonos) + Era + Dominio + Copernicus DEM Real
+⚙️ Plomo (Y_Pb),170,0.9016,0.6451,0.1121,0.5444,IGME Litología 1M (Polígonos) + Era + Dominio + Copernicus DEM Real
