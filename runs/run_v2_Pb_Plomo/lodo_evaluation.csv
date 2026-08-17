@@ -1,0 +1,6 @@
+Distrito_Excluido,N_Train,N_Val,Positivos_Val,ROC_AUC,PR_AUC,Brier_Score,F1_Score
+Faja_Piritica_Iberica,1682,111,5,0.5858,0.0861,0.0559,0.0
+Centro_Iberico_Meseta,1135,658,28,0.6907,0.1844,0.0536,0.1754
+Noroeste_Aurifero,1134,659,5,0.3991,0.0089,0.0485,0.0
+Sierra_Morena_Linares,1556,237,122,0.7406,0.7571,0.458,0.0
+Sureste_Betico,1665,128,10,0.8758,0.436,0.0687,0.0

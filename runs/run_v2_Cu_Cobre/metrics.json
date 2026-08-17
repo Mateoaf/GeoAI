@@ -1,0 +1,9 @@
+{
+  "spatial_roc_auc_mean": 0.6602039893466978,
+  "spatial_roc_auc_std": 0.13148455834772796,
+  "spatial_pr_auc_mean": 0.17466315259858148,
+  "spatial_pr_auc_std": 0.18898511742917248,
+  "brier_mean": 0.11139218523401703,
+  "brier_std": 0.13680868993553788,
+  "f1_mean": 0.025
+}
