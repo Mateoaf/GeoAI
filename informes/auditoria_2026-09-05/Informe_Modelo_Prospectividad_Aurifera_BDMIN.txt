@@ -1,0 +1,494 @@
+--- PÁGINA 1 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 1
+INFORME TÉCNICO
+Modelo predictivo de prospectividad 
+aurífera en España basado en BDMIN
+Diseño de Machine Learning geoespacial usando indicios de oro como etiquetas y 
+capas geocientíficas como predictores
+Decisión metodológica principal
+Sí: el planteamiento es esencialmente un problema de clasificación supervisada. Los indicios de oro de BDMIN 
+definen las presencias positivas y las capas geológicas, estructurales, geoquímicas, geofísicas, topográficas e 
+hidrográficas aportan las variables explicativas. Sin embargo, BDMIN no proporciona ausencias verdaderas. 
+Por ello, el diseño correcto es presencia-fondo: un baseline supervisado con pseudo-ausencias 
+cuidadosamente seleccionadas y una validación adicional mediante aprendizaje Positive-Unlabeled (PU).
+Base de datos de etiquetas: BDMIN - Indicios minerales del IGME
+Versión del informe: 29 de agosto de 2026
+
+--- PÁGINA 2 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 2
+Resumen ejecutivo
+El objetivo del proyecto es producir un mapa continuo de prospectividad aurífera, P(Au), que estime para cada 
+celda del territorio la compatibilidad de su contexto geocientífico con los contextos donde se conocen indicios de 
+oro. El modelo no debe aprender “dónde hay minas registradas”, sino los controles geológicos y geoquímicos que 
+explican la mineralización.
+La Base de Datos de Recursos Minerales (BDMIN) del IGME integra información geológico-minera sobre indicios y 
+explotaciones de rocas y minerales de España [1]. El servicio oficial de indicios se publica como una capa de 
+puntos en WGS84 (EPSG:4326) y contiene, entre otros, los campos Codigo_indicio, Sustancia, X, Y, Zona_Geode, 
+Edad, Asociacion_mineral y Morfologia [2].
+Resultado de la auditoría del archivo suministrado
+El archivo contiene 11.732 filas de indicios. Se identifican 889 filas cuya lista de Sustancia contiene el token 
+“Oro”. Antes de deduplicar, 347 registros son de morfología Aluvionar y 318 Filoniana. Los 889 registros se 
+reducen a 771 códigos de indicio únicos y 770 pares de coordenadas únicos. La depuración espacial es, por 
+tanto, obligatoria antes de entrenar.
+1. BDMIN: indicios Au depurados y deduplicados
+↓
+2. Feature cube: geología + estructuras + geoquímica + geofísica + relieve/hidrología
+↓
+3. Muestreo: positivos + pseudo-ausencias / fondo + alternativa PU
+↓
+4. Modelos: Logistic baseline + Random Forest + XGBoost
+↓
+5. Validación espacial por bloques + calibración + interpretación SHAP
+6. Salidas: P(Au) + incertidumbre + zonas objetivo priorizadas
+Resolución recomendada para el MVP nacional: malla de 1 km. La razón no es la capacidad del DEM, sino la 
+resolución efectiva del Atlas Geoquímico, cuyas superficies de isocontenidos se ajustan a una malla de 1.000 m [4]. 
+Una fase posterior puede refinar distritos favorables con datos regionales de mayor resolución.
+
+--- PÁGINA 3 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 3
+1. Objetivo, alcance y pregunta de modelización
+1.1 Objetivo
+Construir un sistema reproducible de Mineral Prospectivity Mapping (MPM) para oro que combine presencia 
+conocida de mineralización con evidencias geocientíficas multifuente y genere una probabilidad/score prospectivo 
+espacialmente continuo.
+ Target principal: presencia de un indicio BDMIN con “Oro” en el campo Sustancia.
+ Predictores: capas geológicas, estructurales, geoquímicas, geofísicas, topográficas, hidrográficas y, 
+opcionalmente, teledetección.
+ Salida: raster de prospectividad Au con score 0-1, acompañado de incertidumbre y explicabilidad.
+ Escala inicial: nacional/regional a 1 km; refinamiento posterior de áreas objetivo a resoluciones superiores.
+1.2 Formulación conceptual
+La idea en una ecuación
+P(Au en una celda | litología, edad, estructuras, geoquímica, magnetismo, gravedad, radiometría, relieve, 
+hidrología, alteración espectral, ...).
+El “cruce” espacial es el corazón del dataset de Machine Learning. Para cada indicio positivo y para cada muestra 
+de fondo se extraen los valores de las capas geocientíficas. El algoritmo aprende qué combinaciones de evidencias 
+son más frecuentes en los positivos y estima su probabilidad relativa sobre todas las celdas del territorio.
+1.3 Qué no es el modelo
+ No es un modelo que use el nombre de la mina, provincia o municipio para “adivinar” oro.
+ No debe usar como predictor la propia capa de indicios minerales de GEODE/BDMIN: sería fuga de 
+información (target leakage).
+ No debe convertir todos los mapas a CSV al inicio. Las capas fuente permanecen en GeoPackage/GeoTIFF; el 
+dataset tabular se crea solo tras el feature engineering.
+ No debe evaluar su calidad con una partición aleatoria convencional, porque los indicios están espacialmente 
+agrupados.
+
+--- PÁGINA 4 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 4
+2. Auditoría de BDMIN y definición de las etiquetas
+2.1 Inventario del archivo suministrado
+Indicador Resultado Implicación
+Filas totales 11.732 Inventario amplio de indicios minerales.
+Sustancia informada 11.602 (98,9%) Cobertura suficiente para filtrar commodity.
+Filas con token Oro 889 Positivos Au brutos.
+Oro como única sustancia 681 76,6% de los registros Au brutos.
+Registros Au con otros metales 208 Mantener como Au positivo, pero 
+conservar asociación para auditoría.
+Códigos Au únicos 771 Hay 118 duplicados exactos por código.
+Coordenadas Au únicas 770 Agrupar/deduplicar antes del train-test 
+split.
+Zona_Geode disponible en Au 357 de 889 No confiar en esta columna como geología 
+completa; cruzar GEODE externamente.
+Edad_inferior disponible en Au 138 de 889 La edad debe venir de la cartografía 
+geológica, no del registro puntual.
+La regla de selección recomendada es tokenizar el campo Sustancia por comas, normalizar espacios y 
+mayúsculas/minúsculas y marcar target_Au=1 cuando aparezca exactamente el token “Oro”. Esto evita falsos 
+positivos por coincidencias parciales de texto.
+2.2 Campos BDMIN: uso correcto en el pipeline
+Campo BDMIN Rol ¿Predictor ML?
+Sustancia Construcción del target Au NO: define la etiqueta.
+Codigo_indicio Identificador y deduplicación NO.
+X, Y / geometría Join espacial, control de calidad y CV NO como coordenadas crudas.
+Morfologia Estratificación del target / QA NO en el mapa prospectivo general.
+Asociacion_mineral Descripción del yacimiento conocido NO: alto riesgo de leakage.
+Tamaño_indicio QA / análisis de sensibilidad NO en baseline.
+Zona_Geode QA y contraste Preferible derivarla de GEODE externo.
+Edad_inferior/superior QA Preferible derivarla de cartografía externa.
+Provincia / Municipio / Nombre_mina Metadata NO.
+ESRI_OID Identificador técnico NO.
+
+--- PÁGINA 5 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 5
+Figura 1. Dos controles críticos previos al modelado: duplicados y heterogeneidad de coordenadas en el archivo tabular.
+2.3 Problema crítico: coordenadas heterogéneas
+En las 889 filas Au se detectan dos patrones numéricos en X/Y: 794 registros parecen estar expresados como 
+longitud/latitud y 95 como coordenadas proyectadas de orden UTM. No debe asignarse un CRS “a ojo” a toda la 
+hoja. El servicio oficial BDMIN de indicios publica la geometría en EPSG:4326 [2].
+Recomendación de saneamiento espacial
+Usar Codigo_indicio para recuperar o verificar la geometría desde el servicio oficial BDMIN/ArcGIS y trabajar a 
+partir de esa geometría estandarizada. Solo después se reproyecta al CRS de análisis. Esto es más seguro que 
+intentar inferir el CRS de los valores X/Y mezclados del archivo.
+
+--- PÁGINA 6 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 6
+3. Perfil de los indicios Au y consecuencia geológica
+Figura 2. La morfología y el agrupamiento provincial muestran que los positivos no son una muestra aleatoria del territorio.
+La distribución morfológica es especialmente importante: 347 registros Au son aluvionares y 318 filonianos. El oro 
+de placer y el oro primario no responden a los mismos controles. Mezclarlos indiscriminadamente puede hacer que 
+el modelo combine dos procesos mineralizantes y geomorfológicos diferentes.
+Grupo conceptual Registros brutos Predictores dominantes
+Au aluvionar / placer 347
+Cuaternario, red de drenaje, acumulación 
+de flujo, terrazas, pendiente, relieve, 
+geología de la cuenca fuente, geoquímica 
+de sedimentos.
+Au primario de morfología conocida 453
+Litología, edad, fallas/cizallas, contactos, 
+intrusivos, geoquímica, geofísica, 
+alteración.
+Morfología desconocida 89
+No asignar automáticamente; mantener 
+fuera de los submodelos estrictos o 
+clasificar mediante revisión geológica.
+Estrategia recomendada
+Primero construir un modelo Au general para validar el pipeline completo. En la versión científicamente más 
+sólida, separar al menos dos modelos: Au primario y Au aluvionar. Después se pueden combinar sus scores en 
+un producto final multicomponente, manteniendo la trazabilidad del tipo de prospectividad.
+
+--- PÁGINA 7 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 7
+4. ¿Es aprendizaje supervisado? Sí, con una precisión importante
+4.1 Positivos conocidos, negativos desconocidos
+Un clasificador supervisado binario necesita ejemplos positivos y negativos. BDMIN aporta positivos conocidos, 
+pero la ausencia de un indicio registrado en una celda no demuestra ausencia de mineralización. En exploración 
+mineral, el territorio no muestreado o no inventariado debe considerarse inicialmente “no etiquetado”, no “negativo”. 
+Esta dificultad está documentada en MPM y motiva enfoques Positive-Unlabeled (PU) [8].
+Clase Definición operativa Riesgo
+Positivo Celda con indicio BDMIN Au depurado Puede haber duplicación/cluster espacial.
+No etiquetado Resto del territorio Puede contener mineralización Au no 
+conocida.
+Pseudo-negativo Muestra del fondo seleccionada bajo 
+reglas explícitas
+Puede contener falsos negativos si se 
+selecciona mal.
+4.2 Diseño recomendado de pseudo-ausencias
+1. Crear una malla nacional de 1 km y marcar las celdas que contienen al menos un indicio Au limpio.
+2. Crear una zona de exclusión alrededor de los positivos para evitar etiquetar como negativo el entorno 
+inmediato de un indicio.
+3. Excluir del pool de pseudo-ausencias las celdas con otros registros BDMIN y, como análisis de sensibilidad, 
+comparar con una versión que no los excluya.
+4. Muestrear el fondo de forma espacialmente estratificada por grandes dominios geológicos y por bloques, 
+evitando que una sola región domine el negativo.
+5. Repetir el muestreo de pseudo-ausencias varias veces y medir la estabilidad del mapa final.
+6. Ejecutar un segundo experimento PU que use positivos + no etiquetados sin asumir que el fondo sea ausencia 
+verdadera.
+La literatura muestra que la selección de no-depósitos/pseudo-ausencias afecta a modelos RF de prospectividad 
+aurífera [7], y que los métodos PU se diseñaron específicamente para reducir la dependencia de negativos 
+dudosos [8].
+4.3 Balance de clases
+La mineralización es un evento raro. No se debe equilibrar el problema generando millones de negativos frente a 
+cientos de positivos. Para entrenamiento se muestrea un conjunto controlado de fondo (por ejemplo, ratios 1:1, 1:2, 
+1:5 y 1:10) y se compara estabilidad. Para inferencia, el modelo sí se aplica a todas las celdas.
+
+--- PÁGINA 8 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 8
+5. Capas predictoras: feature cube geocientífico
+Las capas no son “etiquetas” adicionales. Son variables explicativas que deben representar procesos de fuente, 
+transporte de fluidos, trampas, deposición, redistribución superficial y expresión geofísica/geoquímica de la 
+mineralización. GEODE ofrece cartografía continua 1:50.000 (1:25.000 en territorios insulares) con recintos 
+geológicos, contactos, cuaternario, ejes y buzamientos [3].
+Bloque Capas / variables base Features derivadas prioritarias para 
+Au
+Geología GEODE: recintos, edad, litología, dominio; 
+Cuaternario
+litología simplificada, edad, intrusivo félsico, 
+metasedimentos, aluvión/terraza, distancia a 
+contactos, favorabilidad litológica.
+Estructuras Contactos, fallas/cabalgamientos, ejes, 
+pliegues
+dist_fault, dist_major_fault, fault_density 
+1/5/10 km, intersecciones, dist_contact, 
+dist_fold_axis.
+Geoquímica Atlas: Au, As, Sb, Bi, Ag, Hg, Cu, Pb, Zn, W; 
+inicialmente Sedimento (E. total)
+valor, log1p, percentil, anomalía robusta 
+regional, combinaciones multielemento.
+Geofísica SIGEOF: magnetometría, gravimetría, 
+radiometría K-Th-U
+anomalía magnética, gradientes, señal 
+analítica, Bouguer/residual, K, Th, U y ratios.
+Topografía MDT25 CNIG elevación, pendiente, TPI, TRI, curvaturas, 
+relieve local.
+Hidrología Red de drenaje + DEM
+dist_stream, flow_accumulation, 
+drainage_density, orden de cauce, cuenca; 
+esenciales para placer.
+Teledetección opcional Sentinel-2 MSI
+ratios SWIR/VNIR, proxies de 
+óxidos/hidroxilos, máscara de 
+vegetación/suelo desnudo; siempre como 
+evidencia indirecta.
+El Atlas Geoquímico de España utiliza 14.864 muestras de sedimentos de corriente, 13.505 de suelo superficial y 
+7.682 de suelo profundo; los mapas de isocontenidos se ajustan a una malla de 1.000 m por IDW² y existen 
+resultados de disolución total y parcial [4]. Para el MVP se propone Sedimento (E. total) por homogeneidad y 
+simplicidad.
+SIGEOF da acceso a métodos de gravimetría, magnetometría/radiometría aeroportada, eléctrica, 
+electromagnetismo, petrofísica y sísmica [5]. El MDT25 del CNIG tiene paso de malla de 25 m y se distribuye como 
+COG/GeoTIFF [6]. Sentinel-2 dispone de 13 bandas con resoluciones de 10, 20 y 60 m [9].
+Regla anti-leakage
+No usar la capa “Indicios minerales” de GEODE ni distancias a indicios BDMIN como predictor del mismo target 
+Au. Eso haría que el algoritmo “vea” indirectamente la respuesta que intenta predecir y produciría métricas 
+artificialmente altas.
+
+--- PÁGINA 9 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 9
+6. Ingeniería de datos GIS y construcción del dataset maestro
+6.1 Mantener capas independientes
+Las fuentes originales deben conservarse en su formato nativo y con metadatos. El dataset maestro es un producto 
+derivado, no un sustituto de las capas. La arquitectura recomendada es:
+Nivel Formato recomendado Ejemplos
+raw GeoPackage / GeoTIFF / COG GEODE, fallas, Atlas geoquímico, 
+magnetometría, MDT.
+processed GeoPackage / GeoTIFF / COG dist_fault.tif, fault_density.tif, slope.tif, 
+Au_log.tif.
+ml Parquet
+master_Au_general.parquet, 
+master_Au_primary.parquet, 
+master_Au_placer.parquet.
+outputs COG/GeoTIFF + GeoPackage prospectivity_Au.tif, uncertainty_Au.tif, 
+targets.gpkg.
+6.2 CRS y alineamiento
+ Conservar CRS original de cada fuente y reproyectar de forma reproducible al CRS común de análisis.
+ Para un producto nacional, usar un CRS métrico coherente y documentado; EPSG:3035 es una opción robusta 
+para rejillas/áreas paneuropeas. Si el alcance se restringe a una zona UTM concreta, usar el huso ETRS89 
+correspondiente.
+ Todas las capas raster deben compartir extensión, resolución, origen de píxel y NoData.
+ Re-muestreo: nearest-neighbour para categorías (litología); bilinear/cubic según justificación para continuas.
+ No convertir un WMS renderizado (RGB) en “concentración”. Para geoquímica/geofísica el modelo necesita 
+valores numéricos reales.
+6.3 Esquema de una fila ML
+Campo Ejemplo Origen
+cell_id E3035_1KM_004821 Grid
+target_Au 1 BDMIN
+lithology_group metasedimentary GEODE
+geological_age Paleozoic GEODE
+dist_fault_m 184 Estructuras
+fault_density_5km 2.7 Estructuras
+Au_sed_total 7.3 Atlas geoquímico
+As_sed_total 93 Atlas geoquímico
+magnetic_anomaly ... SIGEOF
+bouguer ... SIGEOF
+K / Th / U ... SIGEOF
+elevation / slope 624 / 13.2 MDT25
+
+--- PÁGINA 10 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 10
+7. Feature engineering geológicamente guiado
+El modelo debe recibir variables que representen controles plausibles de la mineralización. No basta con “meter 
+capas”. Se transforman en criterios cuantitativos y se evita la proliferación de features redundantes.
+Familia Features Justificación
+Distancias dist_fault, dist_contact, dist_intrusion, 
+dist_fold_axis
+Aproximan proximidad a corredores de 
+fluidos y límites litológicos.
+Densidades fault_density_r, contact_density_r, 
+intersection_density_r
+Capturan complejidad estructural 
+multiescala.
+Geoquímica log(X), percentiles, robust_z, 
+residual/background
+Separan anomalía de fondo y estabilizan 
+distribuciones sesgadas.
+Geofísica gradientes, derivadas, señal analítica, 
+residual regional Realzan bordes, estructuras e intrusivos.
+Categorías geológicas macro-litología, edad, dominio, 
+intrusivo/volcánico/metasedimentario
+Facilitan generalización frente a códigos 
+cartográficos locales.
+Relieve e hidrología TPI, curvatura, flow accumulation, 
+drainage density
+Fundamentales para redistribución 
+superficial y placeres.
+7.1 Escalas múltiples
+Los procesos mineralizantes operan a varias escalas. Para estructuras se recomienda calcular features a varios 
+radios, por ejemplo 1, 5 y 10 km, y dejar que la validación/SHAP determine qué escala aporta señal estable. No se 
+deben generar decenas de radios sin control porque aumenta colinealidad y riesgo de sobreajuste.
+7.2 Transformaciones geoquímicas
+ Conservar el valor original y una transformación logarítmica compatible con ceros/NoData.
+ Calcular percentiles o z-score robusto dentro de dominios geológicos cuando sea posible.
+ Comparar señal absoluta frente a anomalía relativa al background local.
+ No introducir índices de color de un WMS; extraer/descargar el dato analítico o raster numérico real.
+7.3 Separación Au primario / placer
+Modelo Features con mayor prioridad Features secundarias
+Au primario
+fallas/cizallas, litología, contactos, 
+intrusivos, Au-As-Sb-Bi, magnetismo, 
+gravedad
+relieve, hidrología, Sentinel-2.
+Au placer
+Cuaternario, terrazas/aluvión, drenaje, flow 
+accumulation, pendiente/relieve, 
+sedimentos de corriente
+geología/estructuras de la cuenca fuente, 
+geofísica regional.
+
+--- PÁGINA 11 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 11
+8. Entrenamiento, validación espacial y selección de modelo
+8.1 Modelos candidatos
+Modelo Papel en el proyecto Ventajas / limitaciones
+Regresión logística regularizada Baseline mínimo Interpretable; prueba si el problema 
+requiere no linealidad.
+Random Forest Baseline no lineal principal
+Robusto, buen desempeño en MPM, 
+interacción no lineal, importancia de 
+variables [7].
+XGBoost Candidato de alto rendimiento Excelente con tabular; requiere tuning y 
+control de sobreajuste.
+PU-learning Experimento metodológico Reduce dependencia de pseudo-negativos 
+dudosos [8].
+8.2 Spatial cross-validation: requisito, no opción
+Una partición aleatoria puede colocar indicios del mismo distrito geológico en train y test. El algoritmo reconoce el 
+contexto local y la métrica parece excelente, pero no demuestra transferencia a regiones no vistas. La validación 
+debe bloquear el espacio.
+7. Crear bloques espaciales con tamaño mayor que la autocorrelación dominante de los features/targets.
+8. Asignar bloques completos a train o test; nunca dividir puntos vecinos entre ambos.
+9. Comparar varias geometrías/tamaños de bloque.
+10.Añadir un test “leave-one-cluster/district-out” para medir transferencia entre distritos auríferos.
+11.Hacer tuning de hiperparámetros únicamente dentro del conjunto de entrenamiento de cada fold.
+Métrica principal
+Usar PR-AUC (Average Precision) como métrica primaria debido al fuerte desequilibrio y al interés en recuperar 
+una clase rara. ROC-AUC se reporta como métrica secundaria, junto con recall, precision, F1, Brier score y 
+curvas de calibración.
+8.3 Evitar el “modelo de León”
+407 de los 889 registros Au brutos están en León. Si se incluyeran coordenadas, provincia o dominios sin control 
+espacial, el algoritmo podría aprender la geografía del inventario en lugar de controles transferibles. La spatial CV y 
+la exclusión de variables puramente locacionales son esenciales.
+
+--- PÁGINA 12 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 12
+9. Interpretabilidad, pruebas de robustez e incertidumbre
+9.1 Interpretación
+ SHAP global: ranking de variables y dirección de su efecto.
+ SHAP local: explicación de por qué una celda concreta obtiene prospectividad alta.
+ Permutation importance: contraste independiente del ranking.
+ PDP/ALE: respuesta del modelo a variables continuas, con cautela por correlaciones.
+ Ablation tests: geología sola; + estructuras; + geoquímica; + geofísica; + relieve; modelo completo.
+Las pruebas de ablación son especialmente valiosas: si añadir una familia de capas empeora la spatial CV, esa 
+información no debe conservarse por el mero hecho de estar disponible. Estudios de MPM han mostrado que 
+añadir criterios de targeting no necesariamente mejora el modelo si su relación con el sistema mineral es débil [10].
+9.2 Incertidumbre
+Fuente de incertidumbre Cómo medirla
+Pseudo-ausencias Repetir muestreos y calcular desviación del score por celda.
+Folds espaciales Dispersión entre modelos/folds.
+Hiperparámetros / algoritmo Ensemble RF-XGB y sensibilidad.
+Cobertura de capas Máscara de NoData y score de completitud.
+Resolución Comparar 1 km con refinamiento regional.
+Etiqueta BDMIN Modelos con subconjuntos de mayor confianza / morfología 
+conocida.
+Producto recomendado
+No entregar solo un mapa P(Au). Entregar también un raster de incertidumbre y un mapa de soporte de datos. 
+Una celda con score 0,90 y alta incertidumbre no debe tratarse igual que una celda con 0,90 estable en todos 
+los folds y muestreos.
+
+--- PÁGINA 13 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 13
+10. Arquitectura reproducible y entregables
+Etapa Entrada Salida
+01_ingest BDMIN + capas oficiales raw/ con metadatos y checksums.
+02_clean_labels BDMIN bdmin_au_clean.gpkg + log de 
+duplicados/CRS.
+03_feature_engineering Capas geocientíficas processed/*.tif / *.gpkg.
+04_build_grid Límite de estudio grid_1km.gpkg.
+05_extract Grid + features + labels master_Au.parquet.
+06_train master_Au modelos RF/XGB/PU + parámetros.
+07_spatial_cv modelos + bloques métricas, curvas, folds, calibración.
+08_inference modelo final + feature cube prospectivity_Au.tif.
+09_explain modelo + grid SHAP, importance, ablation.
+10_targets prospectividad + incertidumbre targets_Au.gpkg + ranking.
+10.1 Entregables mínimos
+ Mapa prospectividad Au general, COG/GeoTIFF, 0-1.
+ Mapa de incertidumbre y máscara de soporte de datos.
+ Opcional recomendado: mapas separados Au primario y Au placer.
+ GeoPackage con zonas objetivo y atributos: score, incertidumbre, percentil, área y features dominantes.
+ master_Au.parquet reproducible para entrenamiento.
+ Informe de métricas con spatial CV, PR-AUC, ROC-AUC, calibración y curvas de captura.
+ Informe SHAP/ablation que demuestre que el resultado tiene sentido geológico.
+10.2 Criterio de éxito
+El éxito no es obtener un AUC elevado en un split aleatorio. El criterio es que el modelo recupere ocurrencias Au 
+en bloques/distritos no usados para entrenar, concentre una proporción alta de positivos en una fracción pequeña 
+del territorio, sea estable ante distintos pseudo-negativos y mantenga explicaciones geológicamente plausibles.
+
+--- PÁGINA 14 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 14
+11. Riesgos metodológicos y controles obligatorios
+Riesgo Efecto Control
+Duplicados BDMIN Leakage entre train/test, sobrepeso de un 
+sitio
+Deduplicar por código/geometría y colapsar a 
+celda.
+CRS mezclado en X/Y Puntos desplazados miles de km Recuperar geometría oficial EPSG:4326 y 
+validar por provincia.
+Positivos agrupados Métricas infladas Spatial block CV / leave-cluster-out.
+Falsos negativos Frontera de decisión sesgada Pseudo-ausencias repetidas + PU-learning.
+Leakage por campos BDMIN AUC artificial Excluir Sustancia/Asociacion/indicios como 
+predictor.
+Au primario + placer mezclados Controles contradictorios Submodelos por morfología.
+Resoluciones incompatibles Falsa precisión Grid base coherente con capa limitante (1 km 
+en MVP).
+WMS como RGB El modelo aprende colores, no 
+concentraciones Usar raster/datos numéricos reales.
+Sesgo de exploración El modelo aprende dónde se buscó CV espacial, background estratificado y 
+análisis por dominios.
+Colinealidad / demasiadas capas Sobreajuste e inestabilidad Ablation, regularización, selección por grupos.
+Punto de control antes de entrenar
+No se debe iniciar el entrenamiento hasta completar tres auditorías: (1) geometría BDMIN saneada y 
+deduplicada; (2) rasters numéricos correctamente alineados; (3) definición documentada de positivos, fondo y 
+protocolo de spatial CV.
+
+--- PÁGINA 15 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 15
+12. Plan de ejecución recomendado
+Fase Trabajo Gate de salida
+F0 - Etiquetas Filtrar Au, recuperar geometría oficial, 
+deduplicar, clasificar morfología bdmin_au_clean.gpkg validado.
+F1 - Geología GEODE/MAGNA, fallas, contactos, 
+cuaternario; derivadas Features geológicas sin NoData crítico.
+F2 - Geoquímica Au-As-Sb-Bi-Ag-Hg-Cu-Pb-Zn-W; 
+Sedimento E. total Rasters numéricos 1 km verificados.
+F3 - Geofísica/relieve Magnetismo, gravedad, K-Th-U, 
+MDT/hidrología Feature cube alineado.
+F4 - Dataset Grid 1 km, positivos/fondo, extracción master_Au.parquet.
+F5 - Baselines Logistic + RF + XGB Spatial CV reproducible.
+F6 - Robustez PU, pseudo-ausencias repetidas, ablation, 
+SHAP Selección del modelo final.
+F7 - Producto Inferencia, incertidumbre, targets COG + GPKG + informe final.
+12.1 Decisión inmediata
+Siguiente paso técnico
+Terminar las capas geoquímicas con valores numéricos reales y, en paralelo, sanear la geometría Au de 
+BDMIN usando el servicio oficial. Una vez ambas piezas estén listas, se puede construir el primer master_Au y 
+probar el baseline supervisado sin esperar a tener todas las capas geofísicas.
+12.2 Conclusión
+La formulación propuesta es sólida: BDMIN proporciona las presencias de oro y las capas geocientíficas explican el 
+contexto mineralizante. El punto metodológico clave es no confundir “sin indicio registrado” con “ausencia de oro”. 
+Por ello, el proyecto debe combinar un baseline supervisado con pseudo-ausencias controladas, spatial cross-
+validation y un experimento PU. La propia estructura de BDMIN además aconseja separar progresivamente Au 
+primario y Au aluvionar. Con estas precauciones, el modelo puede producir un mapa prospectivo interpretable y 
+científicamente defendible.
+
+--- PÁGINA 16 ---
+Modelo predictivo de prospectividad aurífera - BDMIN  |  Página 16
+Referencias y fuentes
+[1] Datos.gob.es / IGME. Base de Datos de Recursos Minerales (BDMIN). https://datos.gob.es/es/catalogo/ea0010987-base-de-
+datos-de-recursos-minerales-bdmin2
+[2] IGME. Servicio ArcGIS - BDMIN Indicios. Capa de puntos, EPSG:4326, campos de metalogenia. 
+https://mapas.igme.es/gis/rest/services/BasesDatos/IGME_BDMIN_Indicios/MapServer
+[3] IGME. Mapa Geológico Continuo de España GEODE 1:50.000. 
+https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer
+[4] IGME. Atlas Geoquímico de España 2012. Mapas de isocontenidos, sedimentos/suelos, malla de 1.000 m. 
+https://mapas.igme.es/
+[5] IGME. Sistema de Información Geofísica (SIGEOF). https://info.igme.es/SIGEOF/
+[6] CNIG/IGN. MDT25 - Modelo Digital del Terreno, paso de malla 25 m, COG. 
+https://centrodedescargas.cnig.es/CentroDescargas/modelo-digital-terreno-mdt25-primera-cobertura
+[7] Rodriguez-Galiano, V. et al. (2015). Data-driven predictive mapping of gold prospectivity, Baguio district, Philippines: 
+Application of Random Forests algorithm. Ore Geology Reviews 71, 777-787. https://doi.org/10.1016/j.oregeorev.2014.08.010
+[8] Xiong, Y.; Zuo, R. (2021). A positive and unlabeled learning algorithm for mineral prospectivity mapping. Computers & 
+Geosciences 147, 104667. https://doi.org/10.1016/j.cageo.2020.104667
+[9] European Space Agency. Sentinel-2 Facts and figures / MSI: 13 bands, 10/20/60 m. 
+https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2/Facts_and_figures
+[10] Assessing the effects of mineral systems-derived exploration targeting criteria for Random Forests-based predictive mapping 
+of mineral prospectivity. Ore Geology Reviews 138 (2021), 104399. https://doi.org/10.1016/j.oregeorev.2021.104399
+Nota sobre la auditoría de datos
+Las cifras de filas, duplicados, morfologías, cobertura de campos y patrones de coordenadas proceden de una 
+auditoría del archivo Indicios.xlsx suministrado para este proyecto. Los recuentos son previos a la depuración final 
+de geometrías y al colapso por celda de análisis; por ello, el número definitivo de positivos de entrenamiento será 
+inferior al recuento bruto de 889 filas Au.

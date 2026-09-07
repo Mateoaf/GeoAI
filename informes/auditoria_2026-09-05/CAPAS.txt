@@ -1,0 +1,84 @@
+--- PÁGINA 1 ---
+Ran command: Get-ChildItem "c:\Users\mdmat\Desktop\Proyecto Con Luis" 
+| Where-Object { $_.Extension -in '.gpkg', '.tif', '.csv', '.xlsx' } 
+| Select-Object Name | Format-Table -AutoSize 
+A continuación tienes el inventario ordenado únicamente por nombres de capas y 
+archivos, clasificados según su función en el modelo predictivo de IA: 
+ 
+1. Etiquetas y Evidencias Mineras (Target $Y$) 
+• IndiciosII.gpkg (y su versión tabular IndiciosII.csv / Indicios.xlsx) 
+ 
+2. Litoestratigrafía y Unidades Geológicas 
+• recintos.gpkg (y RecintosGeologicos.csv) 
+• litologias.gpkg (y Litologias_España.csv) 
+• edades.gpkg (y Edades_España.csv) 
+• cuaternariorecintos.gpkg (y Cuaternario – Recintos.csv) 
+• zonasgeode.gpkg 
+ 
+3. Geología Estructural y Deformación 
+• contactosyfallas.gpkg (y ContactosFallasMagna50.csv) 
+• contactos.gpkg (y ContactosGeode.csv) 
+• ejes.gpkg (y Ejes.csv) 
+• estructuras de plegamiento.gpkg (y EstrucPlegMagna.csv) 
+• buzamientos.gpkg 
+• medidasestructurales.gpkg 
+ 
+4. Relieve, Topografía y Red Fluvial (MDT / DEM) 
+• MDT_Espana_CNIG_500m.tif 
+• mdt25.tif 
+• MDT_Espana_CNIG_Sombreado_RGB.tif 
+• redhidrografica.gpkg 
+ 
+
+--- PÁGINA 2 ---
+5. Geofísica Regional 
+• gravimetria.gpkg 
+• magnetometriaradiometria.gpkg 
+• magnetotelurico.gpkg 
+• petrofisica.gpkg 
+ 
+6. Geoquímica de Sedimentos (Rasters Analíticos para IA) 
+• AtlasGeoquimico_Au_Sedimentos_2012.tif (Oro) 
+• AtlasGeoquimico_As_Sedimentos_2012.tif (Arsénico) 
+• AtlasGeoquimico_Sb_Sedimentos_2012.tif (Antimonio) 
+• AtlasGeoquimico_Bi_Sedimentos_2012.tif (Bismuto) 
+• AtlasGeoquimico_Hg_Sedimentos_2012.tif (Mercurio) 
+• AtlasGeoquimico_Cu_Sedimentos_2012.tif (Cobre) 
+• AtlasGeoquimico_Pb_Sedimentos_2012.tif (Plomo) 
+• AtlasGeoquimico_Zn_Sedimentos_2012.tif (Zinc) 
+• AtlasGeoquimico_W_Sedimentos_2012.tif (Wolframio) 
+ 
+7. Geoquímica de Sedimentos (Rasters Visuales RGBA para QGIS) 
+• AtlasGeoquimico_Au_Sedimentos_2012_RGB.tif 
+• AtlasGeoquimico_As_Sedimentos_2012_RGB.tif 
+• AtlasGeoquimico_Sb_Sedimentos_2012_RGB.tif 
+• AtlasGeoquimico_Bi_Sedimentos_2012_RGB.tif 
+• AtlasGeoquimico_Hg_Sedimentos_2012_RGB.tif 
+• AtlasGeoquimico_Cu_Sedimentos_2012_RGB.tif 
+• AtlasGeoquimico_Pb_Sedimentos_2012_RGB.tif 
+• AtlasGeoquimico_Zn_Sedimentos_2012_RGB.tif 
+• AtlasGeoquimico_W_Sedimentos_2012_RGB.tif 
+ 
+8. Geoquímica de Sedimentos (Vectores Poligonales) 
+• geoquimica_oro_sedimentos_2012.gpkg (y Au.gpkg / geoquimica.gpkg / 
+oro.gpkg) 
+• geoquimica_arsenico_sedimentos_2012.gpkg 
+• geoquimica_antimonio_sedimentos_2012.gpkg 
+
+--- PÁGINA 3 ---
+• geoquimica_bismuto_sedimentos_2012.gpkg 
+• geoquimica_hg_sedimentos_2012.gpkg 
+• geoquimica_cu_sedimentos_2012.gpkg 
+• geoquimica_pb_sedimentos_2012.gpkg 
+• geoquimica_zn_sedimentos_2012.gpkg 
+• geoquimica_w_sedimentos_2012.gpkg 
+ 
+9. Datasets Maestros Integrados para Machine Learning 
+• Indicios_Master_Geocientifico_BDMIN.gpkg (y .csv) 
+• Indicios_con_Geoquimica_y_MDT_BDMIN.gpkg (y .csv) 
+• Indicios_con_Geoquimica_Completa_BDMIN.gpkg (y .csv) 
+• Indicios_con_Geoquimica_Au_As_Sb_Bi.gpkg (y .csv) 
+• Indicios_con_Geoquimica_Au_As_Sb.gpkg (y .csv) 
+• Indicios_con_Geoquimica_Au_As.gpkg (y .csv) 
+• Indicios_con_Geoquimica_Au.gpkg (y .csv) 
+ 

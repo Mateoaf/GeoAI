@@ -1,0 +1,2047 @@
+[
+  {
+    "file": "AtlasGeoquimico_As_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "As_Sedimento_Clase_0a7",
+      "As_Sedimento_Concentracion_ppm_mid",
+      "As_Sedimento_Min_ppm",
+      "As_Sedimento_Max_ppm"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Arsenico (As). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_As",
+      "UNITS": "mg/kg (ppm)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 7.0,
+        "unique_count": 8,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.6000000238418579,
+        "max": 296.2200012207031,
+        "unique_count": 8,
+        "values": [
+          0.6000000238418579,
+          5.230000019073486,
+          7.260000228881836,
+          10.550000190734863,
+          14.3100004196167,
+          17.940000534057617,
+          29.93000030517578,
+          296.2200012207031
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.07999999821186066,
+        "max": 45.0099983215332,
+        "unique_count": 8,
+        "values": [
+          0.07999999821186066,
+          4.559999942779541,
+          6.010000228881836,
+          8.789999961853027,
+          12.680000305175781,
+          16.170000076293945,
+          19.90999984741211,
+          45.0099983215332
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 4.550000190734863,
+        "max": 1949.5,
+        "unique_count": 8,
+        "values": [
+          4.550000190734863,
+          6.0,
+          8.779999732971191,
+          12.670000076293945,
+          16.15999984741211,
+          19.899999618530273,
+          45.0,
+          1949.5
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_As_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      "Red",
+      "Green",
+      "Blue",
+      "Alpha"
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 106.0,
+        "max": 255.0,
+        "unique_count": 5,
+        "values": [
+          106,
+          153,
+          158,
+          172,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          153,
+          176,
+          203,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 224.0,
+        "unique_count": 6,
+        "values": [
+          0,
+          102,
+          153,
+          158,
+          191,
+          224
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Au_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "Au_Sedimento_Clase_0a6",
+      "Au_Sedimento_Concentracion_ppb_mid",
+      "Au_Sedimento_Min_ppb",
+      "Au_Sedimento_Max_ppb"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Oro (Au). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_Au",
+      "UNITS": "ppb (partes por billon / ng/g)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 6.0,
+        "unique_count": 7,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0
+        ],
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "6",
+          "STATISTICS_MEAN": "2.1376091796541",
+          "STATISTICS_MINIMUM": "0",
+          "STATISTICS_STDDEV": "1.7024775185011",
+          "STATISTICS_VALID_PERCENT": "48.26"
+        }
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.33000001311302185,
+        "max": 290.6400146484375,
+        "unique_count": 7,
+        "values": [
+          0.33000001311302185,
+          1.6399999856948853,
+          2.6500000953674316,
+          4.630000114440918,
+          8.579999923706055,
+          22.770000457763672,
+          290.6400146484375
+        ],
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "290.64001464844",
+          "STATISTICS_MEAN": "11.502436184258",
+          "STATISTICS_MINIMUM": "0.33000001311302",
+          "STATISTICS_STDDEV": "43.284111120724",
+          "STATISTICS_VALID_PERCENT": "48.26"
+        }
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.07999999821186066,
+        "max": 43.0099983215332,
+        "unique_count": 7,
+        "values": [
+          0.07999999821186066,
+          1.350000023841858,
+          2.009999990463257,
+          3.509999990463257,
+          6.110000133514404,
+          12.0600004196167,
+          43.0099983215332
+        ],
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "43.009998321533",
+          "STATISTICS_MEAN": "4.0812596521435",
+          "STATISTICS_MINIMUM": "0.079999998211861",
+          "STATISTICS_STDDEV": "6.8760661642868",
+          "STATISTICS_VALID_PERCENT": "48.26"
+        }
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 1.340000033378601,
+        "max": 1964.0,
+        "unique_count": 7,
+        "values": [
+          1.340000033378601,
+          2.0,
+          3.5,
+          6.099999904632568,
+          12.050000190734863,
+          43.0,
+          1964.0
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Au_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      "Red",
+      "Green",
+      "Blue",
+      "Alpha"
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 106.0,
+        "max": 255.0,
+        "unique_count": 4,
+        "values": [
+          106,
+          153,
+          172,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 6,
+        "values": [
+          0,
+          153,
+          176,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 191.0,
+        "unique_count": 5,
+        "values": [
+          0,
+          102,
+          153,
+          158,
+          191
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Bi_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "Bi_Sedimento_Clase_0a7",
+      "Bi_Sedimento_Concentracion_ppm_mid",
+      "Bi_Sedimento_Min_ppm",
+      "Bi_Sedimento_Max_ppm"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Bismuto (Bi). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_Bi",
+      "UNITS": "mg/kg (ppm)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 7.0,
+        "unique_count": 8,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.08489999920129776,
+        "max": 6.638000011444092,
+        "unique_count": 8,
+        "values": [
+          0.08489999920129776,
+          0.11829999834299088,
+          0.16429999470710754,
+          0.21789999306201935,
+          0.28839999437332153,
+          0.37229999899864197,
+          0.5407000184059143,
+          6.638000011444092
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.07999999821186066,
+        "max": 0.6899999976158142,
+        "unique_count": 8,
+        "values": [
+          0.07999999821186066,
+          0.10000000149011612,
+          0.15000000596046448,
+          0.1899999976158142,
+          0.25999999046325684,
+          0.33000001311302185,
+          0.4300000071525574,
+          0.6899999976158142
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.09000000357627869,
+        "max": 63.86000061035156,
+        "unique_count": 8,
+        "values": [
+          0.09000000357627869,
+          0.14000000059604645,
+          0.18000000715255737,
+          0.25,
+          0.3199999928474426,
+          0.41999998688697815,
+          0.6800000071525574,
+          63.86000061035156
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Bi_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      "Red",
+      "Green",
+      "Blue",
+      "Alpha"
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 106.0,
+        "max": 255.0,
+        "unique_count": 5,
+        "values": [
+          106,
+          153,
+          158,
+          172,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          153,
+          176,
+          203,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 224.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          15,
+          102,
+          153,
+          158,
+          191,
+          224
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Cu_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "Cu_Sedimento_Clase",
+      "Cu_Sedimento_Concentracion_mid_mg/kg (ppm)",
+      "Cu_Sedimento_Min_mg/kg (ppm)",
+      "Cu_Sedimento_Max_mg/kg (ppm)"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Cobre (Cu). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_Cu",
+      "UNITS": "mg/kg (ppm)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 7.0,
+        "unique_count": 8,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 1.6200000047683716,
+        "max": 319.29998779296875,
+        "unique_count": 8,
+        "values": [
+          1.6200000047683716,
+          8.069999694824219,
+          11.479999542236328,
+          14.470000267028809,
+          19.239999771118164,
+          25.219999313354492,
+          37.59000015258789,
+          319.29998779296875
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.41999998688697815,
+        "max": 50.0099983215332,
+        "unique_count": 8,
+        "values": [
+          0.41999998688697815,
+          6.289999961853027,
+          10.359999656677246,
+          12.739999771118164,
+          16.440000534057617,
+          22.520000457763672,
+          28.260000228881836,
+          50.0099983215332
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 6.28000020980835,
+        "max": 2038.6199951171875,
+        "unique_count": 8,
+        "values": [
+          6.28000020980835,
+          10.350000381469727,
+          12.729999542236328,
+          16.43000030517578,
+          22.510000228881836,
+          28.25,
+          50.0,
+          2038.6199951171875
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Cu_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 106.0,
+        "max": 255.0,
+        "unique_count": 5,
+        "values": [
+          106,
+          153,
+          158,
+          172,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          153,
+          176,
+          203,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 224.0,
+        "unique_count": 6,
+        "values": [
+          0,
+          102,
+          153,
+          158,
+          191,
+          224
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Hg_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "Hg_Sedimento_Clase",
+      "Hg_Sedimento_Concentracion_mid_ppb (ng/g)",
+      "Hg_Sedimento_Min_ppb (ng/g)",
+      "Hg_Sedimento_Max_ppb (ng/g)"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Mercurio (Hg). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_Hg",
+      "UNITS": "ppb (ng/g)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 7.0,
+        "unique_count": 8,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 1.2999999523162842,
+        "max": 3381.010009765625,
+        "unique_count": 8,
+        "values": [
+          1.2999999523162842,
+          8.270000457763672,
+          13.359999656677246,
+          19.3799991607666,
+          29.8700008392334,
+          41.84000015258789,
+          83.97000122070312,
+          3381.010009765625
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.2800000011920929,
+        "max": 150.00999450683594,
+        "unique_count": 8,
+        "values": [
+          0.2800000011920929,
+          6.010000228881836,
+          11.390000343322754,
+          15.680000305175781,
+          23.959999084472656,
+          37.2400016784668,
+          47.0099983215332,
+          150.00999450683594
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 6.0,
+        "max": 76203.0,
+        "unique_count": 8,
+        "values": [
+          6.0,
+          11.380000114440918,
+          15.670000076293945,
+          23.950000762939453,
+          37.22999954223633,
+          47.0,
+          150.0,
+          76203.0
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Hg_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 106.0,
+        "max": 255.0,
+        "unique_count": 5,
+        "values": [
+          106,
+          153,
+          158,
+          172,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          153,
+          176,
+          203,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 224.0,
+        "unique_count": 6,
+        "values": [
+          0,
+          102,
+          153,
+          158,
+          191,
+          224
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Pb_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "Pb_Sedimento_Clase",
+      "Pb_Sedimento_Concentracion_mid_mg/kg (ppm)",
+      "Pb_Sedimento_Min_mg/kg (ppm)",
+      "Pb_Sedimento_Max_mg/kg (ppm)"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Plomo (Pb). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_Pb",
+      "UNITS": "mg/kg (ppm)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1967902,
+        "min": 0.0,
+        "max": 7.0,
+        "unique_count": 8,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1967902,
+        "min": 1.7100000381469727,
+        "max": 568.9400024414062,
+        "unique_count": 8,
+        "values": [
+          1.7100000381469727,
+          12.199999809265137,
+          15.640000343322754,
+          19.65999984741211,
+          25.8799991607666,
+          32.33000183105469,
+          47.790000915527344,
+          568.9400024414062
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1967902,
+        "min": 0.2800000011920929,
+        "max": 65.01000213623047,
+        "unique_count": 8,
+        "values": [
+          0.2800000011920929,
+          10.4399995803833,
+          14.260000228881836,
+          17.170000076293945,
+          22.520000457763672,
+          29.760000228881836,
+          35.130001068115234,
+          65.01000213623047
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1967902,
+        "min": 10.430000305175781,
+        "max": 4979.10986328125,
+        "unique_count": 8,
+        "values": [
+          10.430000305175781,
+          14.25,
+          17.15999984741211,
+          22.510000228881836,
+          29.75,
+          35.119998931884766,
+          65.0,
+          4979.10986328125
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Pb_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1967902,
+        "min": 106.0,
+        "max": 255.0,
+        "unique_count": 5,
+        "values": [
+          106,
+          153,
+          158,
+          172,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1967902,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          153,
+          176,
+          203,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1967902,
+        "min": 0.0,
+        "max": 224.0,
+        "unique_count": 6,
+        "values": [
+          0,
+          102,
+          153,
+          158,
+          191,
+          224
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Sb_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "Sb_Sedimento_Clase_0a7",
+      "Sb_Sedimento_Concentracion_ppm_mid",
+      "Sb_Sedimento_Min_ppm",
+      "Sb_Sedimento_Max_ppm"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Antimonio (Sb). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_Sb",
+      "UNITS": "mg/kg (ppm)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1963382,
+        "min": 0.0,
+        "max": 7.0,
+        "unique_count": 8,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1963382,
+        "min": 0.09880000352859497,
+        "max": 46.494998931884766,
+        "unique_count": 8,
+        "values": [
+          0.09880000352859497,
+          0.37290000915527344,
+          0.6898000240325928,
+          0.9634000062942505,
+          1.5271999835968018,
+          2.4886999130249023,
+          4.4618000984191895,
+          46.494998931884766
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1963382,
+        "min": 0.04280000180006027,
+        "max": 6.300000190734863,
+        "unique_count": 8,
+        "values": [
+          0.04280000180006027,
+          0.2280000001192093,
+          0.6100000143051147,
+          0.7799999713897705,
+          1.190000057220459,
+          1.9600000381469727,
+          3.1600000858306885,
+          6.300000190734863
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1963382,
+        "min": 0.2280000001192093,
+        "max": 343.1400146484375,
+        "unique_count": 8,
+        "values": [
+          0.2280000001192093,
+          0.6100000143051147,
+          0.7799999713897705,
+          1.190000057220459,
+          1.9600000381469727,
+          3.1600000858306885,
+          6.300000190734863,
+          343.1400146484375
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Sb_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      "Red",
+      "Green",
+      "Blue",
+      "Alpha"
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1963382,
+        "min": 106.0,
+        "max": 255.0,
+        "unique_count": 5,
+        "values": [
+          106,
+          153,
+          158,
+          176,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1963382,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          153,
+          176,
+          203,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1963382,
+        "min": 0.0,
+        "max": 224.0,
+        "unique_count": 6,
+        "values": [
+          0,
+          102,
+          153,
+          158,
+          191,
+          224
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_W_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "W_Sedimento_Clase",
+      "W_Sedimento_Concentracion_mid_mg/kg (ppm)",
+      "W_Sedimento_Min_mg/kg (ppm)",
+      "W_Sedimento_Max_mg/kg (ppm)"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Wolframio (W). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_W",
+      "UNITS": "mg/kg (ppm)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 6.0,
+        "unique_count": 7,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.5099999904632568,
+        "max": 55.529998779296875,
+        "unique_count": 7,
+        "values": [
+          0.5099999904632568,
+          0.6100000143051147,
+          0.7599999904632568,
+          1.059999942779541,
+          1.7400000095367432,
+          3.8499999046325684,
+          55.529998779296875
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.5,
+        "max": 6.510000228881836,
+        "unique_count": 7,
+        "values": [
+          0.5,
+          0.5400000214576721,
+          0.6899999976158142,
+          0.8500000238418579,
+          1.3300000429153442,
+          2.2799999713897705,
+          6.510000228881836
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.5299999713897705,
+        "max": 473.6099853515625,
+        "unique_count": 7,
+        "values": [
+          0.5299999713897705,
+          0.6800000071525574,
+          0.8399999737739563,
+          1.3200000524520874,
+          2.2699999809265137,
+          6.5,
+          473.6099853515625
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_W_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 153.0,
+        "max": 255.0,
+        "unique_count": 4,
+        "values": [
+          153,
+          158,
+          172,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 6,
+        "values": [
+          0,
+          153,
+          203,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 224.0,
+        "unique_count": 6,
+        "values": [
+          0,
+          15,
+          102,
+          153,
+          191,
+          224
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Zn_Sedimentos_2012.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "Zn_Sedimento_Clase",
+      "Zn_Sedimento_Concentracion_mid_mg/kg (ppm)",
+      "Zn_Sedimento_Min_mg/kg (ppm)",
+      "Zn_Sedimento_Max_mg/kg (ppm)"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Mapa de Isocontenidos de Zinc (Zn). Atlas Geoquimico de Espana 2012 (IGME-CSIC)",
+      "METHOD": "Inverso de la Distancia al Cuadrado (IDW 1km)",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "SOURCE": "IGME MapServer AtlasGeoquimico/IGME_MapaIsovalores2012_Zn",
+      "UNITS": "mg/kg (ppm)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 7.0,
+        "unique_count": 8,
+        "values": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 3.3499999046325684,
+        "max": 1843.239990234375,
+        "unique_count": 8,
+        "values": [
+          3.3499999046325684,
+          25.899999618530273,
+          36.11000061035156,
+          48.22999954223633,
+          64.63999938964844,
+          81.72000122070312,
+          119.20999908447266,
+          1843.239990234375
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 0.5299999713897705,
+        "max": 157.00999450683594,
+        "unique_count": 8,
+        "values": [
+          0.5299999713897705,
+          21.1299991607666,
+          31.75,
+          41.09000015258789,
+          56.630001068115234,
+          73.80000305175781,
+          90.51000213623047,
+          157.00999450683594
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 1969416,
+        "min": 21.1200008392334,
+        "max": 21638.970703125,
+        "unique_count": 8,
+        "values": [
+          21.1200008392334,
+          31.739999771118164,
+          41.08000183105469,
+          56.619998931884766,
+          73.79000091552734,
+          90.5,
+          157.0,
+          21638.970703125
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "AtlasGeoquimico_Zn_Sedimentos_2012_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 106.0,
+        "max": 255.0,
+        "unique_count": 5,
+        "values": [
+          106,
+          153,
+          158,
+          172,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          153,
+          176,
+          203,
+          204,
+          246,
+          255
+        ],
+        "tags": {}
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 1969416,
+        "min": 0.0,
+        "max": 224.0,
+        "unique_count": 7,
+        "values": [
+          0,
+          15,
+          102,
+          153,
+          158,
+          191,
+          224
+        ],
+        "tags": {}
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "MDT_Espana_CNIG_500m.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": -9999.0,
+    "descriptions": [
+      "Elevacion_m_ortometrica",
+      "Pendiente_grados",
+      "TPI_Topographic_Position_Index",
+      "TRI_Terrain_Ruggedness_Index"
+    ],
+    "tags": {
+      "TIFFTAG_IMAGEDESCRIPTION": "Modelo Digital del Terreno y Variables Morfometricas. IGN/CNIG (IDEE WCS)",
+      "CRS": "EPSG:25830",
+      "PROJECT": "GeoAI Prospectividad Aurifera Espana",
+      "RESOLUTION": "500 metros",
+      "SOURCE": "https://servicios.idee.es/wcs-inspire/mdt (Elevacion25830)",
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "float32",
+        "valid": 3892980,
+        "min": -75.60783386230469,
+        "max": 3350.327392578125,
+        "unique_count": 1790194,
+        "values": null,
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "3013.7685546875",
+          "STATISTICS_MEAN": "354.39326997724",
+          "STATISTICS_MINIMUM": "-2",
+          "STATISTICS_STDDEV": "458.81567090556",
+          "STATISTICS_VALID_PERCENT": "97.23"
+        }
+      },
+      {
+        "band": 2,
+        "dtype": "float32",
+        "valid": 3892980,
+        "min": 0.0,
+        "max": 75.10088348388672,
+        "unique_count": 1965576,
+        "values": null,
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "74.584899902344",
+          "STATISTICS_MEAN": "2.1166215600736",
+          "STATISTICS_MINIMUM": "0",
+          "STATISTICS_STDDEV": "4.1640685976986",
+          "STATISTICS_VALID_PERCENT": "97.23"
+        }
+      },
+      {
+        "band": 3,
+        "dtype": "float32",
+        "valid": 3892980,
+        "min": -1462.73046875,
+        "max": 1455.0760498046875,
+        "unique_count": 1228826,
+        "values": null,
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "955.08142089844",
+          "STATISTICS_MEAN": "0.13517411260152",
+          "STATISTICS_MINIMUM": "-1020.8353881836",
+          "STATISTICS_STDDEV": "24.06567483213",
+          "STATISTICS_VALID_PERCENT": "97.23"
+        }
+      },
+      {
+        "band": 4,
+        "dtype": "float32",
+        "valid": 3892980,
+        "min": 0.0,
+        "max": 1347.5753173828125,
+        "unique_count": 612681,
+        "values": null,
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "file": "MDT_Espana_CNIG_Sombreado_RGB.tif",
+    "crs": "EPSG:25830",
+    "shape": [
+      1820,
+      2200
+    ],
+    "bounds": [
+      -50000.0,
+      3950000.0,
+      1050000.0,
+      4860000.0
+    ],
+    "res": [
+      500.0,
+      500.0
+    ],
+    "nodata": null,
+    "descriptions": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": {
+      "AREA_OR_POINT": "Area"
+    },
+    "bands": [
+      {
+        "band": 1,
+        "dtype": "uint8",
+        "valid": 3892980,
+        "min": 0.0,
+        "max": 254.0,
+        "unique_count": 255,
+        "values": null,
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "253",
+          "STATISTICS_MEAN": "179.2587657784",
+          "STATISTICS_MINIMUM": "0",
+          "STATISTICS_STDDEV": "10.000395258792",
+          "STATISTICS_VALID_PERCENT": "97.23"
+        }
+      },
+      {
+        "band": 2,
+        "dtype": "uint8",
+        "valid": 3892980,
+        "min": 0.0,
+        "max": 254.0,
+        "unique_count": 255,
+        "values": null,
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "253",
+          "STATISTICS_MEAN": "179.2587657784",
+          "STATISTICS_MINIMUM": "0",
+          "STATISTICS_STDDEV": "10.000395258792",
+          "STATISTICS_VALID_PERCENT": "97.23"
+        }
+      },
+      {
+        "band": 3,
+        "dtype": "uint8",
+        "valid": 3892980,
+        "min": 0.0,
+        "max": 254.0,
+        "unique_count": 255,
+        "values": null,
+        "tags": {
+          "STATISTICS_APPROXIMATE": "YES",
+          "STATISTICS_MAXIMUM": "253",
+          "STATISTICS_MEAN": "179.2587657784",
+          "STATISTICS_MINIMUM": "0",
+          "STATISTICS_STDDEV": "10.000395258792",
+          "STATISTICS_VALID_PERCENT": "97.23"
+        }
+      },
+      {
+        "band": 4,
+        "dtype": "uint8",
+        "valid": 4004000,
+        "min": 0.0,
+        "max": 255.0,
+        "unique_count": 2,
+        "values": [
+          0,
+          255
+        ],
+        "tags": {}
+      }
+    ]
+  }
+]

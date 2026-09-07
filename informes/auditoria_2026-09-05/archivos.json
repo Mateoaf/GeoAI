@@ -1,0 +1,438 @@
+[
+  {
+    "path": "AtlasGeoquimico_As_Sedimentos_2012.tif",
+    "bytes": 739637
+  },
+  {
+    "path": "AtlasGeoquimico_As_Sedimentos_2012_RGB.tif",
+    "bytes": 405144
+  },
+  {
+    "path": "AtlasGeoquimico_Au_Sedimentos_2012.tif",
+    "bytes": 803402
+  },
+  {
+    "path": "AtlasGeoquimico_Au_Sedimentos_2012.tif.aux.xml",
+    "bytes": 1498011
+  },
+  {
+    "path": "AtlasGeoquimico_Au_Sedimentos_2012_RGB.tif",
+    "bytes": 469519
+  },
+  {
+    "path": "AtlasGeoquimico_Bi_Sedimentos_2012.tif",
+    "bytes": 778131
+  },
+  {
+    "path": "AtlasGeoquimico_Bi_Sedimentos_2012_RGB.tif",
+    "bytes": 429924
+  },
+  {
+    "path": "AtlasGeoquimico_Cu_Sedimentos_2012.tif",
+    "bytes": 773879
+  },
+  {
+    "path": "AtlasGeoquimico_Cu_Sedimentos_2012_RGB.tif",
+    "bytes": 431525
+  },
+  {
+    "path": "AtlasGeoquimico_Hg_Sedimentos_2012.tif",
+    "bytes": 847732
+  },
+  {
+    "path": "AtlasGeoquimico_Hg_Sedimentos_2012_RGB.tif",
+    "bytes": 492183
+  },
+  {
+    "path": "AtlasGeoquimico_Pb_Sedimentos_2012.tif",
+    "bytes": 721354
+  },
+  {
+    "path": "AtlasGeoquimico_Pb_Sedimentos_2012_RGB.tif",
+    "bytes": 395186
+  },
+  {
+    "path": "AtlasGeoquimico_Sb_Sedimentos_2012.tif",
+    "bytes": 666787
+  },
+  {
+    "path": "AtlasGeoquimico_Sb_Sedimentos_2012_RGB.tif",
+    "bytes": 362088
+  },
+  {
+    "path": "AtlasGeoquimico_W_Sedimentos_2012.tif",
+    "bytes": 772532
+  },
+  {
+    "path": "AtlasGeoquimico_W_Sedimentos_2012_RGB.tif",
+    "bytes": 446354
+  },
+  {
+    "path": "AtlasGeoquimico_Zn_Sedimentos_2012.tif",
+    "bytes": 770442
+  },
+  {
+    "path": "AtlasGeoquimico_Zn_Sedimentos_2012_RGB.tif",
+    "bytes": 423120
+  },
+  {
+    "path": "Au.gpkg",
+    "bytes": 5312512
+  },
+  {
+    "path": "buzamientos.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "Capas.qgz",
+    "bytes": 437340
+  },
+  {
+    "path": "contactos-002.gpkg",
+    "bytes": 2379563008
+  },
+  {
+    "path": "ContactosFallasMagna50.csv",
+    "bytes": 91332170
+  },
+  {
+    "path": "ContactosFallasMagna50.qmd",
+    "bytes": 2705
+  },
+  {
+    "path": "ContactosGeode.csv",
+    "bytes": 155151434
+  },
+  {
+    "path": "ContactosGeode.qmd",
+    "bytes": 2687
+  },
+  {
+    "path": "contactosyfallas.gpkg",
+    "bytes": 1187647488
+  },
+  {
+    "path": "Cuaternario – Recintos.csv",
+    "bytes": 5730422
+  },
+  {
+    "path": "Cuaternario – Recintos.qmd",
+    "bytes": 2701
+  },
+  {
+    "path": "cuaternariorecintos.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "descargar_mdt_cnig.py",
+    "bytes": 11533
+  },
+  {
+    "path": "edades.gpkg",
+    "bytes": 26730496
+  },
+  {
+    "path": "Edades_España.csv",
+    "bytes": 788833
+  },
+  {
+    "path": "Edades_España.qmd",
+    "bytes": 2690
+  },
+  {
+    "path": "Ejes.csv",
+    "bytes": 1821386
+  },
+  {
+    "path": "ejes.gpkg",
+    "bytes": 18034688
+  },
+  {
+    "path": "Ejes.qmd",
+    "bytes": 2683
+  },
+  {
+    "path": "EstrucPlegMagna.csv",
+    "bytes": 1185678
+  },
+  {
+    "path": "EstrucPlegMagna.qmd",
+    "bytes": 2714
+  },
+  {
+    "path": "estructuras de plegamiento.gpkg",
+    "bytes": 11968512
+  },
+  {
+    "path": "generar_mapas_geoquimica_batch.py",
+    "bytes": 13528
+  },
+  {
+    "path": "generar_mapa_geoquimica_antimonio.py",
+    "bytes": 11968
+  },
+  {
+    "path": "generar_mapa_geoquimica_arsenico.py",
+    "bytes": 11610
+  },
+  {
+    "path": "generar_mapa_geoquimica_bismuto.py",
+    "bytes": 12338
+  },
+  {
+    "path": "generar_mapa_geoquimica_oro.py",
+    "bytes": 12779
+  },
+  {
+    "path": "generar_topografia_mdt_cnig.py",
+    "bytes": 12274
+  },
+  {
+    "path": "geoquimica.gpkg",
+    "bytes": 5312512
+  },
+  {
+    "path": "geoquimica_antimonio_sedimentos_2012.gpkg",
+    "bytes": 2936832
+  },
+  {
+    "path": "geoquimica_arsenico_sedimentos_2012.gpkg",
+    "bytes": 3608576
+  },
+  {
+    "path": "geoquimica_bismuto_sedimentos_2012.gpkg",
+    "bytes": 3928064
+  },
+  {
+    "path": "geoquimica_cu_sedimentos_2012.gpkg",
+    "bytes": 4096000
+  },
+  {
+    "path": "geoquimica_hg_sedimentos_2012.gpkg",
+    "bytes": 5763072
+  },
+  {
+    "path": "geoquimica_oro_sedimentos_2012.gpkg",
+    "bytes": 5300224
+  },
+  {
+    "path": "geoquimica_pb_sedimentos_2012.gpkg",
+    "bytes": 3502080
+  },
+  {
+    "path": "geoquimica_w_sedimentos_2012.gpkg",
+    "bytes": 4927488
+  },
+  {
+    "path": "geoquimica_zn_sedimentos_2012.gpkg",
+    "bytes": 3862528
+  },
+  {
+    "path": "gravimetria.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "Indicios.xlsx",
+    "bytes": 971789
+  },
+  {
+    "path": "IndiciosII.csv",
+    "bytes": 1903162
+  },
+  {
+    "path": "IndiciosII.gpkg",
+    "bytes": 3100672
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Au.csv",
+    "bytes": 2314800
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Au.gpkg",
+    "bytes": 3543040
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Au_As.csv",
+    "bytes": 2758044
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Au_As.gpkg",
+    "bytes": 4042752
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Au_As_Sb.csv",
+    "bytes": 3188851
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Au_As_Sb.gpkg",
+    "bytes": 4571136
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Au_As_Sb_Bi.csv",
+    "bytes": 3619472
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Au_As_Sb_Bi.gpkg",
+    "bytes": 5107712
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Completa_BDMIN.csv",
+    "bytes": 5897684
+  },
+  {
+    "path": "Indicios_con_Geoquimica_Completa_BDMIN.gpkg",
+    "bytes": 7868416
+  },
+  {
+    "path": "Indicios_con_Geoquimica_y_MDT_BDMIN.csv",
+    "bytes": 6402842
+  },
+  {
+    "path": "Indicios_con_Geoquimica_y_MDT_BDMIN.gpkg",
+    "bytes": 8585216
+  },
+  {
+    "path": "Indicios_Master_Geocientifico_BDMIN.csv",
+    "bytes": 6210177
+  },
+  {
+    "path": "Indicios_Master_Geocientifico_BDMIN.gpkg",
+    "bytes": 8282112
+  },
+  {
+    "path": "Informe_Modelo_Prospectividad_Aurifera_BDMIN.pdf",
+    "bytes": 476306
+  },
+  {
+    "path": "litologias.gpkg",
+    "bytes": 26877952
+  },
+  {
+    "path": "Litologias_España.csv",
+    "bytes": 905756
+  },
+  {
+    "path": "Litologias_España.qmd",
+    "bytes": 2703
+  },
+  {
+    "path": "magnetometriaradiometria.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "magnetotelurico.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "MDT_CNIG_Elevacion_Hillshade_RGB.tif.aux.xml",
+    "bytes": 1366
+  },
+  {
+    "path": "MDT_CNIG_Topografia_2012.tif.aux.xml",
+    "bytes": 1501065
+  },
+  {
+    "path": "MDT_Espana_CNIG_500m.tif",
+    "bytes": 30229702
+  },
+  {
+    "path": "MDT_Espana_CNIG_500m.tif.aux.xml",
+    "bytes": 1499285
+  },
+  {
+    "path": "MDT_Espana_CNIG_Sombreado_RGB.tif",
+    "bytes": 2515053
+  },
+  {
+    "path": "MDT_Espana_CNIG_Sombreado_RGB.tif.aux.xml",
+    "bytes": 1173
+  },
+  {
+    "path": "medidasestructurales.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "oro.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "pdf_extracted.txt",
+    "bytes": 29786
+  },
+  {
+    "path": "petrofisica.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "README.md",
+    "bytes": 9399
+  },
+  {
+    "path": "recintos.gpkg",
+    "bytes": 1795751936
+  },
+  {
+    "path": "RecintosGeologicos.csv",
+    "bytes": 83507557
+  },
+  {
+    "path": "RecintosGeologicos.qmd",
+    "bytes": 2696
+  },
+  {
+    "path": "red-hidrografica2022_27.zip",
+    "bytes": 108955048
+  },
+  {
+    "path": "redhidrografica.gpkg",
+    "bytes": 156913664
+  },
+  {
+    "path": "requirements.txt",
+    "bytes": 283
+  },
+  {
+    "path": "zonasgeode.gpkg",
+    "bytes": 81920
+  },
+  {
+    "path": "informes\\analisis proyecto.pdf",
+    "bytes": 391553
+  },
+  {
+    "path": "informes\\auditar_capas.py",
+    "bytes": 3498
+  },
+  {
+    "path": "informes\\CAPAS.pdf",
+    "bytes": 137418
+  },
+  {
+    "path": "informes\\Ideas_reunion_proyecto_oro_7_septiembre_2026-1 (1).docx",
+    "bytes": 41680
+  },
+  {
+    "path": "informes\\Reto_Vino_Capitulo5_MULTIFUENTE.ipynb",
+    "bytes": 4056395
+  },
+  {
+    "path": "red-hidrografica2022_27\\red-hidrografica2022-27_marzo2023.cpg",
+    "bytes": 5
+  },
+  {
+    "path": "red-hidrografica2022_27\\red-hidrografica2022-27_marzo2023.dbf",
+    "bytes": 20991790
+  },
+  {
+    "path": "red-hidrografica2022_27\\red-hidrografica2022-27_marzo2023.prj",
+    "bytes": 147
+  },
+  {
+    "path": "red-hidrografica2022_27\\red-hidrografica2022-27_marzo2023.shp",
+    "bytes": 145625460
+  },
+  {
+    "path": "red-hidrografica2022_27\\red-hidrografica2022-27_marzo2023.shx",
+    "bytes": 107268
+  }
+]

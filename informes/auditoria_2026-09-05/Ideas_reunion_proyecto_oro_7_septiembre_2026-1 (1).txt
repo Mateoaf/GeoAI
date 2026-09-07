@@ -1,0 +1,35 @@
+Prospectividad de oro con IA
+Ideas principales para trasladar en la reunión
+Lunes, 7 de septiembre de 2026  ·  Antonio Mateos  ·  Revisión de datos: 04/09/2026
+Mensaje central: ya tenemos una base de datos identificada, un diagnóstico de su calidad y una propuesta de modelado. El siguiente hito es preparar el conjunto de entrenamiento.
+Qué queremos conseguir
+Desarrollar un modelo que relacione los indicios de oro del BDMIN con las condiciones geológicas, geoquímicas, estructurales y del terreno. La salida será un mapa de prospectividad para priorizar zonas de estudio. El entrenamiento y la evaluación están pendientes.
+Avances comprobados
+Base de esta síntesis: inspección de 23 archivos de la carpeta «Proyecto Con Luis» y del cuaderno adjunto. Los datasets de pruebas se han excluido.
+Hallazgos que condicionan el siguiente paso
+Calidad de los archivos. Nueve GeoPackage están vacíos; el Excel repite códigos y algunos CSV han perdido la geometría. Hay que preparar la tabla desde las fuentes comprobadas.
+Dos objetivos geológicos. 299 indicios auríferos figuran como aluvionares y 294 como filonianos. Debemos distinguir oro aluvial y oro en roca; 77 casos tienen morfología desconocida.
+Detalle disponible. La geoquímica de Au y As está clasificada por intervalos. El MDT de 500 m y la litología regional 1:1.000.000 aconsejan delimitar bien el alcance del piloto.
+
+Propuesta para acordar el lunes
+Cómo construiremos el primer modelo
+Preparar una tabla nueva. Definir la zona y la cuadrícula, revisar los indicios y extraer las variables de las capas. Los datasets de pruebas anteriores quedan fuera.
+Definir las muestras. Usar indicios conocidos y puntos de fondo. Una zona sin oro registrado tiene una etiqueta desconocida: no es una ausencia demostrada.
+Comparar algoritmos. Empezar con una referencia sencilla y contrastar regresión logística, árboles, Naïve Bayes, KNN, SVM, Random Forest y boosting, siguiendo el estilo del reto del vino.
+Evaluar en zonas nuevas. Separar territorios y depósitos entre entrenamiento y prueba. Medir cuántos indicios reservados recupera el modelo al priorizar una fracción del área.
+Decisiones que conviene cerrar
+Objetivo y territorio. Elegir la zona piloto y decidir si la primera versión se centra en oro en roca o aluvial.
+Datos mínimos. Acordar qué capas se recuperarán y cuáles pueden incorporarse después. La geofísica vacía no impide ensayar con otras familias de datos.
+Entrega y responsables. Asignar la revisión geológica y la preparación técnica; fijar una fecha realista y el criterio para aceptar el primer ensayo.
+Próximo entregable propuesto
+Un cuaderno reproducible que documente las fuentes, construya la tabla de entrenamiento y compare modelos con validación espacial. Tras superar esa evaluación, se generaría el mapa de prospectividad. Hoy no hay métricas de rendimiento ni un mapa predictivo validado que presentar.
+Guion de apertura · aproximadamente un minuto
+«El objetivo es aprender qué condiciones geológicas se asocian a los indicios de oro del BDMIN y utilizar ese conocimiento para priorizar otras zonas. Ya hemos localizado las principales familias de datos y revisado parte de ellas. La base recomendada contiene 790 registros con oro; también hemos detectado archivos vacíos, duplicados y diferencias de resolución que debemos resolver. Proponemos trabajar con un cuaderno explicativo, como el reto del vino, comparando varios algoritmos y evaluándolos en zonas separadas. Hoy necesitamos acordar la zona piloto, el tipo de oro y el alcance de la primera versión.»
+Apoyo documental: revisión detallada de capas · carpeta del proyecto
+El resultado previsto es una priorización de zonas. La puntuación no estima por sí sola probabilidad real de hallazgo, cantidad de oro, profundidad ni rentabilidad.
+Ámbito | Evidencia disponible
+Base de indicios | IndiciosII.gpkg: 11.732 códigos únicos y 790 registros que incluyen oro. Es la copia de partida recomendada.
+Geología y estructuras | Litología y edad con datos; ejes y pliegues comprobados. Contactos, fallas, recintos e hidrografía localizados, pendientes de revisión interna.
+Geoquímica | Au y As inspeccionadas. También se han localizado capas de Sb, Bi, Hg, Cu, Pb, Zn y W, aún por comprobar.
+Terreno | MDT de 500 m con elevación, pendiente, TPI y TRI. Falta verificar la preparación de los derivados.
+Forma de trabajar | Estructura de cuaderno propuesta a partir del reto del vino: explicación, código, gráficos y comparación de algoritmos.

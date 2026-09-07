@@ -27,7 +27,7 @@ reports/*
 # Jupyter Notebook Checkpoints
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
-informes
+
 # Node.js
 node_modules/
 npm-debug.log*

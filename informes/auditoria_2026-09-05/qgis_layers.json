@@ -1,0 +1,200 @@
+[
+  {
+    "name": "AtlasGeoquimico_Au_Sedimentos_2012",
+    "source": "./AtlasGeoquimico_Au_Sedimentos_2012.tif",
+    "provider": "gdal",
+    "crs": "EPSG:25830"
+  },
+  {
+    "name": "Buzamientos",
+    "source": " format='' layer='3' url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer'",
+    "provider": "arcgismapserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "ContactosFallasMagna50",
+    "source": "./ContactosFallasMagna50.csv",
+    "provider": "ogr",
+    "crs": ""
+  },
+  {
+    "name": "ContactosGeode",
+    "source": "./ContactosGeode.csv",
+    "provider": "ogr",
+    "crs": ""
+  },
+  {
+    "name": "Contactos",
+    "source": " url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer/7'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Contactos y fallas MAGNA 50",
+    "source": " url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_MAGNA_50/MapServer/9'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Cuaternario – Recintos",
+    "source": "./Cuaternario – Recintos.csv",
+    "provider": "ogr",
+    "crs": ""
+  },
+  {
+    "name": "Cuaternario - Recintos ",
+    "source": " format='' layer='6' url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer'",
+    "provider": "arcgismapserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Cuaternario - Recintos ",
+    "source": " url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer/6'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Edades 1M",
+    "source": " url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Edades_1M/MapServer/0'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Edades_España",
+    "source": "./Edades_España.csv",
+    "provider": "ogr",
+    "crs": ""
+  },
+  {
+    "name": "Ejes",
+    "source": "./Ejes.csv",
+    "provider": "ogr",
+    "crs": ""
+  },
+  {
+    "name": "Ejes",
+    "source": " url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer/4'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "EstrucPlegMagna",
+    "source": "./EstrucPlegMagna.csv",
+    "provider": "ogr",
+    "crs": ""
+  },
+  {
+    "name": "Estructuras de plegamiento MAGNA 50",
+    "source": " url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_MAGNA_50/MapServer/8'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Gravimetría",
+    "source": " format='' layer='9' url='https://mapas.igme.es/gis/rest/services/BasesDatos/IGME_SIGEOF/MapServer'",
+    "provider": "arcgismapserver",
+    "crs": "EPSG:4326"
+  },
+  {
+    "name": "Indicios II",
+    "source": " url='https://mapas.igme.es/gis/rest/services/BasesDatos/IGME_BDMIN_Indicios/MapServer/0' sql=\"Sustancia\" LIKE '%Oro%'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:4326"
+  },
+  {
+    "name": "Litologías 1M",
+    "source": " url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Litologias_1M/MapServer/0'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Litologias_España",
+    "source": "./Litologias_España.csv",
+    "provider": "ogr",
+    "crs": ""
+  },
+  {
+    "name": "Magnetometría y/o Radiometría – Líneas de Vuelo",
+    "source": " format='' layer='10' url='https://mapas.igme.es/gis/rest/services/BasesDatos/IGME_SIGEOF/MapServer'",
+    "provider": "arcgismapserver",
+    "crs": "EPSG:4326"
+  },
+  {
+    "name": "Medidas estructurales MAGNA50",
+    "source": " format='' layer='5' url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_MAGNA_50/MapServer'",
+    "provider": "arcgismapserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Petrofísica",
+    "source": " format='' layer='8' url='https://mapas.igme.es/gis/rest/services/BasesDatos/IGME_SIGEOF/MapServer'",
+    "provider": "arcgismapserver",
+    "crs": "EPSG:4326"
+  },
+  {
+    "name": "RecintosGeologicos",
+    "source": "./RecintosGeologicos.csv",
+    "provider": "ogr",
+    "crs": ""
+  },
+  {
+    "name": "Recintos geología",
+    "source": " url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer/8'",
+    "provider": "arcgisfeatureserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Sedimento (E. total)",
+    "source": " format='' layer='0' url='https://mapas.igme.es/gis/rest/services/AtlasGeoquimico/IGME_MapaIsovalores2012_Au/MapServer'",
+    "provider": "arcgismapserver",
+    "crs": "EPSG:23030"
+  },
+  {
+    "name": "Zonas GEODE",
+    "source": " format='' layer='9' url='https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer'",
+    "provider": "arcgismapserver",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "Modelo Digital del Terreno/Curvas de nivel/Puntos acotados",
+    "source": "contextualWMSLegend=0&crs=EPSG:3857&dpiMode=7&featureCount=10&format=image/png&tilePixelRatio=0&url=https://servicios.idee.es/wms-inspire/mdt?VERSION%3D1.3.0&layers=EL.SpotElevation&layers=EL.ContourLine&layers=EL.ElevationGridCoverage&styles=&styles=&styles=",
+    "provider": "wms",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "OpenStreetMap",
+    "source": "crs=EPSG:3857&format&tilePixelRatio=1&type=xyz&url=https://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0",
+    "provider": "wms",
+    "crs": "EPSG:3857"
+  },
+  {
+    "name": "bdmin_au_clean",
+    "source": "./data/processed/bdmin_au_clean.gpkg|layername=bdmin_au_clean",
+    "provider": "ogr",
+    "crs": "EPSG:25830"
+  },
+  {
+    "name": "geoquimica_oro_sedimentos_2012 — isocontenidos_oro_sedimentos_2012",
+    "source": "./geoquimica_oro_sedimentos_2012.gpkg|layername=isocontenidos_oro_sedimentos_2012",
+    "provider": "ogr",
+    "crs": "EPSG:25830"
+  },
+  {
+    "name": "geoquimica_oro_sedimentos_2012 — isocontenidos_oro_sedimentos_2012",
+    "source": "./geoquimica_oro_sedimentos_2012.gpkg|layername=isocontenidos_oro_sedimentos_2012",
+    "provider": "ogr",
+    "crs": "EPSG:25830"
+  },
+  {
+    "name": "red-hidrografica2022-27_marzo2023",
+    "source": "./red-hidrografica2022_27/red-hidrografica2022-27_marzo2023.shp",
+    "provider": "ogr",
+    "crs": "EPSG:4258"
+  },
+  {
+    "name": "redhidrografica202227_marzo2023",
+    "source": "./redhidrografica.gpkg|layername=redhidrografica202227_marzo2023",
+    "provider": "ogr",
+    "crs": "EPSG:4258"
+  }
+]

@@ -1,0 +1,6745 @@
+[
+  {
+    "file": "Au.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_oro_sedimentos_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_oro_sedimentos_2012",
+        "description": "",
+        "last_change": "2026-09-02T17:29:18.736Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 7,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango_ppb",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "au_min_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "au_max_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "au_mid_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango_ppb": "0,08 - 1,34",
+            "au_min_ppb": 0.08,
+            "au_max_ppb": 1.34,
+            "au_mid_ppb": 0.33,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango_ppb": "1,35 - 2",
+            "au_min_ppb": 1.35,
+            "au_max_ppb": 2.0,
+            "au_mid_ppb": 1.64,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango_ppb": "2,01 - 3,5",
+            "au_min_ppb": 2.01,
+            "au_max_ppb": 3.5,
+            "au_mid_ppb": 2.65,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_oro_sedimentos_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "buzamientos.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  },
+  {
+    "file": "contactos-002.gpkg",
+    "tables": [
+      {
+        "table_name": "contactos",
+        "data_type": "features",
+        "identifier": "https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer/7",
+        "description": "",
+        "last_change": "2026-09-02T13:26:24.452Z",
+        "min_x": -2021693.935086558,
+        "min_y": 3203377.209115801,
+        "max_x": 481766.379522516,
+        "max_y": 5433369.06896552,
+        "srs_id": 3857,
+        "count": 2126026,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTICURVE",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "OBJECTID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "ID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "GEOM_LEN",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "CODE_LINE",
+            "type": "TEXT(8)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "DESC_LINE",
+            "type": "TEXT(250)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "ZONA",
+            "type": "TEXT(10)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "ID_KEY",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "CODELINE_I",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Shape_Length",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "OBJECTID": 1,
+            "ID": 1,
+            "GEOM_LEN": 514.767444948,
+            "CODE_LINE": "540501",
+            "DESC_LINE": "Límite político - administrativo",
+            "ZONA": "Z1000",
+            "ID_KEY": null,
+            "CODELINE_I": null,
+            "Shape_Length": 0.0054465150090047265
+          },
+          {
+            "fid": 2,
+            "OBJECTID": 2,
+            "ID": 2,
+            "GEOM_LEN": 99.6897847831,
+            "CODE_LINE": "540501",
+            "DESC_LINE": "Límite político - administrativo",
+            "ZONA": "Z1000",
+            "ID_KEY": null,
+            "CODELINE_I": null,
+            "Shape_Length": 0.0010570517477577939
+          },
+          {
+            "fid": 3,
+            "OBJECTID": 3,
+            "ID": 3,
+            "GEOM_LEN": 49.6695051759,
+            "CODE_LINE": "540501",
+            "DESC_LINE": "Límite político - administrativo",
+            "ZONA": "Z1000",
+            "ID_KEY": null,
+            "CODELINE_I": null,
+            "Shape_Length": 0.0005441488497226701
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "contactos",
+        "column_name": "geom",
+        "geometry_type_name": "MULTICURVE",
+        "srs_id": 3857,
+        "z": 1,
+        "m": 1
+      }
+    ]
+  },
+  {
+    "file": "contactosyfallas.gpkg",
+    "tables": [
+      {
+        "table_name": "contactos_y_fallas_magna_50",
+        "data_type": "features",
+        "identifier": "https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_MAGNA_50/MapServer/9",
+        "description": "",
+        "last_change": "2026-09-02T13:08:04.374Z",
+        "min_x": -2026942.450149532,
+        "min_y": 3199682.77689966,
+        "max_x": 482167.7006470456,
+        "max_y": 5439684.096719856,
+        "srs_id": 3857,
+        "count": 2229505,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTICURVE",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "HOJA",
+            "type": "TEXT(10)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "ID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "TIPO",
+            "type": "TEXT(100)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "OBJECTID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "HOJA": "1",
+            "ID": 540101,
+            "TIPO": "Masas de agua",
+            "OBJECTID": 1
+          },
+          {
+            "fid": 2,
+            "HOJA": "1",
+            "ID": 540101,
+            "TIPO": "Masas de agua",
+            "OBJECTID": 2
+          },
+          {
+            "fid": 3,
+            "HOJA": "1",
+            "ID": 540101,
+            "TIPO": "Masas de agua",
+            "OBJECTID": 3
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "contactos_y_fallas_magna_50",
+        "column_name": "geom",
+        "geometry_type_name": "MULTICURVE",
+        "srs_id": 3857,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "cuaternariorecintos.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  },
+  {
+    "file": "edades.gpkg",
+    "tables": [
+      {
+        "table_name": "edades_1m",
+        "data_type": "features",
+        "identifier": "https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Edades_1M/MapServer/0",
+        "description": "",
+        "last_change": "2026-09-02T12:16:25.152Z",
+        "min_x": -2021539.301635408,
+        "min_y": 3204285.173769365,
+        "max_x": 484138.7463862319,
+        "max_y": 5432260.304283835,
+        "srs_id": 3857,
+        "count": 16007,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "OBJECTID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "EON_ERA",
+            "type": "TEXT(50)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "SUBERA",
+            "type": "TEXT(50)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "SISTEMA",
+            "type": "TEXT(50)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "OBJECTID": 1,
+            "Id": 12,
+            "EON_ERA": "PALEOZOICO",
+            "SUBERA": "Sin determinar",
+            "SISTEMA": "DEVÓNICO-CARBONÍFERO-PÉRMICO (Plut. Hercínico)"
+          },
+          {
+            "fid": 2,
+            "OBJECTID": 2,
+            "Id": 7,
+            "EON_ERA": "PALEOZOICO",
+            "SUBERA": "Sin determinar",
+            "SISTEMA": "DEVÓNICO-CARBONÍFERO-PÉRMICO (Plut. Hercínico)"
+          },
+          {
+            "fid": 3,
+            "OBJECTID": 3,
+            "Id": 21,
+            "EON_ERA": "PROTEROZOICO-PALEOZOICO",
+            "SUBERA": "Sin determinar",
+            "SISTEMA": "CARBONÍFERO"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "edades_1m",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 3857,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "ejes.gpkg",
+    "tables": [
+      {
+        "table_name": "ejes",
+        "data_type": "features",
+        "identifier": "https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer/4",
+        "description": "",
+        "last_change": "2026-09-02T12:25:44.802Z",
+        "min_x": -1008057.131286112,
+        "min_y": 4188383.266524673,
+        "max_x": 375943.5492974092,
+        "max_y": 5421285.670347692,
+        "srs_id": 3857,
+        "count": 27556,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTICURVE",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "OBJECTID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "ID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "GEOM_LEN",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "CODE_LINE",
+            "type": "TEXT(8)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "DESC_LINE",
+            "type": "TEXT(250)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "ZONA",
+            "type": "TEXT(10)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "ID_KEY",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Shape_Length",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "OBJECTID": 1,
+            "ID": 1,
+            "GEOM_LEN": 183.566297411,
+            "CODE_LINE": "1000001",
+            "DESC_LINE": "Anticlinal",
+            "ZONA": "Z1000",
+            "ID_KEY": null,
+            "Shape_Length": 0.0021846245559359223
+          },
+          {
+            "fid": 2,
+            "OBJECTID": 2,
+            "ID": 2,
+            "GEOM_LEN": 891.773843311,
+            "CODE_LINE": "1000001",
+            "DESC_LINE": "Anticlinal",
+            "ZONA": "Z1000",
+            "ID_KEY": null,
+            "Shape_Length": 0.01056641246130851
+          },
+          {
+            "fid": 3,
+            "OBJECTID": 3,
+            "ID": 3,
+            "GEOM_LEN": 2781.73832169,
+            "CODE_LINE": "2000001",
+            "DESC_LINE": "Sinclinal",
+            "ZONA": "Z1000",
+            "ID_KEY": null,
+            "Shape_Length": 0.03202709671241415
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "ejes",
+        "column_name": "geom",
+        "geometry_type_name": "MULTICURVE",
+        "srs_id": 3857,
+        "z": 1,
+        "m": 1
+      }
+    ]
+  },
+  {
+    "file": "estructuras de plegamiento.gpkg",
+    "tables": [
+      {
+        "table_name": "estructuras_de_plegamiento_magna_50",
+        "data_type": "features",
+        "identifier": "https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_MAGNA_50/MapServer/8",
+        "description": "",
+        "last_change": "2026-09-02T12:25:35.546Z",
+        "min_x": -1008102.422622818,
+        "min_y": 4282841.720123042,
+        "max_x": 375942.9916980792,
+        "max_y": 5428609.769994064,
+        "srs_id": 3857,
+        "count": 31801,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTICURVE",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "HOJA",
+            "type": "TEXT(10)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "ID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "TIPO",
+            "type": "TEXT(100)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "OBJECTID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "HOJA": "1",
+            "ID": 2000002,
+            "TIPO": "Sinclinal supuesto",
+            "OBJECTID": 1
+          },
+          {
+            "fid": 2,
+            "HOJA": "1",
+            "ID": 2000002,
+            "TIPO": "Sinclinal supuesto",
+            "OBJECTID": 2
+          },
+          {
+            "fid": 3,
+            "HOJA": "1",
+            "ID": 2000002,
+            "TIPO": "Sinclinal supuesto",
+            "OBJECTID": 3
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "estructuras_de_plegamiento_magna_50",
+        "column_name": "geom",
+        "geometry_type_name": "MULTICURVE",
+        "srs_id": 3857,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_oro_sedimentos_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_oro_sedimentos_2012",
+        "description": "",
+        "last_change": "2026-09-02T17:29:18.867Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 7,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango_ppb",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "au_min_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "au_max_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "au_mid_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango_ppb": "0,08 - 1,34",
+            "au_min_ppb": 0.08,
+            "au_max_ppb": 1.34,
+            "au_mid_ppb": 0.33,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango_ppb": "1,35 - 2",
+            "au_min_ppb": 1.35,
+            "au_max_ppb": 2.0,
+            "au_mid_ppb": 1.64,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango_ppb": "2,01 - 3,5",
+            "au_min_ppb": 2.01,
+            "au_max_ppb": 3.5,
+            "au_mid_ppb": 2.65,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_oro_sedimentos_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_antimonio_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_antimonio_sedimentos_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_antimonio_sedimentos_2012",
+        "description": "",
+        "last_change": "2026-09-03T22:51:26.123Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 8,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango_ppm",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "sb_min_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "sb_max_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "sb_mid_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango_ppm": "0,043 - 0,228",
+            "sb_min_ppm": 0.0428,
+            "sb_max_ppm": 0.228,
+            "sb_mid_ppm": 0.0988,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango_ppm": "0,228 - 0,61",
+            "sb_min_ppm": 0.228,
+            "sb_max_ppm": 0.61,
+            "sb_mid_ppm": 0.3729,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango_ppm": "0,61 - 0,78",
+            "sb_min_ppm": 0.61,
+            "sb_max_ppm": 0.78,
+            "sb_mid_ppm": 0.6898,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_antimonio_sedimentos_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_arsenico_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_arsenico_sedimentos_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_arsenico_sedimentos_2012",
+        "description": "",
+        "last_change": "2026-09-03T22:42:12.707Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 8,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango_ppm",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "as_min_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "as_max_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "as_mid_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango_ppm": "0,08 - 4,55",
+            "as_min_ppm": 0.08,
+            "as_max_ppm": 4.55,
+            "as_mid_ppm": 0.6,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango_ppm": "4,56 - 6",
+            "as_min_ppm": 4.56,
+            "as_max_ppm": 6.0,
+            "as_mid_ppm": 5.23,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango_ppm": "6,01 - 8,78",
+            "as_min_ppm": 6.01,
+            "as_max_ppm": 8.78,
+            "as_mid_ppm": 7.26,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_arsenico_sedimentos_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_bismuto_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_bismuto_sedimentos_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_bismuto_sedimentos_2012",
+        "description": "",
+        "last_change": "2026-09-03T22:52:29.054Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 8,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango_ppm",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "bi_min_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "bi_max_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "bi_mid_ppm",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango_ppm": "0,08 - 0,09",
+            "bi_min_ppm": 0.08,
+            "bi_max_ppm": 0.09,
+            "bi_mid_ppm": 0.0849,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango_ppm": "0,1 - 0,14",
+            "bi_min_ppm": 0.1,
+            "bi_max_ppm": 0.14,
+            "bi_mid_ppm": 0.1183,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango_ppm": "0,15 - 0,18",
+            "bi_min_ppm": 0.15,
+            "bi_max_ppm": 0.18,
+            "bi_mid_ppm": 0.1643,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_bismuto_sedimentos_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_cu_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_cu_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_cu_2012",
+        "description": "",
+        "last_change": "2026-09-03T22:55:38.763Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 8,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "min_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "max_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "mid_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango": "0,42 - 6,28",
+            "min_val": 0.42,
+            "max_val": 6.28,
+            "mid_val": 1.62,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango": "6,29 - 10,35",
+            "min_val": 6.29,
+            "max_val": 10.35,
+            "mid_val": 8.07,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango": "10,36 - 12,73",
+            "min_val": 10.36,
+            "max_val": 12.73,
+            "mid_val": 11.48,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_cu_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_hg_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_hg_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_hg_2012",
+        "description": "",
+        "last_change": "2026-09-03T22:55:32.337Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 8,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "min_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "max_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "mid_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango": "0,28 - 6",
+            "min_val": 0.28,
+            "max_val": 6.0,
+            "mid_val": 1.3,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango": "6,01 - 11,38",
+            "min_val": 6.01,
+            "max_val": 11.38,
+            "mid_val": 8.27,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango": "11,39 - 15,67",
+            "min_val": 11.39,
+            "max_val": 15.67,
+            "mid_val": 13.36,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_hg_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_oro_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_oro_sedimentos_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_oro_sedimentos_2012",
+        "description": "",
+        "last_change": "2026-09-02T17:29:18.551Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 7,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango_ppb",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "au_min_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "au_max_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "au_mid_ppb",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango_ppb": "0,08 - 1,34",
+            "au_min_ppb": 0.08,
+            "au_max_ppb": 1.34,
+            "au_mid_ppb": 0.33,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango_ppb": "1,35 - 2",
+            "au_min_ppb": 1.35,
+            "au_max_ppb": 2.0,
+            "au_mid_ppb": 1.64,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango_ppb": "2,01 - 3,5",
+            "au_min_ppb": 2.01,
+            "au_max_ppb": 3.5,
+            "au_mid_ppb": 2.65,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_oro_sedimentos_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_pb_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_pb_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_pb_2012",
+        "description": "",
+        "last_change": "2026-09-03T22:55:44.251Z",
+        "min_x": -11000.0,
+        "min_y": 3989500.0,
+        "max_x": 1047500.0,
+        "max_y": 4853500.0,
+        "srs_id": 25830,
+        "count": 8,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "min_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "max_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "mid_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango": "0,28 - 10,43",
+            "min_val": 0.28,
+            "max_val": 10.43,
+            "mid_val": 1.71,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango": "10,44 - 14,25",
+            "min_val": 10.44,
+            "max_val": 14.25,
+            "mid_val": 12.2,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango": "14,26 - 17,16",
+            "min_val": 14.26,
+            "max_val": 17.16,
+            "mid_val": 15.64,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_pb_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_w_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_w_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_w_2012",
+        "description": "",
+        "last_change": "2026-09-03T22:55:57.818Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 7,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "min_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "max_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "mid_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango": "0,5 - 0,53",
+            "min_val": 0.5,
+            "max_val": 0.53,
+            "mid_val": 0.51,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango": "0,54 - 0,68",
+            "min_val": 0.54,
+            "max_val": 0.68,
+            "mid_val": 0.61,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango": "0,69 - 0,84",
+            "min_val": 0.69,
+            "max_val": 0.84,
+            "mid_val": 0.76,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_w_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "geoquimica_zn_sedimentos_2012.gpkg",
+    "tables": [
+      {
+        "table_name": "isocontenidos_zn_2012",
+        "data_type": "features",
+        "identifier": "isocontenidos_zn_2012",
+        "description": "",
+        "last_change": "2026-09-03T22:55:50.366Z",
+        "min_x": -11500.0,
+        "min_y": 3988000.0,
+        "max_x": 1047500.0,
+        "max_y": 4852500.0,
+        "srs_id": 25830,
+        "count": 8,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "clase_id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "min_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "max_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "mid_val",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "nivel_anomalia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "clase_id": 0,
+            "rango": "0,53 - 21,12",
+            "min_val": 0.53,
+            "max_val": 21.12,
+            "mid_val": 3.35,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 2,
+            "clase_id": 1,
+            "rango": "21,13 - 31,74",
+            "min_val": 21.13,
+            "max_val": 31.74,
+            "mid_val": 25.9,
+            "nivel_anomalia": "Fondo"
+          },
+          {
+            "fid": 3,
+            "clase_id": 2,
+            "rango": "31,75 - 41,08",
+            "min_val": 31.75,
+            "max_val": 41.08,
+            "mid_val": 36.11,
+            "nivel_anomalia": "Fondo"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "isocontenidos_zn_2012",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 25830,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "gravimetria.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  },
+  {
+    "file": "IndiciosII.gpkg",
+    "tables": [
+      {
+        "table_name": "indicios_ii",
+        "data_type": "features",
+        "identifier": "https://mapas.igme.es/gis/rest/services/BasesDatos/IGME_BDMIN_Indicios/MapServer/0",
+        "description": "",
+        "last_change": "2026-08-28T15:01:13.048Z",
+        "min_x": -13.04639269299997,
+        "min_y": 3.675255509000067,
+        "max_x": 4.278016000000036,
+        "max_y": 43.74601759700005,
+        "srs_id": 4326,
+        "count": 11732,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "POINT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "Codigo_indicio",
+            "type": "TEXT(7)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Nombre_mina",
+            "type": "TEXT(4000)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Sustancia",
+            "type": "TEXT(1073741822)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "Provincia",
+            "type": "TEXT(30)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "Municipio",
+            "type": "TEXT(100)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "X",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "Y",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Zona_Geode",
+            "type": "TEXT(150)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Azimut",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "Edad_inferior",
+            "type": "TEXT(30)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 12,
+            "name": "Edad_superior",
+            "type": "TEXT(30)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 13,
+            "name": "Asociacion_mineral",
+            "type": "TEXT(90)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 14,
+            "name": "Morfologia",
+            "type": "TEXT(50)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 15,
+            "name": "Tamaño_indicio",
+            "type": "TEXT(20)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 16,
+            "name": "ESRI_OID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "Codigo_indicio": "0001001",
+            "Nombre_mina": "SEIJO",
+            "Sustancia": " Cuarzo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cariño",
+            "X": -7.91625461,
+            "Y": 43.69336299,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": 130,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3061
+          },
+          {
+            "fid": 2,
+            "Codigo_indicio": "0001002",
+            "Nombre_mina": "DA BARAXIE",
+            "Sustancia": " Titanio / Rutilo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9817791,
+            "Y": 43.67118547,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Fe, Mn, Ti",
+            "Morfologia": "Irregular",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3449
+          },
+          {
+            "fid": 3,
+            "Codigo_indicio": "0001003",
+            "Nombre_mina": "HERBEIRA",
+            "Sustancia": " Asbesto",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9560943,
+            "Y": 43.71444337,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3450
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "indicios_ii",
+        "column_name": "geom",
+        "geometry_type_name": "POINT",
+        "srs_id": 4326,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "Indicios_con_Geoquimica_Au.gpkg",
+    "tables": [
+      {
+        "table_name": "indicios_con_geoquimica_au",
+        "data_type": "features",
+        "identifier": "indicios_con_geoquimica_au",
+        "description": "",
+        "last_change": "2026-09-02T17:29:19.689Z",
+        "min_x": -13.04639269299997,
+        "min_y": 3.675255509000067,
+        "max_x": 4.278016000000036,
+        "max_y": 43.74601759700005,
+        "srs_id": 4326,
+        "count": 11732,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "POINT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "Codigo_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Nombre_mina",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Sustancia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "Provincia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "Municipio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "X",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "Y",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Zona_Geode",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Azimut",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "Edad_inferior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 12,
+            "name": "Edad_superior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 13,
+            "name": "Asociacion_mineral",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 14,
+            "name": "Morfologia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 15,
+            "name": "Tamaño_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 16,
+            "name": "ESRI_OID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 17,
+            "name": "Au_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 18,
+            "name": "Au_geoq_ppb_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 19,
+            "name": "Au_geoq_ppb_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 20,
+            "name": "Au_geoq_ppb_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 21,
+            "name": "Au_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 22,
+            "name": "Au_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "Codigo_indicio": "0001001",
+            "Nombre_mina": "SEIJO",
+            "Sustancia": " Cuarzo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cariño",
+            "X": -7.91625461,
+            "Y": 43.69336299,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": 130.0,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3061,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1
+          },
+          {
+            "fid": 2,
+            "Codigo_indicio": "0001002",
+            "Nombre_mina": "DA BARAXIE",
+            "Sustancia": " Titanio / Rutilo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9817791,
+            "Y": 43.67118547,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Fe, Mn, Ti",
+            "Morfologia": "Irregular",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3449,
+            "Au_geoq_clase": 3.0,
+            "Au_geoq_ppb_mid": 4.630000114440918,
+            "Au_geoq_ppb_min": 3.509999990463257,
+            "Au_geoq_ppb_max": 6.099999904632568,
+            "Au_geoq_rango": "3,51 - 6,1",
+            "Au_geoq_anomalo": 0
+          },
+          {
+            "fid": 3,
+            "Codigo_indicio": "0001003",
+            "Nombre_mina": "HERBEIRA",
+            "Sustancia": " Asbesto",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9560943,
+            "Y": 43.71444337,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3450,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "indicios_con_geoquimica_au",
+        "column_name": "geom",
+        "geometry_type_name": "POINT",
+        "srs_id": 4326,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "Indicios_con_Geoquimica_Au_As.gpkg",
+    "tables": [
+      {
+        "table_name": "indicios_geoquimica_au_as",
+        "data_type": "features",
+        "identifier": "indicios_geoquimica_au_as",
+        "description": "",
+        "last_change": "2026-09-03T22:42:13.736Z",
+        "min_x": -13.04639269299997,
+        "min_y": 3.675255509000067,
+        "max_x": 4.278016000000036,
+        "max_y": 43.74601759700005,
+        "srs_id": 4326,
+        "count": 11732,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "POINT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "Codigo_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Nombre_mina",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Sustancia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "Provincia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "Municipio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "X",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "Y",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Zona_Geode",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Azimut",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "Edad_inferior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 12,
+            "name": "Edad_superior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 13,
+            "name": "Asociacion_mineral",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 14,
+            "name": "Morfologia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 15,
+            "name": "Tamaño_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 16,
+            "name": "ESRI_OID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 17,
+            "name": "Au_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 18,
+            "name": "Au_geoq_ppb_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 19,
+            "name": "Au_geoq_ppb_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 20,
+            "name": "Au_geoq_ppb_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 21,
+            "name": "Au_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 22,
+            "name": "Au_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 23,
+            "name": "As_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 24,
+            "name": "As_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 25,
+            "name": "As_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 26,
+            "name": "As_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 27,
+            "name": "As_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 28,
+            "name": "As_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "Codigo_indicio": "0001001",
+            "Nombre_mina": "SEIJO",
+            "Sustancia": " Cuarzo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cariño",
+            "X": -7.91625461,
+            "Y": 43.69336299,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": 130.0,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3061,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 1.0,
+            "As_geoq_ppm_mid": 5.230000019073486,
+            "As_geoq_ppm_min": 4.559999942779541,
+            "As_geoq_ppm_max": 6.0,
+            "As_geoq_rango": "4,56 - 6",
+            "As_geoq_anomalo": 0
+          },
+          {
+            "fid": 2,
+            "Codigo_indicio": "0001002",
+            "Nombre_mina": "DA BARAXIE",
+            "Sustancia": " Titanio / Rutilo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9817791,
+            "Y": 43.67118547,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Fe, Mn, Ti",
+            "Morfologia": "Irregular",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3449,
+            "Au_geoq_clase": 3.0,
+            "Au_geoq_ppb_mid": 4.630000114440918,
+            "Au_geoq_ppb_min": 3.509999990463257,
+            "Au_geoq_ppb_max": 6.099999904632568,
+            "Au_geoq_rango": "3,51 - 6,1",
+            "Au_geoq_anomalo": 0,
+            "As_geoq_clase": 4.0,
+            "As_geoq_ppm_mid": 14.3100004196167,
+            "As_geoq_ppm_min": 12.680000305175781,
+            "As_geoq_ppm_max": 16.15999984741211,
+            "As_geoq_rango": "12,68 - 16,16",
+            "As_geoq_anomalo": 0
+          },
+          {
+            "fid": 3,
+            "Codigo_indicio": "0001003",
+            "Nombre_mina": "HERBEIRA",
+            "Sustancia": " Asbesto",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9560943,
+            "Y": 43.71444337,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3450,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 3.0,
+            "As_geoq_ppm_mid": 10.550000190734863,
+            "As_geoq_ppm_min": 8.789999961853027,
+            "As_geoq_ppm_max": 12.670000076293945,
+            "As_geoq_rango": "8,79 - 12,67",
+            "As_geoq_anomalo": 0
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "indicios_geoquimica_au_as",
+        "column_name": "geom",
+        "geometry_type_name": "POINT",
+        "srs_id": 4326,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "Indicios_con_Geoquimica_Au_As_Sb.gpkg",
+    "tables": [
+      {
+        "table_name": "indicios_geoquimica_au_as_sb",
+        "data_type": "features",
+        "identifier": "indicios_geoquimica_au_as_sb",
+        "description": "",
+        "last_change": "2026-09-03T22:51:26.784Z",
+        "min_x": -13.04639269299997,
+        "min_y": 3.675255509000067,
+        "max_x": 4.278016000000036,
+        "max_y": 43.74601759700005,
+        "srs_id": 4326,
+        "count": 11732,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "POINT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "Codigo_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Nombre_mina",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Sustancia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "Provincia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "Municipio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "X",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "Y",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Zona_Geode",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Azimut",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "Edad_inferior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 12,
+            "name": "Edad_superior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 13,
+            "name": "Asociacion_mineral",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 14,
+            "name": "Morfologia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 15,
+            "name": "Tamaño_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 16,
+            "name": "ESRI_OID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 17,
+            "name": "Au_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 18,
+            "name": "Au_geoq_ppb_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 19,
+            "name": "Au_geoq_ppb_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 20,
+            "name": "Au_geoq_ppb_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 21,
+            "name": "Au_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 22,
+            "name": "Au_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 23,
+            "name": "As_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 24,
+            "name": "As_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 25,
+            "name": "As_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 26,
+            "name": "As_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 27,
+            "name": "As_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 28,
+            "name": "As_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 29,
+            "name": "Sb_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 30,
+            "name": "Sb_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 31,
+            "name": "Sb_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 32,
+            "name": "Sb_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 33,
+            "name": "Sb_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 34,
+            "name": "Sb_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "Codigo_indicio": "0001001",
+            "Nombre_mina": "SEIJO",
+            "Sustancia": " Cuarzo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cariño",
+            "X": -7.91625461,
+            "Y": 43.69336299,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": 130.0,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3061,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 1.0,
+            "As_geoq_ppm_mid": 5.230000019073486,
+            "As_geoq_ppm_min": 4.559999942779541,
+            "As_geoq_ppm_max": 6.0,
+            "As_geoq_rango": "4,56 - 6",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 1.0,
+            "Sb_geoq_ppm_mid": 0.37290000915527344,
+            "Sb_geoq_ppm_min": 0.2280000001192093,
+            "Sb_geoq_ppm_max": 0.6100000143051147,
+            "Sb_geoq_rango": "0,228 - 0,61",
+            "Sb_geoq_anomalo": 0
+          },
+          {
+            "fid": 2,
+            "Codigo_indicio": "0001002",
+            "Nombre_mina": "DA BARAXIE",
+            "Sustancia": " Titanio / Rutilo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9817791,
+            "Y": 43.67118547,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Fe, Mn, Ti",
+            "Morfologia": "Irregular",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3449,
+            "Au_geoq_clase": 3.0,
+            "Au_geoq_ppb_mid": 4.630000114440918,
+            "Au_geoq_ppb_min": 3.509999990463257,
+            "Au_geoq_ppb_max": 6.099999904632568,
+            "Au_geoq_rango": "3,51 - 6,1",
+            "Au_geoq_anomalo": 0,
+            "As_geoq_clase": 4.0,
+            "As_geoq_ppm_mid": 14.3100004196167,
+            "As_geoq_ppm_min": 12.680000305175781,
+            "As_geoq_ppm_max": 16.15999984741211,
+            "As_geoq_rango": "12,68 - 16,16",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 2.0,
+            "Sb_geoq_ppm_mid": 0.6898000240325928,
+            "Sb_geoq_ppm_min": 0.6100000143051147,
+            "Sb_geoq_ppm_max": 0.7799999713897705,
+            "Sb_geoq_rango": "0,61 - 0,78",
+            "Sb_geoq_anomalo": 0
+          },
+          {
+            "fid": 3,
+            "Codigo_indicio": "0001003",
+            "Nombre_mina": "HERBEIRA",
+            "Sustancia": " Asbesto",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9560943,
+            "Y": 43.71444337,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3450,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 3.0,
+            "As_geoq_ppm_mid": 10.550000190734863,
+            "As_geoq_ppm_min": 8.789999961853027,
+            "As_geoq_ppm_max": 12.670000076293945,
+            "As_geoq_rango": "8,79 - 12,67",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": null,
+            "Sb_geoq_ppm_mid": null,
+            "Sb_geoq_ppm_min": null,
+            "Sb_geoq_ppm_max": null,
+            "Sb_geoq_rango": null,
+            "Sb_geoq_anomalo": 0
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "indicios_geoquimica_au_as_sb",
+        "column_name": "geom",
+        "geometry_type_name": "POINT",
+        "srs_id": 4326,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "Indicios_con_Geoquimica_Au_As_Sb_Bi.gpkg",
+    "tables": [
+      {
+        "table_name": "indicios_geoquimica_au_as_sb_bi",
+        "data_type": "features",
+        "identifier": "indicios_geoquimica_au_as_sb_bi",
+        "description": "",
+        "last_change": "2026-09-03T22:52:29.668Z",
+        "min_x": -13.04639269299997,
+        "min_y": 3.675255509000067,
+        "max_x": 4.278016000000036,
+        "max_y": 43.74601759700005,
+        "srs_id": 4326,
+        "count": 11732,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "POINT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "Codigo_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Nombre_mina",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Sustancia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "Provincia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "Municipio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "X",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "Y",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Zona_Geode",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Azimut",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "Edad_inferior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 12,
+            "name": "Edad_superior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 13,
+            "name": "Asociacion_mineral",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 14,
+            "name": "Morfologia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 15,
+            "name": "Tamaño_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 16,
+            "name": "ESRI_OID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 17,
+            "name": "Au_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 18,
+            "name": "Au_geoq_ppb_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 19,
+            "name": "Au_geoq_ppb_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 20,
+            "name": "Au_geoq_ppb_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 21,
+            "name": "Au_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 22,
+            "name": "Au_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 23,
+            "name": "As_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 24,
+            "name": "As_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 25,
+            "name": "As_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 26,
+            "name": "As_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 27,
+            "name": "As_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 28,
+            "name": "As_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 29,
+            "name": "Sb_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 30,
+            "name": "Sb_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 31,
+            "name": "Sb_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 32,
+            "name": "Sb_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 33,
+            "name": "Sb_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 34,
+            "name": "Sb_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 35,
+            "name": "Bi_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 36,
+            "name": "Bi_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 37,
+            "name": "Bi_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 38,
+            "name": "Bi_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 39,
+            "name": "Bi_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 40,
+            "name": "Bi_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "Codigo_indicio": "0001001",
+            "Nombre_mina": "SEIJO",
+            "Sustancia": " Cuarzo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cariño",
+            "X": -7.91625461,
+            "Y": 43.69336299,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": 130.0,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3061,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 1.0,
+            "As_geoq_ppm_mid": 5.230000019073486,
+            "As_geoq_ppm_min": 4.559999942779541,
+            "As_geoq_ppm_max": 6.0,
+            "As_geoq_rango": "4,56 - 6",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 1.0,
+            "Sb_geoq_ppm_mid": 0.37290000915527344,
+            "Sb_geoq_ppm_min": 0.2280000001192093,
+            "Sb_geoq_ppm_max": 0.6100000143051147,
+            "Sb_geoq_rango": "0,228 - 0,61",
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0
+          },
+          {
+            "fid": 2,
+            "Codigo_indicio": "0001002",
+            "Nombre_mina": "DA BARAXIE",
+            "Sustancia": " Titanio / Rutilo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9817791,
+            "Y": 43.67118547,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Fe, Mn, Ti",
+            "Morfologia": "Irregular",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3449,
+            "Au_geoq_clase": 3.0,
+            "Au_geoq_ppb_mid": 4.630000114440918,
+            "Au_geoq_ppb_min": 3.509999990463257,
+            "Au_geoq_ppb_max": 6.099999904632568,
+            "Au_geoq_rango": "3,51 - 6,1",
+            "Au_geoq_anomalo": 0,
+            "As_geoq_clase": 4.0,
+            "As_geoq_ppm_mid": 14.3100004196167,
+            "As_geoq_ppm_min": 12.680000305175781,
+            "As_geoq_ppm_max": 16.15999984741211,
+            "As_geoq_rango": "12,68 - 16,16",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 2.0,
+            "Sb_geoq_ppm_mid": 0.6898000240325928,
+            "Sb_geoq_ppm_min": 0.6100000143051147,
+            "Sb_geoq_ppm_max": 0.7799999713897705,
+            "Sb_geoq_rango": "0,61 - 0,78",
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0
+          },
+          {
+            "fid": 3,
+            "Codigo_indicio": "0001003",
+            "Nombre_mina": "HERBEIRA",
+            "Sustancia": " Asbesto",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9560943,
+            "Y": 43.71444337,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3450,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 3.0,
+            "As_geoq_ppm_mid": 10.550000190734863,
+            "As_geoq_ppm_min": 8.789999961853027,
+            "As_geoq_ppm_max": 12.670000076293945,
+            "As_geoq_rango": "8,79 - 12,67",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": null,
+            "Sb_geoq_ppm_mid": null,
+            "Sb_geoq_ppm_min": null,
+            "Sb_geoq_ppm_max": null,
+            "Sb_geoq_rango": null,
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "indicios_geoquimica_au_as_sb_bi",
+        "column_name": "geom",
+        "geometry_type_name": "POINT",
+        "srs_id": 4326,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "Indicios_con_Geoquimica_Completa_BDMIN.gpkg",
+    "tables": [
+      {
+        "table_name": "indicios_geoquimica_completa",
+        "data_type": "features",
+        "identifier": "indicios_geoquimica_completa",
+        "description": "",
+        "last_change": "2026-09-03T22:55:58.527Z",
+        "min_x": -13.04639269299997,
+        "min_y": 3.675255509000067,
+        "max_x": 4.278016000000036,
+        "max_y": 43.74601759700005,
+        "srs_id": 4326,
+        "count": 11732,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "POINT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "Codigo_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Nombre_mina",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Sustancia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "Provincia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "Municipio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "X",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "Y",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Zona_Geode",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Azimut",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "Edad_inferior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 12,
+            "name": "Edad_superior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 13,
+            "name": "Asociacion_mineral",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 14,
+            "name": "Morfologia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 15,
+            "name": "Tamaño_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 16,
+            "name": "ESRI_OID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 17,
+            "name": "Au_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 18,
+            "name": "Au_geoq_ppb_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 19,
+            "name": "Au_geoq_ppb_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 20,
+            "name": "Au_geoq_ppb_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 21,
+            "name": "Au_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 22,
+            "name": "Au_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 23,
+            "name": "As_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 24,
+            "name": "As_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 25,
+            "name": "As_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 26,
+            "name": "As_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 27,
+            "name": "As_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 28,
+            "name": "As_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 29,
+            "name": "Sb_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 30,
+            "name": "Sb_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 31,
+            "name": "Sb_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 32,
+            "name": "Sb_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 33,
+            "name": "Sb_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 34,
+            "name": "Sb_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 35,
+            "name": "Bi_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 36,
+            "name": "Bi_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 37,
+            "name": "Bi_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 38,
+            "name": "Bi_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 39,
+            "name": "Bi_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 40,
+            "name": "Bi_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 41,
+            "name": "Hg_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 42,
+            "name": "Hg_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 43,
+            "name": "Hg_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 44,
+            "name": "Hg_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 45,
+            "name": "Hg_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 46,
+            "name": "Hg_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 47,
+            "name": "Cu_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 48,
+            "name": "Cu_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 49,
+            "name": "Cu_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 50,
+            "name": "Cu_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 51,
+            "name": "Cu_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 52,
+            "name": "Cu_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 53,
+            "name": "Pb_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 54,
+            "name": "Pb_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 55,
+            "name": "Pb_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 56,
+            "name": "Pb_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 57,
+            "name": "Pb_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 58,
+            "name": "Pb_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 59,
+            "name": "Zn_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 60,
+            "name": "Zn_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 61,
+            "name": "Zn_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 62,
+            "name": "Zn_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 63,
+            "name": "Zn_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 64,
+            "name": "Zn_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 65,
+            "name": "W_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 66,
+            "name": "W_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 67,
+            "name": "W_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 68,
+            "name": "W_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 69,
+            "name": "W_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 70,
+            "name": "W_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "Codigo_indicio": "0001001",
+            "Nombre_mina": "SEIJO",
+            "Sustancia": " Cuarzo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cariño",
+            "X": -7.91625461,
+            "Y": 43.69336299,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": 130.0,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3061,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 1.0,
+            "As_geoq_ppm_mid": 5.230000019073486,
+            "As_geoq_ppm_min": 4.559999942779541,
+            "As_geoq_ppm_max": 6.0,
+            "As_geoq_rango": "4,56 - 6",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 1.0,
+            "Sb_geoq_ppm_mid": 0.37290000915527344,
+            "Sb_geoq_ppm_min": 0.2280000001192093,
+            "Sb_geoq_ppm_max": 0.6100000143051147,
+            "Sb_geoq_rango": "0,228 - 0,61",
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 6.0,
+            "Hg_geoq_mid": 83.97000122070312,
+            "Hg_geoq_min": 47.0099983215332,
+            "Hg_geoq_max": 150.0,
+            "Hg_geoq_rango": "47,01 - 150",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 0.0,
+            "Pb_geoq_mid": 1.7100000381469727,
+            "Pb_geoq_min": 0.2800000011920929,
+            "Pb_geoq_max": 10.430000305175781,
+            "Pb_geoq_rango": "0,28 - 10,43",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 2.0,
+            "W_geoq_mid": 0.7599999904632568,
+            "W_geoq_min": 0.6899999976158142,
+            "W_geoq_max": 0.8399999737739563,
+            "W_geoq_rango": "0,69 - 0,84",
+            "W_geoq_anomalo": 0
+          },
+          {
+            "fid": 2,
+            "Codigo_indicio": "0001002",
+            "Nombre_mina": "DA BARAXIE",
+            "Sustancia": " Titanio / Rutilo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9817791,
+            "Y": 43.67118547,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Fe, Mn, Ti",
+            "Morfologia": "Irregular",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3449,
+            "Au_geoq_clase": 3.0,
+            "Au_geoq_ppb_mid": 4.630000114440918,
+            "Au_geoq_ppb_min": 3.509999990463257,
+            "Au_geoq_ppb_max": 6.099999904632568,
+            "Au_geoq_rango": "3,51 - 6,1",
+            "Au_geoq_anomalo": 0,
+            "As_geoq_clase": 4.0,
+            "As_geoq_ppm_mid": 14.3100004196167,
+            "As_geoq_ppm_min": 12.680000305175781,
+            "As_geoq_ppm_max": 16.15999984741211,
+            "As_geoq_rango": "12,68 - 16,16",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 2.0,
+            "Sb_geoq_ppm_mid": 0.6898000240325928,
+            "Sb_geoq_ppm_min": 0.6100000143051147,
+            "Sb_geoq_ppm_max": 0.7799999713897705,
+            "Sb_geoq_rango": "0,61 - 0,78",
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 5.0,
+            "Hg_geoq_mid": 41.84000015258789,
+            "Hg_geoq_min": 37.2400016784668,
+            "Hg_geoq_max": 47.0,
+            "Hg_geoq_rango": "37,24 - 47",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 3.0,
+            "Pb_geoq_mid": 19.65999984741211,
+            "Pb_geoq_min": 17.170000076293945,
+            "Pb_geoq_max": 22.510000228881836,
+            "Pb_geoq_rango": "17,17 - 22,51",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 3.0,
+            "W_geoq_mid": 1.059999942779541,
+            "W_geoq_min": 0.8500000238418579,
+            "W_geoq_max": 1.3200000524520874,
+            "W_geoq_rango": "0,85 - 1,32",
+            "W_geoq_anomalo": 0
+          },
+          {
+            "fid": 3,
+            "Codigo_indicio": "0001003",
+            "Nombre_mina": "HERBEIRA",
+            "Sustancia": " Asbesto",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9560943,
+            "Y": 43.71444337,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3450,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 3.0,
+            "As_geoq_ppm_mid": 10.550000190734863,
+            "As_geoq_ppm_min": 8.789999961853027,
+            "As_geoq_ppm_max": 12.670000076293945,
+            "As_geoq_rango": "8,79 - 12,67",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": null,
+            "Sb_geoq_ppm_mid": null,
+            "Sb_geoq_ppm_min": null,
+            "Sb_geoq_ppm_max": null,
+            "Sb_geoq_rango": null,
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 5.0,
+            "Hg_geoq_mid": 41.84000015258789,
+            "Hg_geoq_min": 37.2400016784668,
+            "Hg_geoq_max": 47.0,
+            "Hg_geoq_rango": "37,24 - 47",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 1.0,
+            "Pb_geoq_mid": 12.199999809265137,
+            "Pb_geoq_min": 10.4399995803833,
+            "Pb_geoq_max": 14.25,
+            "Pb_geoq_rango": "10,44 - 14,25",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 3.0,
+            "W_geoq_mid": 1.059999942779541,
+            "W_geoq_min": 0.8500000238418579,
+            "W_geoq_max": 1.3200000524520874,
+            "W_geoq_rango": "0,85 - 1,32",
+            "W_geoq_anomalo": 0
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "indicios_geoquimica_completa",
+        "column_name": "geom",
+        "geometry_type_name": "POINT",
+        "srs_id": 4326,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "Indicios_con_Geoquimica_y_MDT_BDMIN.gpkg",
+    "tables": [
+      {
+        "table_name": "indicios_geoquimica_mdt_bdmin",
+        "data_type": "features",
+        "identifier": "indicios_geoquimica_mdt_bdmin",
+        "description": "",
+        "last_change": "2026-09-03T23:17:29.177Z",
+        "min_x": -13.04639269299997,
+        "min_y": 3.675255509000067,
+        "max_x": 4.278016000000036,
+        "max_y": 43.74601759700005,
+        "srs_id": 4326,
+        "count": 11732,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "POINT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "Codigo_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Nombre_mina",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Sustancia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "Provincia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "Municipio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "X",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "Y",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Zona_Geode",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Azimut",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "Edad_inferior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 12,
+            "name": "Edad_superior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 13,
+            "name": "Asociacion_mineral",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 14,
+            "name": "Morfologia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 15,
+            "name": "Tamaño_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 16,
+            "name": "ESRI_OID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 17,
+            "name": "Au_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 18,
+            "name": "Au_geoq_ppb_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 19,
+            "name": "Au_geoq_ppb_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 20,
+            "name": "Au_geoq_ppb_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 21,
+            "name": "Au_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 22,
+            "name": "Au_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 23,
+            "name": "As_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 24,
+            "name": "As_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 25,
+            "name": "As_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 26,
+            "name": "As_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 27,
+            "name": "As_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 28,
+            "name": "As_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 29,
+            "name": "Sb_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 30,
+            "name": "Sb_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 31,
+            "name": "Sb_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 32,
+            "name": "Sb_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 33,
+            "name": "Sb_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 34,
+            "name": "Sb_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 35,
+            "name": "Bi_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 36,
+            "name": "Bi_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 37,
+            "name": "Bi_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 38,
+            "name": "Bi_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 39,
+            "name": "Bi_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 40,
+            "name": "Bi_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 41,
+            "name": "Hg_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 42,
+            "name": "Hg_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 43,
+            "name": "Hg_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 44,
+            "name": "Hg_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 45,
+            "name": "Hg_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 46,
+            "name": "Hg_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 47,
+            "name": "Cu_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 48,
+            "name": "Cu_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 49,
+            "name": "Cu_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 50,
+            "name": "Cu_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 51,
+            "name": "Cu_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 52,
+            "name": "Cu_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 53,
+            "name": "Pb_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 54,
+            "name": "Pb_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 55,
+            "name": "Pb_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 56,
+            "name": "Pb_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 57,
+            "name": "Pb_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 58,
+            "name": "Pb_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 59,
+            "name": "Zn_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 60,
+            "name": "Zn_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 61,
+            "name": "Zn_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 62,
+            "name": "Zn_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 63,
+            "name": "Zn_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 64,
+            "name": "Zn_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 65,
+            "name": "W_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 66,
+            "name": "W_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 67,
+            "name": "W_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 68,
+            "name": "W_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 69,
+            "name": "W_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 70,
+            "name": "W_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 71,
+            "name": "MDT_elevacion_m",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 72,
+            "name": "MDT_pendiente_deg",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 73,
+            "name": "MDT_TPI",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 74,
+            "name": "MDT_TRI",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 75,
+            "name": "MDT_morfologia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "Codigo_indicio": "0001001",
+            "Nombre_mina": "SEIJO",
+            "Sustancia": " Cuarzo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cariño",
+            "X": -7.91625461,
+            "Y": 43.69336299,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": 130.0,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3061,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 1.0,
+            "As_geoq_ppm_mid": 5.230000019073486,
+            "As_geoq_ppm_min": 4.559999942779541,
+            "As_geoq_ppm_max": 6.0,
+            "As_geoq_rango": "4,56 - 6",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 1.0,
+            "Sb_geoq_ppm_mid": 0.37290000915527344,
+            "Sb_geoq_ppm_min": 0.2280000001192093,
+            "Sb_geoq_ppm_max": 0.6100000143051147,
+            "Sb_geoq_rango": "0,228 - 0,61",
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 6.0,
+            "Hg_geoq_mid": 83.97000122070312,
+            "Hg_geoq_min": 47.0099983215332,
+            "Hg_geoq_max": 150.0,
+            "Hg_geoq_rango": "47,01 - 150",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 0.0,
+            "Pb_geoq_mid": 1.7100000381469727,
+            "Pb_geoq_min": 0.2800000011920929,
+            "Pb_geoq_max": 10.430000305175781,
+            "Pb_geoq_rango": "0,28 - 10,43",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 2.0,
+            "W_geoq_mid": 0.7599999904632568,
+            "W_geoq_min": 0.6899999976158142,
+            "W_geoq_max": 0.8399999737739563,
+            "W_geoq_rango": "0,69 - 0,84",
+            "W_geoq_anomalo": 0,
+            "MDT_elevacion_m": 74.80000305175781,
+            "MDT_pendiente_deg": 6.949999809265137,
+            "MDT_TPI": -65.0,
+            "MDT_TRI": 69.44000244140625,
+            "MDT_morfologia": "Fondo de Valle / Llanura"
+          },
+          {
+            "fid": 2,
+            "Codigo_indicio": "0001002",
+            "Nombre_mina": "DA BARAXIE",
+            "Sustancia": " Titanio / Rutilo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9817791,
+            "Y": 43.67118547,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Fe, Mn, Ti",
+            "Morfologia": "Irregular",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3449,
+            "Au_geoq_clase": 3.0,
+            "Au_geoq_ppb_mid": 4.630000114440918,
+            "Au_geoq_ppb_min": 3.509999990463257,
+            "Au_geoq_ppb_max": 6.099999904632568,
+            "Au_geoq_rango": "3,51 - 6,1",
+            "Au_geoq_anomalo": 0,
+            "As_geoq_clase": 4.0,
+            "As_geoq_ppm_mid": 14.3100004196167,
+            "As_geoq_ppm_min": 12.680000305175781,
+            "As_geoq_ppm_max": 16.15999984741211,
+            "As_geoq_rango": "12,68 - 16,16",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 2.0,
+            "Sb_geoq_ppm_mid": 0.6898000240325928,
+            "Sb_geoq_ppm_min": 0.6100000143051147,
+            "Sb_geoq_ppm_max": 0.7799999713897705,
+            "Sb_geoq_rango": "0,61 - 0,78",
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 5.0,
+            "Hg_geoq_mid": 41.84000015258789,
+            "Hg_geoq_min": 37.2400016784668,
+            "Hg_geoq_max": 47.0,
+            "Hg_geoq_rango": "37,24 - 47",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 3.0,
+            "Pb_geoq_mid": 19.65999984741211,
+            "Pb_geoq_min": 17.170000076293945,
+            "Pb_geoq_max": 22.510000228881836,
+            "Pb_geoq_rango": "17,17 - 22,51",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 3.0,
+            "W_geoq_mid": 1.059999942779541,
+            "W_geoq_min": 0.8500000238418579,
+            "W_geoq_max": 1.3200000524520874,
+            "W_geoq_rango": "0,85 - 1,32",
+            "W_geoq_anomalo": 0,
+            "MDT_elevacion_m": 383.70001220703125,
+            "MDT_pendiente_deg": 4.889999866485596,
+            "MDT_TPI": 9.859999656677246,
+            "MDT_TRI": 39.810001373291016,
+            "MDT_morfologia": "Cresta / Divisoria"
+          },
+          {
+            "fid": 3,
+            "Codigo_indicio": "0001003",
+            "Nombre_mina": "HERBEIRA",
+            "Sustancia": " Asbesto",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9560943,
+            "Y": 43.71444337,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3450,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 3.0,
+            "As_geoq_ppm_mid": 10.550000190734863,
+            "As_geoq_ppm_min": 8.789999961853027,
+            "As_geoq_ppm_max": 12.670000076293945,
+            "As_geoq_rango": "8,79 - 12,67",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": null,
+            "Sb_geoq_ppm_mid": null,
+            "Sb_geoq_ppm_min": null,
+            "Sb_geoq_ppm_max": null,
+            "Sb_geoq_rango": null,
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 5.0,
+            "Hg_geoq_mid": 41.84000015258789,
+            "Hg_geoq_min": 37.2400016784668,
+            "Hg_geoq_max": 47.0,
+            "Hg_geoq_rango": "37,24 - 47",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 1.0,
+            "Pb_geoq_mid": 12.199999809265137,
+            "Pb_geoq_min": 10.4399995803833,
+            "Pb_geoq_max": 14.25,
+            "Pb_geoq_rango": "10,44 - 14,25",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 3.0,
+            "W_geoq_mid": 1.059999942779541,
+            "W_geoq_min": 0.8500000238418579,
+            "W_geoq_max": 1.3200000524520874,
+            "W_geoq_rango": "0,85 - 1,32",
+            "W_geoq_anomalo": 0,
+            "MDT_elevacion_m": 479.29998779296875,
+            "MDT_pendiente_deg": 9.3100004196167,
+            "MDT_TPI": 62.72999954223633,
+            "MDT_TRI": 107.36000061035156,
+            "MDT_morfologia": "Cresta / Divisoria"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "indicios_geoquimica_mdt_bdmin",
+        "column_name": "geom",
+        "geometry_type_name": "POINT",
+        "srs_id": 4326,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "Indicios_Master_Geocientifico_BDMIN.gpkg",
+    "tables": [
+      {
+        "table_name": "indicios_master_geocientifico",
+        "data_type": "features",
+        "identifier": "indicios_master_geocientifico",
+        "description": "",
+        "last_change": "2026-09-03T23:09:18.361Z",
+        "min_x": -13.04639269299997,
+        "min_y": 3.675255509000067,
+        "max_x": 4.278016000000036,
+        "max_y": 43.74601759700005,
+        "srs_id": 4326,
+        "count": 11732,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "POINT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "Codigo_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Nombre_mina",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Sustancia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "Provincia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "Municipio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "X",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "Y",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "Zona_Geode",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "Azimut",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "Edad_inferior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 12,
+            "name": "Edad_superior",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 13,
+            "name": "Asociacion_mineral",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 14,
+            "name": "Morfologia",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 15,
+            "name": "Tamaño_indicio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 16,
+            "name": "ESRI_OID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 17,
+            "name": "Au_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 18,
+            "name": "Au_geoq_ppb_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 19,
+            "name": "Au_geoq_ppb_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 20,
+            "name": "Au_geoq_ppb_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 21,
+            "name": "Au_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 22,
+            "name": "Au_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 23,
+            "name": "As_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 24,
+            "name": "As_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 25,
+            "name": "As_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 26,
+            "name": "As_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 27,
+            "name": "As_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 28,
+            "name": "As_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 29,
+            "name": "Sb_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 30,
+            "name": "Sb_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 31,
+            "name": "Sb_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 32,
+            "name": "Sb_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 33,
+            "name": "Sb_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 34,
+            "name": "Sb_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 35,
+            "name": "Bi_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 36,
+            "name": "Bi_geoq_ppm_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 37,
+            "name": "Bi_geoq_ppm_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 38,
+            "name": "Bi_geoq_ppm_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 39,
+            "name": "Bi_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 40,
+            "name": "Bi_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 41,
+            "name": "Hg_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 42,
+            "name": "Hg_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 43,
+            "name": "Hg_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 44,
+            "name": "Hg_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 45,
+            "name": "Hg_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 46,
+            "name": "Hg_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 47,
+            "name": "Cu_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 48,
+            "name": "Cu_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 49,
+            "name": "Cu_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 50,
+            "name": "Cu_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 51,
+            "name": "Cu_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 52,
+            "name": "Cu_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 53,
+            "name": "Pb_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 54,
+            "name": "Pb_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 55,
+            "name": "Pb_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 56,
+            "name": "Pb_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 57,
+            "name": "Pb_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 58,
+            "name": "Pb_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 59,
+            "name": "Zn_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 60,
+            "name": "Zn_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 61,
+            "name": "Zn_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 62,
+            "name": "Zn_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 63,
+            "name": "Zn_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 64,
+            "name": "Zn_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 65,
+            "name": "W_geoq_clase",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 66,
+            "name": "W_geoq_mid",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 67,
+            "name": "W_geoq_min",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 68,
+            "name": "W_geoq_max",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 69,
+            "name": "W_geoq_rango",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 70,
+            "name": "W_geoq_anomalo",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 71,
+            "name": "MDT_Elevacion_m",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 72,
+            "name": "MDT_Pendiente_deg",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 73,
+            "name": "MDT_TPI_1km",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 74,
+            "name": "MDT_TRI_rugosidad",
+            "type": "FLOAT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 75,
+            "name": "Topo_Fondo_Valle",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 76,
+            "name": "Topo_Pendiente_Baja",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 77,
+            "name": "Topo_Zona_Escarpada",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "Codigo_indicio": "0001001",
+            "Nombre_mina": "SEIJO",
+            "Sustancia": " Cuarzo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cariño",
+            "X": -7.91625461,
+            "Y": 43.69336299,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": 130.0,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3061,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 1.0,
+            "As_geoq_ppm_mid": 5.230000019073486,
+            "As_geoq_ppm_min": 4.559999942779541,
+            "As_geoq_ppm_max": 6.0,
+            "As_geoq_rango": "4,56 - 6",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 1.0,
+            "Sb_geoq_ppm_mid": 0.37290000915527344,
+            "Sb_geoq_ppm_min": 0.2280000001192093,
+            "Sb_geoq_ppm_max": 0.6100000143051147,
+            "Sb_geoq_rango": "0,228 - 0,61",
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 6.0,
+            "Hg_geoq_mid": 83.97000122070312,
+            "Hg_geoq_min": 47.0099983215332,
+            "Hg_geoq_max": 150.0,
+            "Hg_geoq_rango": "47,01 - 150",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 0.0,
+            "Pb_geoq_mid": 1.7100000381469727,
+            "Pb_geoq_min": 0.2800000011920929,
+            "Pb_geoq_max": 10.430000305175781,
+            "Pb_geoq_rango": "0,28 - 10,43",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 2.0,
+            "W_geoq_mid": 0.7599999904632568,
+            "W_geoq_min": 0.6899999976158142,
+            "W_geoq_max": 0.8399999737739563,
+            "W_geoq_rango": "0,69 - 0,84",
+            "W_geoq_anomalo": 0,
+            "MDT_Elevacion_m": 90.0,
+            "MDT_Pendiente_deg": 8.600000381469727,
+            "MDT_TPI_1km": -79.5999984741211,
+            "MDT_TRI_rugosidad": 110.5,
+            "Topo_Fondo_Valle": 1,
+            "Topo_Pendiente_Baja": 0,
+            "Topo_Zona_Escarpada": 0
+          },
+          {
+            "fid": 2,
+            "Codigo_indicio": "0001002",
+            "Nombre_mina": "DA BARAXIE",
+            "Sustancia": " Titanio / Rutilo",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9817791,
+            "Y": 43.67118547,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Fe, Mn, Ti",
+            "Morfologia": "Irregular",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3449,
+            "Au_geoq_clase": 3.0,
+            "Au_geoq_ppb_mid": 4.630000114440918,
+            "Au_geoq_ppb_min": 3.509999990463257,
+            "Au_geoq_ppb_max": 6.099999904632568,
+            "Au_geoq_rango": "3,51 - 6,1",
+            "Au_geoq_anomalo": 0,
+            "As_geoq_clase": 4.0,
+            "As_geoq_ppm_mid": 14.3100004196167,
+            "As_geoq_ppm_min": 12.680000305175781,
+            "As_geoq_ppm_max": 16.15999984741211,
+            "As_geoq_rango": "12,68 - 16,16",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": 2.0,
+            "Sb_geoq_ppm_mid": 0.6898000240325928,
+            "Sb_geoq_ppm_min": 0.6100000143051147,
+            "Sb_geoq_ppm_max": 0.7799999713897705,
+            "Sb_geoq_rango": "0,61 - 0,78",
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 5.0,
+            "Hg_geoq_mid": 41.84000015258789,
+            "Hg_geoq_min": 37.2400016784668,
+            "Hg_geoq_max": 47.0,
+            "Hg_geoq_rango": "37,24 - 47",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 3.0,
+            "Pb_geoq_mid": 19.65999984741211,
+            "Pb_geoq_min": 17.170000076293945,
+            "Pb_geoq_max": 22.510000228881836,
+            "Pb_geoq_rango": "17,17 - 22,51",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 3.0,
+            "W_geoq_mid": 1.059999942779541,
+            "W_geoq_min": 0.8500000238418579,
+            "W_geoq_max": 1.3200000524520874,
+            "W_geoq_rango": "0,85 - 1,32",
+            "W_geoq_anomalo": 0,
+            "MDT_Elevacion_m": 378.0,
+            "MDT_Pendiente_deg": 4.900000095367432,
+            "MDT_TPI_1km": 8.399999618530273,
+            "MDT_TRI_rugosidad": 48.29999923706055,
+            "Topo_Fondo_Valle": 0,
+            "Topo_Pendiente_Baja": 1,
+            "Topo_Zona_Escarpada": 0
+          },
+          {
+            "fid": 3,
+            "Codigo_indicio": "0001003",
+            "Nombre_mina": "HERBEIRA",
+            "Sustancia": " Asbesto",
+            "Provincia": "CORUÑA",
+            "Municipio": "Cedeira",
+            "X": -7.9560943,
+            "Y": 43.71444337,
+            "Zona_Geode": "Zona de Galicia Tras-os-Montes",
+            "Azimut": null,
+            "Edad_inferior": " ",
+            "Edad_superior": " ",
+            "Asociacion_mineral": "Minerales industriales",
+            "Morfologia": "Filoniana",
+            "Tamaño_indicio": "desconocido",
+            "ESRI_OID": 3450,
+            "Au_geoq_clase": 5.0,
+            "Au_geoq_ppb_mid": 22.770000457763672,
+            "Au_geoq_ppb_min": 12.0600004196167,
+            "Au_geoq_ppb_max": 43.0,
+            "Au_geoq_rango": "12,06 - 43",
+            "Au_geoq_anomalo": 1,
+            "As_geoq_clase": 3.0,
+            "As_geoq_ppm_mid": 10.550000190734863,
+            "As_geoq_ppm_min": 8.789999961853027,
+            "As_geoq_ppm_max": 12.670000076293945,
+            "As_geoq_rango": "8,79 - 12,67",
+            "As_geoq_anomalo": 0,
+            "Sb_geoq_clase": null,
+            "Sb_geoq_ppm_mid": null,
+            "Sb_geoq_ppm_min": null,
+            "Sb_geoq_ppm_max": null,
+            "Sb_geoq_rango": null,
+            "Sb_geoq_anomalo": 0,
+            "Bi_geoq_clase": 1.0,
+            "Bi_geoq_ppm_mid": 0.11829999834299088,
+            "Bi_geoq_ppm_min": 0.10000000149011612,
+            "Bi_geoq_ppm_max": 0.14000000059604645,
+            "Bi_geoq_rango": "0,1 - 0,14",
+            "Bi_geoq_anomalo": 0,
+            "Hg_geoq_clase": 5.0,
+            "Hg_geoq_mid": 41.84000015258789,
+            "Hg_geoq_min": 37.2400016784668,
+            "Hg_geoq_max": 47.0,
+            "Hg_geoq_rango": "37,24 - 47",
+            "Hg_geoq_anomalo": 1,
+            "Cu_geoq_clase": 6.0,
+            "Cu_geoq_mid": 37.59000015258789,
+            "Cu_geoq_min": 28.260000228881836,
+            "Cu_geoq_max": 50.0,
+            "Cu_geoq_rango": "28,26 - 50",
+            "Cu_geoq_anomalo": 1,
+            "Pb_geoq_clase": 1.0,
+            "Pb_geoq_mid": 12.199999809265137,
+            "Pb_geoq_min": 10.4399995803833,
+            "Pb_geoq_max": 14.25,
+            "Pb_geoq_rango": "10,44 - 14,25",
+            "Pb_geoq_anomalo": 0,
+            "Zn_geoq_clase": 6.0,
+            "Zn_geoq_mid": 119.20999908447266,
+            "Zn_geoq_min": 90.51000213623047,
+            "Zn_geoq_max": 157.0,
+            "Zn_geoq_rango": "90,51 - 157",
+            "Zn_geoq_anomalo": 1,
+            "W_geoq_clase": 3.0,
+            "W_geoq_mid": 1.059999942779541,
+            "W_geoq_min": 0.8500000238418579,
+            "W_geoq_max": 1.3200000524520874,
+            "W_geoq_rango": "0,85 - 1,32",
+            "W_geoq_anomalo": 0,
+            "MDT_Elevacion_m": 469.0,
+            "MDT_Pendiente_deg": 14.699999809265137,
+            "MDT_TPI_1km": 92.5,
+            "MDT_TRI_rugosidad": 166.1999969482422,
+            "Topo_Fondo_Valle": 0,
+            "Topo_Pendiente_Baja": 0,
+            "Topo_Zona_Escarpada": 0
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "indicios_master_geocientifico",
+        "column_name": "geom",
+        "geometry_type_name": "POINT",
+        "srs_id": 4326,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "litologias.gpkg",
+    "tables": [
+      {
+        "table_name": "litologas_1m",
+        "data_type": "features",
+        "identifier": "https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Litologias_1M/MapServer/0",
+        "description": "",
+        "last_change": "2026-09-02T12:16:12.627Z",
+        "min_x": -2021539.301635408,
+        "min_y": 3204285.173769365,
+        "max_x": 484138.7463862319,
+        "max_y": 5432260.304283835,
+        "srs_id": 3857,
+        "count": 16007,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "OBJECTID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "Id",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "Litologia",
+            "type": "TEXT(80)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "OBJECTID": 1,
+            "Id": 12,
+            "Litologia": "Otros granitoides"
+          },
+          {
+            "fid": 2,
+            "OBJECTID": 2,
+            "Id": 7,
+            "Litologia": "Granitoides de dos micas"
+          },
+          {
+            "fid": 3,
+            "OBJECTID": 3,
+            "Id": 21,
+            "Litologia": "Serpentinitas y peridotitas. Rocas básicas y ultrabásicas"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "litologas_1m",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 3857,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "magnetometriaradiometria.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  },
+  {
+    "file": "magnetotelurico.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  },
+  {
+    "file": "medidasestructurales.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  },
+  {
+    "file": "oro.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  },
+  {
+    "file": "petrofisica.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  },
+  {
+    "file": "recintos.gpkg",
+    "tables": [
+      {
+        "table_name": "recintos_geologa",
+        "data_type": "features",
+        "identifier": "https://mapas.igme.es/gis/rest/services/Cartografia_Geologica/IGME_Geode_50/MapServer/8",
+        "description": "",
+        "last_change": "2026-09-02T12:49:47.381Z",
+        "min_x": -2021693.935086558,
+        "min_y": 3203377.209115801,
+        "max_x": 481766.379522516,
+        "max_y": 5433369.06896552,
+        "srs_id": 3857,
+        "count": 612170,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTIPOLYGON",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "OBJECTID",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "GEOM_LEN",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "GEOM_AREA",
+            "type": "REAL",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "CODE_UNIO",
+            "type": "TEXT(80)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "DESC_UNIT",
+            "type": "TEXT(250)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "CODE_COTR",
+            "type": "TEXT(8)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "NAME_EDA2",
+            "type": "TEXT(80)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "NAME_EDA1",
+            "type": "TEXT(80)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "ZONA",
+            "type": "TEXT(10)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "OBJECTID": 1,
+            "GEOM_LEN": 571.328326619,
+            "GEOM_AREA": 5304.84050707,
+            "CODE_UNIO": "1",
+            "DESC_UNIT": "Diques de cuarzo",
+            "CODE_COTR": "02050000",
+            "NAME_EDA2": "CISURALIENSE",
+            "NAME_EDA1": "ESTEFANIENSE",
+            "ZONA": "Z1000"
+          },
+          {
+            "fid": 2,
+            "OBJECTID": 2,
+            "GEOM_LEN": 2121.37572027,
+            "GEOM_AREA": 37482.4016732,
+            "CODE_UNIO": "1",
+            "DESC_UNIT": "Diques de cuarzo",
+            "CODE_COTR": "02050000",
+            "NAME_EDA2": "CISURALIENSE",
+            "NAME_EDA1": "ESTEFANIENSE",
+            "ZONA": "Z1000"
+          },
+          {
+            "fid": 3,
+            "OBJECTID": 3,
+            "GEOM_LEN": 878.666372468,
+            "GEOM_AREA": 10131.2155274,
+            "CODE_UNIO": "1",
+            "DESC_UNIT": "Diques de cuarzo",
+            "CODE_COTR": "02050000",
+            "NAME_EDA2": "CISURALIENSE",
+            "NAME_EDA1": "ESTEFANIENSE",
+            "ZONA": "Z1000"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "recintos_geologa",
+        "column_name": "geom",
+        "geometry_type_name": "MULTIPOLYGON",
+        "srs_id": 3857,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "redhidrografica.gpkg",
+    "tables": [
+      {
+        "table_name": "redhidrografica202227_marzo2023",
+        "data_type": "features",
+        "identifier": "redhidrografica202227_marzo2023",
+        "description": "",
+        "last_change": "2026-09-03T23:29:23.750Z",
+        "min_x": -9.257727003686615,
+        "min_y": 35.2855488569973,
+        "max_x": 4.267428141000798,
+        "max_y": 43.74966645853247,
+        "srs_id": 4258,
+        "count": 13396,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "fid",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "geom",
+            "type": "MULTILINESTRING",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "thematicId",
+            "type": "TEXT(42)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "themaIdSch",
+            "type": "TEXT(254)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "hydroId",
+            "type": "TEXT(254)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "namespace",
+            "type": "TEXT(254)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "geonameTxt",
+            "type": "TEXT(254)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "geonamTxtL",
+            "type": "TEXT(254)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "continua",
+            "type": "TEXT(254)",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "samples": [
+          {
+            "fid": 1,
+            "thematicId": "ES010MSPFES372MAR000010",
+            "themaIdSch": "euSurfaceWaterBodyCode",
+            "hydroId": "1",
+            "namespace": "http://www.chminosil.es",
+            "geonameTxt": "Río Miño",
+            "geonamTxtL": "spa",
+            "continua": "realSurfaceWaterSegment"
+          },
+          {
+            "fid": 2,
+            "thematicId": "ES010MSPFES372MAR000052",
+            "themaIdSch": "euSurfaceWaterBodyCode",
+            "hydroId": "10",
+            "namespace": "http://www.chminosil.es",
+            "geonameTxt": "Río Miño",
+            "geonamTxtL": "spa",
+            "continua": "realSurfaceWaterSegment"
+          },
+          {
+            "fid": 3,
+            "thematicId": "ES010MSPFES393MAR000240",
+            "themaIdSch": "euSurfaceWaterBodyCode",
+            "hydroId": "100",
+            "namespace": "http://www.chminosil.es",
+            "geonameTxt": "Río de Busto",
+            "geonamTxtL": "spa",
+            "continua": "realSurfaceWaterSegment"
+          }
+        ]
+      }
+    ],
+    "geometry_columns": [
+      {
+        "table_name": "redhidrografica202227_marzo2023",
+        "column_name": "geom",
+        "geometry_type_name": "MULTILINESTRING",
+        "srs_id": 4258,
+        "z": 0,
+        "m": 0
+      }
+    ]
+  },
+  {
+    "file": "zonasgeode.gpkg",
+    "tables": [],
+    "geometry_columns": []
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "excel": {
+    "rows": 11732,
+    "unique_codes": 10141,
+    "au_rows": 889,
+    "au_unique_codes": 771
+  },
+  "geometry": {
+    "au_records": 790,
+    "au_unique_xy": 787,
+    "bounds": [
+      -13.046392692999973,
+      3.675255509000067,
+      4.2780160000000365,
+      43.74601759700005
+    ],
+    "tabular_xy_outside_lonlat": 595
+  },
+  "AtlasGeoquimico_As_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "AtlasGeoquimico_Au_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "AtlasGeoquimico_Bi_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "AtlasGeoquimico_Cu_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "AtlasGeoquimico_Hg_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "AtlasGeoquimico_Pb_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "AtlasGeoquimico_Sb_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "AtlasGeoquimico_W_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "AtlasGeoquimico_Zn_Sedimentos_2012.tif": {
+    "au_nodata": 5
+  },
+  "MDT_Espana_CNIG_500m.tif": {
+    "au_nodata": 0
+  }
+}

@@ -1,0 +1,1237 @@
+--- PÁGINA 1 ---
+He analizado conjuntamente los tres archivos: el PDF 
+trasladar_vinos_a_proyecto_minerales.pdf, el notebook 
+Reto_Vino_Capitulo5_MULTIFUENTE.ipynb y el inventario CAPAS.pdf. También he 
+contrastado las decisiones metodológicas más delicadas con literatura sobre 
+validación espacial, Positive-Unlabeled Learning y prospectividad mineral. 
+La conclusión central es esta: 
+El PDF tiene una base conceptual buena y entiende correctamente cuál es el 
+verdadero problema. Pero todavía no describe un pipeline de prospectividad 
+mineral de nivel experto. 
+ Lo más importante que dice es correcto: no cambia tanto el algoritmo respecto al vino; 
+cambian radicalmente la construcción de X, la construcción de y, el significado de los 
+ceros y la validación.  
+Sin embargo, hay varias cuestiones que yo modificaría antes de empezar el MVP. 
+Algunas son importantes y una de ellas revela incluso una pequeña fuga de 
+información en el propio notebook del vino. 
+ 
+1. Qué representan realmente los tres 
+archivos 
+El notebook del vino es esencialmente un curso completo de Machine Learning 
+tabular. Recorre desde preprocessing, train/test y validación hasta regresión logística, 
+árboles, KNN, SVM, Random Forest, boosting, XGBoost, LightGBM, Voting y Stacking. 
+La clasificación binaria que más nos interesa define: 
+y={1quality≥70quality<7y = \begin{cases} 1 & \text{quality}\geq7\\ 0 & 
+\text{quality}<7 \end{cases}  
+y reserva un test aleatorio estratificado del 30 %.  
+El PDF trasladar_vinos... dice: conservemos esa arquitectura conceptual de 
+Data Science, pero sustituyendo: 
+Vino Prospectividad Au 
+Una fila = un vino Una fila = una unidad espacial 
+
+--- PÁGINA 2 ---
+Variables 
+fisicoquímicas Variables geocientíficas 
+high_quality target_Au 
+vino alta calidad = 1 indicio Au conocido = 1 
+vino no alta calidad = 0 background/pseudo-ausencia 
+predict_proba() índice de favorabilidad 
+CV aleatoria CV espacial 
+ROC-AUC principalmente PR-AUC + ROC-AUC 
+Esa traducción es exactamente la que plantea el documento.  
+CAPAS.pdf, por su parte, nos dice qué materia prima tienes ya disponible: indicios 
+mineros, litología, edades, GEODE, fallas/contactos/pliegues, MDT, red hidrográfica, 
+geofísica y geoquímica multielemental, además de varios datasets maestros 
+derivados.  
+Por tanto, los tres documentos encajan: el notebook proporciona las técnicas de ML; 
+CAPAS proporciona la información geocientífica; el PDF intenta definir el puente 
+entre ambos. 
+ 
+2. La primera corrección que haría: una 
+fila no debe ser «un punto/celda» 
+El PDF dice: 
+Filas = puntos/celdas del territorio. 
+Para un diseño serio yo eliminaría esa ambigüedad. 
+La unidad estadística debería ser una celda territorial 
+Por ejemplo: 
+celdai→(xi1,xi2,...,xip,yi)\text{celda}_i \rightarrow (x_{i1},x_{i2},...,x_{ip},y_i)  
+Una tabla conceptual podría ser: 
+cell_i
+d 
+Au_ge
+oq 
+As_ge
+oq 
+dist_f
+ault 
+fault_density
+_5km 
+lithol
+ogy 
+slo
+pe 
+mag_ano
+maly 
+target
+_Au 
+
+--- PÁGINA 3 ---
+C000
+001 2.3 34 180 4.6 esqui
+sto 12 47 1 
+C000
+002 0.4 7 6.200 0.3 caliza 4 -12 0 
+C000
+003 1.1 19 870 2.1 granit
+o 9 35 ? 
+Eso significa que todos los datos deben terminar proyectándose sobre una 
+geometría común. 
+Los indicios BDMIN son puntos. Las fallas son líneas. La litología son polígonos. La 
+geoquímica son rasters/polígonos. La geofísica puede tener diferentes soportes 
+espaciales. El MDT es raster. 
+El modelo, sin embargo, necesita finalmente: 
+X∈Rn×pX \in \mathbb{R}^{n\times p}  
+donde n son celdas y p son variables. 
+Esta decisión parece trivial, pero no lo es. Define prácticamente todo el proyecto. 
+ 
+3. Antes del modelo hay que decidir la 
+resolución espacial 
+Esto falta en el PDF y es una de las decisiones fundamentales. 
+Tú tienes, entre otras cosas, un MDT de 25 m y otro de 500 m.  
+Eso no significa que debamos crear una predicción cada 25 metros. 
+Si algunas de nuestras fuentes geocientíficas tienen una resolución efectiva mucho 
+más gruesa, crear píxeles de 25 × 25 m produciría una falsa sensación de precisión. 
+Es el problema del spatial support: una variable medida/interpolada a escala 
+kilométrica no adquiere más información porque la remuestreemos a 25 m. 
+Por eso la cadena debe ser: 
+resolucioˊn de fuentes→escala de los procesos geoloˊgicos→objetivo del 
+modelo→resolucioˊn de la rejilla\text{resolución de fuentes} \rightarrow \text{escala 
+
+--- PÁGINA 4 ---
+de los procesos geológicos} \rightarrow \text{objetivo del modelo} \rightarrow 
+\boxed{\text{resolución de la rejilla}}  
+Yo probaría varias resoluciones razonables en el MVP y haría un análisis de 
+sensibilidad. Por ejemplo, 500 m y 1 km pueden ser órdenes de magnitud sensatos 
+para comparar en un modelo nacional, pero no fijaría todavía una de ellas sin 
+inspeccionar la resolución real y el soporte de geofísica y geoquímica. 
+Este concepto es muy importante: resolución de salida ≠ resolución real del 
+conocimiento del modelo. 
+ 
+4. Qué significa realmente X 
+El PDF da ejemplos: 
+dist_fault, fault_density_5km, Au_geoq, As_geoq, Sb_geoq, elevation, slope, 
+TPI, dist_stream, lithology, geological_age, etc.  
+Eso es correcto, pero hay que entender que tus archivos GIS no son todavía las 
+features. 
+Por ejemplo: 
+contactosyfallas.gpkg 
+no debería entrar directamente en un Random Forest. 
+Hay que convertir esa capa en variables. 
+Podríamos obtener: 
+dfault=min⁡jd(celda,fallaj)d_{\text{fault}} = \min_j d(\text{celda},\text{falla}_j)  
+y además: 
+densityfault,5km=longitud de fallas dentro de 5 kmaˊreadensity_{\text{fault},5km} = 
+\frac{\text{longitud de fallas dentro de 5 km}} {\text{área}}  
+y posiblemente: 
+densityfault,1km,densityfault,2km,densityfault,5km,densityfault,10kmdensity_{\text{fa
+ult},1km}, density_{\text{fault},2km}, density_{\text{fault},5km}, 
+density_{\text{fault},10km}  
+
+--- PÁGINA 5 ---
+Esto se denomina feature engineering espacial. 
+Y probablemente será mucho más importante para el resultado final que afinar un 
+max_depth de 6 a 8. 
+ 
+5. Cómo convertiría realmente 
+CAPAS.pdf en variables 
+Tu inventario contiene cuatro grandes bloques geológicos/geográficos y después 
+geoquímica y geofísica.  
+Yo lo interpretaría así: 
+Fuente disponible Variables que realmente debería recibir el ML 
+IndiciosII.gpkg target_Au, calidad/confianza del indicio, 
+cluster/deposito_id 
+litologias.gpkg litología, grupo litológico, quizá jerarquía litológica 
+edades.gpkg edad/unidad cronoestratigráfica 
+zonasgeode.gpkg dominio/unidad geológica regional 
+contactosyfallas.gpkg distancia a falla, densidad de fallas, tipo de falla, 
+intersecciones, orientación, métricas multiescala 
+contactos.gpkg distancia a contacto, densidad de contactos, 
+combinación de litologías a ambos lados 
+ejes.gpkg distancia a ejes de pliegues 
+estructuras de plegamiento densidad/tipo de pliegues 
+buzamientos estadísticos locales de dirección/inclinación 
+MDT elevación, pendiente, curvatura, rugosidad, TPI... 
+red hidrográfica distancia a drenaje, densidad de drenaje, quizá 
+variables de cuenca 
+gravimetría anomalía, residual/regional, gradientes, textura 
+multiescala 
+magnetometría anomalía magnética, gradientes, derivadas, textura 
+radiometría canales y relaciones radiométricas si existen 
+magnetotelúrico variables resistivas/conductivas disponibles 
+petrofísica variables físicas relevantes según contenido 
+Au/As/Sb/Bi/Hg/Cu/Pb/Zn/W concentraciones, anomalías, transformaciones y 
+asociaciones multielementales 
+
+--- PÁGINA 6 ---
+Esto ya es mucho más cercano al dataset de ML. 
+ 
+6. Una distinción crítica dentro de 
+CAPAS.pdf: rasters analíticos frente a 
+rasters RGB 
+Tienes dos familias distintas de geoquímica. 
+Una son los TIFF analíticos: 
+AtlasGeoquimico_Au_Sedimentos_2012.tif, 
+ As, Sb, Bi, Hg, Cu, Pb, Zn, W. 
+Y otra son versiones _RGB.tif creadas para visualizar en QGIS.  
+Para ML: 
+usar TIFF analıˊtico\boxed{\text{usar TIFF analítico}}  
+y 
+NO usar TIFF RGB\boxed{\text{NO usar TIFF RGB}}  
+Un raster RGB contiene el color utilizado para representar una concentración, no 
+necesariamente la concentración. 
+Si un píxel rojo corresponde a determinada concentración, sus valores [R,G,B] son 
+propiedades de la simbología. 
+Introducir ese raster en el modelo equivale a enseñarle una representación gráfica de 
+la variable. 
+Las capas RGB son para QGIS. 
+Las capas analíticas son para Data Science. 
+ 
+
+--- PÁGINA 7 ---
+7. Tampoco metería simultáneamente 
+todas las representaciones de una 
+misma variable 
+En CAPAS.pdf aparece geoquímica como raster analítico, raster RGB y vector 
+poligonal.  
+Si Au.tif y geoquimica_oro_sedimentos_2012.gpkg representan esencialmente la 
+misma información, no introduciría ambas simplemente porque existan. 
+Eso genera redundancia: 
+XAu,raster≈XAu,polygonX_{Au,raster} \approx X_{Au,polygon}  
+y puede distorsionar importancias y análisis. 
+Primero hay que decidir cuál es la representación canónica de cada fuente. 
+ 
+8. Pipeline: el PDF acierta 
+completamente en el concepto 
+El documento propone: 
+master_Au 
+   ↓ 
+preprocessing 
+   ↓ 
+Random Forest / XGBoost 
+   ↓ 
+P(Au) 
+y señala correctamente que utilizar Pipeline evita que imputaciones/codificaciones 
+se calculen utilizando el test.  
+Esto es una idea esencial. 
+Si calculamos, por ejemplo: 
+
+--- PÁGINA 8 ---
+median(As)median(As)  
+usando todos los datos antes de dividirlos, el entrenamiento conoce indirectamente 
+información de validación. 
+Lo correcto es que en cada fold: 
+Traink→fit(imputer)Train_k \rightarrow fit(\text{imputer})  
+y después: 
+Validationk→transform(imputer entrenado)Validation_k \rightarrow 
+transform(\text{imputer entrenado})  
+Scikit-learn Pipeline + GridSearchCV hace precisamente eso cuando está bien 
+construido. 
+ 
+9. Pero aquí he detectado un problema 
+real en el notebook del vino 
+El PDF afirma que el notebook implementa bien esta filosofía. 
+Conceptualmente sí. 
+Pero el notebook realiza antes una imputación global de valores faltantes: 
+_med = df[_col].median() 
+df[_col] = df[_col].fillna(_med) 
+antes de los splits posteriores.  
+Esto significa que la mediana se ha calculado con: 
+Train+TestTrain + Test  
+y después más adelante vuelve a aparecer un SimpleImputer dentro del pipeline. 
+La segunda imputación ya no puede reparar la primera, porque los NaN han 
+desaparecido. 
+Por tanto: 
+
+--- PÁGINA 9 ---
+hay una pequen˜a fuga de informacioˊn en el notebook\boxed{\text{hay una pequeña 
+fuga de información en el notebook}}  
+No destruye su utilidad didáctica, pero yo no copiaría esa parte al proyecto mineral. 
+En nuestro proyecto, los valores ausentes deben permanecer como NaN hasta el 
+pipeline. 
+Esta es probablemente la corrección técnica más concreta que haría a la relación PDF 
+↔ notebook. 
+ 
+10. Además, en geociencias «missing» no 
+siempre significa «valor desconocido 
+cualquiera» 
+Esto es incluso más importante que en el vino. 
+Supongamos que no tenemos magnetometría para una determinada zona. 
+No significa: 
+“la anomalía magnética seguramente está cerca de la mediana española”. 
+Significa: 
+“esta zona no fue cubierta por ese dataset / no tenemos observación”. 
+Son situaciones distintas. 
+Por ello, dependiendo de las capas, pueden interesar variables como: 
+magnetic_missing={1sin cobertura0con coberturamagnetic\_missing = \begin{cases} 1 
+& \text{sin cobertura}\\ 0 & \text{con cobertura} \end{cases}  
+Pero aquí existe otro riesgo: la ausencia de cobertura puede codificar el esfuerzo 
+histórico de exploración. 
+Y el modelo podría descubrir: 
+zonas investigadas → más minas conocidas 
+
+--- PÁGINA 10 ---
+en lugar de: 
+determinada geología → más mineralización. 
+Esto se denomina sampling/exploration bias y el PDF apenas lo trata. 
+ 
+11. Numéricas y categóricas: lo que 
+propone es correcto como baseline 
+El PDF propone: 
+numeˊricas→imputacioˊn mediananuméricas \rightarrow \text{imputación mediana} 
+categoˊricas→imputacioˊn + OneHotEncodercategóricas \rightarrow \text{imputación 
++ OneHotEncoder}  
+Perfectamente válido para empezar. 
+Pero no lo convertiría en una regla universal. 
+Por ejemplo, para Logistic Regression, KNN o SVM conviene escalar: 
+x′=x−μσx'=\frac{x-\mu}{\sigma}  
+En Random Forest/XGBoost/LightGBM el escalado normalmente no aporta nada 
+esencial porque los árboles operan mediante umbrales. 
+Por tanto tendremos pipelines específicos por familia de modelos. 
+El propio notebook termina haciendo esto razonablemente bien: el pipeline de 
+clasificación incluye StandardScaler, mientras que el Random Forest usa un 
+preprocessing sin escalado.  
+ 
+12. One-hot puede quedarse corto para 
+vuestra geología 
+En el vino solo existe una categórica relativamente sencilla: type. 
+
+--- PÁGINA 11 ---
+En vuestro problema podríamos encontrarnos cientos de litologías/unidades 
+geológicas. 
+Si hacemos: 
+lithology_A 
+lithology_B 
+lithology_C 
+... 
+lithology_438 
+la dimensionalidad puede crecer muchísimo. 
+Antes de entrenar habría que examinar: 
+cardinality(Xj)cardinality(X_j)  
+y agrupar categorías extremadamente raras. 
+También estudiaría categorías jerárquicas: 
+unidad detallada 
+      ↓ 
+litología 
+      ↓ 
+grupo litológico 
+      ↓ 
+familia geológica 
+Incluso añadiría CatBoost al benchmark si las variables categóricas terminan siendo 
+numerosas, ya que está específicamente bien adaptado a datos tabulares con 
+categóricas. No sustituye a RF/XGBoost/LightGBM, pero sí merece competir con ellos. 
+ 
+13. Random Forest: por qué tiene sentido 
+aquí 
+El PDF lo propone como baseline fuerte.  
+Tiene lógica. 
+Un árbol aprende reglas como: 
+
+--- PÁGINA 12 ---
+As>50As > 50 dist_fault<1200dist\_fault < 1200 lithology=metasedimentarylithology 
+= metasedimentary  
+y después: 
+favorabilidad alta\text{favorabilidad alta}  
+Random Forest crea muchos árboles utilizando muestras bootstrap y subconjuntos 
+aleatorios de features. 
+Su salida es aproximadamente: 
+p^(x)=1T∑t=1Tp^t(x)\hat p(x) = \frac{1}{T} \sum_{t=1}^{T}\hat p_t(x)  
+Esto permite capturar relaciones muy no lineales. 
+Por ejemplo: 
+As elevado puede ser favorable solamente cuando estamos cerca de determinadas 
+fallas y dentro de determinada litología. 
+Una regresión logística necesita que nosotros modelemos explícitamente esas 
+interacciones. 
+Un Random Forest puede encontrarlas. 
+El notebook además optimiza max_depth, min_samples_leaf, max_features y 
+class_weight.  
+Perfectamente reutilizable. 
+ 
+14. Pero el OOB score del Random Forest 
+NO me serviría como validación espacial 
+El notebook utiliza: 
+oob_score=True 
+y muestra OOB accuracy.  
+En datos i.i.d. puede ser útil. 
+
+--- PÁGINA 13 ---
+Pero en nuestro caso los ejemplos OOB continúan estando rodeados espacialmente 
+de celdas muy similares utilizadas por otros árboles. 
+Por ello: 
+OOB no sustituye Spatial CV\boxed{\text{OOB no sustituye Spatial CV}}  
+Puede mostrarse como diagnóstico interno, pero no como estimación realista de 
+generalización geográfica. 
+ 
+15. XGBoost y LightGBM: por qué son 
+especialmente interesantes 
+El PDF dice correctamente que el problema tendrá estructura tabular: 
+Au | As | Sb | dist_fault | lithology | slope | ... 
+y que boosting suele funcionar muy bien en ese contexto.  
+La diferencia fundamental respecto a RF es conceptual. 
+Random Forest construye muchos árboles relativamente independientes: 
+Tree1, Tree2,…TreeTTree_1,\ Tree_2,\dots Tree_T  
+Boosting construye árboles secuencialmente: 
+Fm(x)=Fm−1(x)+ηfm(x)F_m(x) = F_{m-1}(x)+\eta f_m(x)  
+Cada nueva etapa intenta reducir los errores que permanecen. 
+learning_rate = \eta controla cuánto aporta cada árbol. 
+En XGBoost tendremos variables como: 
+n_estimators, learning_rate, max_depth, min_child_weight, subsample, 
+colsample_bytree, reg_alpha, reg_lambda. 
+El notebook usa ya subsample=.85 y colsample_bytree=.85.  
+LightGBM utiliza una estrategia de crecimiento diferente y parámetros como 
+num_leaves, min_child_samples, etc.  
+
+--- PÁGINA 14 ---
+Yo mantendría ambos. 
+ 
+16. No empezaría con redes neuronales 
+Aquí coincido completamente con el PDF. 
+Para un MVP con variables tabulares heterogéneas, cantidades probablemente 
+limitadas de positivos y necesidad de interpretación, empezaría: 
+Logistic→RF→ExtraTrees→XGBoost→LightGBM→CatBoostLogistic \rightarrow RF 
+\rightarrow ExtraTrees \rightarrow XGBoost \rightarrow LightGBM \rightarrow 
+CatBoost  
+y solo después estudiaría arquitecturas más complejas. 
+La mayor incertidumbre de vuestro proyecto ahora mismo no es la capacidad del 
+algoritmo. 
+Es: 
+labels+sampling+spatial validation+feature engineering\boxed{ \text{labels} + 
+\text{sampling} + \text{spatial validation} + \text{feature engineering} }  
+ 
+17. Spatial Cross-Validation: 
+probablemente la parte más importante 
+del PDF 
+Este apartado está muy bien encaminado. 
+El documento explica que, si existen tres minas del mismo distrito: 
+A ---- B ---- C 
+y A+B entran en train mientras C entra en validación, el modelo prácticamente ya ha 
+visto el contexto geológico de C. 
+Resultado: 
+
+--- PÁGINA 15 ---
+Performancerandom>PerformancerealPerformance_{random} > Performance_{real}  
+por autocorrelación espacial. 
+El PDF propone bloquear España y utilizar grupos espaciales.  
+Esto coincide con la literatura metodológica: la validación aleatoria sobre datos 
+espacialmente estructurados suele infraestimar el error real y los folds espaciales son 
+preferibles cuando queremos generalizar geográficamente.  
+ 
+18. Pero GroupKFold por sí solo no 
+resuelve el problema 
+Aquí desarrollaría bastante más el PDF. 
+Imaginemos dos bloques: 
+| bloque A | bloque B | 
+             ↑ 
+       frontera 
+Una mina situada 10 metros dentro del bloque B puede tener observaciones de 
+entrenamiento 20 metros al otro lado, dentro de A. 
+Formalmente están en grupos distintos. 
+Geológicamente siguen siendo casi idénticas. 
+Por eso el tamaño del bloque debería relacionarse con una escala de independencia 
+espacial. 
+Una aproximación sería estudiar autocorrelación espacial mediante 
+variogramas/correlogramas o analizar a qué distancia disminuye de forma relevante la 
+similitud de covariables. 
+La propia literatura recomienda que el blocking refleje la estructura de dependencia y 
+el objetivo predictivo.  
+Yo probaría además buffered spatial CV, dejando una zona de seguridad alrededor de 
+los bloques de validación. 
+
+--- PÁGINA 16 ---
+ 
+19. Introduciría dos tipos de validación 
+espacial, no uno 
+Esto es muy importante conceptualmente. 
+Tipo A: interpolación espacial 
+Pregunta: 
+¿Puede el modelo encontrar nuevos targets dentro de regiones geológicas 
+aproximadamente representadas durante el entrenamiento? 
+Spatial Block CV. 
+Tipo B: transferencia geológica/greenfield 
+Pregunta: 
+¿Puede funcionar en un distrito o dominio geológico que no ha visto? 
+Leave-one-district-out o leave-one-metallogenic-domain-out. 
+Son preguntas distintas. 
+Un modelo podría hacer: 
+PR-AUCinterpolation=0.75PR\text{-}AUC_{interpolation}=0.75  
+pero: 
+PR-AUCnew domain=0.35PR\text{-}AUC_{new\ domain}=0.35  
+y eso sería información tremendamente valiosa. 
+Decir simplemente «Spatial CV» es demasiado genérico. 
+ 
+
+--- PÁGINA 17 ---
+20. Tampoco separaría train/test 
+principalmente por comunidades 
+autónomas 
+El PDF utiliza Galicia, Asturias, Castilla y León, etc. solo como ejemplo y aclara que no 
+necesariamente deben ser CCAA.  
+Correcto. 
+Las fronteras administrativas no son fronteras geológicas. 
+Preferiría: 
+spatial blocks\text{spatial blocks}  
+y posiblemente: 
+metallogenic/geological domains\text{metallogenic/geological domains}  
+como segunda estrategia de validación. 
+ 
+21. El siguiente salto de nivel es Nested 
+Spatial Cross-Validation 
+Esto falta en el PDF. 
+Supongamos: 
+GridSearchCV(..., cv=spatial_cv) 
+y después informamos del mejor PR-AUC de ese mismo proceso. 
+Hemos utilizado esos folds para elegir: 
+max_depth, learning_rate, num_leaves, etc. 
+Por tanto esa métrica también ha influido en la selección. 
+
+--- PÁGINA 18 ---
+Para una evaluación más estricta: 
+Outer Spatial CV\boxed{\text{Outer Spatial CV}}  
+para evaluar el modelo 
+y dentro de cada fold: 
+Inner Spatial CV\boxed{\text{Inner Spatial CV}}  
+para ajustar hiperparámetros. 
+Es decir: 
+OUTER TEST BLOCK 
+      ↑ 
+      │ 
+TRAIN OUTER 
+      ↓ 
+INNER SPATIAL CV 
+      ↓ 
+hyperparameter tuning 
+      ↓ 
+modelo elegido 
+      ↓ 
+OUTER TEST BLOCK 
+Esto proporciona una estimación mucho más limpia de la capacidad de 
+generalización. 
+ 
+22. El problema de los ceros: el PDF 
+identifica perfectamente el núcleo del 
+problema 
+Este es probablemente el mejor apartado del documento. 
+En vinos: 
+y=0y=0  
+
+--- PÁGINA 19 ---
+significa: 
+sabemos que no es un vino de calidad alta. 
+En vuestro proyecto: 
+y=0y=0  
+no significa necesariamente: 
+sabemos que no existe oro. 
+Significa: 
+no conocemos allí un indicio. 
+El propio PDF lo formula correctamente como background / pseudo-ausencias y lo 
+aproxima a Positive-Unlabeled Learning.  
+Esta no es solo una observación teórica. Existe investigación específicamente en 
+mineral prospectivity mapping aplicando PU Learning precisamente porque 
+seleccionar negativos fiables es problemático.  
+ 
+23. Qué es realmente Positive-Unlabeled 
+Learning 
+Nuestro dataset conceptual no es: 
+P+NP + N  
+sino: 
+P+UP + U  
+donde: 
+P=positiveP = \text{positive}  
+y: 
+U=unlabeledU = \text{unlabeled}  
+
+--- PÁGINA 20 ---
+Dentro de U hay dos poblaciones: 
+U=N∪PunknownU=N\cup P_{unknown}  
+Es decir: 
+UNLABELED 
+├── realmente negativos 
+└── mineralizados aún desconocidos 
+Cuando nosotros arbitrariamente etiquetamos algunos U como 0, estamos creando 
+pseudo-negativos. 
+Por ello el modelo inicialmente aprendería: 
+P(y=indicio conocido)P(y=\text{indicio conocido})  
+mucho más directamente que: 
+P(y=mineralizacioˊn real)P(y=\text{mineralización real})  
+Esta diferencia filosófica es central. 
+ 
+24. El buffer de 5 km del PDF no debería 
+convertirse en una constante 
+El documento propone como ejemplo: 
+buffer=5 kmbuffer=5\ km  
+alrededor de ocurrencias conocidas.  
+Lo tomaría únicamente como hipótesis inicial. 
+No existe un 5 km universal. 
+Deberíamos estudiar: 
+r∈{1,2,5,10,… km}r \in \{1,2,5,10,\ldots\ km\}  
+y observar sensibilidad. 
+
+--- PÁGINA 21 ---
+El radio debería depender, entre otras cosas, del tipo de yacimiento, precisión espacial 
+de BDMIN, escala de clusterización de ocurrencias y resolución de la rejilla. 
+También deberíamos agrupar indicios que pertenezcan al mismo sistema 
+mineralizado. 
+Si un depósito tiene 15 registros BDMIN muy próximos, estadísticamente no 
+deberíamos permitir que esos 15 puntos se comporten como 15 descubrimientos 
+independientes. 
+ 
+25. Necesitamos auditar los positivos 
+antes de cualquier ML 
+CAPAS.pdf identifica IndiciosII.gpkg como target.  
+Pero antes de generar target_Au, necesitamos saber exactamente qué significa un 
+registro de Au. 
+Por ejemplo: 
+¿Au es sustancia principal o secundaria? 
+¿Es mina, indicio, manifestación, recurso? 
+¿Existen duplicados históricos? 
+¿Hay varios puntos pertenecientes al mismo depósito? 
+¿Qué precisión tienen las coordenadas? 
+¿Hay registros desplazados? 
+¿Incluye explotaciones antiguas y modernas? 
+¿Existe tipología de yacimiento? 
+Todo esto afecta a y. 
+Un artículo reciente dedicado específicamente a la representatividad de etiquetas en 
+mineral prospectivity mapping subraya precisamente que la elección de lo que 
+consideramos clase positiva condiciona el significado y fiabilidad del mapa.  
+
+--- PÁGINA 22 ---
+Por eso antes de 03_Pseudo_Ausencias_Dataset.ipynb introduciría: 
+01_Auditoria_Labels_Au.ipynb\boxed{\text{01\_Auditoria\_Labels\_Au.ipynb}}  
+ 
+26. Hay otro sesgo incluso más peligroso: 
+el esfuerzo de exploración 
+España no ha sido investigada uniformemente. 
+Determinadas zonas tienen más: 
+minería histórica, campañas geoquímicas, sondeos, cartografía detallada, 
+accesibilidad, exposiciones rocosas, investigación universitaria, exploración 
+empresarial. 
+Por tanto: 
+P(indicio registrado)P(\text{indicio registrado})  
+depende parcialmente de: 
+P(mineralizacioˊn)×P(haber sido explorado/detectado)P(\text{mineralización}) 
+\times P(\text{haber sido explorado/detectado})  
+Este es un sesgo fundamental de presencia-only data. 
+Si elegimos background completamente al azar por España mientras los positivos 
+están concentrados en regiones intensamente exploradas, el modelo puede aprender 
+características de la exploración, no necesariamente de la mineralización. 
+Esto debería convertirse en una fase explícita del proyecto. 
+ 
+27. No generaría un único conjunto de 
+pseudo-ausencias 
+Yo haría varias realizaciones. 
+Por ejemplo: 
+
+--- PÁGINA 23 ---
+Background1,…,Background20Background_1,\dots,Background_{20}  
+Cada una con una semilla distinta y respetando las restricciones espaciales. 
+Después: 
+Model1,…,Model20Model_1,\dots,Model_{20}  
+Esto nos permite medir algo que el PDF tampoco aborda suficientemente: 
+incertidumbre debida al background\boxed{\text{incertidumbre debida al 
+background}}  
+Una celda podría tener: 
+pˉ=0.82\bar p=0.82  
+pero: 
+σp=0.25\sigma_p=0.25  
+Eso es muy distinto de: 
+pˉ=0.82,σp=0.03\bar p=0.82,\quad\sigma_p=0.03  
+Aunque ambos mapas de favorabilidad enseñen 0.82. 
+ 
+28. PR-AUC: el PDF acierta, pero existe 
+un matiz importante 
+El documento propone PR-AUC como métrica principal porque la mineralización es 
+rara.  
+Correcto. 
+La literatura clásica también muestra que Precision-Recall suele ser más informativa 
+que ROC cuando las clases están muy desbalanceadas.  
+Recordemos: 
+Precision=TPTP+FPPrecision = \frac{TP}{TP+FP} Recall=TPTP+FNRecall = 
+\frac{TP}{TP+FN}  
+
+--- PÁGINA 24 ---
+La curva PR estudia el compromiso: 
+¿cuántos verdaderos positivos recupero? 
+frente a: 
+¿qué fracción de mis predicciones positivas acierta? 
+Perfecto para búsqueda mineral. 
+ 
+29. Pero PR-AUC depende de la 
+prevalencia del conjunto de evaluación 
+Este es un punto avanzado que falta en el PDF. 
+Supongamos que nosotros fabricamos: 
+100 positivos 
+100 background 
+o: 
+100 positivos 
+10.000 background 
+La precisión cambia radicalmente. 
+Por tanto: 
+PR-AUCPR\text{-}AUC  
+no es totalmente independiente de cómo hayamos muestreado el background. 
+Eso significa que no debemos comparar PR-AUC de experimentos que utilicen 
+ratios de background diferentes como si fueran directamente equivalentes. 
+La comparación de modelos debe utilizar exactamente los mismos folds y el mismo 
+esquema de pseudo-ausencias. 
+ 
+
+--- PÁGINA 25 ---
+30. Añadiría una métrica mucho más 
+ligada al negocio de exploración 
+Supongamos que el modelo ordena España de mayor a menor favorabilidad. 
+Una pregunta operativa muy relevante es: 
+¿Qué porcentaje de indicios Au retenemos si investigamos únicamente el 5 % del 
+territorio mejor clasificado? 
+Por ejemplo: 
+Top 5% area→65% depositsTop\ 5\%\ area \rightarrow 65\%\ deposits  
+o: 
+Top 10% area→82% depositsTop\ 10\%\ area \rightarrow 82\%\ deposits  
+Esto se suele estudiar mediante success-rate / concentration-area curves, y es 
+especialmente interpretable para prospectividad porque la finalidad es reducir el área 
+de búsqueda. Este tipo de evaluación aparece habitualmente en MPM.  
+Para vosotros puede resultar incluso más útil que decir: 
+ROC-AUC = 0.87. 
+ 
+31. Mis métricas finales serían 
+conceptualmente cuatro familias 
+No me limitaría a una cifra. 
+Tendríamos discriminación: 
+PR-AUC, ROC-AUCPR\text{-}AUC,\ ROC\text{-}AUC  
+clasificación operativa: 
+Precision, Recall, F1, FβPrecision,\ Recall,\ F1,\ F_\beta  
+
+--- PÁGINA 26 ---
+priorización espacial: 
+Recall@Top1%,Recall@Top5%,Recall@Top10%Recall@Top1\%, Recall@Top5\%, 
+Recall@Top10\%  
+y fiabilidad: 
+Brier, Calibration, incertidumbreBrier,\ Calibration,\ incertidumbre  
+Pero hay que tener muchísimo cuidado con la última. 
+ 
+32. El Brier Score no demuestra 
+automáticamente «probabilidad 
+geológica» 
+El PDF menciona Brier score como calibración y después, acertadamente, dice que 
+predict_proba=0.83 no debe interpretarse directamente como un 83 % de 
+probabilidad de oro.  
+Esta segunda afirmación es crucial. 
+Con pseudo-ausencias: 
+p^=0.83\hat p=0.83  
+puede significar: 
+el modelo considera esta celda extremadamente parecida a los positivos frente al 
+background usado para entrenar. 
+Pero no necesariamente: 
+hay una probabilidad geológica del 83 % de que aquí exista oro. 
+Porque la prevalencia real: 
+P(Au)P(Au)  
+es desconocida. 
+Y además hemos manipulado artificialmente: 
+
+--- PÁGINA 27 ---
+NpositiveNbackground\frac{N_{positive}}{N_{background}}  
+durante el entrenamiento. 
+Yo hablaría de: 
+Prospectivity Score\boxed{\text{Prospectivity Score}}  
+o: 
+Iˊndice de favorabilidad\boxed{\text{Índice de favorabilidad}}  
+al menos durante el MVP. 
+Aquí el PDF está muy bien orientado. 
+ 
+33. Feature importance: bien, pero SHAP 
+tampoco es «la verdad geológica» 
+El documento propone permutation importance y SHAP.  
+Correcto. 
+Pero hay tres niveles. 
+Random Forest puede dar: 
+ImpurityImportancejImpurityImportance_j  
+El notebook hace eso y lo complementa con permutation importance.  
+La permutation importance mide cuánto empeora el rendimiento si destruimos 
+información de una feature: 
+Importancej=Score(X)−Score(Permute(Xj))Importance_j = Score(X)-
+Score(Permute(X_j))  
+Eso es más interpretable. 
+SHAP intenta descomponer para una observación: 
+f(x)=E[f(X)]+∑jϕjf(x) = E[f(X)] + \sum_j \phi_j  
+
+--- PÁGINA 28 ---
+donde φj es la contribución asignada a la feature j. 
+Por ejemplo: 
+As_geoq              +0.18 
+dist_fault            +0.14 
+lithology_schist      +0.10 
+Sb_geoq               +0.07 
+slope                 -0.02 
+Muy útil. 
+Pero: 
+SHAP≠causalidad\boxed{SHAP \neq causalidad}  
+ 
+34. Features correlacionadas complican 
+mucho la interpretación 
+Supongamos: 
+Au↔As↔SbAu \leftrightarrow As \leftrightarrow Sb  
+y también: 
+dist_fault1km↔dist_fault2km↔fault_densitydist\_fault_{1km} \leftrightarrow 
+dist\_fault_{2km} \leftrightarrow fault\_density  
+El modelo puede distribuir la señal entre variables correlacionadas de diferentes 
+maneras. 
+Una ejecución podría decir: 
+As = importancia 0.20 
+Sb = 0.05 
+y otra: 
+As = 0.09 
+Sb = 0.15 
+aunque la información conjunta sea parecida. 
+
+--- PÁGINA 29 ---
+Por eso yo estudiaría: 
+importancia por grupos de variables\text{importancia por grupos de variables}  
+como: 
+Geoquímica 
+Estructural 
+Litología 
+Geofísica 
+Topografía 
+Hidrología 
+además de cada variable individual. 
+Esto es mucho más geológicamente interpretable. 
+ 
+35. Y la permutation importance no 
+debería calcularse únicamente sobre 
+TRAIN 
+El notebook del vino calcula permutation importance sobre entrenamiento y señala 
+que es para interpretación.  
+Para nuestro proyecto preferiría obtenerla mediante predicciones OOF o sobre folds 
+espaciales nunca vistos. 
+Porque queremos responder: 
+¿Qué variables son importantes para generalizar? 
+no: 
+¿Qué variables utilizó el modelo para aprender el training set? 
+Diferencia sutil, pero importante. 
+ 
+
+--- PÁGINA 30 ---
+36. Voting: qué significa exactamente 
+El notebook combina por ejemplo SVM + RF + boosting mediante 
+VotingClassifier(voting='soft').  
+Si: 
+pRF=0.8p_{RF}=0.8 pXGB=0.7p_{XGB}=0.7 pSVM=0.9p_{SVM}=0.9  
+un soft voting sencillo podría hacer: 
+pensemble=0.8+0.7+0.93=0.8p_{ensemble} = \frac{0.8+0.7+0.9}{3} = 0.8  
+La idea funciona si los modelos tienen errores complementarios. 
+Si todos fallan exactamente en las mismas zonas, combinarlos aporta poco. 
+Por eso el PDF dice correctamente que no probaría ensembles complejos hasta haber 
+entendido bien los modelos individuales.  
+Estoy de acuerdo. 
+ 
+37. Pero soft voting tiene otro requisito: 
+probabilidades comparables 
+Si RF es muy optimista: 
+pRF=0.95p_{RF}=0.95  
+y XGB es conservador: 
+pXGB=0.65p_{XGB}=0.65  
+aunque tengan capacidades de ranking parecidas, promediar directamente sus 
+probabilidades puede hacer que RF domine. 
+Por eso, antes de Voting probabilístico, evaluaría: 
+calibrationRF\text{calibration}_{RF} calibrationXGB\text{calibration}_{XGB} 
+calibrationLGBM\text{calibration}_{LGBM}  
+
+--- PÁGINA 31 ---
+o emplearía combinaciones basadas en rankings si la calibración absoluta no es fiable. 
+ 
+38. Stacking necesita una corrección 
+muy importante para vuestro proyecto 
+El notebook usa: 
+StackingClassifier( 
+    ... 
+    cv=3 
+) 
+y genera meta-features OOF.  
+Esto está bien en el reto del vino. 
+Pero no debemos copiarlo literalmente. 
+Ese cv=3 ordinario volvería a mezclar espacialmente las observaciones. 
+Para el proyecto de oro el stacking debe generar: 
+OOFRFOOF_{RF} OOFXGBOOF_{XGB} OOFLGBMOOF_{LGBM}  
+mediante folds espaciales. 
+Entonces: 
+RF spatial OOF  ──┐ 
+XGB spatial OOF ──┼──> meta-modelo 
+LGB spatial OOF ──┘ 
+No dejaría esta parte al StackingClassifier(cv=3) por defecto. 
+Probablemente construiría el stacking espacial manualmente. 
+ 
+
+--- PÁGINA 32 ---
+39. Algo importante sobre el notebook 
+multifuente: no usaría sus resultados 
+como evidencia científica 
+El notebook se presenta como «MULTIFUENTE (14 fuentes)».  
+Sin embargo, en la ejecución almacenada muchas fuentes fallaron o fueron omitidas; 
+las fuentes finalmente listadas son uci, datasets_red, datasets_white y 
+tidyTuesday, y esta última aparece con cero registros con las variables normalizadas 
+necesarias para el modelado Wine Quality.  
+Además datasets_red y datasets_white parecen ser mirrors/versiones de los Wine 
+Quality datasets originales. 
+Por ello: 
+usar el notebook como plantilla didaˊctica\boxed{\text{usar el notebook como plantilla 
+didáctica}}  
+sí. 
+Pero: 
+usar sus rankings de algoritmos como prueba de queˊ ganaraˊ en Au\boxed{\text{usar 
+sus rankings de algoritmos como prueba de qué ganará en Au}}  
+no. 
+Eso solo podrá decidirlo vuestra Spatial CV. 
+ 
+40. También corregiría ligeramente la 
+idea de los «datasets maestros» actuales 
+CAPAS.pdf contiene: 
+
+--- PÁGINA 33 ---
+Indicios_Master_Geocientifico_BDMIN, 
+ Indicios_con_Geoquimica_y_MDT_BDMIN, 
+ Indicios_con_Geoquimica_Completa_BDMIN, etc.  
+Por los nombres parecen tablas construidas alrededor de los indicios BDMIN. 
+No puedo afirmar el contenido exacto sin abrir esos GPKG/CSV, porque los tres 
+archivos que me has pasado solo contienen sus nombres. 
+Pero, si efectivamente cada fila corresponde a un indicio, esos ficheros todavía no 
+son el master_Au final. 
+Son algo parecido a: 
+dataset de positivos enriquecidos 
+El modelo necesita: 
+TODAS LAS CELDAS DEL TERRITORIO 
++ 
+features 
++ 
+target/background 
+Es decir, necesitamos construir: 
+Grid_Master_Au\boxed{\text{Grid\_Master\_Au}}  
+No únicamente: 
+Indicios_Master_Au\text{Indicios\_Master\_Au}  
+Esta distinción es fundamental. 
+ 
+41. El dataset final debería tener 
+aproximadamente esta arquitectura 
+Conceptualmente: 
+Grupo Ejemplos 
+
+--- PÁGINA 34 ---
+Identidad 
+espacial cell_id, x, y, spatial_block, metallogenic_domain 
+Target target_Au, label_type, deposit_cluster_id 
+Litología lithology, age, geode_zone, categorías generalizadas 
+Estructural dist_fault, dist_contact, densidades 1/2/5/10 km, 
+intersecciones 
+Pliegues distancia a ejes, densidad, orientación 
+Geoquímica Au, As, Sb, Bi, Hg, Cu, Pb, Zn, W + transformaciones 
+Geofísica anomalías y derivados 
+Topografía elevation, slope, TPI, curvature, roughness 
+Hidrología dist_stream, drainage density 
+Calidad indicadores de cobertura/missingness 
+Validación spatial_fold, outer_fold, quizá domain_fold 
+Entonces cada fila sí sería autocontenida: 
+Xi,yiX_i,y_i  
+ 
+42. Geoquímica: no utilizaría únicamente 
+las concentraciones brutas 
+Tienes exactamente los elementos que esperaba que fueran útiles para un MVP de oro: 
+Au, As, Sb, Bi, Hg, Cu, Pb, Zn y W.  
+Además del valor original podría estudiar transformaciones robustas. 
+Muchas concentraciones geoquímicas tienen distribuciones altamente asimétricas: 
+x′=log⁡(1+x)x'=\log(1+x)  
+También puede resultar interesante definir anomalía respecto a su entorno geológico: 
+zlocal=x−μprovinceσprovincez_{local} = \frac{x-\mu_{province}} {\sigma_{province}}  
+porque, por ejemplo, As=50 puede ser extremadamente anómalo en una unidad y 
+bastante normal en otra. 
+Esto permite al modelo distinguir: 
+valor absoluto\text{valor absoluto}  
+
+--- PÁGINA 35 ---
+de: 
+anomalıˊa respecto al background geoloˊgico\text{anomalía respecto al background 
+geológico}  
+que geológicamente puede ser mucho más útil. 
+ 
+43. También estudiaría interacciones 
+geoquímicas, pero no cientos al azar 
+Por ejemplo: 
+Au+As+Sb+BiAu + As + Sb + Bi  
+puede ser más informativo que cada elemento aislado. 
+Se podrían construir variables como: 
+Au×AsAu\times As  
+o ratios/contrastes cuando tengan justificación geológica. 
+Pero no haría automáticamente: 
+xixj\frac{x_i}{x_j}  
+para todas las parejas. 
+Con 20 elementos tendríamos cientos de interacciones y generaríamos ruido. 
+La regla debería ser: 
+geological hypothesis→feature\boxed{\text{geological hypothesis} \rightarrow 
+\text{feature}}  
+y después ML prueba si realmente aporta información. 
+ 
+
+--- PÁGINA 36 ---
+44. Las variables estructurales deberían 
+ser multiescala 
+Esto tampoco aparece suficientemente desarrollado en el PDF. 
+Una falla a 200 metros puede importar. 
+Pero también puede importar la pertenencia a un corredor estructural regional. 
+Por tanto: 
+fault_density1kmfault\_density_{1km} fault_density2kmfault\_density_{2km} 
+fault_density5kmfault\_density_{5km} fault_density10kmfault\_density_{10km}  
+y quizá: 
+dist_fault_intersectiondist\_fault\_intersection 
+n_fault_intersections5kmn\_fault\_intersections_{5km}  
+pueden capturar procesos distintos. 
+Exactamente el mismo principio puede aplicarse a contactos y pliegues. 
+Esto es multi-scale feature engineering. 
+Para prospectividad geológica, considero que será una de las fases con mayor retorno 
+de todo el proyecto. 
+ 
+45. Geofísica tampoco debería entrar 
+como una sola variable por capa 
+gravimetria.gpkg y magnetometriaradiometria.gpkg son fuentes, no 
+necesariamente features finales.  
+Dependiendo de lo que contengan, podríamos derivar: 
+valor original, anomalía regional/residual, gradiente, diferencia respecto al entorno, 
+textura, media/desviación en ventanas, máximos/mínimos locales. 
+
+--- PÁGINA 37 ---
+Es decir: 
+G(x,y)G(x,y)  
+se puede transformar en: 
+GG ∇G\nabla G G−GregionalG-G_{regional} σ(G)5km\sigma(G)_{5km}  
+etc. 
+Pero para decir exactamente cuáles hay que crear necesito inspeccionar el esquema 
+real de esos GPKG/rasters, no únicamente sus nombres. 
+ 
+46. Añadiría una fase completa que el 
+PDF no tiene: incertidumbre 
+Un mapa que solamente diga: 
+favorabilidad = 0.91 
+es insuficiente. 
+Querría además saber: 
+¿cuánto cambia con otro fold? 
+¿cuánto cambia con otras pseudo-ausencias? 
+¿cuánto cambia con otra semilla? 
+¿cuánto cambia entre RF/XGB/LGBM? 
+Por ejemplo: 
+MeanProspectivityi=1M∑mpimMeanProspectivity_i = \frac1M\sum_m p_{im}  
+y: 
+Uncertaintyi=SD(pi1,...,piM)Uncertainty_i = SD(p_{i1},...,p_{iM})  
+Entonces tendríamos: 
+Mapa 1: favorabilidad. 
+Mapa 2: incertidumbre. 
+
+--- PÁGINA 38 ---
+Una zona: 
+score=0.90, uncertainty=0.03score=0.90,\ uncertainty=0.03  
+merece una interpretación distinta de: 
+score=0.90, uncertainty=0.31score=0.90,\ uncertainty=0.31  
+ 
+47. Y añadiría un Area of Applicability 
+Esta es otra carencia importante. 
+Imaginemos una celda cuya combinación: 
+litología 
+geoquímica 
+geofísica 
+estructura 
+no se parece a nada utilizado durante el entrenamiento. 
+Un Random Forest puede dar igualmente: 
+p=0.87p=0.87  
+pero está extrapolando. 
+El concepto Area of Applicability (AOA) intenta distinguir dónde el modelo opera 
+dentro de un espacio de predictores representado por los datos de entrenamiento y 
+dónde estamos extrapolando. Meyer y Pebesma proponen precisamente acompañar 
+las predicciones espaciales con un mapa de aplicabilidad/dissimilarity.  
+Yo terminaría generando al menos: 
+Prospectivity_Au.tif 
+Uncertainty_Au.tif 
+Applicability_Au.tif 
+Esto convertiría el mapa en una herramienta mucho más profesional. 
+ 
+
+--- PÁGINA 39 ---
+48. Hay una diferencia entre «modelo 
+favorable» y «modelo geológicamente 
+correcto» 
+El PDF sugiere utilizar SHAP para comprobar: 
+¿el modelo está aprendiendo geología razonable? 
+Muy buen principio. 
+Pero añadiría una advertencia. 
+Si el modelo dice: 
+distancia_a_carretera = variable nº1 
+y obtiene un PR-AUC extraordinario, probablemente tenemos un problema de bias de 
+exploración. 
+Si dice: 
+cobertura_geofisica = variable nº1 
+también. 
+Por eso hay que diferenciar: 
+predictive signal\text{predictive signal}  
+de: 
+metallogenic signal\text{metallogenic signal}  
+No todas las variables predictivas son causal o geológicamente útiles. 
+ 
+
+--- PÁGINA 40 ---
+49. Cómo corregiría la arquitectura de 
+notebooks que propone el PDF 
+El documento propone: 
+01_EDA_BDMIN_Au 
+02_Feature_Engineering_GIS 
+03_Pseudo_Ausencias_Dataset 
+04_Modelado_Au 
+05_Spatial_Validation 
+06_SHAP_Interpretacion 
+07_Mapa_Prospectividad_Au 
+La idea es buena, pero yo cambiaría el orden porque la validación no puede ser algo 
+que hacemos después de modelar. 
+Debería formar parte del diseño del dataset antes del entrenamiento. 
+Mi arquitectura sería: 
+Notebook Finalidad 
+00_Config_Proyecto_Au CRS, resolución, rutas, semillas, 
+parámetros globales 
+01_Auditoria_BDMIN_Au positivos, duplicados, clusters, calidad de 
+etiquetas 
+02_Grid_Espana_Au crear unidad espacial única 
+03_Harmonizacion_Capas CRS, resolución, extent, NoData, 
+alineación 
+04_Features_Geologia_Estructural fallas, contactos, litología, pliegues 
+05_Features_Geoquimica Au/As/Sb/Bi/etc. 
+06_Features_Geofisica_Topo geofísica + DEM + hidrología 
+07_Grid_Master_Au matriz X de todo el territorio 
+08_PU_Background pseudo-ausencias/PU y replicaciones 
+09_Spatial_Folds blocking + buffers + domains 
+10_Baselines_Au Logistic + RF + ExtraTrees 
+11_Boosting_Au XGB + LightGBM + CatBoost 
+12_Nested_Spatial_CV comparación rigurosa 
+13_Interpretacion_SHAP importancia, SHAP, estabilidad 
+14_Calibracion_Incertidumbre_AOA fiabilidad y extrapolación 
+15_Mapa_Prospectividad_Au mapas finales 
+
+--- PÁGINA 41 ---
+16_Validacion_Geologica análisis de targets y revisión experta 
+Ese sería ya un pipeline bastante próximo a producción. 
+ 
+50. El flujo completo, reducido a una sola 
+ecuación mental 
+Quiero que te quedes con esto porque resume todo el proyecto: 
+Mapas GIS→Grid→X→(P,U)→Spatial CV→f(X)→OOF 
+validation→Interpretation→Prospectivity + Uncertainty\boxed{ \text{Mapas GIS} 
+\rightarrow \text{Grid} \rightarrow X \rightarrow (P,U) \rightarrow \text{Spatial CV} 
+\rightarrow f(X) \rightarrow \text{OOF validation} \rightarrow \text{Interpretation} 
+\rightarrow \text{Prospectivity + Uncertainty} }  
+Y cada parte significa: 
+Mapas GIS: las capas que ya tenéis. 
+Grid: unidad estadística homogénea. 
+X: transformar geología en números y categorías. 
+P,U: distinguir presencia conocida de territorio no etiquetado. 
+Spatial CV: impedir que el modelo haga trampas mediante proximidad. 
+f(X): Logistic/RF/XGB/LGBM/etc. 
+OOF: predicciones hechas sobre zonas nunca utilizadas para entrenar. 
+Interpretation: descubrir qué factores sustentan la predicción. 
+Prospectivity: mapa de favorabilidad. 
+Uncertainty: mapa de cuánto podemos confiar en esa favorabilidad. 
+ 
+
+--- PÁGINA 42 ---
+51. Cómo entendería entonces 
+predict_proba 
+La frase del PDF: 
+p_au = model.predict_proba(X_grid)[:,1] 
+es correcta operativamente.  
+Pero conceptualmente yo escribiría: 
+s(x)=f(X)s(x)=f(X)  
+y llamaría inicialmente a s: 
+prospectivity score\boxed{\text{prospectivity score}}  
+Una celda con: 
+s=0.90s=0.90  
+es más favorable según el patrón aprendido que otra con: 
+s=0.20s=0.20  
+Eso sí podemos decir con bastante claridad. 
+Lo que todavía no podemos afirmar es: 
+90 % de probabilidad física de que exista un yacimiento. 
+El propio PDF advierte correctamente de esta diferencia.  
+ 
+52. Qué copiaría del notebook del vino y 
+qué no 
+Esta es probablemente la síntesis más importante. 
+Elemento ¿Copiar? Adaptación necesaria 
+Pipeline Sí fundamental 
+
+--- PÁGINA 43 ---
+ColumnTransformer Sí adaptar categorías 
+geológicas 
+SimpleImputer Sí pero solamente dentro del 
+pipeline 
+StandardScaler Sí solo modelos que lo 
+necesitan 
+OneHotEncoder Sí como 
+baseline controlar cardinalidad 
+Logistic Regression Sí baseline interpretable 
+Decision Tree Sí baseline didáctico 
+Random Forest Sí baseline fuerte 
+Extra Trees Sí añadirlo 
+XGBoost Sí candidato principal 
+LightGBM Sí candidato principal 
+CatBoost Lo añadiría categóricas complejas 
+SVM Posiblemente benchmark secundario 
+train_test_split 
+aleatorio No espacial 
+StratifiedKFold No spatial groups 
+GridSearch convencional No nested spatial 
+Accuracy como principal No PR + spatial targeting 
+ROC-AUC sola No PR-AUC + otras 
+Pseudo-ausencia única No múltiples backgrounds/PU 
+Permutation importance 
+TRAIN 
+No como 
+principal spatial OOF 
+Soft Voting Más adelante calibración + spatial CV 
+Stacking cv=3 No 
+literalmente spatial OOF stacking 
+predict_proba Sí llamarlo score/favorabilidad 
+Imputación global del 
+notebook No es leakage 
+ 
+53. Mi evaluación final del PDF 
+La idea central del documento: 
+«lo que cambia radicalmente no son los algoritmos, sino cómo construimos X/y y cómo 
+validamos» 
+
+--- PÁGINA 44 ---
+es absolutamente la frase correcta con la que cerrar el documento.  
+De hecho, después de analizar los tres archivos, la reforzaría: 
+Calidad del modelo≈calidad de labels+calidad de features+disen˜o de 
+background+validacioˊn espacial\boxed{ \text{Calidad del modelo} \approx 
+\text{calidad de labels} + \text{calidad de features} + \text{diseño de background} + 
+\text{validación espacial} }  
+y solo después: 
++ algoritmo+\ \text{algoritmo}  
+El PDF acierta especialmente en cuatro cosas: identificar el problema de pseudo-
+ausencias/PU, rechazar validación aleatoria, no interpretar predict_proba como 
+probabilidad geológica absoluta y considerar RF/XGBoost/LightGBM como candidatos 
+en lugar de asumir que un algoritmo es ganador. Eso además concuerda con trabajos 
+específicos de MPM que continúan señalando la escasez de positivos, ausencia de 
+negativos fiables y dependencia espacial como problemas centrales.  
+Lo que le falta para convertirse en una metodología realmente sólida es, sobre todo, 
+definir la rejilla/resolución, auditar los labels, controlar el sesgo de exploración, 
+diseñar rigurosamente las pseudo-ausencias, utilizar nested spatial CV, tratar la 
+incertidumbre, estudiar extrapolación/AOA y evaluar la eficiencia espacial de los 
+targets, no solamente métricas clásicas de clasificación. 
+Y hay una corrección práctica inmediata: no debemos reproducir la imputación 
+global del notebook del vino, porque las medianas se calculan antes del split. En el 
+proyecto mineral toda transformación dependiente de los datos debe quedar 
+encapsulada dentro del pipeline/fold.  
+El siguiente paso lógico ya no sería programar Random Forest. Sería definir 
+exactamente cómo construir Grid_Master_Au, columna por columna: resolución de 
+la rejilla, target_Au, tratamiento de indicios duplicados, diseño de background y 
+todas las features que debemos extraer de cada una de las capas de CAPAS.pdf. Esa 
+es la pieza que debe quedar cerrada antes de entrenar el primer modelo. 
+ 
