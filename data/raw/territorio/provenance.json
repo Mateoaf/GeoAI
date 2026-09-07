@@ -1,0 +1,11 @@
+{
+  "source": "Eurostat/GISCO Countries 2024; EuroGeographics",
+  "url": "https://gisco-services.ec.europa.eu/distribution/v2/countries/distribution/ES-region-01m-4326-2024.geojson",
+  "consulted_utc": "2026-09-07T19:38:47.118896+00:00",
+  "scale": "1:1000000",
+  "sha256": "11af1dc1d096468bb9cc6158d6c76153ccb7d087460d345ca57165037b060fba",
+  "copyright": "© EuroGeographics para los límites administrativos",
+  "usage": "Uso no comercial y atribución según condiciones específicas; no se acredita licencia comercial.",
+  "license_url": "https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units",
+  "status": "mascara_regional_candidata; no frontera topografica fina"
+}

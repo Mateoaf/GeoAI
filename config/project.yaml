@@ -1,0 +1,63 @@
+schema_version: 1
+project: prospectividad_aurifera_espana
+stage: 00_configuracion_y_fuentes
+mode: local_only
+seed: 42
+scope:
+  final_objective: España
+  initial_scope: España peninsular; cobertura por verificar
+  pilot: null
+  pilot_status: pendiente de revisión geológica y cobertura
+model_design:
+  output: indice_de_favorabilidad
+  target: presencia Au revisada; territorio no etiquetado U
+  geological_targets: [roca, aluvial, general]
+  proposed_grid_m: 1000
+  proposed_crs: EPSG:25830
+  validation: espacial_por_deposito_y_distrito
+  status: propuesta; no se aplica reproyección ni etiquetado en fase A
+local_sources:
+  root_files: true
+  recursive_directories: [red-hidrografica2022_27]
+  extensions: [.gpkg, .tif, .tiff, .csv, .xlsx, .shp, .shx, .dbf, .prj, .cpg, .zip, .qgz, .qmd, .xml]
+inspection:
+  preview_rows: 5
+  compute_sha256: true
+  sample_raster_side: 256
+  csv_encoding: utf-8-sig
+  csv_separator: ','
+  max_full_vector_features: 50000
+reports_directory: reports/fase_a
+canonical_candidates:
+  indicios: IndiciosII.gpkg
+  litologia: litologias.gpkg
+  edades: edades.gpkg
+  recintos: recintos.gpkg
+  contactos_geode: contactos-002.gpkg
+  estructuras_magna: contactosyfallas.gpkg
+  ejes_geode: ejes.gpkg
+  pliegues_magna: estructuras de plegamiento.gpkg
+  hidrografia: redhidrografica.gpkg
+  relieve: MDT_Espana_CNIG_500m.tif
+  geoquimica_au: AtlasGeoquimico_Au_Sedimentos_2012.tif
+  geoquimica_as: AtlasGeoquimico_As_Sedimentos_2012.tif
+  geoquimica_sb: AtlasGeoquimico_Sb_Sedimentos_2012.tif
+  geoquimica_bi: AtlasGeoquimico_Bi_Sedimentos_2012.tif
+  geoquimica_hg: AtlasGeoquimico_Hg_Sedimentos_2012.tif
+  geoquimica_cu: AtlasGeoquimico_Cu_Sedimentos_2012.tif
+  geoquimica_pb: AtlasGeoquimico_Pb_Sedimentos_2012.tif
+  geoquimica_zn: AtlasGeoquimico_Zn_Sedimentos_2012.tif
+  geoquimica_w: AtlasGeoquimico_W_Sedimentos_2012.tif
+pending_sources:
+  - name: mascara_terrestre_oficial
+    reason: No se ha identificado una máscara territorial canónica local.
+    priority: imprescindible antes de crear rejilla
+  - name: leyendas_geologicas_validadas
+    reason: Verificar diccionarios y equivalencias de unidades y estructuras.
+    priority: imprescindible antes de derivar variables
+  - name: mdt25.tif
+    reason: No figura en el inventario inicial; necesario valorar para detalle aluvial.
+    priority: ampliación aluvial
+  - name: geoquimica_analitica_original
+    reason: Los TIFF actuales proceden de simbología por intervalos.
+    priority: mejora posterior

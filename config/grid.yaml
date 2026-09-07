@@ -1,0 +1,28 @@
+schema_version: 1
+phase_b_run: reports/fase_b/20260906T172408_668076Z
+# Paso 15 ya calculado y sellado. null fuerza saneamiento completo desde originales.
+vector_cache_run: reports/fase_c/20260907T194217_760616Z
+output_directory: reports/fase_c
+mask_path: data/raw/territorio/ES-region-01m-4326-2024.geojson
+mask_metadata: data/raw/territorio/provenance.json
+mask_status: candidata_regional_generalizada_1M
+# La componente continental mayor; otras componentes quedan inventariadas aparte.
+scope: peninsula_componente_principal
+grid_version: es_pen_utm30_1km_v1
+crs: EPSG:25830
+resolution_m: 1000
+origin_x: -50000
+origin_y: 4860000
+width: 1100
+height: 910
+native_resolution_m: 500
+coastal_min_land_fraction: 0.5
+minimum_valid_land_fraction: 0.95
+diagnostic_block_m: 50000
+vector_margin_m: 20000
+vector_batch_size: 50000
+curve_step_degrees: 1.0
+curve_check_step_degrees: 0.5
+curve_check_sample: 1000
+curve_max_hausdorff_m: 1.0
+vector_families: [litologia, edades, recintos, contactos_geode, estructuras_magna, ejes_geode, pliegues_magna, hidrografia]

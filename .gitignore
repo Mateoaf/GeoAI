@@ -23,17 +23,17 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-
+reports/*
 # Jupyter Notebook Checkpoints
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
-
+informes/*
 # Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+red-hidrografica2022_27/*
 # Temporary & Scratch
 tmp/
 scratch/

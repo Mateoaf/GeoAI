@@ -1,0 +1,19 @@
+schema_version: 1
+phase_a_run: null  # null = última ejecución con control_cierre satisfactorio
+output_directory: reports/fase_b
+null_tokens: ['', 'null', 'none', 'nan', 's/d', 'sin datos']
+gold_tokens: [oro, au]
+xy_discrepancy_m: 100
+cluster_radii_m: [250, 500, 1000]
+proposal_cluster_m: 500
+# Ventanas de plausibilidad, NO máscaras de España ni límites provinciales.
+plausibility_boxes_lonlat:
+  - [-10, 35, 5, 44.5]
+  - [-19, 27, -13, 30]
+territory_mask: null  # GPKG/SHP local de polígonos españoles, con CRS verificado
+territory_layer: null
+admin_boundaries: null  # polígonos con columnas provincia/municipio
+admin_layer: null
+admin_province_column: null
+admin_municipality_column: null
+review_file: null  # CSV revisado, basado en plantilla_revision.csv de una ejecución
