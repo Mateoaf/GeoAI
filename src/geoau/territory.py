@@ -52,11 +52,18 @@ def start_run(root, config):
         if sha256_file(local_path(root, item['path'])) != item['sha256']:
             raise ValueError(f'Entrada adicional B modificada: {item["path"]}')
     aliases = read_json(a / 'config_snapshot.json')['canonical_candidates']
+    indexed = {r['path']: r for r in manifest['sources']}
+    for alias, name in config.get('additional_vectors', {}).items():
+        entry = indexed.get(name)
+        if not entry or entry['status'] in ('error', 'sin_datos'):
+            raise ValueError(f'{name}: actualizar fase A/B antes de incorporar una fuente no inventariada.')
+        aliases[alias] = name
     paths = [b / n for n in ['control_cierre.json', 'inputs.json', 'config_snapshot.json',
              'etiquetas_au_candidatas.gpkg', 'cobertura_en_indicios_au.csv']]
     paths += [local_path(root, config['mask_path']), local_path(root, config['mask_metadata']),
               root / 'config/grid.yaml', root / 'src/geoau/territory.py',
               root / 'src/geoau/labels.py',
+              root / 'src/geoau/additional_layers.py',
               root / 'src/geoau/local_sources.py', a / 'config_snapshot.json']
     frozen = [{'path': p.relative_to(root).as_posix(), 'sha256': sha256_file(p)} for p in paths]
     provenance = read_json(local_path(root, config['mask_metadata']))
@@ -402,6 +409,21 @@ def vector_fingerprints(source):
     return result
 
 
+def base_vector_config(config):
+    # Las etiquetas y las capas adicionales no intervienen en el saneamiento base.
+    return {k:v for k,v in config.items() if k not in ('vector_cache_run', 'phase_b_run', 'additional_vectors')}
+
+
+def base_source_hashes(root, out):
+    inputs = read_json(out / 'inputs.json')
+    a = local_path(root, inputs['phase_a_run'])
+    manifest = read_json(a / 'manifest.json')
+    aliases = read_json(a / 'config_snapshot.json')['canonical_candidates']
+    config = read_json(out / 'config_snapshot.json')
+    indexed = {r['path']:r['sha256'] for r in manifest['sources']}
+    return {name: indexed[aliases[name]] for name in config['vector_families']}
+
+
 def seal_vector_checkpoint(root, out):
     """Sella el paso 15 completo, independiente de que el resto del cuaderno termine."""
     config = read_json(out / 'config_snapshot.json')
@@ -413,12 +435,15 @@ def seal_vector_checkpoint(root, out):
     expected = next(x['sha256'] for x in inputs['frozen_inputs'] if x['path'] == 'src/geoau/territory.py')
     if sha256_file(source_copy) != expected:
         raise ValueError('Snapshot de código distinto del usado para generar vectores.')
-    files = [out / 'vector_harmonization.csv', *sorted((out / 'vectors').glob('*'))]
+    files = [out / 'vector_harmonization.csv']
+    files += [out / f'vectors/{name}{suffix}' for name in config['vector_families']
+              for suffix in ('.gpkg', '_geometry_changes.csv')]
     files += [out / f'rasters/{name}_support_1km.tif' for name in config['vector_families']]
     for row in summary.itertuples():
         if pyogrio.read_info(out / f'vectors/{row.familia}.gpkg')['features'] != row.kept_with_margin:
             raise ValueError('Recuento de producto vectorial distinto del informe.')
-    checkpoint = {'stage': '15_complete', 'config': {k:v for k,v in config.items() if k != 'vector_cache_run'},
+    checkpoint = {'stage': '15_complete', 'config': base_vector_config(config),
+        'base_source_hashes': base_source_hashes(root, out),
         'source_manifest_sha256': sha256_file(local_path(root, inputs['phase_a_run']) / 'manifest.json'),
         'mask_sha256': sha256_file(local_path(root, config['mask_path'])),
         'function_fingerprints': vector_fingerprints(source_copy.read_text(encoding='utf-8')),
@@ -432,15 +457,16 @@ def harmonize_vectors(root, aliases, mask, land, spec, out):
     if not cache_name:
         result = _harmonize_vectors_uncached(root, aliases, mask, land, spec, out)
         seal_vector_checkpoint(root, out)
-        return result
+        # Igual precisión canónica con/sin caché: la publicada en los TIFF float32.
+        return {k: v.astype('float32').astype('float64') for k,v in result[0].items()}, result[1]
     cache = local_path(root, cache_name)
     checkpoint = read_json(cache / 'vector_checkpoint.json')
     current_config = read_json(out / 'config_snapshot.json')
-    if checkpoint['stage'] != '15_complete' or checkpoint['config'] != {k:v for k,v in current_config.items() if k != 'vector_cache_run'}:
+    if checkpoint['stage'] != '15_complete' or checkpoint['config'] != base_vector_config(current_config):
         raise ValueError('Caché vectorial incompatible con configuración; desactiva vector_cache_run.')
     inputs = read_json(out / 'inputs.json')
-    if checkpoint['source_manifest_sha256'] != sha256_file(local_path(root, inputs['phase_a_run']) / 'manifest.json'):
-        raise ValueError('Caché de otras fuentes A.')
+    if checkpoint.get('base_source_hashes') != base_source_hashes(root, out):
+        raise ValueError('Caché de otras fuentes vectoriales base; desactiva vector_cache_run.')
     if checkpoint['mask_sha256'] != sha256_file(local_path(root, current_config['mask_path'])):
         raise ValueError('Caché de otra máscara territorial.')
     if checkpoint['function_fingerprints'] != vector_fingerprints((root / 'src/geoau/territory.py').read_text(encoding='utf-8')):
@@ -584,10 +610,19 @@ def coverage_products(root, grid, fractions, points, mask, spec, out):
     contrast = old[['record_id','fuente','estado']].merge(sample[['record_id','fuente','estado']],
         on=['record_id','fuente'], how='outer', suffixes=('_B','_C'), validate='one_to_one', indicator=True)
     csv(out / 'contraste_cobertura_puntual_B_C.csv', contrast)
+    if spec.get('additional_vectors'):
+        from .additional_layers import additional_coverage_products
+        additional_coverage_products(root, grid, points, spec, out)
     return grid, coverage, decisions, linked, status
 
 
 def finish_run(root, out, manifest, frozen, grid, linked, vectors):
+    config = read_json(out / 'config_snapshot.json')
+    additions = None
+    if config.get('additional_vectors'):
+        additions = pd.read_csv(out / 'additional_vector_harmonization.csv')
+        if set(additions.familia) != set(config['additional_vectors']) or not additions.pagination_complete.all():
+            raise AssertionError('No se han completado todas las capas adicionales.')
     changed = verify_unchanged(root, manifest['sources'], rehash=True)
     extra = [r['path'] for r in frozen if sha256_file(local_path(root, r['path'])) != r['sha256']]
     control = {'estado_ejecucion': 'completada' if not changed and not extra else 'error_integridad',
@@ -596,6 +631,7 @@ def finish_run(root, out, manifest, frozen, grid, linked, vectors):
        'candidatos_asignados': int(linked.cell_id.notna().sum()),
        'candidatos_fuera_mascara_o_no_utilizables': int(linked.cell_id.isna().sum()),
        'positivos_revisados_asignados': int(grid.n_positivos_revisados.sum()),
+       'capas_adicionales_procesadas': [] if additions is None else additions.familia.tolist(),
        'fuentes_modificadas': changed, 'entradas_adicionales_modificadas': extra,
        'pendientes': ['Validar máscara generalizada y sensibilidad de costa/frontera con cartografía más detallada.',
           'Cobertura poligonal estimada a 500 m; verificar huecos, solapes y discontinuidades por hoja/dominio.',

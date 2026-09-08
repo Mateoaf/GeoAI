@@ -340,5 +340,7 @@ nb = nbf.v4.new_notebook(cells=cells, metadata={
     'kernelspec': {'display_name': 'Python (geoau fase A)', 'language': 'python', 'name': 'python3'},
     'language_info': {'name': 'python', 'version': '3.14.7'}})
 nbf.validate(nb)
+from actualizar_notebook_02_capas import extend_notebook
+nb = extend_notebook(nb)
 nbf.write(nb, root / 'notebooks/02_rejilla_armonizacion_cobertura.ipynb')
 print('Notebook 02 creado:', len(cells), 'celdas')

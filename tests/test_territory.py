@@ -11,7 +11,7 @@ import pandas as pd
 from rasterio.transform import Affine
 from shapely.geometry import box, Point, Polygon
 import yaml
-from geoau.territory import aggregate_values, aggregate_sum, land_areas, grid_spec, assign_points, clean_geometries, save_raster, harmonize_vectors, align_rasters
+from geoau.territory import aggregate_values, aggregate_sum, land_areas, grid_spec, assign_points, clean_geometries, save_raster, _harmonize_vectors_uncached as harmonize_vectors, align_rasters
 
 
 class TerritoryTests(unittest.TestCase):

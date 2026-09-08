@@ -1,5 +1,42 @@
 # Ejecutar 02_rejilla_armonizacion_cobertura
 
+## Actualización del 8 de septiembre: ocho capas recuperadas
+
+La configuración incorpora `additional_vectors` con las ocho copias locales ya
+inventariadas por la nueva fase A y enlazadas por B. El saneamiento y los diagnósticos
+específicos están en `src/geoau/additional_layers.py`. No se modifican las fuentes.
+La fase C procesa ahora ocho familias base y ocho capas adicionales.
+
+- Puntos: gravimetría, magnetotelúrica, petrofísica y buzamientos; se conservan puntos
+  en vez de rechazarlos como líneas. En buzamientos se conserva además `z_original`.
+- Líneas: vuelos de magnetometría/radiometría y símbolos de medidas estructurales.
+- Polígonos: cuaternario y zonas GEODE, con huellas y relaciones espaciales con Au.
+
+`additional_vector_harmonization.csv` conserva todos los recuentos, incluida la
+distinción entre cuarentena y fuera de ámbito. `additional_attribute_qc.csv` registra
+rangos angulares candidatos y valores físicos sin sustituir datos originales.
+`additional_support_by_scope.csv` y `additional_support_by_cell.csv.gz` describen
+ocupación/huella, sin confundirlas con cobertura continua. Las columnas complementarias
+se añaden también a `coverage_by_cell.csv.gz`. Las intersecciones Au–zonas/cuaternario
+se conservan en `indicios_zonas_cuaternario.csv`, incluyendo solapes.
+
+`VALU_BOU267` permite estudiar una mejora cuantitativa, pero requiere unidades,
+correcciones y centinelas comprobados. Las referencias a EDI, documentos y vuelos no
+son valores de resistividad, propiedades petrofísicas ni anomalías magnéticas.
+`ROTATION` y `STRING` no se traducen automáticamente a una orientación geológica.
+Los recintos auxiliares cuaternarios no se reclasifican como terrazas por su nombre.
+Las zonas GEODE son ámbitos cartográficos, no distritos validados.
+
+La caché configurada reutiliza únicamente las ocho familias base, comprobando sus
+hashes de entrada, algoritmo, parámetros, máscara y archivos derivados. Puede seguir
+siendo válida aunque una nueva fase A incorpore otras capas o B revise etiquetas.
+`vector_cache_run: null` fuerza el saneamiento base completo. Las capas adicionales
+se procesan desde sus fuentes en cada ejecución. Se conserva la precisión publicada
+en los TIFF tanto con caché como sin ella.
+
+El notebook conserva las celdas exploratorias del usuario y añade las secciones 7b
+y de cobertura complementaria. No es necesario regenerarlo para ejecutarlo.
+
 Abre `02_rejilla_armonizacion_cobertura.ipynb`, selecciona
 `.venv-fase-a/Scripts/python.exe` y ejecuta todas las celdas en orden.
 Utiliza las mismas dependencias de A y B; no necesita instalar paquetes nuevos.
@@ -23,8 +60,9 @@ La configuración está en `config/grid.yaml`. El código reutilizable está en
 
 ## Entradas y continuidad
 
-Se fija la ejecución B `20260906T172408_668076Z`, que a su vez referencia la ejecución
-A `20260906T142956_752136Z`. Para usar una revisión posterior, cambia `phase_b_run`.
+Se fija la ejecución B mediante `phase_b_run` en `config/grid.yaml`; la actualización
+del 8/9 utiliza B `20260908T085820_294458Z`, enlazada con A `20260908T085134_494059Z`.
+Para usar una revisión posterior, cambia `phase_b_run`.
 No depende de variables del kernel, ni modifica `labels.py`, ni los notebooks 00/01.
 
 Se verifican al inicio y al final los hashes de las fuentes inventariadas por A.

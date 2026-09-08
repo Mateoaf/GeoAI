@@ -1,5 +1,5 @@
 schema_version: 1
-phase_b_run: reports/fase_b/20260906T172408_668076Z
+phase_b_run: reports/fase_b/20260908T085820_294458Z
 # Paso 15 ya calculado y sellado. null fuerza saneamiento completo desde originales.
 vector_cache_run: reports/fase_c/20260907T194217_760616Z
 output_directory: reports/fase_c
@@ -26,3 +26,12 @@ curve_check_step_degrees: 0.5
 curve_check_sample: 1000
 curve_max_hausdorff_m: 1.0
 vector_families: [litologia, edades, recintos, contactos_geode, estructuras_magna, ejes_geode, pliegues_magna, hidrografia]
+additional_vectors:
+  magnetometriaradiometria: magnetometriaradiometria.gpkg
+  magnetotelurico: magnetotelurico.gpkg
+  medidasestructurales: medidasestructurales.gpkg
+  petrofisica: petrofisica.gpkg
+  buzamientos: buzamientos.gpkg
+  cuaternariorecintos: cuaternariorecintos.gpkg
+  gravimetria: gravimetria.gpkg
+  zonasgeode: zonasgeode.gpkg
