@@ -9,6 +9,7 @@ terrain_radii_m: [1000, 5000]
 terrain_minimum_neighborhood_fraction: 0.95
 # Una sola fuente evita sumar trazas equivalentes GEODE/MAGNA.
 structural_source: contactos_geode
-# Coincidencia exacta con las paletas locales; no implica validación oficial.
-rgb_max_distance: 0.0
+# Tolerancia pequeña para variaciones de 1 nivel por canal; no valida la leyenda.
+rgb_max_distance: 2.0
+rgb_min_class_margin: 10.0
 semantic_validation: pendiente

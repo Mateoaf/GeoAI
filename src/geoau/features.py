@@ -10,6 +10,7 @@ import json
 import shutil
 import sqlite3
 import unicodedata
+import importlib.metadata
 
 import geopandas as gpd
 import numpy as np
@@ -107,7 +108,9 @@ def start_run(root, config_path=None):
         'external': records(root, external),
         'c_manifest_sha256': sha256_file(c / 'outputs_manifest.json')})
     shutil.copy2(Path(__file__), out / 'features_source.py')
-    write_json(out / 'environment.json', environment_info())
+    env = environment_info()
+    env['packages'].update({n: importlib.metadata.version(n) for n in ['numpy','scipy','pyarrow']})
+    write_json(out / 'environment.json', env)
     write_json(out / 'control_cierre.json', {'estado_ejecucion': 'en_curso',
                'fase_d_cientifica_cerrada': False, 'prediction_allowed': False})
     write_json(root / cfg['output_directory'] / 'current_run.json', {'run': out.relative_to(root).as_posix()})
@@ -121,6 +124,87 @@ def current_run(root):
     out = root / read_json(root / cfg['output_directory'] / 'current_run.json')['run']
     if read_json(out / 'config_snapshot.json') != cfg:
         raise ValueError('Cambió features.yaml: iniciar una nueva ejecución con el cuaderno 03.')
+    return out
+
+
+COMPUTE_FUNCTIONS = {
+    'geology': ['geology','categorical_areas','clip_to_mask','cell_boxes','tiles','vector_read','meta'],
+    'terrain': ['terrain','terrain_arrays','disk_kernel','raster_check','meta'],
+    'geochemistry': ['geochemistry','color_quality','local_palettes','raster_check','meta'],
+    'structural': ['lines','line_lengths','nearest_distances','disk_kernel','structural_class','norm','clip_to_mask','cell_boxes','tiles','vector_read','meta'],
+    'hydrology': ['lines','line_lengths','nearest_distances','disk_kernel','structural_class','norm','clip_to_mask','cell_boxes','tiles','vector_read','meta'],
+}
+BLOCK_PARAMETERS = {
+    'geology': ['tile_cells','minimum_valid_fraction'],
+    'terrain': ['minimum_valid_fraction','terrain_radii_m','terrain_minimum_neighborhood_fraction'],
+    'geochemistry': ['minimum_valid_fraction','rgb_max_distance','rgb_min_class_margin'],
+    'structural': ['tile_cells','structural_source','distance_cap_m','density_radii_m'],
+    'hydrology': ['tile_cells','distance_cap_m','density_radii_m'],
+}
+
+
+def compute_signature(source, block):
+    tree=ast.parse(source)
+    funcs={n.name:ast.dump(n,include_attributes=False) for n in tree.body if isinstance(n,ast.FunctionDef)}
+    constants=[ast.dump(n,include_attributes=False) for n in tree.body if isinstance(n,ast.Assign)
+               and any(isinstance(t,ast.Name) and t.id in ('LINE_GROUPS','PALETTE_SCRIPTS') for t in n.targets)]
+    # Constantes usadas en la extracción; las tablas de orquestación no son cálculo.
+    return [funcs.get(n) for n in COMPUTE_FUNCTIONS[block]], constants
+
+
+def reuse_verified_blocks(root,out):
+    """Solo reutiliza productos sellados con cálculo, soporte e inputs equivalentes."""
+    root,out=Path(root).resolve(),Path(out).resolve()
+    config=read_json(out/'config_snapshot.json');inputs=read_json(out/'inputs.json')
+    source=(out/'features_source.py').read_text(encoding='utf-8')
+    audit=[]
+    candidates=sorted([p for p in out.parent.iterdir() if p.is_dir() and p!=out],reverse=True)
+    for block in BLOCKS:
+        if (out/'blocks'/f'{block}_manifest.json').exists():continue
+        for previous in candidates:
+            seal=previous/'blocks'/f'{block}_manifest.json'
+            if not seal.exists():continue
+            try:
+                oldconfig=read_json(previous/'config_snapshot.json');oldinputs=read_json(previous/'inputs.json')
+                if oldinputs['c_manifest_sha256']!=inputs['c_manifest_sha256']:continue
+                if oldinputs['phase_c_run']!=inputs['phase_c_run']:continue
+                if any(oldconfig.get(k)!=config.get(k) for k in BLOCK_PARAMETERS[block]):continue
+                oldsource=(previous/'features_source.py').read_text(encoding='utf-8')
+                # Verificar que el snapshot pertenece realmente a la ejecución.
+                code_record=next(r for r in oldinputs['external'] if r['path']=='src/geoau/features.py')
+                if sha256_file(previous/'features_source.py')!=code_record['sha256']:continue
+                if compute_signature(oldsource,block)!=compute_signature(source,block):continue
+                other=[r for r in oldinputs['external'] if r['path'] not in ('src/geoau/features.py','config/features.yaml')]
+                verify_records(root,other)
+                entries=read_json(seal);verify_records(previous,entries)
+                for item in entries:
+                    dst=out/item['path'];dst.parent.mkdir(parents=True,exist_ok=True)
+                    shutil.copy2(previous/item['path'],dst)
+                shutil.copy2(seal,out/'blocks'/seal.name)
+                shutil.copy2(previous/'features_source.py',out/f'reused_{block}_source.py')
+                audit.append({'block':block,'source_run':previous.relative_to(root).as_posix(),
+                    'source_code_sha256':code_record['sha256'],'source_manifest_sha256':sha256_file(seal),
+                    'reason':'funciones AST, parámetros, entradas y soporte equivalentes; hashes verificados'})
+                print('Recuperado',block,'desde',previous.name,flush=True)
+                break
+            except (ValueError,KeyError,FileNotFoundError,StopIteration) as error:
+                audit.append({'block':block,'source_run':str(previous),'rejected':str(error)})
+    write_json(out/'reuse_audit.json',audit)
+    return audit
+
+
+def ensure_run(root):
+    """Reanuda una ejecución compatible; crea otra si código/configuración cambió."""
+    try:
+        out=current_run(root)
+        source=read_json(out/'inputs.json')['external']
+        entry=next(r for r in source if r['path']=='src/geoau/features.py')
+        if entry['sha256']==sha256_file(Path(__file__)):
+            return out
+    except (FileNotFoundError,ValueError,StopIteration):
+        pass
+    out=start_run(root)
+    reuse_verified_blocks(root,out)
     return out
 
 
@@ -292,10 +376,12 @@ def nearest_distances(points, lines, cap):
     return result
 
 
-def line_lengths(lines, cells):
+def line_lengths(lines, cells, outer_boundary=None):
     """Longitud por celda; media longitud sobre bordes compartidos (sin doble suma)."""
     result = np.zeros(len(cells))
     if not len(lines): return result
+    if outer_boundary is None:
+        outer_boundary=shapely.boundary(shapely.union_all(cells))
     # Nodar/disolver evita contar dos veces las trazas geométricamente coincidentes.
     lines = shapely.get_parts(shapely.union_all(lines))
     tree = shapely.STRtree(cells)
@@ -304,7 +390,9 @@ def line_lengths(lines, cells):
         li, ci = tree.query(part,predicate='intersects')
         pieces = shapely.intersection(part[li],cells[ci])
         length = shapely.length(pieces)
-        length -= .5*shapely.length(shapely.intersection(pieces,shapely.boundary(cells[ci])))
+        on_edge=shapely.intersection(pieces,shapely.boundary(cells[ci]))
+        shared=shapely.length(on_edge)-shapely.length(shapely.intersection(on_edge,outer_boundary))
+        length -= .5*np.maximum(0,shared)
         np.add.at(result,ci,length)
     return result
 
@@ -328,6 +416,8 @@ def lines(root, out, hydro=False):
         d['group'] = d.description.map(structural_class); d['status']='regla textual candidata; revisar leyenda'
         p = out/'dictionaries/estructuras.csv';d.to_csv(p,index=False,encoding='utf-8-sig');extras.append(p)
     cap = cfg['distance_cap_m']
+    outer_boundary=shapely.box(spec['origin_x'],spec['origin_y']-spec['height']*1000,
+                             spec['origin_x']+spec['width']*1000,spec['origin_y']).boundary
     for number,tile in enumerate(tiles(grid,cfg['tile_cells']),1):
         cells = cell_boxes(tile,spec)
         bounds = shapely.total_bounds(cells)
@@ -341,7 +431,7 @@ def lines(root, out, hydro=False):
             distance[group][tile.index] = nearest_distances(points,geoms,cap)
             selected = geoms[shapely.intersects(geoms,extent)]
             clipped = clip_to_mask(shapely.intersection(selected,extent),mask)
-            length[group][tile.row,tile.col] = line_lengths(clipped,cells)
+            length[group][tile.row,tile.col] = line_lengths(clipped,cells,outer_boundary)
         if number % 5 == 0: print(name,'teselas',number,flush=True)
     land = np.zeros(spec['shape']);land[grid.row,grid.col]=grid.land_area_m2
     for group in groups:
@@ -352,6 +442,7 @@ def lines(root, out, hydro=False):
         for radius in cfg['density_radii_m']:
             kernel=disk_kernel(radius,1000,fractional=True)
             numerator=np.maximum(0,fftconvolve(length[group],kernel,mode='same'))
+            numerator[numerator<1e-7]=0  # ruido de redondeo FFT, metros de longitud
             denominator=np.maximum(0,fftconvolve(land,kernel,mode='same'))
             density=np.divide(numerator*1000,denominator,out=np.full_like(numerator,np.nan),where=denominator>1)
             col=f'dens_aprox_{group}_{radius}m_km_km2'
@@ -384,14 +475,22 @@ def local_palettes(root):
     return result
 
 
-def color_quality(rgb, classes, valid, palette, threshold=0):
+def color_quality(rgb, classes, valid, palette, threshold=0, minimum_margin=0):
     """Distancia al color de la clase declarada; evita matriz píxeles x clases."""
     colors=np.asarray([p[1] for p in palette],dtype=float)
     ok=valid & np.isfinite(classes) & (classes==np.floor(classes)) & (classes>=0) & (classes<len(colors))
     diff=np.full(classes.shape,np.nan)
     idx=np.where(ok)
     diff[idx]=np.linalg.norm(rgb[:,idx[0],idx[1]].T.astype(float)-colors[classes[idx].astype(int)],axis=1)
-    return ok & (diff<=threshold),diff
+    accepted=ok & (diff<=threshold)
+    if minimum_margin>0:
+        # Comprobar solo los colores únicos, evitando píxeles x clases en memoria.
+        ii=np.where(accepted);unique,inverse=np.unique(rgb[:,ii[0],ii[1]].T,axis=0,return_inverse=True)
+        distances=np.linalg.norm(unique[:,None,:].astype(float)-colors[None,:,:],axis=2)
+        order=np.argsort(distances,axis=1)
+        margin=np.take_along_axis(distances,order[:,1:2],axis=1)[:,0]-np.take_along_axis(distances,order[:,:1],axis=1)[:,0]
+        accepted[ii]=(order[inverse,0]==classes[ii]) & (margin[inverse]>=minimum_margin)
+    return accepted,diff
 
 
 def geochemistry(root,out):
@@ -410,7 +509,7 @@ def geochemistry(root,out):
             raster_check(src,spec,True);rgb=src.read([1,2,3]);visible=src.dataset_mask()>0
             if src.count>=4: visible &= src.read(4)==255
         original=~np.ma.getmaskarray(a) & np.isfinite(a.data)
-        valid,difference=color_quality(rgb,a.data,original & visible,palette,cfg['rgb_max_distance'])
+        valid,difference=color_quality(rgb,a.data,original & visible,palette,cfg['rgb_max_distance'],cfg.get('rgb_min_class_margin',0))
         mode,frac,props=aggregate_values(a.data,valid,land,len(palette))
         accepted=(frac>=cfg['minimum_valid_fraction'])
         arrays=[mode,frac,*props]
@@ -436,7 +535,12 @@ def geochemistry(root,out):
             'accepted_native_land':int((valid&(land>0)).sum()),
             'rejected_native_land':int((original&~valid&(land>0)).sum()),
             'modal_changed_vs_C':int((both&(mode!=previous)&(aggregate_sum(land)>0)).sum()),
-            'cells_sufficient_rgb':int(accepted[row,col].sum()),'official_legend_validated':False})
+            'cells_sufficient_rgb':int(accepted[row,col].sum()),'official_legend_validated':False,
+            'rgb_max_distance':cfg['rgb_max_distance'],
+            'rgb_min_class_margin':cfg.get('rgb_min_class_margin',0),
+            'pixels_exact_land':int((original&visible&(difference==0)&(land>0)).sum()),
+            'pixels_within_2_land':int((original&visible&(difference<=2)&(land>0)).sum()),
+            'pixels_within_8_land':int((original&visible&(difference<=8)&(land>0)).sum())})
     for filename,data in [('geoquimica_rgb_qc.csv',audit),('dictionaries/geoquimica_leyendas_locales.csv',legend)]:
         p=out/filename;pd.DataFrame(data).to_csv(p,index=False,encoding='utf-8-sig');extras.append(p)
     return finish_block(out,'geochemistry',x,q,metadata,extras)
@@ -490,8 +594,93 @@ def terrain(root,out):
 BLOCKS=['geology','structural','geochemistry','terrain','hydrology']
 
 
+def geological_associations(x,out):
+    """Agrupa unidades explícitas; ninguna fracción interna de roca se inventa."""
+    d=pd.read_csv(out/'dictionaries/litologia.csv')
+    rules={
+        'unidades_granitoides_explicitos':['Granitoides de dos micas','Otros granitoides'],
+        'unidades_mixtas_con_granitoides':['Migmatitas, mármoles y granitoides indiferenciados'],
+        'unidades_volcanicas':['Vulcanitas y rocas volcanoclásticas'],
+        'unidades_basicas_ultrabasicas':['Serpentinitas y peridotitas. Rocas básicas y ultrabásicas'],
+        'unidades_con_gneisses':['Gneisses'],
+        'unidades_con_gravas_arenas_limos':['Gravas, conglomerados, arenas y limos'],
+    }
+    lookup=dict(zip(d.description.map(norm),d.category_id))
+    metadata=[];audit=[]
+    for group,descriptions in rules.items():
+        if not all(norm(desc) in lookup for desc in descriptions):
+            raise ValueError(f'Revisar diccionario de asociación {group}: descripción ausente.')
+        columns=[lookup[norm(desc)]+'_fraccion' for desc in descriptions]
+        name=group+'_fraccion'
+        x[name]=x[columns].sum(axis=1,min_count=len(columns)).astype('float32')
+        metadata.append(meta(name,'litologia','fracción de área terrestre','suma de unidades explícitas; no proporción interna de roca',status='asociacion_textual_candidata'))
+        audit.extend({'group':group,'description':desc,'category_id':lookup[norm(desc)],
+                      'interpretation':'fracción de unidad cartográfica; no fracción mineral interna; grupos pueden solaparse'} for desc in descriptions)
+    pd.DataFrame(audit).to_csv(out/'dictionaries/asociaciones_litologicas.csv',index=False,encoding='utf-8-sig')
+    return x,metadata
+
+
+def label_relations(root,c):
+    labels=pd.read_csv(c/'indicios_celda_cobertura.csv',dtype={'Codigo_indicio':'string'})
+    if not labels.record_id.is_unique or labels.record_id.isna().any():raise ValueError('record_id inválido en C.')
+    if labels.positivo_revisado.isna().any() or not labels.positivo_revisado.isin([True,False]).all():
+        raise ValueError('positivo_revisado debe contener booleanos no nulos.')
+    inputs=read_json(c/'inputs.json');b=Path(root)/inputs['phase_b_run']
+    path=b/'etiquetas_au_candidatas.gpkg'
+    frozen=[r for r in inputs['frozen_inputs'] if r['path']==path.relative_to(root).as_posix() or Path(root)/r['path']==path]
+    if len(frozen)!=1:raise ValueError('No se encuentra el sello B consumido por C.')
+    verify_records(Path(root),frozen)
+    fields=['record_id','tipo_au_final','tipologia_estado','deposit_id','district_id',
+            'position_id','proximity_group_250m','proximity_group_500m','proximity_group_1000m',
+            'elegible_general_revisada','elegible_roca_revisada','elegible_aluvial_revisada']
+    detail=pyogrio.read_dataframe(path,columns=fields,read_geometry=False)
+    if not detail.record_id.is_unique or set(labels.record_id)!=set(detail.record_id):
+        raise ValueError('Los indicios de B y C no corresponden.')
+    return labels.merge(detail,on='record_id',how='left',validate='one_to_one')
+
+
+def validate_matrix(x,dictionary):
+    allowed=[m['name'] for m in dictionary]
+    if not x.cell_id.is_unique or x.cell_id.isna().any():raise ValueError('cell_id inválido.')
+    if set(allowed)!=set(x.columns)-{'cell_id'} or len(set(allowed))!=len(allowed):
+        raise ValueError('El diccionario no coincide con la lista de variables.')
+    for col in x.select_dtypes(include='number'):
+        v=x[col].dropna()
+        if np.isinf(v).any():raise ValueError(f'Inf en {col}')
+        if (col.endswith('_fraccion') or '_proporcion_clase_' in col) and not v.between(0,1+1e-6).all():
+            raise ValueError(f'Fracción fuera de [0,1]: {col}')
+        if col.startswith(('dist_','dens_aprox_')) and (v<0).any():raise ValueError(f'Negativo: {col}')
+    if 'pendiente_grados' in x and not x.pendiente_grados.dropna().between(0,90).all():raise ValueError('Pendiente inválida.')
+    for prefix in ('au','as','sb','bi','hg','cu','pb','zn','w'):
+        props=x.filter(regex=f'^{prefix}_proporcion_clase_')
+        if props.shape[1]:
+            complete=props.notna().all(axis=1)
+            if not complete.equals(props.notna().any(axis=1)) or not np.allclose(props.loc[complete].sum(axis=1),1,atol=1e-6):
+                raise ValueError(f'Proporciones incompletas/no normalizadas: {prefix}')
+    return allowed
+
+
+def write_master(master,out):
+    """Archivos deterministas y reemplazo atómico: reintentar no añade filas."""
+    out=Path(out)
+    temporary=out/'.Grid_Master_Au.parquet.tmp'
+    master.to_parquet(temporary,index=False,row_group_size=50000)
+    temporary.replace(out/'Grid_Master_Au.parquet')
+    for partition,frame in master.groupby('partition_id',sort=True):
+        folder=out/'Grid_Master_Au'/f'partition_id={int(partition)}'
+        folder.mkdir(parents=True,exist_ok=True)
+        temp=folder/'.part-00000.parquet.tmp'
+        frame.drop(columns='partition_id').to_parquet(temp,index=False,row_group_size=50000)
+        temp.replace(folder/'part-00000.parquet')
+
+
 def assemble(root,out):
+    root,out=Path(root).resolve(),Path(out).resolve()
     cfg,c,spec,grid,mask=context(root,out)
+    if (out/'outputs_manifest.json').exists():
+        verify_records(out,read_json(out/'outputs_manifest.json'))
+        return (pd.read_parquet(out/'X_features.parquet'),pd.read_parquet(out/'calidad_y_soporte.parquet'),
+                pd.read_parquet(out/'etiquetas_por_celda.parquet'))
     x,q=grid[['cell_id']].copy(),grid.copy()
     dictionary=[]
     for block in BLOCKS:
@@ -505,13 +694,19 @@ def assemble(root,out):
         x=x.merge(bx,on='cell_id',validate='one_to_one',how='left')
         q=q.merge(bq,on='cell_id',validate='one_to_one',how='left')
         dictionary.extend(read_json(out/'blocks'/f'{block}_dictionary.json'))
-    allowed=[m['name'] for m in dictionary]
-    if set(allowed)!=set(x.columns)-{'cell_id'} or len(set(allowed))!=len(allowed):
-        raise ValueError('El diccionario no coincide con la lista de variables.')
-    for col in x.select_dtypes(include='number'):
-        if np.isinf(x[col]).any(): raise ValueError(f'Inf en {col}')
-    labels=pd.read_csv(c/'indicios_celda_cobertura.csv',dtype={'Codigo_indicio':'string'})
-    if not labels.record_id.is_unique: raise ValueError('record_id duplicado.')
+    x,associations=geological_associations(x,out);dictionary.extend(associations)
+    allowed=validate_matrix(x,dictionary)
+    # Coberturas heredadas: se etiquetan como auxiliares, nunca se añaden a X.
+    coverage=pd.read_csv(c/'coverage_by_cell.csv.gz')
+    if not coverage.cell_id.is_unique or set(coverage.cell_id)!=set(grid.cell_id):
+        raise ValueError('Cobertura C y rejilla con claves distintas.')
+    extra=[k for k in coverage if k not in q and k not in ('n_candidatos','n_positivos_revisados')]
+    q=q.merge(coverage[['cell_id',*extra]].rename(columns={k:'fase_c_'+k for k in extra}),on='cell_id',how='left',validate='one_to_one')
+    q['eligible_geology_terrain']=q.coastal_eligible & x[['litologia_dominante','edades_dominante','elevacion_media_m','pendiente_grados']].notna().all(axis=1)
+    for label,elements in [('geo4',['au','as','sb','bi']),('geo9',['au','as','sb','bi','hg','cu','pb','zn','w'])]:
+        q[f'eligible_{label}']=q.eligible_geology_terrain & x[[f'{e}_clase_modal' for e in elements]].notna().all(axis=1)
+    q['prediction_allowed']=False
+    labels=label_relations(root,c)
     assigned=labels[labels.cell_id.notna()].copy()
     labels.to_parquet(out/'relacion_indicios_celda.parquet',index=False)
     aggregated=assigned.groupby('cell_id').agg(n_candidatos=('record_id','size'),
@@ -519,10 +714,22 @@ def assemble(root,out):
     y=grid[['cell_id']].merge(aggregated,on='cell_id',how='left',validate='one_to_one')
     y[['n_candidatos','n_positivos_revisados']]=y[['n_candidatos','n_positivos_revisados']].fillna(0).astype(int)
     y['estado_etiqueta']=np.where(y.n_positivos_revisados>0,'P_revisado',np.where(y.n_candidatos>0,'candidato_no_revisado','U'))
-    # Sin y=0 ni entrenamiento. El maestro contiene solo X y cell_id.
-    x.to_parquet(out/'Grid_Master_Au.parquet',index=False,row_group_size=50000)
+    if len(assigned) and not set(assigned.cell_id).issubset(set(grid.cell_id)):raise ValueError('Etiqueta fuera de la rejilla.')
+    # X separada y maestro completo con roles explícitos para evitar fuga.
+    x.to_parquet(out/'X_features.parquet',index=False,row_group_size=50000)
     q.to_parquet(out/'calidad_y_soporte.parquet',index=False)
     y.to_parquet(out/'etiquetas_por_celda.parquet',index=False)
+    for id_column in ['deposit_id','district_id','proximity_group_500m']:
+        relation=assigned[['cell_id',id_column]].dropna().drop_duplicates()
+        relation=relation[relation[id_column].astype(str).str.strip().ne('')]
+        relation.to_parquet(out/f'relacion_{id_column}_celda.parquet',index=False)
+    master=q.merge(x,on='cell_id',validate='one_to_one').merge(y,on='cell_id',validate='one_to_one')
+    master['partition_id']=(master.row//100).astype('int16')
+    write_master(master,out)
+    shutil.copy2(c/'grid_spec.json',out/'grid_spec.json')
+    roles=[{'column':col,'role':'predictor_candidato' if col in allowed else 'etiqueta' if col in y and col!='cell_id' else 'clave' if col=='cell_id' else 'auxiliar_no_predictor'} for col in master]
+    pd.DataFrame(roles).to_csv(out/'column_roles.csv',index=False,encoding='utf-8-sig')
+    del master
     pd.DataFrame(dictionary).to_csv(out/'feature_dictionary.csv',index=False,encoding='utf-8-sig')
     write_json(out/'feature_allowlist.json',{'candidate_columns':allowed,'approved_training_columns':[],
         'exclude_all_other_columns':True,'reason':'revisión semántica y etiquetas pendientes',
@@ -530,8 +737,22 @@ def assemble(root,out):
     qc=pd.DataFrame({'variable':allowed,'missing_fraction':[float(x[n].isna().mean()) for n in allowed],
                      'n_unique':[int(x[n].nunique()) for n in allowed]})
     qc.to_csv(out/'variables_qc.csv',index=False,encoding='utf-8-sig')
+    write_json(out/'feature_sets.json',{
+        'base_geologia_relieve_estructuras':[n for n in allowed if not any(n.startswith(e+'_') for e in ('au','as','sb','bi','hg','cu','pb','zn','w'))],
+        'geoquimica_modal_4':[f'{e}_clase_modal' for e in ('au','as','sb','bi')],
+        'geoquimica_modal_9':[f'{e}_clase_modal' for e in ('au','as','sb','bi','hg','cu','pb','zn','w')],
+        'proporciones_alternativas':[n for n in allowed if '_proporcion_clase_' in n],
+        'no_utilizables_sin_revision':qc.loc[qc.n_unique<=1,'variable'].tolist(),
+        'nota':'Comparaciones candidatas; no particiones ni validación del modelo.'})
+    support=[]
+    for flag in ['eligible_geology_terrain','eligible_geo4','eligible_geo9']:
+        support.append({'criterion':flag,'cells':int(q[flag].sum()),
+            'land_area_km2':float(q.loc[q[flag],'land_area_m2'].sum()/1e6),
+            'candidate_records':int(y.loc[q[flag],'n_candidatos'].sum()),
+            'reviewed_positive_cells':int((y.loc[q[flag],'n_positivos_revisados']>0).sum())})
+    pd.DataFrame(support).to_csv(out/'soporte_modelos.csv',index=False,encoding='utf-8-sig')
     write_json(out/'pending_extensions.json',{
-        'geological_groups':'revisión de unidades mixtas y equivalencias; fracciones actuales son unidades originales',
+        'geological_groups':'asociaciones explícitas implementadas; equivalencias metalogenéticas y mezclas internas pendientes',
         'geophysics':'gravimetría: unidades/campañas/soporte; vuelos/MT/petro no se interpolan como propiedades',
         'advanced_structures':'leyendas angulares, intersecciones y topología pendientes',
         'alluvial':'cuaternario genérico no distingue terrazas; MDT fino y cuencas pendientes',
@@ -542,7 +763,9 @@ def assemble(root,out):
         'prediction_allowed':False,'cells':len(x),'candidate_features':len(allowed),
         'assigned_candidates':len(assigned),'occupied_candidate_cells':int((y.n_candidatos>0).sum()),
         'reviewed_positive_cells':int((y.n_positivos_revisados>0).sum()),
-        'scope':spec['scope'],'grid_version':spec['grid_version']})
+        'scope':spec['scope'],'grid_version':spec['grid_version'],
+        'master_includes_auxiliary_and_labels':True,'predictors_file':'X_features.parquet',
+        'partitioned_master':'Grid_Master_Au','partitions_are_validation_folds':False})
     files=sorted(p for p in out.rglob('*') if p.is_file() and p.name!='outputs_manifest.json')
     write_json(out/'outputs_manifest.json',records(out,files))
     print('Fase D terminada técnicamente:',len(x),'celdas;',len(allowed),'variables candidatas.',flush=True)

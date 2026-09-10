@@ -259,20 +259,27 @@ tests/                   # controles que detectan fallos sustantivos
 
 Los notebooks mostrarán explicación, código invocable, tablas, gráficos y decisiones, siguiendo el estilo del reto del vino. El procesamiento reutilizable residirá en `src`, evitando ejecutar manualmente cientos de celdas para regenerar un mapa.
 
-| Notebook propuesto | Contenido |
+La numeración siguiente refleja los cuadernos implementados hasta F el 9 de septiembre de 2026. E y F se desglosaron para separar particiones, muestreo, pipelines y comparación; G/H quedan como continuación prevista. La ejecución técnica diagnóstica no sustituye los cierres científicos pendientes. Véanse [fase E](../notebooks/LEEME_FASE_E.md) y [fase F](../notebooks/LEEME_FASE_F.md).
+
+| Notebook implementado / previsto | Contenido |
 |---|---|
 | `00_configuracion_y_fuentes` | Pasos 01–06 |
 | `01_indicios_limpieza_etiquetas` | Pasos 07–12 |
 | `02_rejilla_armonizacion_cobertura` | Pasos 13–17 |
 | `03_variables_geologia_estructuras` | Pasos 18–20 |
-| `04_variables_geoquimica` | Pasos 21–22 |
-| `05_variables_relieve_hidrologia_geofisica` | Pasos 23–25 |
-| `06_matriz_territorial_y_particiones` | Pasos 26–28 |
-| `07_fondo_y_pipelines` | Pasos 29–31 |
-| `08_referencias_y_random_forest` | Pasos 32–33 |
-| `09_comparacion_modelos_ablacion` | Pasos 34–35 |
-| `10_validacion_explicacion_aplicabilidad` | Pasos 36–39 |
-| `11_mapas_objetivos_y_entrega` | Pasos 40–44 |
+| `04_variables_geoquimicas` | Pasos 21–22; ampliaciones sujetas a fuentes verificadas |
+| `05_variables_relieve_hidrologia` | Pasos 23–25; geofísica condicionada a datos cuantitativos |
+| `06_matriz_variables_control` | Paso 26 y cierre técnico D |
+| `07_particiones_espaciales` | Pasos 27–28 |
+| `08_muestreo_presencia_fondo` | Paso 29 |
+| `09_protocolo_PU_y_control` | Contrato del paso 30 y cierre técnico E |
+| `10_pipelines_y_contrato_entrenamiento` | Paso 31 |
+| `11_referencias_y_regresion_logistica` | Paso 32 |
+| `12_random_forest_espacial` | Paso 33 |
+| `13_comparacion_modelos` | Paso 34 |
+| `14_ablaciones_PU_y_cierre` | Paso 35, bagging del paso 30 y cierre técnico F |
+| `15_validacion_explicacion_aplicabilidad` — previsto | Pasos 36–39 |
+| `16_mapas_objetivos_y_entrega` — previsto | Pasos 40–44 |
 
 ## 8. Pruebas necesarias antes de aceptar resultados
 

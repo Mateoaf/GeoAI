@@ -11,7 +11,11 @@ run=fd.current_run(ROOT)
 fd.verify_records(run,fd.read_json(run/'outputs_manifest.json'))
 control=fd.read_json(run/'control_cierre.json')
 assert control['estado_ejecucion']=='completada'
-x=pd.read_parquet(run/'Grid_Master_Au.parquet')
+x=pd.read_parquet(run/'X_features.parquet')
+master=pd.read_parquet(run/'Grid_Master_Au.parquet')
+partitioned=pd.read_parquet(run/'Grid_Master_Au',columns=['cell_id','partition_id'])
+assert master.cell_id.is_unique and set(master.cell_id)==set(partitioned.cell_id)==set(x.cell_id)
+assert len(master)==len(partitioned)==len(x)
 q=pd.read_parquet(run/'calidad_y_soporte.parquet')
 y=pd.read_parquet(run/'etiquetas_por_celda.parquet')
 links=pd.read_parquet(run/'relacion_indicios_celda.parquet')
@@ -19,6 +23,7 @@ assert x.cell_id.is_unique and x.cell_id.equals(q.cell_id) and x.cell_id.equals(
 allow=fd.read_json(run/'feature_allowlist.json')
 assert set(x.columns)=={'cell_id',*allow['candidate_columns']}
 assert not allow['approved_training_columns'] and not control['prediction_allowed']
+assert 'n_candidatos' in master and 'n_candidatos' not in x
 assert y.n_candidatos.sum()==links.cell_id.notna().sum()
 assert not np.isinf(x.select_dtypes(include='number')).any().any()
 for col in x:

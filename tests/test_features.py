@@ -75,20 +75,69 @@ class FeatureTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp);out=root/'d';out.mkdir();(out/'blocks').mkdir()
             c=root/'c';c.mkdir()
-            grid=pd.DataFrame({'cell_id':['a','b','c']})
+            grid=pd.DataFrame({'cell_id':['a','b','c'],'row':[0,100,200],
+                               'land_area_m2':[1e6]*3,'coastal_eligible':[True]*3})
+            grid.to_csv(c/'coverage_by_cell.csv.gz',index=False)
             for block in fd.BLOCKS:
-                x=grid.assign(**{block+'_value':[1.,2.,np.nan]})
-                fd.finish_block(out,block,x,grid.copy(),[fd.meta(block+'_value',block,'m','fixture')])
-            pd.DataFrame({'record_id':['p1','p2','p3','p4'],'Codigo_indicio':['001','002','003','004'],
-                'cell_id':['a','a','b',None],'positivo_revisado':[False,False,True,False]}).to_csv(c/'indicios_celda_cobertura.csv',index=False)
+                x=grid[['cell_id']].assign(**{block+'_value':[1.,2.,np.nan]})
+                if block=='geology':
+                    x['litologia_dominante']=['u1','u2',None];x['edades_dominante']=['e1','e2',None]
+                if block=='terrain':
+                    x['pendiente_grados']=[10.,20.,np.nan];x['elevacion_media_m']=[100.,200.,np.nan]
+                if block=='geochemistry':
+                    for element in ('au','as','sb','bi','hg','cu','pb','zn','w'):x[element+'_clase_modal']=[0.,1.,np.nan]
+                fd.finish_block(out,block,x,grid[['cell_id']].copy(),[fd.meta(n,block,'m','fixture') for n in x if n!='cell_id'])
+            labels=pd.DataFrame({'record_id':['p1','p2','p3','p4'],'Codigo_indicio':['001','002','003','004'],
+                'cell_id':['a','a','b',None],'positivo_revisado':[False,False,True,False],
+                'deposit_id':[None]*4,'district_id':[None]*4,'proximity_group_500m':['g','g','h',None]})
             spec={'scope':'fixture','grid_version':'fixture_v1'}
-            with patch.object(fd,'context',return_value=({},c,spec,grid,None)):
+            fd.write_json(c/'grid_spec.json',spec)
+            with patch.object(fd,'context',return_value=({},c,spec,grid,None)), \
+                 patch.object(fd,'label_relations',return_value=labels), \
+                 patch.object(fd,'geological_associations',side_effect=lambda x,out:(x,[])):
                 x,q,y=fd.assemble(root,out)
             self.assertEqual(len(x),3)
             self.assertEqual(y.n_candidatos.tolist(),[2,1,0])
             self.assertEqual(y.estado_etiqueta.tolist(),['candidato_no_revisado','P_revisado','U'])
             self.assertNotIn('n_candidatos',x)
             self.assertEqual(fd.read_json(out/'feature_allowlist.json')['approved_training_columns'],[])
+            full=pd.read_parquet(out/'Grid_Master_Au.parquet')
+            self.assertIn('n_candidatos',full)
+            self.assertEqual(len(pd.read_parquet(out/'Grid_Master_Au')),3)
             fd.verify_records(out,fd.read_json(out/'outputs_manifest.json'))
+
+    def test_outer_edge_not_halved(self):
+        cell=np.array([shapely.box(0,0,10,10)])
+        line=np.array([shapely.LineString([(0,0),(0,10)])])
+        np.testing.assert_allclose(line_lengths(line,cell),[10])
+
+    def test_rgb_tolerance_and_ambiguity(self):
+        rgb=np.array([[[106]],[[176]],[[158]]])
+        palette=[(0,[105,176,159]),(1,[255,0,0])]
+        good,_=color_quality(rgb,np.zeros((1,1)),np.ones((1,1),bool),palette,2,10)
+        self.assertTrue(good[0,0])
+        ambiguous=[(0,[105,176,159]),(1,[106,176,157])]
+        good,_=color_quality(rgb,np.zeros((1,1)),np.ones((1,1),bool),ambiguous,2,10)
+        self.assertFalse(good[0,0])
+
+    def test_signature_rejects_changed_numeric_function(self):
+        before='def geology():\n return 1\n'
+        after='def geology():\n return 2\n'
+        self.assertNotEqual(fd.compute_signature(before,'geology'),fd.compute_signature(after,'geology'))
+
+    def test_matrix_rejects_bad_fraction(self):
+        x=pd.DataFrame({'cell_id':['a'],'bad_fraccion':[1.1]})
+        with self.assertRaises(ValueError):fd.validate_matrix(x,[fd.meta('bad_fraccion','x','fraccion','test')])
+
+    def test_partition_retry_does_not_append(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out=Path(temp)
+            data=pd.DataFrame({'cell_id':['a','b','c'],'partition_id':[0,0,1],'value':[1.,2.,3.]})
+            fd.write_master(data,out)
+            data.loc[0,'value']=5.
+            fd.write_master(data,out)
+            result=pd.read_parquet(out/'Grid_Master_Au').sort_values('cell_id')
+            self.assertEqual(len(result),3)
+            self.assertEqual(result.value.tolist(),[5.,2.,3.])
 
 if __name__=='__main__': unittest.main()

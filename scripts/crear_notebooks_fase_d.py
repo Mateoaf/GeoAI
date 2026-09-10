@@ -21,7 +21,7 @@ Consume la fase C indicada en `config/features.yaml`. Ejecutar con el entorno `.
 **Ejecutar la siguiente celda inicia una nueva ejecución D.** Los cuadernos 04–06 recuperan esa ejecución mediante `reports/fase_d/current_run.json`; se muestra su ruta para evitar mezclar productos. Para continuar una ejecución ya iniciada, sustituir `start_run(ROOT)` por `current_run(ROOT)`.
 
 Las fracciones representan unidades cartográficas originales (incluidas mezclas), no porcentajes inventados de cada roca. GEODE es la única fuente estructural de V1. Las densidades son aproximaciones circulares a partir de longitudes por celda; no acreditan cobertura de levantamiento.'''),
-('code',setup+'\nRUN = fd.start_run(ROOT)\nprint(RUN)'),
+('code',setup+'\nRUN = fd.ensure_run(ROOT)\nprint(RUN)'),
 ('md','## Unidades y edades\nIntersecciones exactas con la parte terrestre de cada celda. Se disuelve por categoría; los solapes entre categorías y atributos ausentes se auditan. Revisar `dictionaries/litologia.csv` y `edades.csv`.'),
 ('code',"geology, geology_quality = fd.geology(ROOT, RUN)\ndisplay(geology.head())\ndisplay(geology_quality.describe())"),
 ('md','## Estructuras\nLas reglas textuales excluyen agua/bordes y separan supuestas. Distancias a trazas hasta 10 km; sin coincidencia se conserva NaN y una bandera auxiliar. Revisar `dictionaries/estructuras.csv`. Las trazas cartografiadas no equivalen a una red completa.'),
@@ -30,9 +30,9 @@ Las fracciones representan unidades cartográficas originales (incluidas mezclas
 ('04_variables_geoquimicas',[
 ('md','''# 04 · Geoquímica por clases y control RGB
 
-Se leen las paletas constantes de los scripts históricos mediante AST, sin ejecutarlos. Se exige coincidencia de color con la clase declarada y opacidad completa. Se reconstruye la agregación a 1 km solo para aplicar este control adicional; no se modifican los TIFF de A/C.
+Se leen las paletas constantes de los scripts históricos mediante AST, sin ejecutarlos. Se exige distancia RGB <= 2 a la clase declarada, margen >= 10 frente a la segunda clase y opacidad completa. Se reconstruye la agregación a 1 km solo para aplicar este control adicional; no se modifican los TIFF de A/C.
 
-La coincidencia con la paleta local **no certifica la leyenda oficial ni el medio/extracción**. Se guardan esas limitaciones. Clase 0 válida; NoData no es cero. No se calculan concentraciones, ratios ni logaritmos. Moda y proporciones son representaciones alternativas.'''),
+La aceptaci?n del color de la paleta local **no certifica la leyenda oficial ni el medio/extracción**. Se guardan esas limitaciones. Clase 0 válida; NoData no es cero. No se calculan concentraciones, ratios ni logaritmos. Moda y proporciones son representaciones alternativas.'''),
 ('code',setup+'\nRUN = fd.current_run(ROOT)\nprint(RUN)'),
 ('code',"geochemistry, geochemistry_quality = fd.geochemistry(ROOT, RUN)\ndisplay(pd.read_csv(RUN / 'geoquimica_rgb_qc.csv'))"),
 ('code',"display(geochemistry.head())\ndisplay(geochemistry_quality.describe())"),

@@ -1,5 +1,8 @@
 # Fase D · Crear variables geocientíficas
 
+> Guía histórica de la primera implementación. Para el comportamiento vigente,
+> consultar [la revisión del 9 de septiembre](LEEME_FASE_D_REVISION_20260909.md).
+
 Esta fase consume la ejecución C `20260908T122215_992338Z`, indicada en
 `config/features.yaml`. Conserva la rejilla peninsular de 1 km, su `cell_id` y
 la máscara candidata. No modifica A, B, C, los archivos originales ni sus notebooks.

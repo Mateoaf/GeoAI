@@ -1,0 +1,24 @@
+schema_version: 1
+phase_d_run: reports/fase_d/20260909T104712_606095Z
+output_directory: reports/fase_e
+mode: diagnostic
+target: general
+support_column: eligible_geo4
+seed: 42
+block_size_m: 50000
+sensitivity_block_sizes_m: [25000, 50000, 100000]
+outer_folds: 5
+inner_folds: 3
+minimum_positive_units_test: 1
+minimum_positive_units_train: 2
+spatial_gap_m: 5000
+# Separación entre huellas de celdas; no es precisión declarada de los indicios.
+background_buffer_m: 250
+ratios_u_to_p: [1, 3, 10]
+realizations: 3
+diagnostic_group_column: proximity_group_500m
+# Reserva geográfica ciega para ensayar el protocolo, no distritos acreditados.
+holdout_fraction: 0.15
+reserve_district_ids: []
+territorial_groups_path: null
+protocol_reviewed: false
