@@ -1,0 +1,122 @@
+[
+  {
+    "path": "src/geoau/__init__.py",
+    "sha256": "45147be9e61790f5f7eba0cbc308896a3ca1e6c366d8aea7375bdb39ca0070b6"
+  },
+  {
+    "path": "src/geoau/additional_layers.py",
+    "sha256": "12dcdc2f73b52e6e6ce1d6f776db70d45a6bd8eb5f7dbaab538c3be6e4ecfa3a"
+  },
+  {
+    "path": "src/geoau/evaluation.py",
+    "sha256": "c876c744e13bf63e741b21bdf762b471030b597a32239bbdf52d332f6fa39755"
+  },
+  {
+    "path": "src/geoau/features.py",
+    "sha256": "24533da770bffd7e35811c9fbb5a895b6093bbab6a0c8cde6aae986390042da1"
+  },
+  {
+    "path": "src/geoau/labels.py",
+    "sha256": "0b22a4707d42b5751ce215fa397de19f36ed5d16f0c54899b9f65ee970ae8f3d"
+  },
+  {
+    "path": "src/geoau/local_sources.py",
+    "sha256": "c00d9f7bd23b7b524287ddbe9c22a3cb67cb6db5df3238ea3e7d400720631455"
+  },
+  {
+    "path": "src/geoau/territory.py",
+    "sha256": "106bf4fd4ea122aec3efc31a71bf1a1f421d0f3d4d99cc67ac562660cc087d46"
+  },
+  {
+    "path": "src/geoau/training.py",
+    "sha256": "e43a9316e32d0e7299a3d342ef0f10f70394db780db877999d6d644583bfeea7"
+  },
+  {
+    "path": "notebooks/00_configuracion_y_fuentes.ipynb",
+    "sha256": "d9e05c03c5f3648087cf012aa419d3fb2db55444472b3bef455301506e60215a"
+  },
+  {
+    "path": "notebooks/01_indicios_limpieza_etiquetas.ipynb",
+    "sha256": "01cb4a72e72ec42769543f2c86883e3043a1adc9249e9b14863f5ef2f353823e"
+  },
+  {
+    "path": "notebooks/02_rejilla_armonizacion_cobertura.ipynb",
+    "sha256": "3559b1ccb418cc237bd36ed010708f2a2ecf28e6a510e87b49e2473cfecd7c86"
+  },
+  {
+    "path": "notebooks/03_variables_geologia_estructuras.ipynb",
+    "sha256": "693808e9aa239bef1fb4b66121d2c8dcd8ec7427d80a3c83000bee2a1a6e035c"
+  },
+  {
+    "path": "notebooks/04_variables_geoquimicas.ipynb",
+    "sha256": "5671db9a360ae396b02f88236129dd1f8e769439be50eb176751b3f4bdb7f16d"
+  },
+  {
+    "path": "notebooks/05_variables_relieve_hidrologia.ipynb",
+    "sha256": "3849c4cf7dc06f625e56a5edca501472af75267d4523b04bc88cbf6711e31c5b"
+  },
+  {
+    "path": "notebooks/06_matriz_variables_control.ipynb",
+    "sha256": "843eaa02ea2d932e393ec44b66622c6d9cb20ad8b0248b20ef37d8d6f5ae9eb6"
+  },
+  {
+    "path": "notebooks/07_particiones_espaciales.ipynb",
+    "sha256": "dfddf44596b8ccba67980d6bb7cb22a3d6520d8f39734bca457c75b6cd505b91"
+  },
+  {
+    "path": "notebooks/08_muestreo_presencia_fondo.ipynb",
+    "sha256": "d3b1dcd8c81e88e7bd6fb98856a2e0252d7754da029e53ffe83c6b5ae7c41c8b"
+  },
+  {
+    "path": "notebooks/09_protocolo_PU_y_control.ipynb",
+    "sha256": "b2e2af32650b4d783700bc5438d35c58b1dcf810cf1fd5a488f582cac2d2a487"
+  },
+  {
+    "path": "notebooks/10_pipelines_y_contrato_entrenamiento.ipynb",
+    "sha256": "b4eca4282b07db5c591e5619ee4f295abb8a9ae77cd5554ddab684aae87c0b3f"
+  },
+  {
+    "path": "notebooks/11_referencias_y_regresion_logistica.ipynb",
+    "sha256": "3f56e4fa25324acde092623498ddec283590532dbe682bf1af6b37c2a0af6608"
+  },
+  {
+    "path": "notebooks/12_random_forest_espacial.ipynb",
+    "sha256": "99e22fb677c3cbf434f87e72371ad98cbb37c22eaceba4346a4c7786b4f98fdf"
+  },
+  {
+    "path": "notebooks/13_comparacion_modelos.ipynb",
+    "sha256": "f90dd96ddee0b7968a3f33ab419990d86bdac9fa760c9e16da03011714b0d08f"
+  },
+  {
+    "path": "notebooks/14_ablaciones_PU_y_cierre.ipynb",
+    "sha256": "98dbc6e9bf058731882d31ae96b49eb07b3d5a119677132a252caae00ee46c54"
+  },
+  {
+    "path": "config/evaluation.yaml",
+    "sha256": "a9b7e2bb43dd4947ce4474a499c0d40021c69f7715b41a01a26f64eb998befa1"
+  },
+  {
+    "path": "config/features.yaml",
+    "sha256": "1d2984e61b5c5ecba02c3bf04570ab634bd75d7d6e9313f111b6c2074675224d"
+  },
+  {
+    "path": "config/grid.yaml",
+    "sha256": "6cefcb1989807eb1b659073eee2163d1c55b75986d26c630ded7104ffe1dc744"
+  },
+  {
+    "path": "config/labels.yaml",
+    "sha256": "05aafc59f58b179ade7f67b0a66f974cb9c2800e6a8ccbf0befad5167025cdb4"
+  },
+  {
+    "path": "config/project.yaml",
+    "sha256": "0311cedf350e08212f6c118882ebcf84af2126d747586432acfdaa42bf565208"
+  },
+  {
+    "path": "config/training.yaml",
+    "sha256": "b9e688131807e5b8164662c05c011cd8ac4fa59a579675259aa6beb338782280"
+  },
+  {
+    "path": "informes/PLAN_PROSPECTIVIDAD_AURIFERA_ESPANA.md",
+    "sha256": "c51be0ca795b8d447d5461c53794a5175fa285b68e2189ec68ae8d2e0a8d3979"
+  }
+]

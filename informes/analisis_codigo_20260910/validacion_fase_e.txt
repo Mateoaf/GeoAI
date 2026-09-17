@@ -1,0 +1,21 @@
+Verificado: outer_00
+Verificado: outer_00_inner_00
+Verificado: outer_00_inner_01
+Verificado: outer_00_inner_02
+Verificado: outer_01
+Verificado: outer_01_inner_00
+Verificado: outer_01_inner_01
+Verificado: outer_01_inner_02
+Verificado: outer_02
+Verificado: outer_02_inner_00
+Verificado: outer_02_inner_01
+Verificado: outer_02_inner_02
+Verificado: outer_03
+Verificado: outer_03_inner_00
+Verificado: outer_03_inner_01
+Verificado: outer_03_inner_02
+Verificado: outer_04
+Verificado: outer_04_inner_00
+Verificado: outer_04_inner_01
+Verificado: outer_04_inner_02
+OK: 180 muestras; hashes, anidamiento, reserva, distancias, etiquetas y pesos.

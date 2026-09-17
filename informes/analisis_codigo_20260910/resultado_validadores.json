@@ -1,0 +1,41 @@
+[
+  {
+    "phase": "d",
+    "exit_code": 0,
+    "seconds": 10.74926029999915,
+    "last_lines": [
+      "Verificación satisfactoria: C:\\Users\\Lenovo\\Desktop\\PROYECTO IA\\GeoAI\\GeoAI\\reports\\fase_d\\20260909T104712_606095Z",
+      "{'estado_ejecucion': 'completada', 'fase_d_cientifica_cerrada': False, 'prediction_allowed': False, 'cells': 496855, 'candidate_features': 168, 'assigned_candidates': 789, 'occupied_candidate_cells': 691, 'reviewed_positive_cells': 0, 'scope': 'peninsula_componente_principal', 'grid_version': 'es_pen_utm30_1km_v1', 'master_includes_auxiliary_and_labels': True, 'predictors_file': 'X_features.parquet', 'partitioned_master': 'Grid_Master_Au', 'partitions_are_validation_folds': False}"
+    ]
+  },
+  {
+    "phase": "e",
+    "exit_code": 0,
+    "seconds": 85.43784310000774,
+    "last_lines": [
+      "Verificado: outer_03_inner_00",
+      "Verificado: outer_03_inner_01",
+      "Verificado: outer_03_inner_02",
+      "Verificado: outer_04",
+      "Verificado: outer_04_inner_00",
+      "Verificado: outer_04_inner_01",
+      "Verificado: outer_04_inner_02",
+      "OK: 180 muestras; hashes, anidamiento, reserva, distancias, etiquetas y pesos."
+    ]
+  },
+  {
+    "phase": "f",
+    "exit_code": 0,
+    "seconds": 86.88791400000628,
+    "last_lines": [
+      "Modelo reproducido: pu_rep02_outer_03",
+      "Modelo reproducido: pu_rep02_outer_04",
+      "Modelo reproducido: random_forest_outer_00",
+      "Modelo reproducido: random_forest_outer_01",
+      "Modelo reproducido: random_forest_outer_02",
+      "Modelo reproducido: random_forest_outer_03",
+      "Modelo reproducido: random_forest_outer_04",
+      "OK: 60 pipelines reproducidos y 85 archivos OOF; selección, imputación, reserva y PU verificados."
+    ]
+  }
+]

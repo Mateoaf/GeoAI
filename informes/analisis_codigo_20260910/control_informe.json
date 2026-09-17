@@ -1,0 +1,596 @@
+{
+  "notebooks": 15,
+  "cells_expected": 95,
+  "cells_explained": 95,
+  "all_cells_covered": true,
+  "approximate_word_count": 23514,
+  "cells": [
+    {
+      "notebook": "00",
+      "cell_index_0": 2,
+      "title": "Entorno, raíz e importaciones",
+      "anchor": "nb00-celda-2-entorno-raiz-e-importaciones"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 4,
+      "title": "Especificación y descubrimiento de archivos",
+      "anchor": "nb00-celda-4-especificacion-y-descubrimiento-de-archivos"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 6,
+      "title": "Inventario completo y hashes",
+      "anchor": "nb00-celda-6-inventario-completo-y-hashes"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 8,
+      "title": "Fuentes canónicas candidatas e incidencias",
+      "anchor": "nb00-celda-8-fuentes-canonicas-candidatas-e-incidencias"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 10,
+      "title": "Carga de las tres copias de indicios",
+      "anchor": "nb00-celda-10-carga-de-las-tres-copias-de-indicios"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 12,
+      "title": "Vectores completos moderados y muestras de capas grandes",
+      "anchor": "nb00-celda-12-vectores-completos-moderados-y-muestras-de-capas-grandes"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 13,
+      "title": "Visualización del diccionario de muestras",
+      "anchor": "nb00-celda-13-visualizacion-del-diccionario-de-muestras"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 15,
+      "title": "Prueba de transformación y previsualización de curvas",
+      "anchor": "nb00-celda-15-prueba-de-transformacion-y-previsualizacion-de-curvas"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 16,
+      "title": "Segunda muestra de contactos",
+      "anchor": "nb00-celda-16-segunda-muestra-de-contactos"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 18,
+      "title": "Tablas de muestra y lectura por bloques",
+      "anchor": "nb00-celda-18-tablas-de-muestra-y-lectura-por-bloques"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 20,
+      "title": "Metadatos de bandas y ventanas de ráster",
+      "anchor": "nb00-celda-20-metadatos-de-bandas-y-ventanas-de-raster"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 21,
+      "title": "Figura de geoquímica y elevación",
+      "anchor": "nb00-celda-21-figura-de-geoquimica-y-elevacion"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 22,
+      "title": "Inspección específica del shapefile hidrográfico",
+      "anchor": "nb00-celda-22-inspeccion-especifica-del-shapefile-hidrografico"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 24,
+      "title": "Shapefiles y referencias QGIS",
+      "anchor": "nb00-celda-24-shapefiles-y-referencias-qgis"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 26,
+      "title": "Escritura de informes de A",
+      "anchor": "nb00-celda-26-escritura-de-informes-de-a"
+    },
+    {
+      "notebook": "00",
+      "cell_index_0": 28,
+      "title": "Integridad y cierre de carga",
+      "anchor": "nb00-celda-28-integridad-y-cierre-de-carga"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 1,
+      "title": "Configuración de la fase B",
+      "anchor": "nb01-celda-1-configuracion-de-la-fase-b"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 2,
+      "title": "Carga de la A enlazada y huella de la fuente",
+      "anchor": "nb01-celda-2-carga-de-la-a-enlazada-y-huella-de-la-fuente"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 3,
+      "title": "Exploración de la base completa",
+      "anchor": "nb01-celda-3-exploracion-de-la-base-completa"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 4,
+      "title": "Celda vacía",
+      "anchor": "nb01-celda-4-celda-vacia"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 6,
+      "title": "Primera conciliación y visualización completa",
+      "anchor": "nb01-celda-6-primera-conciliacion-y-visualizacion-completa"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 7,
+      "title": "Conciliación, resumen de duplicados y Au fuera de la base",
+      "anchor": "nb01-celda-7-conciliacion-resumen-de-duplicados-y-au-fuera-de-la-base"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 9,
+      "title": "Conteo inicial de valores nulos",
+      "anchor": "nb01-celda-9-conteo-inicial-de-valores-nulos"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 10,
+      "title": "Normalización y propagación de conflictos",
+      "anchor": "nb01-celda-10-normalizacion-y-propagacion-de-conflictos"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 11,
+      "title": "Segunda normalización que sobrescribe la anterior",
+      "anchor": "nb01-celda-11-segunda-normalizacion-que-sobrescribe-la-anterior"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 12,
+      "title": "Vista de los registros con Au observado",
+      "anchor": "nb01-celda-12-vista-de-los-registros-con-au-observado"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 14,
+      "title": "Entradas opcionales y revisión documentada",
+      "anchor": "nb01-celda-14-entradas-opcionales-y-revision-documentada"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 16,
+      "title": "Control geométrico",
+      "anchor": "nb01-celda-16-control-geometrico"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 17,
+      "title": "Inspección de coordenadas tabulares de CRS desconocido",
+      "anchor": "nb01-celda-17-inspeccion-de-coordenadas-tabulares-de-crs-desconocido"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 19,
+      "title": "Estados de confirmación",
+      "anchor": "nb01-celda-19-estados-de-confirmacion"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 20,
+      "title": "Candidatos, posiciones y grupos de proximidad",
+      "anchor": "nb01-celda-20-candidatos-posiciones-y-grupos-de-proximidad"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 22,
+      "title": "Inspección de un grupo concreto",
+      "anchor": "nb01-celda-22-inspeccion-de-un-grupo-concreto"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 23,
+      "title": "Segunda celda vacía",
+      "anchor": "nb01-celda-23-segunda-celda-vacia"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 24,
+      "title": "Mapa de grupos con modificación del objeto de trabajo",
+      "anchor": "nb01-celda-24-mapa-de-grupos-con-modificacion-del-objeto-de-trabajo"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 26,
+      "title": "Etiquetas finales y elegibilidad revisada",
+      "anchor": "nb01-celda-26-etiquetas-finales-y-elegibilidad-revisada"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 28,
+      "title": "Cobertura puntual de candidatos",
+      "anchor": "nb01-celda-28-cobertura-puntual-de-candidatos"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 29,
+      "title": "Repetición de la tabla de cobertura",
+      "anchor": "nb01-celda-29-repeticion-de-la-tabla-de-cobertura"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 31,
+      "title": "Representatividad territorial y tipológica",
+      "anchor": "nb01-celda-31-representatividad-territorial-y-tipologica"
+    },
+    {
+      "notebook": "01",
+      "cell_index_0": 33,
+      "title": "Exportación y cierre B",
+      "anchor": "nb01-celda-33-exportacion-y-cierre-b"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 2,
+      "title": "Inicialización y especificación espacial",
+      "anchor": "nb02-celda-2-inicializacion-y-especificacion-espacial"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 4,
+      "title": "Inicio de C con entradas verificadas",
+      "anchor": "nb02-celda-4-inicio-de-c-con-entradas-verificadas"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 6,
+      "title": "Máscara y ámbitos de España",
+      "anchor": "nb02-celda-6-mascara-y-ambitos-de-espana"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 7,
+      "title": "Visualización de la geometría de máscara",
+      "anchor": "nb02-celda-7-visualizacion-de-la-geometria-de-mascara"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 9,
+      "title": "Área terrestre y creación de malla",
+      "anchor": "nb02-celda-9-area-terrestre-y-creacion-de-malla"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 11,
+      "title": "Exploración de las celdas terrestres",
+      "anchor": "nb02-celda-11-exploracion-de-las-celdas-terrestres"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 13,
+      "title": "Diccionario de soporte",
+      "anchor": "nb02-celda-13-diccionario-de-soporte"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 15,
+      "title": "Alineación de geoquímica y elevación",
+      "anchor": "nb02-celda-15-alineacion-de-geoquimica-y-elevacion"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 16,
+      "title": "Vista de fracciones de Au",
+      "anchor": "nb02-celda-16-vista-de-fracciones-de-au"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 18,
+      "title": "Armonización o recuperación de vectores",
+      "anchor": "nb02-celda-18-armonizacion-o-recuperacion-de-vectores"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 20,
+      "title": "Capas adicionales recuperadas",
+      "anchor": "nb02-celda-20-capas-adicionales-recuperadas"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 22,
+      "title": "Productos territoriales de cobertura",
+      "anchor": "nb02-celda-22-productos-territoriales-de-cobertura"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 24,
+      "title": "Consulta de soporte adicional y relaciones exactas",
+      "anchor": "nb02-celda-24-consulta-de-soporte-adicional-y-relaciones-exactas"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 26,
+      "title": "Casos sin geoquímica y comparación B–C",
+      "anchor": "nb02-celda-26-casos-sin-geoquimica-y-comparacion-b-c"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 28,
+      "title": "Mapa de cobertura",
+      "anchor": "nb02-celda-28-mapa-de-cobertura"
+    },
+    {
+      "notebook": "02",
+      "cell_index_0": 30,
+      "title": "Aserciones finales, integridad y sellado C",
+      "anchor": "nb02-celda-30-aserciones-finales-integridad-y-sellado-c"
+    },
+    {
+      "notebook": "03",
+      "cell_index_0": 1,
+      "title": "Inicio o continuación de D",
+      "anchor": "nb03-celda-1-inicio-o-continuacion-de-d"
+    },
+    {
+      "notebook": "03",
+      "cell_index_0": 3,
+      "title": "Variables geológicas",
+      "anchor": "nb03-celda-3-variables-geologicas"
+    },
+    {
+      "notebook": "03",
+      "cell_index_0": 4,
+      "title": "Ejemplo comentado de lectura de calidad geológica",
+      "anchor": "nb03-celda-4-ejemplo-comentado-de-lectura-de-calidad-geologica"
+    },
+    {
+      "notebook": "03",
+      "cell_index_0": 5,
+      "title": "Ejemplo comentado de calidad estructural",
+      "anchor": "nb03-celda-5-ejemplo-comentado-de-calidad-estructural"
+    },
+    {
+      "notebook": "03",
+      "cell_index_0": 7,
+      "title": "Variables estructurales",
+      "anchor": "nb03-celda-7-variables-estructurales"
+    },
+    {
+      "notebook": "03",
+      "cell_index_0": 8,
+      "title": "Diccionario estructural y continuidad",
+      "anchor": "nb03-celda-8-diccionario-estructural-y-continuidad"
+    },
+    {
+      "notebook": "04",
+      "cell_index_0": 1,
+      "title": "Recuperación de ejecución y versiones adicionales",
+      "anchor": "nb04-celda-1-recuperacion-de-ejecucion-y-versiones-adicionales"
+    },
+    {
+      "notebook": "04",
+      "cell_index_0": 2,
+      "title": "Extracción y auditoría RGB",
+      "anchor": "nb04-celda-2-extraccion-y-auditoria-rgb"
+    },
+    {
+      "notebook": "04",
+      "cell_index_0": 3,
+      "title": "Inspección de predictores y calidad",
+      "anchor": "nb04-celda-3-inspeccion-de-predictores-y-calidad"
+    },
+    {
+      "notebook": "04",
+      "cell_index_0": 4,
+      "title": "Filtrado visual correcto de presencia de datos",
+      "anchor": "nb04-celda-4-filtrado-visual-correcto-de-presencia-de-datos"
+    },
+    {
+      "notebook": "04",
+      "cell_index_0": 5,
+      "title": "Histogramas de clases",
+      "anchor": "nb04-celda-5-histogramas-de-clases"
+    },
+    {
+      "notebook": "05",
+      "cell_index_0": 1,
+      "title": "Contexto de D",
+      "anchor": "nb05-celda-1-contexto-de-d"
+    },
+    {
+      "notebook": "05",
+      "cell_index_0": 2,
+      "title": "Cálculo de relieve",
+      "anchor": "nb05-celda-2-calculo-de-relieve"
+    },
+    {
+      "notebook": "05",
+      "cell_index_0": 3,
+      "title": "Cálculo hidrográfico",
+      "anchor": "nb05-celda-3-calculo-hidrografico"
+    },
+    {
+      "notebook": "05",
+      "cell_index_0": 4,
+      "title": "Calidad de relieve y continuidad",
+      "anchor": "nb05-celda-4-calidad-de-relieve-y-continuidad"
+    },
+    {
+      "notebook": "06",
+      "cell_index_0": 1,
+      "title": "Recuperación de ejecución",
+      "anchor": "nb06-celda-1-recuperacion-de-ejecucion"
+    },
+    {
+      "notebook": "06",
+      "cell_index_0": 2,
+      "title": "Ensamblado y control de cierre",
+      "anchor": "nb06-celda-2-ensamblado-y-control-de-cierre"
+    },
+    {
+      "notebook": "06",
+      "cell_index_0": 3,
+      "title": "Faltantes, estados de etiqueta y ampliaciones",
+      "anchor": "nb06-celda-3-faltantes-estados-de-etiqueta-y-ampliaciones"
+    },
+    {
+      "notebook": "06",
+      "cell_index_0": 4,
+      "title": "Soporte de modelos, roles y particiones Parquet",
+      "anchor": "nb06-celda-4-soporte-de-modelos-roles-y-particiones-parquet"
+    },
+    {
+      "notebook": "06",
+      "cell_index_0": 6,
+      "title": "Mapa de pendiente como revisión espacial",
+      "anchor": "nb06-celda-6-mapa-de-pendiente-como-revision-espacial"
+    },
+    {
+      "notebook": "06",
+      "cell_index_0": 7,
+      "title": "Verificación final de productos",
+      "anchor": "nb06-celda-7-verificacion-final-de-productos"
+    },
+    {
+      "notebook": "07",
+      "cell_index_0": 1,
+      "title": "Preparación de E y lectura de requisitos",
+      "anchor": "nb07-celda-1-preparacion-de-e-y-lectura-de-requisitos"
+    },
+    {
+      "notebook": "07",
+      "cell_index_0": 3,
+      "title": "Construcción de particiones y diagnóstico de tamaños",
+      "anchor": "nb07-celda-3-construccion-de-particiones-y-diagnostico-de-tamanos"
+    },
+    {
+      "notebook": "07",
+      "cell_index_0": 5,
+      "title": "Mapa de folds y reserva",
+      "anchor": "nb07-celda-5-mapa-de-folds-y-reserva"
+    },
+    {
+      "notebook": "08",
+      "cell_index_0": 1,
+      "title": "Generación de muestras P/U",
+      "anchor": "nb08-celda-1-generacion-de-muestras-p-u"
+    },
+    {
+      "notebook": "08",
+      "cell_index_0": 3,
+      "title": "Resumen y ejemplo de diseño",
+      "anchor": "nb08-celda-3-resumen-y-ejemplo-de-diseno"
+    },
+    {
+      "notebook": "09",
+      "cell_index_0": 1,
+      "title": "Cierre técnico y contrato de aprendizaje",
+      "anchor": "nb09-celda-1-cierre-tecnico-y-contrato-de-aprendizaje"
+    },
+    {
+      "notebook": "09",
+      "cell_index_0": 3,
+      "title": "Verificación de manifiesto y comprobación de autorización",
+      "anchor": "nb09-celda-3-verificacion-de-manifiesto-y-comprobacion-de-autorizacion"
+    },
+    {
+      "notebook": "10",
+      "cell_index_0": 1,
+      "title": "Preparación de F",
+      "anchor": "nb10-celda-1-preparacion-de-f"
+    },
+    {
+      "notebook": "10",
+      "cell_index_0": 3,
+      "title": "Inspección del esquema y los candidatos",
+      "anchor": "nb10-celda-3-inspeccion-del-esquema-y-los-candidatos"
+    },
+    {
+      "notebook": "11",
+      "cell_index_0": 1,
+      "title": "Evaluación de referencias",
+      "anchor": "nb11-celda-1-evaluacion-de-referencias"
+    },
+    {
+      "notebook": "11",
+      "cell_index_0": 3,
+      "title": "Entrenamiento anidado de logística",
+      "anchor": "nb11-celda-3-entrenamiento-anidado-de-logistica"
+    },
+    {
+      "notebook": "12",
+      "cell_index_0": 1,
+      "title": "Ajuste y evaluación anidada de Random Forest",
+      "anchor": "nb12-celda-1-ajuste-y-evaluacion-anidada-de-random-forest"
+    },
+    {
+      "notebook": "12",
+      "cell_index_0": 3,
+      "title": "Parámetros seleccionados por fold",
+      "anchor": "nb12-celda-3-parametros-seleccionados-por-fold"
+    },
+    {
+      "notebook": "13",
+      "cell_index_0": 1,
+      "title": "ExtraTrees anidado",
+      "anchor": "nb13-celda-1-extratrees-anidado"
+    },
+    {
+      "notebook": "13",
+      "cell_index_0": 2,
+      "title": "HistGradientBoosting anidado",
+      "anchor": "nb13-celda-2-histgradientboosting-anidado"
+    },
+    {
+      "notebook": "13",
+      "cell_index_0": 4,
+      "title": "Comparación agregada por familia",
+      "anchor": "nb13-celda-4-comparacion-agregada-por-familia"
+    },
+    {
+      "notebook": "14",
+      "cell_index_0": 1,
+      "title": "Ejecución de sensibilidad",
+      "anchor": "nb14-celda-1-ejecucion-de-sensibilidad"
+    },
+    {
+      "notebook": "14",
+      "cell_index_0": 3,
+      "title": "Cierre de F y procedimiento seleccionado",
+      "anchor": "nb14-celda-3-cierre-de-f-y-procedimiento-seleccionado"
+    },
+    {
+      "notebook": "14",
+      "cell_index_0": 4,
+      "title": "Gráfico comparativo y verificación final",
+      "anchor": "nb14-celda-4-grafico-comparativo-y-verificacion-final"
+    }
+  ],
+  "files": [
+    {
+      "name": "INFORME_ANALISIS_CODIGO_Y_NOTEBOOKS.docx",
+      "bytes": 111592,
+      "sha256": "0cab45df314d5678a03394f7d5a9fe6f25f6336646d295fbde52cfe40177d03b"
+    },
+    {
+      "name": "INFORME_ANALISIS_CODIGO_Y_NOTEBOOKS.html",
+      "bytes": 231989,
+      "sha256": "1bd02736f992b7403e9abc7bf35580da831e37cab054bfa1fbc81dfbaaae6ec6"
+    },
+    {
+      "name": "INFORME_ANALISIS_CODIGO_Y_NOTEBOOKS.md",
+      "bytes": 190269,
+      "sha256": "a1234ed1ab7267474ff5a5211b68bb829b59f05f2e51f173c26c891ec14d9da1"
+    }
+  ]
+}

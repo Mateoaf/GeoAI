@@ -1,0 +1,31 @@
+{
+  "notebooks": 15,
+  "code_cells": 95,
+  "executable_code_cells": 91,
+  "total_code_lines": 786,
+  "eligible_cells": 472548,
+  "holdout_eligible_cells": 72061,
+  "holdout_positive_cells": 23,
+  "holdout_fraction_units": 0.15040650406504066,
+  "holdout_fraction_eligible_area": 0.15249561145429863,
+  "oof_unique_cells": 400487,
+  "oof_candidate_cells": 643,
+  "models": 60,
+  "predictions": 85,
+  "sklearn_version": "1.9.0",
+  "optional_renderers": {
+    "markdown": false,
+    "markdown_it": false,
+    "docx": false
+  },
+  "historical_sample_path": "C:/Users/Lenovo/Desktop/PROYECTO IA/Proyecto Con Luis/reports/fase_e/20260909T124128_606717Z/samples/outer_00_ratio3_rep00.parquet",
+  "historical_sample_path_exists": true,
+  "conflict_column_before_nb01_cell11": true,
+  "conflict_column_after_nb01_cell11": false,
+  "coastal_edge_synthetic": {
+    "real_length": 10,
+    "computed_length": 5.0,
+    "scope": "caso sintético de borde coincidente; no cuantifica el efecto en España"
+  },
+  "unreviewed_candidate_can_enter_validated_U": true
+}
