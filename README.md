@@ -1,5 +1,7 @@
 # 🌍 GeoAI: Sistema de Modelado de Prospectividad Aurífera en España (BDMIN - IGME)
 
+> **Unidad 1 de redes neuronales (1.1–1.7):** [cuaderno 15](notebooks/15_unidad1_redes_neuronales.ipynb) y [guía de ejecución](notebooks/LEEME_UNIDAD1.md). Fundamentos, MLP TensorFlow/Keras y comparación con RF/logística sobre validación espacial P/U. Entorno independiente `.venv-unidad1`; test y reserva cerrados. No incluye la Unidad 2.
+
 > **Fase F del flujo A–H:** [LEEME_FASE_F.md](notebooks/LEEME_FASE_F.md) documenta los cuadernos 10–14, pipelines, selección anidada, referencias, RF, ExtraTrees, boosting, ablaciones y bagging de U. La configuración actual autoriza ajustes diagnósticos con candidatos; conserva bloqueada la producción y no interpreta los scores como probabilidad absoluta de oro.
 
 > **Fase E del flujo A–H (9 de septiembre de 2026):** la implementación actual está documentada en [LEEME_FASE_E.md](notebooks/LEEME_FASE_E.md), con los cuadernos 07–09. Consume la ejecución D fijada en `config/evaluation.yaml` y prepara evaluación anidada y muestras P/U en modo diagnóstico. Esa ejecución tiene cero positivos revisados y no autoriza entrenamiento científico. Los benchmarks y afirmaciones de producción de las secciones anteriores del proyecto que aparecen más abajo no son resultados de esta nueva fase E ni acreditan su validación.

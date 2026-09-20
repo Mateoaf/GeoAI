@@ -1,0 +1,20 @@
+# Entorno independiente Python 3.13; no modifica .venv-fase-a.
+pandas>=2.2,<4
+geopandas>=1.0,<2
+pyogrio>=0.10,<1
+shapely>=2.0,<3
+pyproj>=3.6,<4
+rasterio>=1.4,<2
+openpyxl>=3.1,<4
+requests>=2.31,<3
+PyYAML>=6,<7
+nbformat>=5.10,<6
+nbclient>=0.10,<1
+ipykernel>=6.29,<8
+matplotlib>=3.9,<4
+scipy>=1.16,<2
+pyarrow>=23,<24
+scikit-learn>=1.7,<1.10
+joblib>=1.4,<2
+psutil>=5.9,<8
+tensorflow==2.21.0

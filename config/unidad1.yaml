@@ -1,0 +1,31 @@
+schema_version: 1
+phase_f_run: reports/fase_f/20260909T184735_016759Z
+output_directory: reports/unidad1
+seed: 42
+# U1 estudia solo validación interna del primer fold externo predefinido.
+# No evalúa test externo ni reserva; la comparación final queda fuera de U1.
+outer_split: outer_00
+ratio_u_to_p: 3
+repetition: 0
+epochs: 100
+batch_size: 32
+patience: 10
+learning_rate: 0.001
+minimum_relevant_gain: 0.02
+architectures:
+  - name: mlp_superficial
+    hidden: [32]
+    dropout: 0.0
+    l2: 0.0
+  - name: mlp_u1
+    hidden: [32, 16]
+    dropout: 0.0
+    l2: 0.0
+  - name: mlp_profunda
+    hidden: [64, 32, 16]
+    dropout: 0.0
+    l2: 0.0
+  - name: mlp_regularizada
+    hidden: [32, 16]
+    dropout: 0.2
+    l2: 0.001

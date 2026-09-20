@@ -47,6 +47,8 @@ desktop.ini
 /*
 !/*/
 !/.gitignore
+!/requirements-unidad1.txt
+!/requirements-unidad1.lock.txt
 /.*
 !/.*/
 notebooks/malla_espana.gpkg
