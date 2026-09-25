@@ -115,14 +115,40 @@ class TerritoryTests(unittest.TestCase):
                         box(1000,1000,2000,2000),box(3000,0,4000,1000),box(100000,0,101000,1000)]
             frame=gpd.GeoDataFrame({'code':['01','02','03','04','05','06']},geometry=geometries,crs=25830)
             frame.to_file(root/'input.gpkg',layer='rocks')
+            # Repetir una celda debe reemplazar la salida, incluso con varios lotes.
+            for attempt in range(2):
+                with self.subTest(attempt=attempt):
+                    frac,summary=harmonize_vectors(root,{'litologia':'input.gpkg'},box(0,0,2000,2000),
+                                                   np.full((4,4),250000.),spec,root)
+                    self.assertEqual(summary.read_bbox.iloc[0],5)
+                    self.assertEqual(summary.kept_with_margin.iloc[0],5)
+                    result=pyogrio.read_dataframe(root/'vectors/litologia.gpkg')
+                    self.assertEqual(len(result),5)
+                    self.assertEqual(set(result.code),{'01','02','03','04','05'})
+                    self.assertTrue(result.source_fid.is_unique)
+                    np.testing.assert_allclose(frac['litologia'],1)
+
+            # Una interrupción puede dejar solo el primer lote escrito.
+            from unittest.mock import patch
+            with patch('geoau.territory.clean_geometries',
+                       side_effect=[clean_geometries(frame.iloc[:2],25830), RuntimeError('interrupcion')]):
+                with self.assertRaisesRegex(RuntimeError,'interrupcion'):
+                    harmonize_vectors(root,{'litologia':'input.gpkg'},box(0,0,2000,2000),
+                                      np.full((4,4),250000.),spec,root)
+            self.assertEqual(pyogrio.read_info(root/'vectors/litologia.gpkg')['features'],2)
+            harmonize_vectors(root,{'litologia':'input.gpkg'},box(0,0,2000,2000),
+                              np.full((4,4),250000.),spec,root)
+            result=pyogrio.read_dataframe(root/'vectors/litologia.gpkg')
+            self.assertEqual(len(result),5)
+            self.assertTrue(result.source_fid.is_unique)
+
+            # Si la selección queda vacía, tampoco deben sobrevivir filas antiguas.
+            frame.iloc[[-1]].to_file(root/'input.gpkg',layer='rocks')
             frac,summary=harmonize_vectors(root,{'litologia':'input.gpkg'},box(0,0,2000,2000),
                                            np.full((4,4),250000.),spec,root)
-            self.assertEqual(summary.read_bbox.iloc[0],5)
-            self.assertEqual(summary.kept_with_margin.iloc[0],5)
-            result=pyogrio.read_dataframe(root/'vectors/litologia.gpkg')
-            self.assertEqual(set(result.code),{'01','02','03','04','05'})
-            self.assertTrue(result.source_fid.is_unique)
-            np.testing.assert_allclose(frac['litologia'],1)
+            self.assertEqual(summary.kept_with_margin.iloc[0],0)
+            self.assertEqual(pyogrio.read_info(root/'vectors/litologia.gpkg')['features'],0)
+            np.testing.assert_array_equal(frac['litologia'],0)
 
 
 if __name__ == '__main__':

@@ -355,8 +355,10 @@ def _harmonize_vectors_uncached(root, aliases, mask, land, spec, out):
                 clean = clean.loc[usable].copy()
                 clean = clean.loc[shapely.intersects(buffer, clean.geometry.array)]
                 if len(clean):
+                    # El primer lote sustituye la capa de un intento anterior;
+                    # solo se anexan los lotes de esta invocación.
                     pyogrio.write_dataframe(clean, output_path, layer=alias, driver='GPKG',
-                                            append=output_path.exists(), promote_to_multi=True)
+                                            append=kept_n > 0, promote_to_multi=True)
                     kept_n += len(clean)
                     # Polígonos: multiplicidad en centros de 500 m. Líneas: presencia local, NO cobertura de levantamiento.
                     burn = rasterize(((g, 1) for g in clean.geometry), out_shape=spec['native_shape'],
@@ -367,8 +369,18 @@ def _harmonize_vectors_uncached(root, aliases, mask, land, spec, out):
             # Recuento independiente del filtro rectangular; detectar truncación del lector.
             if read_n != expected_count:
                 raise AssertionError(f'{alias}: paginación incompleta/duplicada: {read_n} != {expected_count}.')
-            if output_path.exists():
-                assert pyogrio.read_info(output_path)['features'] == kept_n
+            if kept_n == 0:
+                # Publicar una capa vacía con su esquema, sin conservar filas previas.
+                empty = pyogrio.read_dataframe(path, layer=layer, max_features=1,
+                                               fid_as_index=True).iloc[:0]
+                empty, _ = clean_geometries(empty, spec['crs'])
+                pyogrio.write_dataframe(empty, output_path, layer=alias, driver='GPKG',
+                                        append=False, promote_to_multi=True)
+            written_n = pyogrio.read_info(output_path, layer=alias)['features']
+            if written_n != kept_n:
+                raise AssertionError(
+                    f'{alias}: recuento de salida incorrecto en {output_path}: '
+                    f'{written_n} entidades escritas != {kept_n} conservadas.')
             metric_frame = pd.concat(metric_parts, ignore_index=True) if metric_parts else pd.DataFrame()
             csv(out / f'vectors/{alias}_geometry_changes.csv', metric_frame)
             valid_area = aggregate_sum(np.where(count > 0, land, 0))

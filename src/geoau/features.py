@@ -56,10 +56,10 @@ LINE_GROUPS = [f'{a}_{b}' for a in ['falla', 'cabalgamiento', 'contacto_intrusiv
                for b in ['cartografiada', 'supuesta']]
 
 
-def verify_records(base, records):
+def verify_records(base, records, *, check_sha256=True):
     for item in records:
         p = base / item['path']
-        if not p.is_file() or sha256_file(p) != item['sha256']:
+        if not p.is_file() or (check_sha256 and sha256_file(p) != item['sha256']):
             raise ValueError(f'Entrada/salida modificada o ausente: {p}')
 
 
@@ -68,7 +68,7 @@ def records(base, paths):
              'size_bytes': p.stat().st_size} for p in paths]
 
 
-def start_run(root, config_path=None):
+def start_run(root, config_path=None, *, verify_phase_c_sha256=True):
     root = Path(root).resolve()
     config_path = Path(config_path or root / 'config/features.yaml')
     cfg = yaml.safe_load(config_path.read_text(encoding='utf-8'))
@@ -76,7 +76,7 @@ def start_run(root, config_path=None):
     if read_json(c / 'control_cierre.json')['estado_ejecucion'] != 'completada':
         raise ValueError('La fase C seleccionada no terminó.')
     # C selló sus productos: verificar antes de cualquier cálculo.
-    verify_records(c, read_json(c / 'outputs_manifest.json'))
+    verify_records(c, read_json(c / 'outputs_manifest.json'), check_sha256=verify_phase_c_sha256)
     if cfg['structural_source'] != 'contactos_geode':
         raise ValueError('V1 admite GEODE como única fuente estructural; no combina MAGNA.')
     spec = read_json(c / 'grid_spec.json')
@@ -105,6 +105,7 @@ def start_run(root, config_path=None):
         (out / name).mkdir()
     write_json(out / 'config_snapshot.json', cfg)
     write_json(out / 'inputs.json', {'phase_c_run': cfg['phase_c_run'],
+        'verify_phase_c_sha256': verify_phase_c_sha256,
         'external': records(root, external),
         'c_manifest_sha256': sha256_file(c / 'outputs_manifest.json')})
     shutil.copy2(Path(__file__), out / 'features_source.py')
@@ -193,7 +194,7 @@ def reuse_verified_blocks(root,out):
     return audit
 
 
-def ensure_run(root):
+def ensure_run(root, *, verify_phase_c_sha256=False):
     """Reanuda una ejecución compatible; crea otra si código/configuración cambió."""
     try:
         out=current_run(root)
@@ -203,7 +204,7 @@ def ensure_run(root):
             return out
     except (FileNotFoundError,ValueError,StopIteration):
         pass
-    out=start_run(root)
+    out=start_run(root, verify_phase_c_sha256=verify_phase_c_sha256)
     reuse_verified_blocks(root,out)
     return out
 
@@ -216,7 +217,8 @@ def context(root, out):
     verify_records(root, inp['external'])
     if sha256_file(c / 'outputs_manifest.json') != inp['c_manifest_sha256']:
         raise ValueError('Cambió el manifiesto C.')
-    verify_records(c, read_json(c / 'outputs_manifest.json'))
+    verify_records(c, read_json(c / 'outputs_manifest.json'),
+                   check_sha256=inp.get('verify_phase_c_sha256', True))
     spec = grid_spec(read_json(c / 'grid_spec.json'))
     grid = pd.read_csv(c / 'grid_1km.csv.gz')
     if not grid.cell_id.is_unique:

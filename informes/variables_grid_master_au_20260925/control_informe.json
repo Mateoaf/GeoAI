@@ -1,0 +1,158 @@
+{
+  "run": "reports/fase_d/20260923T211448_267684Z",
+  "fecha_informe": "2026-09-25",
+  "filas": 496855,
+  "columnas": 245,
+  "candidatas": 168,
+  "aprobadas": 0,
+  "roles": {
+    "predictor_candidato": 168,
+    "auxiliar_no_predictor": 73,
+    "etiqueta": 3,
+    "clave": 1
+  },
+  "listados_usuario_coinciden_en_orden": true,
+  "columnas_explicadas": 245,
+  "qc_recalculado_coincide": true,
+  "constantes_candidatas": [
+    "zn_proporcion_clase_3",
+    "w_proporcion_clase_2"
+  ],
+  "identidades_derivadas_verificadas": [
+    {
+      "derivada": "unidades_granitoides_explicitos_fraccion",
+      "formula": "litologia_u011_fraccion + litologia_u015_fraccion",
+      "identidad_verificada": true,
+      "duplicado_simple": false
+    },
+    {
+      "derivada": "unidades_mixtas_con_granitoides_fraccion",
+      "formula": "litologia_u014_fraccion",
+      "identidad_verificada": true,
+      "duplicado_simple": true
+    },
+    {
+      "derivada": "unidades_volcanicas_fraccion",
+      "formula": "litologia_u019_fraccion",
+      "identidad_verificada": true,
+      "duplicado_simple": true
+    },
+    {
+      "derivada": "unidades_basicas_ultrabasicas_fraccion",
+      "formula": "litologia_u018_fraccion",
+      "identidad_verificada": true,
+      "duplicado_simple": true
+    },
+    {
+      "derivada": "unidades_con_gneisses_fraccion",
+      "formula": "litologia_u010_fraccion",
+      "identidad_verificada": true,
+      "duplicado_simple": true
+    },
+    {
+      "derivada": "unidades_con_gravas_arenas_limos_fraccion",
+      "formula": "litologia_u012_fraccion",
+      "identidad_verificada": true,
+      "duplicado_simple": true
+    }
+  ],
+  "duplicado_cuaternario_gravas": true,
+  "fuentes": [
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/Grid_Master_Au.parquet",
+      "bytes": 72055613,
+      "sha256": "d036eb03e9669be88d89bd56a3f3f6cab6ee7ccd47667636ae42d47758913766"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/X_features.parquet",
+      "bytes": 65863571,
+      "sha256": "2846718037d740d381b3bfbcb706aaf5a3f3d96c34af443bbc6f6101c4b82bc6"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/column_roles.csv",
+      "bytes": 11584,
+      "sha256": "ce3526e31421a4c523d8c9d77a2d7c621225c84fdb63721324f4148141b656f9"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/feature_dictionary.csv",
+      "bytes": 35355,
+      "sha256": "924d198969c357c2fc01aa12387f646c03e371d87a53f118d8230dfb106e4250"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/feature_allowlist.json",
+      "bytes": 5874,
+      "sha256": "a31483c87df99dcfcab3a04a621a5a3acd77a4add72079be4c759a760bfde6d8"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/variables_qc.csv",
+      "bytes": 8313,
+      "sha256": "8829e926c55325896934f82218760f893e87835f8839c28259ce9a3356281298"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/soporte_modelos.csv",
+      "bytes": 226,
+      "sha256": "242ddc3fc5acbdebac8585347d6bc5276776859d7df65939cb7977b07f126264"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/control_cierre.json",
+      "bytes": 530,
+      "sha256": "427bd010b5beced566c6273ebbe26c9f8b7fe53e24bac4a7e2c1e90ea9207d82"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/config_snapshot.json",
+      "bytes": 520,
+      "sha256": "0eadd3c6a35dc7d40bf2c588db4663afa94c4057e2b1454881a718b498894280"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/grid_spec.json",
+      "bytes": 2086,
+      "sha256": "40342c53cb0012fe29087846b6406b5dbbc10ac80b1b0c178f22d79dbd0e62df"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/features_source.py",
+      "bytes": 45174,
+      "sha256": "1c1053305f095ec7aeca392bf81cc543f48aae88c96627db92da9f212a8d9579"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/dictionaries/litologia.csv",
+      "bytes": 2200,
+      "sha256": "ffb084ab69890f2dd89c7ae03aaa181d5dfca6b85585eaccdbacbac532430a55"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/dictionaries/edades.csv",
+      "bytes": 2296,
+      "sha256": "2740fd7b40d5eb47c1408a3d1bd6162971372c90748ade6e3a90ee72e92db0fb"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/dictionaries/geoquimica_leyendas_locales.csv",
+      "bytes": 8878,
+      "sha256": "ad3b68f9e891ae5b848774ccb4da21835c75959371b5b202940e2daa39c0c56a"
+    },
+    {
+      "path": "reports/fase_d/20260923T211448_267684Z/dictionaries/asociaciones_litologicas.csv",
+      "bytes": 1228,
+      "sha256": "68c42d91c1f219d66958e20584d51c4fa8a28cdabe73aaabd411b0adf9374ab4"
+    },
+    {
+      "path": "src/geoau/territory.py",
+      "bytes": 41544,
+      "sha256": "063bb21edfaf7b32eab3dfbe8c4197fcb77cfed460abff151c1c654e0f9f8d84"
+    },
+    {
+      "path": "src/geoau/additional_layers.py",
+      "bytes": 10887,
+      "sha256": "12dcdc2f73b52e6e6ce1d6f776db70d45a6bd8eb5f7dbaab538c3be6e4ecfa3a"
+    },
+    {
+      "path": "src/geoau/features.py",
+      "bytes": 45174,
+      "sha256": "1c1053305f095ec7aeca392bf81cc543f48aae88c96627db92da9f212a8d9579"
+    },
+    {
+      "path": "src/geoau/training.py",
+      "bytes": 30715,
+      "sha256": "e43a9316e32d0e7299a3d342ef0f10f70394db780db877999d6d644583bfeea7"
+    }
+  ],
+  "alcance": "Descripción y perfilado; sin entrenar, medir importancia predictiva ni auditar todos los archivos del manifiesto D."
+}

@@ -1,7 +1,7 @@
 schema_version: 1
-phase_b_run: reports/fase_b/20260908T085820_294458Z
+phase_b_run: reports/fase_b/20260923T190207_727009Z
 # Paso 15 ya calculado y sellado. null fuerza saneamiento completo desde originales.
-vector_cache_run: reports/fase_c/20260907T194217_760616Z
+vector_cache_run: null
 output_directory: reports/fase_c
 mask_path: data/raw/territorio/ES-region-01m-4326-2024.geojson
 mask_metadata: data/raw/territorio/provenance.json
