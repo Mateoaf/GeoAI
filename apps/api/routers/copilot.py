@@ -4,6 +4,7 @@ Ruta para el copiloto determinista de GeoAI-Au.
 """
 
 from fastapi import APIRouter
+
 from ..schemas.copilot import CopilotQuery, CopilotResponse
 from ..services.copilot_service import get_copilot_service
 

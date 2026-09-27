@@ -3,7 +3,6 @@ apps/api/routers/targets.py
 Rutas para consulta, filtrado y descarga de zonas de prospectividad y priorización.
 """
 
-from typing import Optional, List
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 
@@ -14,10 +13,10 @@ router = APIRouter(tags=["Targets & Prioritization"])
 
 @router.get("/api/targets", response_model=TargetsResponse)
 def get_targets(
-    categoria: Optional[str] = Query(None, description="Filtrar por 'prioridad_muy_alta_top01' o 'prioridad_alta_top05'"),
-    distrito: Optional[str] = Query(None, description="Filtrar por texto en distrito próximo"),
-    min_score: Optional[float] = Query(None, description="Score mínimo requerido"),
-    sin_deposito_cercano: Optional[bool] = Query(False, description="Si True, muestra targets alejados (>15 km) de depósitos conocidos (targets potencialmente novedosos)"),
+    categoria: str | None = Query(None, description="Filtrar por 'prioridad_muy_alta_top01' o 'prioridad_alta_top05'"),
+    distrito: str | None = Query(None, description="Filtrar por texto en distrito próximo"),
+    min_score: float | None = Query(None, description="Score mínimo requerido"),
+    sin_deposito_cercano: bool | None = Query(False, description="Si True, muestra targets alejados (>15 km) de depósitos conocidos (targets potencialmente novedosos)"),
     limit: int = Query(500, ge=1, le=1529),
     offset: int = Query(0, ge=0)
 ):

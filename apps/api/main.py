@@ -3,27 +3,27 @@ apps/api/main.py
 Punto de entrada principal de FastAPI para GeoAI-Au Explorer Backend.
 """
 
-from contextlib import asynccontextmanager
 import logging
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from . import config
 from .data_loader import get_data_loader
-from .services.tile_service import get_tile_service
-from .services.explain_service import get_explain_service
-
 from .routers import (
-    health,
-    summary,
     cells,
-    targets,
-    validation,
-    model,
-    tiles,
-    deposits,
     copilot,
+    deposits,
+    health,
+    model,
+    summary,
+    targets,
+    tiles,
+    validation,
 )
+from .services.explain_service import get_explain_service
+from .services.tile_service import get_tile_service
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("geoau_api")

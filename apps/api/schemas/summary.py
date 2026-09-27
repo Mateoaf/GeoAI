@@ -3,9 +3,10 @@ apps/api/schemas/summary.py
 Modelos Pydantic para el resumen global del proyecto y metadatos de release.
 """
 
-from typing import Dict, Any, List
 from pydantic import BaseModel, Field
+
 from .common import BaseResponse
+
 
 class ThresholdsSummary(BaseModel):
     top_01: float = Field(..., description="Umbral de corte de score para banda Top 1% (área acumulada)")
@@ -26,7 +27,7 @@ class ProjectSummary(BaseModel):
     features_count: int = Field(default=56, description="Número de predictores auditados y aprobados")
     prioritized_zones_count: int = Field(..., description="Total de zonas de prospectividad delimitadas (1.529)")
     thresholds: ThresholdsSummary = Field(..., description="Umbrales canónicos de corte de favorabilidad")
-    run_ids: Dict[str, str] = Field(..., description="Identificadores canónicos de ejecución de Fases D a H")
+    run_ids: dict[str, str] = Field(..., description="Identificadores canónicos de ejecución de Fases D a H")
 
 class ProjectSummaryResponse(BaseResponse):
     summary: ProjectSummary

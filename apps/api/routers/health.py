@@ -4,6 +4,7 @@ Ruta de healthcheck y verificación de estado.
 """
 
 from fastapi import APIRouter
+
 from ..data_loader import get_data_loader
 
 router = APIRouter(tags=["Health"])

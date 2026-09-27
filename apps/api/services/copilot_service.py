@@ -3,12 +3,11 @@ apps/api/services/copilot_service.py
 Copiloto GeoAI determinista basado en datos científicos canónicos auditados.
 """
 
-from typing import Dict, Any, List, Optional
 from abc import ABC, abstractmethod
 
 from ..data_loader import get_data_loader
+from ..schemas.copilot import CopilotAction, CopilotQuery, CopilotResponse
 from .explain_service import get_explain_service
-from ..schemas.copilot import CopilotQuery, CopilotResponse, CopilotAction
 
 
 class CopilotProvider(ABC):
@@ -117,12 +116,12 @@ class DeterministicCopilotProvider(CopilotProvider):
         # 4. Compara esta zona con Rodalquilar
         elif "rodalquilar" in query_text:
             markdown = (
-                f"### Caso de Estudio: Distrito Epitermal de Rodalquilar\n\n"
-                f"- **Depósito Clave**: Rodalquilar Cinto (`dep_rodalquilar_cinto`).\n"
-                f"- **Tipología**: Epitermal de alta sulfuración en arco volcánico neógeno.\n"
-                f"- **Desempeño en Holdout**: Identificado exitosamente en el Top 1% del holdout ciego.\n"
-                f"- **Predictores dominantes**: Altas fracciones de unidades volcánicas terciarias combinadas con moderada elevación topográfica y ausencia de formaciones metamórficas paleozoicas.\n\n"
-                f"Si seleccionas una celda en el mapa, puedes contrastar sus contribuciones litológicas frente al perfil volcánico de Cabo de Gata."
+                "### Caso de Estudio: Distrito Epitermal de Rodalquilar\n\n"
+                "- **Depósito Clave**: Rodalquilar Cinto (`dep_rodalquilar_cinto`).\n"
+                "- **Tipología**: Epitermal de alta sulfuración en arco volcánico neógeno.\n"
+                "- **Desempeño en Holdout**: Identificado exitosamente en el Top 1% del holdout ciego.\n"
+                "- **Predictores dominantes**: Altas fracciones de unidades volcánicas terciarias combinadas con moderada elevación topográfica y ausencia de formaciones metamórficas paleozoicas.\n\n"
+                "Si seleccionas una celda en el mapa, puedes contrastar sus contribuciones litológicas frente al perfil volcánico de Cabo de Gata."
             )
             return CopilotResponse(
                 query=request.query,
@@ -139,8 +138,8 @@ class DeterministicCopilotProvider(CopilotProvider):
             markdown = (
                 f"### Catálogo de Zonas de Prospectividad Aurífera\n\n"
                 f"- **Total Zonas Priorizadas**: 1.529 clusters espaciales contiguos.\n"
-                f"- **Banda Top 1% (Prioridad Muy Alta)**: `{top1_count}` zonas delimitadas (score $\\ge 0,8333$, $4.784\\text{ km}^2$).\n"
-                f"- **Banda Top 1-5% (Prioridad Alta)**: `{top5_count}` zonas delimitadas (score $\\ge 0,6526$, $19.135\\text{ km}^2$).\n\n"
+                f"- **Banda Top 1% (Prioridad Muy Alta)**: `{top1_count}` zonas delimitadas (score $\\ge 0,8333$, $4.784\\text{{ km}}^2$).\n"
+                f"- **Banda Top 1-5% (Prioridad Alta)**: `{top5_count}` zonas delimitadas (score $\\ge 0,6526$, $19.135\\text{{ km}}^2$).\n\n"
                 f"Puedes explorar la lista interactiva, filtrar por distrito o buscar zonas que no tengan depósitos conocidos cercanos en la pestaña **Targets** del panel derecho."
             )
             return CopilotResponse(
@@ -156,13 +155,13 @@ class DeterministicCopilotProvider(CopilotProvider):
 
         # Respuesta genérica orientativa
         markdown = (
-            f"### Asistente Geocientífico GeoAI-Au\n\n"
-            f"Puedo responder preguntas basadas en los datos y modelos auditados del proyecto:\n\n"
-            f"- **'¿Por qué esta celda tiene score alto?'**: Descompone las variables de la celda activa.\n"
-            f"- **'¿Cuáles son las mejores zonas de Ossa Morena?'**: Muestra los targets del distrito.\n"
-            f"- **'¿Qué ocurrió en el holdout?'**: Resumen cuantitativo de la evaluación ciega en Fase G.\n"
-            f"- **'Compara esta zona con Rodalquilar'**: Contexto metalogenético del epitermal de Almería.\n"
-            f"- **'Muéstrame targets Top 1%'**: Estadísticas y acceso a zonas prioritarias."
+            "### Asistente Geocientífico GeoAI-Au\n\n"
+            "Puedo responder preguntas basadas en los datos y modelos auditados del proyecto:\n\n"
+            "- **'¿Por qué esta celda tiene score alto?'**: Descompone las variables de la celda activa.\n"
+            "- **'¿Cuáles son las mejores zonas de Ossa Morena?'**: Muestra los targets del distrito.\n"
+            "- **'¿Qué ocurrió en el holdout?'**: Resumen cuantitativo de la evaluación ciega en Fase G.\n"
+            "- **'Compara esta zona con Rodalquilar'**: Contexto metalogenético del epitermal de Almería.\n"
+            "- **'Muéstrame targets Top 1%'**: Estadísticas y acceso a zonas prioritarias."
         )
         return CopilotResponse(
             query=request.query,

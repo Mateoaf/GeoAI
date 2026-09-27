@@ -3,13 +3,12 @@ apps/api/routers/cells.py
 Rutas de inspección territorial y explicabilidad de celdas de 1 km².
 """
 
-from typing import Optional
 from fastapi import APIRouter, HTTPException, Query
 
 from ..data_loader import get_data_loader
-from ..services.explain_service import get_explain_service
-from ..schemas.cell import CellResponse, CellInfo
+from ..schemas.cell import CellInfo, CellResponse
 from ..schemas.explain import CellExplainResponse
+from ..services.explain_service import get_explain_service
 
 router = APIRouter(tags=["Cell Inspection"])
 

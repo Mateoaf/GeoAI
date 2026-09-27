@@ -54,6 +54,6 @@ PATH_CACHE_ZONAS_GEOJSON = CACHE_DIR / "zonas_prospectividad_4326.geojson"
 PATH_CACHE_DEPOSITOS_GEOJSON = CACHE_DIR / "depositos_confirmados_4326.geojson"
 
 # Servidor
-PORT = int(os.getenv("PORT", 8000))
+PORT = int(os.getenv("PORT", "8000"))
 HOST = os.getenv("HOST", "127.0.0.1")
 CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000,*").split(",")

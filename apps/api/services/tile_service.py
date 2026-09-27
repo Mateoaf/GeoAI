@@ -4,16 +4,15 @@ Servicio de generación dinámica de teselas ráster Web Mercator (EPSG:3857) a 
 """
 
 import io
-import math
-from typing import Dict, Optional
 from functools import lru_cache
+from typing import Optional
 
-import numpy as np
-from PIL import Image
-import rasterio
-from rasterio.warp import reproject, Resampling
-from rasterio.transform import from_bounds
 import matplotlib
+import numpy as np
+import rasterio
+from PIL import Image
+from rasterio.transform import from_bounds
+from rasterio.warp import Resampling, reproject
 
 from .. import config
 
@@ -46,7 +45,7 @@ class TileService:
             cls._instance = TileService()
         return cls._instance
 
-    @lru_cache(maxsize=4096)
+    @lru_cache(maxsize=4096)  # noqa: B019 (Singleton instance)
     def render_tile(self, layer: str, z: int, x: int, y: int) -> bytes:
         """Renderiza una tesela PNG de 256x256 en Web Mercator EPSG:3857."""
         if z < 4 or z > 15:
@@ -84,7 +83,7 @@ class TileService:
                 src_nodata=src.nodata,
                 dst_nodata=-9999.0
             )
-        except Exception:
+        except Exception:  # noqa: BLE001
             return self.empty_png
 
         valid_mask = (dst_array != -9999.0) & (~np.isnan(dst_array)) & (dst_array > -9000)

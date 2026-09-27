@@ -5,14 +5,15 @@ Rutas para consulta de métricas de validación ciega en holdout (Fase G).
 
 import pandas as pd
 from fastapi import APIRouter
+
 from ..data_loader import get_data_loader
 from ..schemas.validation import (
-    ValidationSummaryResponse,
+    HoldoutDepositItem,
+    HoldoutDistrictItem,
     HoldoutMetricsSummary,
     ValidationDepositsResponse,
-    HoldoutDepositItem,
     ValidationDistrictsResponse,
-    HoldoutDistrictItem,
+    ValidationSummaryResponse,
 )
 
 router = APIRouter(tags=["Validation & Holdout"])
@@ -45,6 +46,8 @@ def get_validation_summary():
 def get_validation_deposits():
     loader = get_data_loader()
     df = loader.validation_deposits_df
+    if df is None:
+        return ValidationDepositsResponse(deposits=[])
     items = [HoldoutDepositItem(**row) for row in df.to_dict(orient="records")]
     return ValidationDepositsResponse(deposits=items)
 
@@ -53,6 +56,8 @@ def get_validation_deposits():
 def get_validation_districts():
     loader = get_data_loader()
     df = loader.validation_districts_df
+    if df is None:
+        return ValidationDistrictsResponse(districts=[])
     items = [HoldoutDistrictItem(**row) for row in df.to_dict(orient="records")]
     return ValidationDistrictsResponse(districts=items)
 
@@ -60,11 +65,15 @@ def get_validation_districts():
 @router.get("/api/validation/comparison")
 def get_validation_comparison():
     loader = get_data_loader()
-    records = loader.validation_comparison_df.to_dict(orient="records")
-    for r in records:
-        for k, v in list(r.items()):
-            if pd.isna(v):
-                r[k] = None
+    df = loader.validation_comparison_df
+    if df is None:
+        records = []
+    else:
+        records = df.to_dict(orient="records")
+        for r in records:
+            for k, v in list(r.items()):
+                if pd.isna(v):
+                    r[k] = None
     return {
         "comparison": records,
         "transfer_gap_description": (

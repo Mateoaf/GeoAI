@@ -4,6 +4,7 @@ Rutas de resumen del proyecto, configuración de capas y metadatos de release.
 """
 
 from fastapi import APIRouter
+
 from ..data_loader import get_data_loader
 from ..schemas.summary import ProjectSummary, ProjectSummaryResponse, ThresholdsSummary
 

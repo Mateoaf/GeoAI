@@ -3,9 +3,11 @@ apps/api/schemas/cell.py
 Modelos Pydantic para inspección territorial de celdas de 1 km².
 """
 
-from typing import Optional
+
 from pydantic import BaseModel, Field
+
 from .common import BaseResponse
+
 
 class CellInfo(BaseModel):
     cell_id: str = Field(..., description="Identificador único determinista de la celda de 1 km²")
@@ -19,10 +21,10 @@ class CellInfo(BaseModel):
     y_epsg25830: float = Field(..., description="Coordenada Y norte en EPSG:25830")
     lon_wgs84: float = Field(..., description="Longitud geográfica en WGS84")
     lat_wgs84: float = Field(..., description="Latitud geográfica en WGS84")
-    deposit_id: Optional[str] = Field(None, description="Depósito mineral confirmado si existe presencia en la celda")
-    district_id: Optional[str] = Field(None, description="Distrito metalogenético asignado a la celda")
+    deposit_id: str | None = Field(None, description="Depósito mineral confirmado si existe presencia en la celda")
+    district_id: str | None = Field(None, description="Distrito metalogenético asignado a la celda")
 
 class CellResponse(BaseResponse):
     eligible: bool = Field(..., description="Indica si la celda pertenece a la máscara canónica eligible_approved_features")
-    cell: Optional[CellInfo] = Field(None, description="Datos detallados de la celda si es elegible")
-    query_coordinates: Optional[dict] = Field(None, description="Coordenadas originales de la consulta")
+    cell: CellInfo | None = Field(None, description="Datos detallados de la celda si es elegible")
+    query_coordinates: dict | None = Field(None, description="Coordenadas originales de la consulta")

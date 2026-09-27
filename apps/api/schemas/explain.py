@@ -3,9 +3,11 @@ apps/api/schemas/explain.py
 Modelos Pydantic para explicabilidad local aditiva exacta (beta * z).
 """
 
-from typing import List
+
 from pydantic import BaseModel, Field
+
 from .common import BaseResponse
+
 
 class FeatureContribution(BaseModel):
     variable: str = Field(..., description="Nombre técnico de la variable")
@@ -26,9 +28,9 @@ class CellExplanation(BaseModel):
     consistency_error: float = Field(..., description="Diferencia absoluta entre logit calculado y decision_function")
     consistency_test_passed: bool = Field(..., description="True si abs(logit_calc - decision_function) < 1e-6")
     sigmoid_score: float = Field(..., description="Score calculado mediante función sigmoide: 1 / (1 + exp(-logit))")
-    top_positive_contributions: List[FeatureContribution] = Field(..., description="Factores que más aumentan la favorabilidad")
-    top_negative_contributions: List[FeatureContribution] = Field(..., description="Factores que más reducen la favorabilidad")
-    all_contributions: List[FeatureContribution] = Field(..., description="Descomposición aditiva completa de las 56 variables")
+    top_positive_contributions: list[FeatureContribution] = Field(..., description="Factores que más aumentan la favorabilidad")
+    top_negative_contributions: list[FeatureContribution] = Field(..., description="Factores que más reducen la favorabilidad")
+    all_contributions: list[FeatureContribution] = Field(..., description="Descomposición aditiva completa de las 56 variables")
 
 class CellExplainResponse(BaseResponse):
     explanation: CellExplanation

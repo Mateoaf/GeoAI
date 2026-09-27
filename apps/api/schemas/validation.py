@@ -4,9 +4,12 @@ Modelos Pydantic para métricas de evaluación ciega en holdout (Fase G).
 Basado estrictamente en los esquemas reales de Fase G.
 """
 
-from typing import List, Dict, Any, Optional
+from typing import Any
+
 from pydantic import BaseModel, Field
+
 from .common import BaseResponse
+
 
 class HoldoutMetricsSummary(BaseModel):
     holdout_cells: int = Field(..., description="Total de celdas de la reserva ciega (13.541)")
@@ -25,7 +28,7 @@ class HoldoutMetricsSummary(BaseModel):
         default="Brecha de transferencia observada: rendimiento en holdout independiente limitado a N=8 depósitos; alta incertidumbre estadística.",
         description="Declaración metodológica de honestidad intelectual."
     )
-    bootstrap_uncertainty_ci95: Dict[str, Any] = Field(..., description="Intervalos de confianza bootstrap al 95% para N=8 depósitos")
+    bootstrap_uncertainty_ci95: dict[str, Any] = Field(..., description="Intervalos de confianza bootstrap al 95% para N=8 depósitos")
 
 class ValidationSummaryResponse(BaseResponse):
     summary: HoldoutMetricsSummary
@@ -44,7 +47,7 @@ class HoldoutDepositItem(BaseModel):
     recovered_at_10: bool
 
 class ValidationDepositsResponse(BaseResponse):
-    deposits: List[HoldoutDepositItem]
+    deposits: list[HoldoutDepositItem]
 
 class HoldoutDistrictItem(BaseModel):
     district_id: str
@@ -67,4 +70,4 @@ class HoldoutDistrictItem(BaseModel):
     cells_recovered_at_10: int
 
 class ValidationDistrictsResponse(BaseResponse):
-    districts: List[HoldoutDistrictItem]
+    districts: list[HoldoutDistrictItem]

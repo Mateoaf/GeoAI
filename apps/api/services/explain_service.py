@@ -3,12 +3,13 @@ apps/api/services/explain_service.py
 Motor de Explicabilidad Aditiva Local Exacta (beta * z) para GeoAI-Au Explorer.
 """
 
-from typing import Dict, Any, List, Optional
+from typing import Optional
+
 import numpy as np
 import pandas as pd
 
 from ..data_loader import get_data_loader
-from ..schemas.explain import FeatureContribution, CellExplanation
+from ..schemas.explain import CellExplanation, FeatureContribution
 
 
 class ExplainService:
@@ -35,7 +36,7 @@ class ExplainService:
             cls._instance = ExplainService()
         return cls._instance
 
-    def explain_cell(self, cell_id: str) -> Optional[CellExplanation]:
+    def explain_cell(self, cell_id: str) -> CellExplanation | None:
         """Calcula la descomposición aditiva exacta logit(x) = intercept + sum(beta_i * z_i)."""
         if self.data_loader.features_df is None or cell_id not in self.data_loader.features_df.index:
             return None
@@ -65,7 +66,7 @@ class ExplainService:
         prospectivity_score = float(cell_meta["score"])
 
         # 4. Construir lista de contribuciones detalladas
-        all_contribs: List[FeatureContribution] = []
+        all_contribs: list[FeatureContribution] = []
         for i, col_name in enumerate(self.approved_columns):
             raw_val = float(X_df.iloc[0, i]) if not pd.isna(X_df.iloc[0, i]) else 0.0
             z_val = float(z_vector[i])

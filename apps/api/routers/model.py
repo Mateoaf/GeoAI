@@ -4,8 +4,8 @@ Rutas para consulta de coeficientes del modelo de producción e hiperparámetros
 """
 
 from fastapi import APIRouter
+
 from ..data_loader import get_data_loader
-from ..schemas.common import BaseResponse
 
 router = APIRouter(tags=["Model Architecture & Coefficients"])
 

@@ -5,6 +5,7 @@ Ruta para servir la capa vectorial de depósitos históricos auditados (Fase B).
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
+
 from ..data_loader import get_data_loader
 
 router = APIRouter(tags=["Mineral Deposits"])

@@ -3,16 +3,14 @@ apps/api/data_loader.py
 Carga en memoria y cacheo de alta velocidad de los artefactos científicos de GeoAI-Au v1.0.
 """
 
-import sys
 import json
 import logging
-from pathlib import Path
-from typing import Dict, Any, Optional
+import sys
+from typing import Any, Optional
 
-import numpy as np
+import joblib
 import pandas as pd
 import pyarrow.parquet as pq
-import joblib
 from pyproj import Transformer
 
 from . import config
@@ -28,37 +26,37 @@ class DataLoader:
     _instance: Optional["DataLoader"] = None
 
     def __init__(self):
-        self.grid_spec: Dict[str, Any] = {}
+        self.grid_spec: dict[str, Any] = {}
         self.origin_x: float = -50000.0
         self.origin_y: float = 4860000.0
         self.resolution_m: float = 1000.0
         self.width: int = 1100
         self.height: int = 910
 
-        self.control_cierre: Dict[str, Any] = {}
+        self.control_cierre: dict[str, Any] = {}
         self.approved_columns: list = []
-        self.feature_dictionary: Dict[str, Any] = {}
-        self.coefficients_df: Optional[pd.DataFrame] = None
-        self.targets_df: Optional[pd.DataFrame] = None
-        self.casos_estudio_df: Optional[pd.DataFrame] = None
+        self.feature_dictionary: dict[str, Any] = {}
+        self.coefficients_df: pd.DataFrame | None = None
+        self.targets_df: pd.DataFrame | None = None
+        self.casos_estudio_df: pd.DataFrame | None = None
 
-        self.validation_summary: Dict[str, Any] = {}
-        self.validation_deposits_df: Optional[pd.DataFrame] = None
-        self.validation_districts_df: Optional[pd.DataFrame] = None
-        self.validation_comparison_df: Optional[pd.DataFrame] = None
-        self.validation_bootstrap: Dict[str, Any] = {}
+        self.validation_summary: dict[str, Any] = {}
+        self.validation_deposits_df: pd.DataFrame | None = None
+        self.validation_districts_df: pd.DataFrame | None = None
+        self.validation_comparison_df: pd.DataFrame | None = None
+        self.validation_bootstrap: dict[str, Any] = {}
 
-        self.depositos_geojson: Dict[str, Any] = {}
-        self.zonas_geojson: Dict[str, Any] = {}
+        self.depositos_geojson: dict[str, Any] = {}
+        self.zonas_geojson: dict[str, Any] = {}
 
         self.model: Any = None
-        self.model_meta: Dict[str, Any] = {}
+        self.model_meta: dict[str, Any] = {}
 
         # Lookups espaciales ultrarrápidos O(1)
-        self.cell_lookup: Dict[str, Dict[str, Any]] = {}
-        self.rel_deposit_by_cell: Dict[str, str] = {}
-        self.rel_district_by_cell: Dict[str, str] = {}
-        self.features_df: Optional[pd.DataFrame] = None
+        self.cell_lookup: dict[str, dict[str, Any]] = {}
+        self.rel_deposit_by_cell: dict[str, str] = {}
+        self.rel_district_by_cell: dict[str, str] = {}
+        self.features_df: pd.DataFrame | None = None
 
         # Transformadores de coordenadas
         self.proj_to_25830 = Transformer.from_crs("EPSG:4326", "EPSG:25830", always_xy=True)
@@ -176,7 +174,7 @@ class DataLoader:
 
         logger.info("Carga en memoria completada exitosamente.")
 
-    def coordinate_to_cell_id(self, lat: float, lon: float) -> Optional[str]:
+    def coordinate_to_cell_id(self, lat: float, lon: float) -> str | None:
         """Proyecta (lat, lon) WGS84 a celda EPSG:25830 en tiempo O(1)."""
         x, y = self.proj_to_25830.transform(lon, lat)
         col = int((x - self.origin_x) // self.resolution_m)
@@ -187,7 +185,7 @@ class DataLoader:
             return cell_id
         return None
 
-    def get_cell_info(self, cell_id: str) -> Optional[Dict[str, Any]]:
+    def get_cell_info(self, cell_id: str) -> dict[str, Any] | None:
         return self.cell_lookup.get(cell_id)
 
 

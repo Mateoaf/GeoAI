@@ -3,9 +3,10 @@ apps/api/schemas/targets.py
 Modelos Pydantic para zonas de prospectividad y priorización territorial.
 """
 
-from typing import List, Optional
 from pydantic import BaseModel, Field
+
 from .common import BaseResponse
+
 
 class TargetZone(BaseModel):
     zona_id: str = Field(..., description="Identificador único de la zona de priorización")
@@ -28,4 +29,4 @@ class TargetZone(BaseModel):
 
 class TargetsResponse(BaseResponse):
     total_count: int = Field(..., description="Número total de zonas tras filtros")
-    zones: List[TargetZone] = Field(..., description="Lista de zonas de prospectividad")
+    zones: list[TargetZone] = Field(..., description="Lista de zonas de prospectividad")

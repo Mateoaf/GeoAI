@@ -4,8 +4,9 @@ Tests unitarios y de contrato para la API de GeoAI-Au Explorer.
 """
 
 import sys
-import pytest
 from pathlib import Path
+
+import pytest
 from fastapi.testclient import TestClient
 
 # Asegurar importación
@@ -15,7 +16,6 @@ sys.path.insert(0, str(REPO_ROOT / "apps"))
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from apps.api.main import app
-from apps.api.data_loader import get_data_loader
 
 client = TestClient(app)
 
@@ -47,7 +47,7 @@ def test_layers_catalog():
     assert response.status_code == 200
     data = response.json()
     assert len(data["layers"]) >= 5
-    layer_ids = [l["id"] for l in data["layers"]]
+    layer_ids = [layer["id"] for layer in data["layers"]]
     assert "score" in layer_ids
     assert "percentile" in layer_ids
     assert "priority" in layer_ids
@@ -193,3 +193,8 @@ def test_absence_of_forbidden_words_in_schemas():
     assert "probability_of_gold" not in openapi_str
     assert "probabilidad_de_oro" not in openapi_str
     assert "probabilidad_deposito" not in openapi_str
+
+
+if __name__ == "__main__":
+    sys.exit(pytest.main([__file__, "-v"]))
+
