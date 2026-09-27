@@ -47,8 +47,16 @@ desktop.ini
 /*
 !/*/
 !/.gitignore
+!/README.md
+!/CHANGELOG.md
+!/MODEL_CARD.md
+!/DATA_CARD.md
+!/LIMITATIONS.md
+!/PROVENANCE_B_H.md
 !/requirements-unidad1.txt
 !/requirements-unidad1.lock.txt
+!/pyproject.toml
 /.*
 !/.*/
 notebooks/malla_espana.gpkg
+mdt/

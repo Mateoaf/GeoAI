@@ -122,6 +122,25 @@ class EvaluationTests(unittest.TestCase):
             p.write_text('modified')
             with self.assertRaises(ValueError): ev.verify(base, entries)
 
+    def test_territorial_groups_contract(self):
+        cfg, grid, rel, _, _ = fixture()
+        cfg.update(phase_d_run='d', protocol_reviewed=False)
+        # Discordance check
+        rel['elegible_general_revisada'] = True
+        rel['district_id'] = 'dist_test'
+        rel['deposit_id'] = 'dep_test'
+        groupmap_discordant = pd.DataFrame({'cell_id': grid.cell_id, 'district_id': ''})
+        with patch.object(ev, 'read_json', return_value={'approved_training_columns': ['x']}):
+            gate = ev.readiness(Path('.'), cfg, grid, rel, groupmap_discordant)
+            self.assertIn('Distritos de indicios y cartografía discordantes.', gate['reasons'])
+
+        # Concordant check
+        groupmap_concordant = pd.DataFrame({'cell_id': grid.cell_id, 'district_id': ''})
+        groupmap_concordant.loc[groupmap_concordant.cell_id.isin(rel.cell_id), 'district_id'] = 'dist_test'
+        with patch.object(ev, 'read_json', return_value={'approved_training_columns': ['x']}):
+            gate2 = ev.readiness(Path('.'), cfg, grid, rel, groupmap_concordant)
+            self.assertNotIn('Distritos de indicios y cartografía discordantes.', gate2['reasons'])
+
     def test_nested_pipeline(self):
         data = fixture()
         with tempfile.TemporaryDirectory() as folder, patch.object(ev, 'context', return_value=data):
@@ -144,5 +163,65 @@ class EvaluationTests(unittest.TestCase):
                 self.assertFalse(sample.training_allowed.any())
                 self.assertEqual(set(sample.sample_role), {'P_candidate_proxy', 'U_unlabelled'})
 
+    def test_reserve_districts_and_protocol_contract(self):
+        root = Path(__file__).resolve().parent.parent
+        import yaml
+        cfg = yaml.safe_load((root / 'config/evaluation.yaml').read_text(encoding='utf-8'))
+        self.assertTrue(cfg['protocol_reviewed'])
+        self.assertEqual(len(cfg['reserve_district_ids']), 5)
+        self.assertEqual(cfg['mode'], 'validated')
+
+        expected_res = {
+            'dist_cabo_de_gata',
+            'dist_galicia_costa_da_morte',
+            'dist_montes_de_toledo_jara',
+            'dist_ossa_morena_penaflor',
+            'dist_beticas_granada'
+        }
+        self.assertEqual(set(cfg['reserve_district_ids']), expected_res)
+
+        res_csv = root / 'data/review/seleccion_reserva_distritos.csv'
+        self.assertTrue(res_csv.exists())
+        df_res = pd.read_csv(res_csv)
+        self.assertEqual(len(df_res), 5)
+        self.assertEqual(set(df_res['district_id']), expected_res)
+
+        d, grid, relations, spec, groupmap = ev.source_data(root, cfg)
+        gate = ev.readiness(root, cfg, grid, relations, groupmap)
+        self.assertTrue(gate['ready_for_scientific_training'])
+        self.assertEqual(gate['reasons'], [])
+        self.assertEqual(gate['selected_role'], 'P_reviewed')
+
+    def test_validated_phase_e_contract(self):
+        root = Path(__file__).resolve().parent.parent
+        out = ev.current_run(root)
+        ev.verify(out, ev.read_json(out / 'outputs_manifest.json'))
+        control = ev.read_json(out / 'control_cierre.json')
+        self.assertEqual(control['estado_ejecucion'], 'completada')
+        self.assertEqual(control['mode'], 'validated')
+        self.assertTrue(control['fase_e_cientifica_cerrada'])
+        self.assertTrue(control['training_allowed'])
+        self.assertFalse(control['prediction_allowed'])
+
+        readiness = ev.read_json(out / 'readiness.json')
+        self.assertEqual(readiness['selected_role'], 'P_reviewed')
+        self.assertEqual(readiness['reasons'], [])
+
+        sel_p = pd.read_parquet(out / 'design/selected_positive_records.parquet')
+        self.assertEqual(len(sel_p), 175)
+        self.assertEqual(sel_p.cell_id.nunique(), 131)
+        self.assertEqual(sel_p.deposit_id.nunique(), 45)
+        self.assertEqual(sel_p.district_id.nunique(), 32)
+        self.assertEqual(set(sel_p.protocol_role), {'P_reviewed'})
+        self.assertFalse(sel_p.protocol_role.str.contains('proxy').any())
+
+        splits = pd.read_csv(out / 'split_summary.csv')
+        self.assertEqual(len(splits), 20)
+        self.assertGreaterEqual(splits.minimum_train_test_holdout_gap_lower_bound_m.min(), 5000.0)
+
+        samples = pd.read_csv(out / 'sample_summary.csv')
+        self.assertEqual(len(samples), 180)
+
 
 if __name__ == '__main__': unittest.main()
+

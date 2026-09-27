@@ -128,5 +128,34 @@ class TrainingTests(unittest.TestCase):
                 self.assertFalse(pred.is_absolute_gold_probability.any())
             ev.verify(out, ev.read_json(out/'logistic_manifest.json'))
 
+    def test_validated_phase_f_contract(self):
+        root = Path(__file__).resolve().parent.parent
+        out = tr.current_run(root)
+        ev.verify(out, ev.read_json(out / 'outputs_manifest.json'))
+        control = ev.read_json(out / 'control_cierre.json')
+        self.assertEqual(control['estado_ejecucion'], 'completada')
+        self.assertEqual(control['mode'], 'validated')
+        self.assertTrue(control['scientific_training_allowed'])
+        self.assertEqual(control['outer_folds'], 5)
+        self.assertEqual(set(control['families']), {'logistic', 'random_forest', 'extra_trees', 'hist_boosting'})
+
+        # Verificar tablas de comparacion
+        summary = pd.read_csv(out / 'comparison_summary.csv', header=[0, 1], index_col=0)
+        self.assertIn('hist_boosting', summary.index)
+        self.assertIn('extra_trees', summary.index)
+        self.assertIn('random_forest', summary.index)
+        self.assertIn('logistic', summary.index)
+
+        final_meta = ev.read_json(out / 'final_model/final_validated_model.json')
+        ranking = pd.read_csv(out / 'development_cv_candidate_ranking.csv', index_col=0)
+        self.assertEqual(final_meta['candidate_id'], ranking.index[0])
+        self.assertEqual(final_meta['family'], ranking.loc[ranking.index[0], 'family'])
+        self.assertEqual(final_meta['n_features'], 56)
+        self.assertFalse(final_meta['holdout_touched'])
+        self.assertTrue(final_meta['ready_for_phase_g_blind_evaluation'])
+
+        final_model = joblib.load(out / 'final_model/final_validated_model.joblib')
+        self.assertEqual(len(final_model.named_steps['guard'].columns), 56)
+
 
 if __name__ == '__main__': unittest.main()

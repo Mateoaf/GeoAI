@@ -330,9 +330,15 @@ def name_is_orphan_aux(path):
 def environment_info():
     names = ('pandas', 'geopandas', 'pyogrio', 'shapely', 'pyproj', 'rasterio',
              'openpyxl', 'PyYAML', 'nbformat', 'nbclient', 'ipykernel', 'matplotlib')
+    def pkg_ver(name):
+        try:
+            return metadata.version(name)
+        except Exception:
+            return 'no_instalado'
     return {'python': sys.version, 'executable': sys.executable, 'platform': platform.platform(),
-            'packages': {name: metadata.version(name) for name in names},
-            'gdal_pyogrio': pyogrio.__gdal_version_string__, 'gdal_rasterio': rasterio.__gdal_version__}
+            'packages': {name: pkg_ver(name) for name in names},
+            'gdal_pyogrio': getattr(pyogrio, '__gdal_version_string__', 'desconocido'),
+            'gdal_rasterio': getattr(rasterio, '__gdal_version__', 'desconocido')}
 
 
 def json_safe(value):

@@ -1,5 +1,5 @@
 schema_version: 1
-phase_f_run: reports/fase_f/20260909T184735_016759Z
+phase_f_run: reports/fase_f/20260926T225051_510861Z
 output_directory: reports/unidad1
 seed: 42
 # U1 estudia solo validación interna del primer fold externo predefinido.

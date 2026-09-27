@@ -69,7 +69,21 @@ class SafeOneHot(TransformerMixin, BaseEstimator):
         return self.encoder_.get_feature_names_out(input_features)
 
 
-def feature_sets(d):
+def feature_sets(d, mode='diagnostic', allow=None):
+    if mode == 'validated':
+        allowlist = allow if allow is not None else ev.read_json(d/'feature_allowlist.json')
+        approved = allowlist['approved_training_columns']
+        terrain = [c for c in approved if c.startswith(('elevacion_', 'pendiente_', 'tpi_', 'desv_elevacion_'))]
+        hydro = [c for c in approved if c == 'dist_cauce_m' or c.startswith('dens_aprox_cauce_')]
+        geology = [c for c in approved if c not in terrain + hydro]
+        full_56 = list(approved)
+        return {
+            'geology': geology,
+            'geology_terrain': geology + terrain,
+            'geology_terrain_hydro': full_56,
+            'geology_terrain_geo4_hydro': full_56,
+            'approved_56': full_56
+        }
     sets = ev.read_json(d/'feature_sets.json')
     base = sets['base_geologia_relieve_estructuras']
     terrain = [c for c in base if c.startswith(('elevacion_', 'pendiente_', 'tpi_', 'desv_elevacion_'))]
@@ -166,9 +180,9 @@ def start_run(root):
     cfg_path = root/'config/training.yaml'
     cfg = yaml.safe_load(cfg_path.read_text(encoding='utf-8'))
     e, d, ecfg, grid, relations = check_inputs(root, cfg)
-    sets = feature_sets(d)
-    dictionary = pd.read_csv(d/'feature_dictionary.csv')
     allow = ev.read_json(d/'feature_allowlist.json')
+    sets = feature_sets(d, mode=cfg['mode'], allow=allow)
+    dictionary = pd.read_csv(d/'feature_dictionary.csv')
     schema = {}
     for name, columns in sets.items():
         cats = authorize_columns(columns, dictionary, allow, cfg['mode'])
@@ -255,18 +269,37 @@ def metrics(frame, scores, positive_records=None, mode='diagnostic'):
     total_area = float(cumulative[-1])
     y = frame.observed_P.to_numpy(dtype=int)
     if not y.any(): raise ValueError('Evaluación sin P.')
-    output = {'cells': len(frame), 'observed_P_cells': int(y.sum()),
+    total_p_cells = int(y.sum())
+    output = {'cells': len(frame), 'observed_P_cells': total_p_cells,
               'positive_unit': 'candidate_cell' if mode == 'diagnostic' else 'reviewed_deposit'}
-    if mode == 'validated':
+    has_deposits = False
+    if positive_records is not None and 'deposit_id' in positive_records.columns:
         links = positive_records[positive_records.cell_id.isin(frame.cell_id)]
-        if links.deposit_id.isna().any(): raise ValueError('Depósitos ausentes en evaluación validada.')
-        n_targets = links.deposit_id.nunique()
-    else: n_targets = int(y.sum())
+        if not links.deposit_id.isna().any() and len(links) > 0:
+            n_targets = links.deposit_id.nunique()
+            output['observed_deposits'] = int(n_targets)
+            has_deposits = True
+    if not has_deposits:
+        if mode == 'validated':
+            raise ValueError('Depósitos ausentes en evaluación validada.')
+        n_targets = total_p_cells
+        output['observed_deposits'] = total_p_cells
+
     for fraction, suffix in ((.01, '01'), (.05, '05'), (.10, '10')):
         selected = ranked.loc[cumulative <= fraction * total_area]
-        hits = int(selected.observed_P.sum()) if mode == 'diagnostic' else links.loc[links.cell_id.isin(selected.cell_id), 'deposit_id'].nunique()
-        output[f'recovery_at_{suffix}'] = hits / n_targets
+        cell_hits = int(selected.observed_P.sum())
+        cell_rec = float(cell_hits / total_p_cells)
+        output[f'cell_recovery_at_{suffix}'] = cell_rec
+        if has_deposits:
+            dep_hits = int(links.loc[links.cell_id.isin(selected.cell_id), 'deposit_id'].nunique())
+            dep_rec = float(dep_hits / n_targets) if n_targets > 0 else 0.0
+            output[f'deposit_recovery_at_{suffix}'] = dep_rec
+            output[f'recovery_at_{suffix}'] = dep_rec
+        else:
+            output[f'deposit_recovery_at_{suffix}'] = cell_rec
+            output[f'recovery_at_{suffix}'] = cell_rec
         output[f'area_fraction_{suffix}'] = float(selected.land_area_m2.sum() / total_area)
+
     mask = frame.pu_metric_member.to_numpy()
     output['average_precision_PU'] = float(average_precision_score(y[mask], scores[mask]))
     output['roc_auc_PU'] = float(roc_auc_score(y[mask], scores[mask])) if len(np.unique(y[mask])) == 2 else None
@@ -382,12 +415,15 @@ def fit_references(root, out):
         if item['level'] != 'outer': continue
         split_id = item['split_id']; frame = fixed_frame(out, split_id)
         x = X.loc[frame.cell_id]
-        # Regla ilustrativa fijada antes de resultados; escala regional de 5 km.
         fault = np.exp(-pd.to_numeric(x.dist_falla_cartografiada_m).fillna(np.inf).to_numpy()/5000.)
-        granitoid = pd.to_numeric(x.unidades_granitoides_explicitos_fraccion).fillna(0).clip(0, 1).to_numpy()
+        if 'unidades_granitoides_explicitos_fraccion' in x.columns:
+            granitoid = pd.to_numeric(x.unidades_granitoides_explicitos_fraccion).fillna(0).clip(0, 1).to_numpy()
+            geo_rule = .5*fault + .5*granitoid
+        else:
+            geo_rule = fault
         scores = {'constant': np.full(len(frame), .5),
                   'random': np.array([ev.seed_for(cfg['seed'], 'random_reference', c)/2**64 for c in frame.cell_id]),
-                  'geological_rule': .5*fault + .5*granitoid}
+                  'geological_rule': geo_rule}
         for family, values in scores.items():
             rows.append({'family': family, 'split_id': split_id, **metrics(frame, values, records, cfg['mode'])})
             paths.append(save_scores(out, f'{family}_{split_id}', frame, values, cfg['mode']))
@@ -459,8 +495,11 @@ def finish_run(root, out):
     comparison = pd.concat([pd.read_csv(out/'reference_metrics.csv')] +
                            [pd.read_csv(out/f'{family}_outer_metrics.csv') for family in cfg['families']], ignore_index=True)
     comparison.to_csv(out/'comparison_by_fold.csv', index=False)
-    comparison.groupby('family')[['recovery_at_01', 'recovery_at_05', 'recovery_at_10', 'average_precision_PU', 'roc_auc_PU']].agg(
-        ['mean', 'std']).to_csv(out/'comparison_summary.csv')
+    metric_cols = [c for c in ['deposit_recovery_at_01', 'deposit_recovery_at_05', 'deposit_recovery_at_10',
+                               'cell_recovery_at_01', 'cell_recovery_at_05', 'cell_recovery_at_10',
+                               'recovery_at_01', 'recovery_at_05', 'recovery_at_10',
+                               'average_precision_PU', 'roc_auc_PU'] if c in comparison.columns]
+    comparison.groupby('family')[metric_cols].agg(['mean', 'std']).to_csv(out/'comparison_summary.csv')
     selections = [s for family in cfg['families'] for s in ev.read_json(out/f'{family}_selections.json')]
     chosen = []
     records = pd.read_parquet(out/'evaluation/positive_records.parquet')
@@ -472,7 +511,13 @@ def finish_run(root, out):
         if not prediction.cell_id.equals(frame.cell_id): raise ValueError('OOF desalineada.')
         save_scores(out, f'nested_selected_{split_id}', frame, prediction.score.to_numpy(), cfg['mode'])
         chosen.append({**winner, **metrics(frame, prediction.score, records, cfg['mode'])})
-    pd.DataFrame(chosen).to_csv(out/'nested_procedure_metrics.csv', index=False)
+    nested_df = pd.DataFrame(chosen)
+    nested_df.to_csv(out/'nested_procedure_metrics.csv', index=False)
+    summary_cols = [c for c in ['deposit_recovery_at_01', 'deposit_recovery_at_05', 'deposit_recovery_at_10',
+                                'cell_recovery_at_01', 'cell_recovery_at_05', 'cell_recovery_at_10',
+                                'recovery_at_01', 'recovery_at_05', 'recovery_at_10',
+                                'average_precision_PU', 'roc_auc_PU'] if c in nested_df.columns]
+    nested_df[summary_cols].agg(['mean', 'std']).T.to_csv(out/'nested_procedure_summary.csv')
     write_json(out/'selection_contract.json', {'primary': cfg['primary_metric'], 'aggregation': 'media de folds internos',
         'selection': 'familia y candidato por resultado interno, desempate determinista',
         'external_comparison': 'descriptiva; no se elige ganador global por resultados externos',

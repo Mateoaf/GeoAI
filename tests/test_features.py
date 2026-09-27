@@ -8,6 +8,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
 import numpy as np
 import shapely
 import pandas as pd
+import yaml
 from geoau import features as fd
 from geoau.features import (structural_class, categorical_areas, nearest_distances,
     line_lengths, terrain_arrays, color_quality, records, verify_records, disk_kernel)
@@ -140,4 +141,35 @@ class FeatureTests(unittest.TestCase):
             self.assertEqual(len(result),3)
             self.assertEqual(result.value.tolist(),[5.,2.,3.])
 
+    def test_audit_168_predictors_contract(self):
+        audit_path = Path(__file__).resolve().parent.parent / 'data/review/auditoria_predictores_fase_d.csv'
+        self.assertTrue(audit_path.exists())
+        df = pd.read_csv(audit_path)
+        self.assertEqual(len(df), 168)
+        self.assertEqual((df['decision'] == 'approved').sum(), 56)
+        self.assertEqual((df['decision'] == 'pending').sum(), 18)
+        self.assertEqual((df['decision'] == 'rejected').sum(), 94)
+
+        approved = df.loc[df['decision'] == 'approved', 'name'].tolist()
+        self.assertEqual(len(approved), 56)
+        self.assertEqual(len(set(approved)), 56)
+
+        # Ninguna aprobada debe tener fuga de Au ni ser supuesta ni duplicado
+        self.assertFalse(any(c.startswith('au_') for c in approved))
+        self.assertFalse(any('_supuesta_' in c for c in approved))
+        self.assertFalse(any(c.startswith('unidades_') for c in approved))
+        self.assertNotIn('edades_u004_fraccion', approved)
+        self.assertNotIn('litologia_dominante', approved)
+        self.assertNotIn('edades_dominante', approved)
+        self.assertNotIn('zn_proporcion_clase_3', approved)
+        self.assertNotIn('w_proporcion_clase_2', approved)
+
+        # Verificación con feature_allowlist.json de la ejecución activa
+        cfg = yaml.safe_load((Path(__file__).resolve().parent.parent / 'config/evaluation.yaml').read_text(encoding='utf-8'))
+        run_d = Path(__file__).resolve().parent.parent / cfg['phase_d_run']
+        allow = fd.read_json(run_d / 'feature_allowlist.json')
+        self.assertEqual(set(allow['approved_training_columns']), set(approved))
+
+
 if __name__=='__main__': unittest.main()
+

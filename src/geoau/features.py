@@ -248,10 +248,17 @@ def clip_to_mask(geometries, mask):
 
 
 def raster_check(src, spec, native=False):
-    if (src.crs != rasterio.crs.CRS.from_user_input(spec['crs']) or
-        src.shape != tuple(spec['native_shape'] if native else spec['shape']) or
-        src.transform != spec['native_transform' if native else 'transform']):
-        raise ValueError(f'Rejilla incompatible: {src.name}')
+    target_crs = rasterio.crs.CRS.from_user_input(spec['crs'])
+    crs_match = (src.crs == target_crs or
+                 (src.crs and target_crs and src.crs.to_epsg() is not None and src.crs.to_epsg() == target_crs.to_epsg()) or
+                 (src.crs and target_crs and src.crs.to_string() == target_crs.to_string()))
+    target_shape = tuple(spec['native_shape'] if native else spec['shape'])
+    shape_match = (src.shape == target_shape)
+    target_transform = spec['native_transform' if native else 'transform']
+    transform_match = (src.transform == target_transform or
+                       src.transform.almost_equals(target_transform, precision=1e-3))
+    if not (crs_match and shape_match and transform_match):
+        raise ValueError(f'Rejilla incompatible: {src.name} (CRS: {crs_match}, Shape: {shape_match}, Transform: {transform_match})')
 
 
 def vector_read(path, bbox, columns):
@@ -261,13 +268,28 @@ def vector_read(path, bbox, columns):
     return frame
 
 
+def save_parquet(frame, path, **kwargs):
+    try:
+        frame.to_parquet(path, index=False, **kwargs)
+    except Exception:
+        kw = dict(kwargs)
+        kw.pop('row_group_size', None)
+        try:
+            frame.to_parquet(path, index=False, engine='fastparquet', **kw)
+        except Exception:
+            import pyarrow as pa
+            import pyarrow.parquet as pq
+            table = pa.Table.from_pandas(frame, preserve_index=False)
+            pq.write_table(table, path)
+
+
 def finish_block(out, name, x, quality, metadata, extra_paths=()):
     if not x.cell_id.is_unique or not quality.cell_id.equals(x.cell_id):
         raise ValueError('Claves incompatibles dentro del bloque.')
     paths = []
     for suffix, frame in [('features', x), ('quality', quality)]:
         p = out / 'blocks' / f'{name}_{suffix}.parquet'
-        frame.to_parquet(p, index=False); paths.append(p)
+        save_parquet(frame, p); paths.append(p)
     p = out / 'blocks' / f'{name}_dictionary.json'
     write_json(p, metadata); paths.append(p)
     paths += list(extra_paths)
@@ -666,13 +688,13 @@ def write_master(master,out):
     """Archivos deterministas y reemplazo atómico: reintentar no añade filas."""
     out=Path(out)
     temporary=out/'.Grid_Master_Au.parquet.tmp'
-    master.to_parquet(temporary,index=False,row_group_size=50000)
+    save_parquet(master,temporary,row_group_size=50000)
     temporary.replace(out/'Grid_Master_Au.parquet')
     for partition,frame in master.groupby('partition_id',sort=True):
         folder=out/'Grid_Master_Au'/f'partition_id={int(partition)}'
         folder.mkdir(parents=True,exist_ok=True)
         temp=folder/'.part-00000.parquet.tmp'
-        frame.drop(columns='partition_id').to_parquet(temp,index=False,row_group_size=50000)
+        save_parquet(frame.drop(columns='partition_id'),temp,row_group_size=50000)
         temp.replace(folder/'part-00000.parquet')
 
 
@@ -705,12 +727,13 @@ def assemble(root,out):
     extra=[k for k in coverage if k not in q and k not in ('n_candidatos','n_positivos_revisados')]
     q=q.merge(coverage[['cell_id',*extra]].rename(columns={k:'fase_c_'+k for k in extra}),on='cell_id',how='left',validate='one_to_one')
     q['eligible_geology_terrain']=q.coastal_eligible & x[['litologia_dominante','edades_dominante','elevacion_media_m','pendiente_grados']].notna().all(axis=1)
+    q['eligible_approved_features']=q['eligible_geology_terrain']
     for label,elements in [('geo4',['au','as','sb','bi']),('geo9',['au','as','sb','bi','hg','cu','pb','zn','w'])]:
         q[f'eligible_{label}']=q.eligible_geology_terrain & x[[f'{e}_clase_modal' for e in elements]].notna().all(axis=1)
     q['prediction_allowed']=False
     labels=label_relations(root,c)
     assigned=labels[labels.cell_id.notna()].copy()
-    labels.to_parquet(out/'relacion_indicios_celda.parquet',index=False)
+    save_parquet(labels,out/'relacion_indicios_celda.parquet')
     aggregated=assigned.groupby('cell_id').agg(n_candidatos=('record_id','size'),
                       n_positivos_revisados=('positivo_revisado','sum')).reset_index()
     y=grid[['cell_id']].merge(aggregated,on='cell_id',how='left',validate='one_to_one')
@@ -718,13 +741,13 @@ def assemble(root,out):
     y['estado_etiqueta']=np.where(y.n_positivos_revisados>0,'P_revisado',np.where(y.n_candidatos>0,'candidato_no_revisado','U'))
     if len(assigned) and not set(assigned.cell_id).issubset(set(grid.cell_id)):raise ValueError('Etiqueta fuera de la rejilla.')
     # X separada y maestro completo con roles explícitos para evitar fuga.
-    x.to_parquet(out/'X_features.parquet',index=False,row_group_size=50000)
-    q.to_parquet(out/'calidad_y_soporte.parquet',index=False)
-    y.to_parquet(out/'etiquetas_por_celda.parquet',index=False)
+    save_parquet(x,out/'X_features.parquet',row_group_size=50000)
+    save_parquet(q,out/'calidad_y_soporte.parquet')
+    save_parquet(y,out/'etiquetas_por_celda.parquet')
     for id_column in ['deposit_id','district_id','proximity_group_500m']:
         relation=assigned[['cell_id',id_column]].dropna().drop_duplicates()
         relation=relation[relation[id_column].astype(str).str.strip().ne('')]
-        relation.to_parquet(out/f'relacion_{id_column}_celda.parquet',index=False)
+        save_parquet(relation,out/f'relacion_{id_column}_celda.parquet')
     master=q.merge(x,on='cell_id',validate='one_to_one').merge(y,on='cell_id',validate='one_to_one')
     master['partition_id']=(master.row//100).astype('int16')
     write_master(master,out)
@@ -747,7 +770,7 @@ def assemble(root,out):
         'no_utilizables_sin_revision':qc.loc[qc.n_unique<=1,'variable'].tolist(),
         'nota':'Comparaciones candidatas; no particiones ni validación del modelo.'})
     support=[]
-    for flag in ['eligible_geology_terrain','eligible_geo4','eligible_geo9']:
+    for flag in ['eligible_approved_features','eligible_geology_terrain','eligible_geo4','eligible_geo9']:
         support.append({'criterion':flag,'cells':int(q[flag].sum()),
             'land_area_km2':float(q.loc[q[flag],'land_area_m2'].sum()/1e6),
             'candidate_records':int(y.loc[q[flag],'n_candidatos'].sum()),
