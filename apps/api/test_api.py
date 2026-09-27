@@ -136,6 +136,11 @@ def test_validation_holdout_contract():
     assert resp_dists.status_code == 200
     assert len(resp_dists.json()["districts"]) == 5
 
+    # Comparación OOF vs Holdout
+    resp_comp = client.get("/api/validation/comparison")
+    assert resp_comp.status_code == 200
+    assert len(resp_comp.json()["comparison"]) == 6
+
 
 def test_model_coefficients():
     resp = client.get("/api/model/coefficients")

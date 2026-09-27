@@ -3,6 +3,7 @@ apps/api/routers/validation.py
 Rutas para consulta de métricas de validación ciega en holdout (Fase G).
 """
 
+import pandas as pd
 from fastapi import APIRouter
 from ..data_loader import get_data_loader
 from ..schemas.validation import (
@@ -59,9 +60,13 @@ def get_validation_districts():
 @router.get("/api/validation/comparison")
 def get_validation_comparison():
     loader = get_data_loader()
-    df = loader.validation_comparison_df
+    records = loader.validation_comparison_df.to_dict(orient="records")
+    for r in records:
+        for k, v in list(r.items()):
+            if pd.isna(v):
+                r[k] = None
     return {
-        "comparison": df.to_dict(orient="records"),
+        "comparison": records,
         "transfer_gap_description": (
             "Diferencia observada entre la estimación OOF de desarrollo (Fase F) "
             "y la evaluación ciega territorial (Fase G). Refleja la heterogeneidad regional "
