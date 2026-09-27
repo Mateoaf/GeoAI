@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-09-27T16:49:44Z",
+  "purpose": "Web performance optimization for GeoAI-Au Explorer (FastAPI + MapLibre)",
+  "canonical_sources": {
+    "fase_d": "reports/fase_d/20260927T135413_959884Z",
+    "fase_h": "reports/fase_h/20260927T142549_961719Z",
+    "fase_b": "data/review/revision_au_fase_b.csv"
+  },
+  "artifacts": [
+    "features_approved_56.parquet",
+    "zonas_prospectividad_4326.geojson",
+    "depositos_confirmados_4326.geojson"
+  ]
+}

@@ -1,0 +1,36 @@
+"""
+apps/api/routers/tiles.py
+Rutas para servir teselas ráster Web Mercator (EPSG:3857) a MapLibre.
+"""
+
+from fastapi import APIRouter, Response, HTTPException
+from ..services.tile_service import get_tile_service
+
+router = APIRouter(tags=["Map Tiles"])
+
+@router.get(
+    "/api/tiles/{layer}/{z}/{x}/{y}.png",
+    responses={
+        200: {
+            "content": {"image/png": {}},
+            "description": "Retorna imagen PNG de 256x256 con transparencia"
+        }
+    }
+)
+def get_tile(layer: str, z: int, x: int, y: int):
+    if layer not in ("score", "percentile", "priority"):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Capa '{layer}' no válida. Opciones: score, percentile, priority."
+        )
+
+    tile_service = get_tile_service()
+    png_bytes = tile_service.render_tile(layer=layer, z=z, x=x, y=y)
+
+    return Response(
+        content=png_bytes,
+        media_type="image/png",
+        headers={
+            "Cache-Control": "public, max-age=86400, immutable"
+        }
+    )
