@@ -29,9 +29,16 @@ class TileService:
         self.src_pct = rasterio.open(config.PATH_COG_PERCENTILE)
         self.src_prio = rasterio.open(config.PATH_COG_PRIORITY)
 
+        # Fuentes ráster especializadas v2 (si existen)
+        self.src_global_v2 = rasterio.open(config.PATH_COG_GLOBAL_V2) if config.PATH_COG_GLOBAL_V2.exists() else None
+        self.src_roca = rasterio.open(config.PATH_COG_ROCA) if config.PATH_COG_ROCA.exists() else None
+        self.src_aluvial = rasterio.open(config.PATH_COG_ALUVIAL) if config.PATH_COG_ALUVIAL.exists() else None
+
         # Colormaps
         self.cmap_viridis = matplotlib.colormaps["viridis"]
         self.cmap_plasma = matplotlib.colormaps["plasma"]
+        self.cmap_magma = matplotlib.colormaps["magma"]
+        self.cmap_cividis = matplotlib.colormaps["cividis"]
 
         # Cache en memoria para teselas vacías o fuera de límites
         empty_img = Image.new("RGBA", (256, 256), (0, 0, 0, 0))
@@ -65,6 +72,12 @@ class TileService:
             src = self.src_pct
         elif layer == "priority":
             src = self.src_prio
+        elif layer == "global_v2_score" and self.src_global_v2 is not None:
+            src = self.src_global_v2
+        elif layer == "rock_score" and self.src_roca is not None:
+            src = self.src_roca
+        elif layer == "alluvial_score" and self.src_aluvial is not None:
+            src = self.src_aluvial
         else:
             return self.empty_png
 
@@ -92,12 +105,26 @@ class TileService:
 
         rgba = np.zeros((256, 256, 4), dtype=np.uint8)
 
-        if layer == "score":
+        if layer in ("score", "global_v2_score"):
             norm_vals = np.clip(dst_array, 0.0, 1.0)
             colored = self.cmap_viridis(norm_vals)
             rgb = (colored[:, :, :3] * 255).astype(np.uint8)
             rgba[valid_mask, :3] = rgb[valid_mask]
             rgba[valid_mask, 3] = 210
+
+        elif layer == "rock_score":
+            norm_vals = np.clip(dst_array, 0.0, 1.0)
+            colored = self.cmap_magma(norm_vals)
+            rgb = (colored[:, :, :3] * 255).astype(np.uint8)
+            rgba[valid_mask, :3] = rgb[valid_mask]
+            rgba[valid_mask, 3] = 215
+
+        elif layer == "alluvial_score":
+            norm_vals = np.clip(dst_array, 0.0, 1.0)
+            colored = self.cmap_cividis(norm_vals)
+            rgb = (colored[:, :, :3] * 255).astype(np.uint8)
+            rgba[valid_mask, :3] = rgb[valid_mask]
+            rgba[valid_mask, 3] = 215
 
         elif layer == "percentile":
             norm_vals = np.clip(dst_array / 100.0, 0.0, 1.0)

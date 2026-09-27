@@ -156,7 +156,7 @@ def test_model_coefficients():
 
 
 def test_tiles_endpoint():
-    for layer in ["score", "percentile", "priority"]:
+    for layer in ["score", "percentile", "priority", "global_v2_score", "rock_score", "alluvial_score"]:
         resp = client.get(f"/api/tiles/{layer}/6/31/24.png")
         assert resp.status_code == 200
         assert resp.headers["content-type"] == "image/png"

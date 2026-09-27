@@ -7,7 +7,7 @@ import { LeftLayerPanel } from "../components/LeftLayerPanel";
 import { CellInspector } from "../components/CellInspector";
 import { RightPanel } from "../components/RightPanel";
 import { MethodologyModal } from "../components/MethodologyModal";
-import { ProjectSummary, CellInfo, CellExplanation } from "../types";
+import { ProjectSummary, CellInfo, CellExplanation, RasterLayerType } from "../types";
 import { api } from "../lib/api";
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
   const [summary, setSummary] = useState<ProjectSummary | null>(null);
 
   // Estados de visualización cartográfica
-  const [activeRasterLayer, setActiveRasterLayer] = useState<"score" | "percentile" | "priority" | "none">("score");
+  const [activeRasterLayer, setActiveRasterLayer] = useState<RasterLayerType>("score");
   const [rasterOpacity, setRasterOpacity] = useState<number>(0.85);
   const [showZones, setShowZones] = useState<boolean>(true);
   const [showDeposits, setShowDeposits] = useState<boolean>(true);

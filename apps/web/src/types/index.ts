@@ -9,6 +9,15 @@ export interface Thresholds {
   top_10: number;
 }
 
+export type RasterLayerType =
+  | "score"
+  | "percentile"
+  | "priority"
+  | "global_v2_score"
+  | "rock_score"
+  | "alluvial_score"
+  | "none";
+
 export interface ProjectSummary {
   project_name: string;
   tagline: string;

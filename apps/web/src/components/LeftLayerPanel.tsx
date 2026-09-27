@@ -3,9 +3,11 @@
 import React from "react";
 import { Layers, MapPin, Target, Eye, Sliders, Map as MapIcon, ChevronLeft, ChevronRight } from "lucide-react";
 
+import { RasterLayerType } from "../types";
+
 interface LeftLayerPanelProps {
-  activeRasterLayer: "score" | "percentile" | "priority" | "none";
-  setActiveRasterLayer: (layer: "score" | "percentile" | "priority" | "none") => void;
+  activeRasterLayer: RasterLayerType;
+  setActiveRasterLayer: (layer: RasterLayerType) => void;
   rasterOpacity: number;
   setRasterOpacity: (val: number) => void;
   showZones: boolean;
@@ -65,14 +67,16 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
 
       {/* 1. Capas Predictivas Raster */}
       <div className="mb-4">
-        <label className="text-[10px] uppercase font-mono tracking-wider text-slate-400 block mb-2">
-          Capa Ráster Principal (COG)
-        </label>
-        <div className="space-y-1.5">
+        <div className="flex items-center justify-between mb-1.5">
+          <label className="text-[10px] uppercase font-mono tracking-wider text-cyan-400 font-bold">
+            Modelo Oficial v1.0 (Auditado)
+          </label>
+        </div>
+        <div className="space-y-1.5 mb-3">
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "score" ? "bg-cyan-950/50 border-cyan-500/50 text-cyan-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm"></span>
-              Prospectivity Score
+              Score Oficial v1.0 (LR)
             </span>
             <input
               type="radio"
@@ -108,6 +112,57 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
               checked={activeRasterLayer === "priority"}
               onChange={() => setActiveRasterLayer("priority")}
               className="accent-cyan-400 cursor-pointer"
+            />
+          </label>
+        </div>
+
+        {/* Modelos Especializados v2 (787 Indicios) */}
+        <div className="flex items-center justify-between mb-1.5 pt-2 border-t border-slate-800/80">
+          <label className="text-[10px] uppercase font-mono tracking-wider text-amber-400 font-bold">
+            Modelos Avanzados v2 (787 Indicios)
+          </label>
+          <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono">ROC 0.96+</span>
+        </div>
+        <div className="space-y-1.5">
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "global_v2_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm"></span>
+              Oro Global v2 (LightGBM)
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "global_v2_score"}
+              onChange={() => setActiveRasterLayer("global_v2_score")}
+              className="accent-amber-400 cursor-pointer"
+            />
+          </label>
+
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "rock_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm"></span>
+              Oro en Roca (Primario)
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "rock_score"}
+              onChange={() => setActiveRasterLayer("rock_score")}
+              className="accent-amber-400 cursor-pointer"
+            />
+          </label>
+
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "alluvial_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-sm"></span>
+              Oro Aluvial (Placeres)
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "alluvial_score"}
+              onChange={() => setActiveRasterLayer("alluvial_score")}
+              className="accent-amber-400 cursor-pointer"
             />
           </label>
 

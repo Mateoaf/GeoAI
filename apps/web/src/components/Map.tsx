@@ -2,10 +2,12 @@
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
 
+import { RasterLayerType } from "../types";
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 interface MapProps {
-  activeRasterLayer: "score" | "percentile" | "priority" | "none";
+  activeRasterLayer: RasterLayerType;
   rasterOpacity: number;
   showZones: boolean;
   showDeposits: boolean;

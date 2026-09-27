@@ -42,6 +42,12 @@ PATH_GEOPARQUET = RUN_DIR_H / "maps" / "mapa_nacional_prospectividad.geoparquet"
 PATH_GPKG = RUN_DIR_H / "maps" / "mapa_nacional_prospectividad.gpkg"
 PATH_TARGETS_CSV = RUN_DIR_H / "targets" / "zonas_prospectividad_ranking.csv"
 PATH_COEFS_CSV = RUN_DIR_H / "interpretability" / "coeficientes_estandarizados.csv"
+
+# Modelos y Rásteres Especializados v2 (Experimento 787 Indicios - LightGBM)
+PATH_COG_EXP_DIR = REPO_ROOT / "reports" / "experimento_600_indicios" / "maps"
+PATH_COG_GLOBAL_V2 = PATH_COG_EXP_DIR / "mapa_nacional_oro_global_score.tif"
+PATH_COG_ROCA = PATH_COG_EXP_DIR / "mapa_nacional_oro_roca_score.tif"
+PATH_COG_ALUVIAL = PATH_COG_EXP_DIR / "mapa_nacional_oro_aluvial_score.tif"
 PATH_CASOS_CSV = RUN_DIR_H / "interpretability" / "contribuciones_locales_casos_estudio.csv"
 PATH_CONTROL_CIERRE = RUN_DIR_H / "control_cierre.json"
 
