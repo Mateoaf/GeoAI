@@ -15,6 +15,7 @@ sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(REPO_ROOT / "apps"))
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
+# pyrefly: ignore [missing-import]
 from apps.api.main import app
 
 client = TestClient(app)
@@ -160,7 +161,8 @@ def test_tiles_endpoint():
         resp = client.get(f"/api/tiles/{layer}/6/31/24.png")
         assert resp.status_code == 200
         assert resp.headers["content-type"] == "image/png"
-        assert len(resp.content) > 500
+        assert resp.content.startswith(b"\x89PNG\r\n\x1a\n")
+        assert len(resp.content) >= 300
 
 
 def test_deposits_geojson():

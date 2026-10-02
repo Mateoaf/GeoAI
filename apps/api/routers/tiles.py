@@ -5,6 +5,7 @@ Rutas para servir teselas ráster Web Mercator (EPSG:3857) a MapLibre.
 
 from fastapi import APIRouter, HTTPException, Response
 
+# pyrefly: ignore [missing-import]
 from ..services.tile_service import get_tile_service
 
 router = APIRouter(tags=["Map Tiles"])

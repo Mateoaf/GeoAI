@@ -14,9 +14,18 @@ router = APIRouter(tags=["Cell Inspection"])
 
 @router.get("/api/cell/by-coordinate", response_model=CellResponse)
 def get_cell_by_coordinate(
-    lat: float = Query(..., description="Latitud en WGS84", ge=34.0, le=45.0),
-    lon: float = Query(..., description="Longitud en WGS84", ge=-10.0, le=5.0)
+    lat: float = Query(..., description="Latitud en WGS84"),
+    lon: float = Query(..., description="Longitud en WGS84")
 ):
+    query_coords = {"lat": lat, "lon": lon}
+
+    if not (34.0 <= lat <= 45.0 and -10.0 <= lon <= 5.0):
+        return CellResponse(
+            eligible=False,
+            cell=None,
+            query_coordinates=query_coords
+        )
+
     loader = get_data_loader()
     cell_id = loader.coordinate_to_cell_id(lat=lat, lon=lon)
 

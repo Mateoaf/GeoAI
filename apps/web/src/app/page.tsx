@@ -7,16 +7,21 @@ import { LeftLayerPanel } from "../components/LeftLayerPanel";
 import { CellInspector } from "../components/CellInspector";
 import { RightPanel } from "../components/RightPanel";
 import { MethodologyModal } from "../components/MethodologyModal";
+import { MapLegend } from "../components/MapLegend";
+import { ExecutiveDashboard } from "../components/ExecutiveDashboard";
 import { ProjectSummary, CellInfo, CellExplanation, RasterLayerType } from "../types";
 import { api } from "../lib/api";
 
 export default function Home() {
+  // Vista activa principal: "dashboard" (estilo foto) vs "map" (mapa GIS)
+  const [currentView, setCurrentView] = useState<"map" | "dashboard">("dashboard");
+
   // Estado global del proyecto
   const [summary, setSummary] = useState<ProjectSummary | null>(null);
 
-  // Estados de visualización cartográfica
-  const [activeRasterLayer, setActiveRasterLayer] = useState<RasterLayerType>("score");
-  const [rasterOpacity, setRasterOpacity] = useState<number>(0.85);
+  // Estados de visualización cartográfica - Por defecto: Oro en Roca (v2) con mapa satelital/oscuro
+  const [activeRasterLayer, setActiveRasterLayer] = useState<RasterLayerType>("rock_score");
+  const [rasterOpacity, setRasterOpacity] = useState<number>(0.90);
   const [showZones, setShowZones] = useState<boolean>(true);
   const [showDeposits, setShowDeposits] = useState<boolean>(true);
   const [baseMap, setBaseMap] = useState<"dark" | "street" | "satellite">("dark");
@@ -31,10 +36,10 @@ export default function Home() {
   // Navegación en el mapa
   const [targetToZoom, setTargetToZoom] = useState<{ lon: number; lat: number; zoom?: number } | null>(null);
 
-  // Paneles de control y tabs
-  const [activeTab, setActiveTab] = useState<"explain" | "targets" | "validation" | "copilot">("explain");
+  // Paneles de control y tabs - Panel derecho COLAPSADO por defecto para lienzo limpio
+  const [activeTab, setActiveTab] = useState<"explain" | "targets" | "validation" | "copilot">("targets");
   const [isLeftCollapsed, setIsLeftCollapsed] = useState<boolean>(false);
-  const [isRightCollapsed, setIsRightCollapsed] = useState<boolean>(false);
+  const [isRightCollapsed, setIsRightCollapsed] = useState<boolean>(true);
   const [isMethodologyOpen, setIsMethodologyOpen] = useState<boolean>(false);
 
   // Carga inicial del resumen del proyecto
@@ -61,7 +66,6 @@ export default function Home() {
       setSelectedCell(resp.cell);
 
       if (resp.eligible && resp.cell) {
-        // Cargar inmediatamente la explicación aditiva exacta
         try {
           const expResp = await api.explainCell(resp.cell.cell_id);
           setActiveCellExplanation(expResp.explanation);
@@ -82,16 +86,49 @@ export default function Home() {
     }
   };
 
+  // Toggle o apertura de pestaña del panel derecho desde el Header
+  const handleOpenTab = (tab: "explain" | "targets" | "validation" | "copilot") => {
+    if (!isRightCollapsed && activeTab === tab) {
+      setIsRightCollapsed(true);
+    } else {
+      setActiveTab(tab);
+      setIsRightCollapsed(false);
+    }
+  };
+
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden bg-slate-950 font-sans">
       {/* 1. Barra de Navegación Superior */}
       <Header
+        currentView={currentView}
+        setCurrentView={setCurrentView}
         summary={summary}
         onOpenMethodology={() => setIsMethodologyOpen(true)}
+        activeRasterLayer={activeRasterLayer}
+        setActiveRasterLayer={setActiveRasterLayer}
+        onOpenTab={handleOpenTab}
+        activeTab={activeTab}
+        isRightOpen={!isRightCollapsed}
+        baseMap={baseMap}
+        setBaseMap={setBaseMap}
+        onZoomToZone={(target) => {
+          setCurrentView("map");
+          setTargetToZoom(target);
+        }}
       />
 
-      {/* 2. Área Central del Mapa y Paneles Flotantes */}
-      <main className="relative flex-1 w-full h-[calc(100vh-3.5rem)] overflow-hidden">
+      {/* 2. PESTAÑA A: DASHBOARD EJECUTIVO V3.0 (Estilo foto de referencia) */}
+      <div className={currentView === "dashboard" ? "flex-1 w-full h-[calc(100vh-3.5rem)] overflow-y-auto" : "hidden"}>
+        <ExecutiveDashboard
+          onNavigateToMapTarget={(target) => {
+            setCurrentView("map");
+            setTargetToZoom(target);
+          }}
+        />
+      </div>
+
+      {/* 3. PESTAÑA B: ÁREA CENTRAL DEL MAPA GIS Y PANELES FLOTANTES */}
+      <main className={currentView === "map" ? "relative flex-1 w-full h-[calc(100vh-3.5rem)] overflow-hidden" : "hidden"}>
         {/* Lienzo del Mapa a pantalla completa */}
         <Map
           activeRasterLayer={activeRasterLayer}
@@ -104,7 +141,10 @@ export default function Home() {
           targetToZoom={targetToZoom}
         />
 
-        {/* Panel Izquierdo de Control de Capas */}
+        {/* Leyenda Dinámica de la Capa Activa */}
+        <MapLegend activeRasterLayer={activeRasterLayer} />
+
+        {/* Panel Izquierdo de Control de Capas (Arrastrable) */}
         <LeftLayerPanel
           activeRasterLayer={activeRasterLayer}
           setActiveRasterLayer={setActiveRasterLayer}
@@ -120,7 +160,7 @@ export default function Home() {
           setIsCollapsed={setIsLeftCollapsed}
         />
 
-        {/* Inspector de Celda Inferior */}
+        {/* Inspector de Celda Inferior Flotante (Arrastrable y Minimizable) */}
         <CellInspector
           cell={selectedCell}
           eligible={cellEligible}
@@ -135,7 +175,7 @@ export default function Home() {
           }}
         />
 
-        {/* Panel Derecho Multitarea (Explicabilidad, Targets, Validación, Copiloto) */}
+        {/* Panel Derecho Multitarea (Arrastrable) */}
         <RightPanel
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -147,7 +187,7 @@ export default function Home() {
         />
       </main>
 
-      {/* 3. Modal de Metodología y Limitaciones */}
+      {/* 4. Modal de Metodología y Limitaciones */}
       <MethodologyModal
         isOpen={isMethodologyOpen}
         onClose={() => setIsMethodologyOpen(false)}

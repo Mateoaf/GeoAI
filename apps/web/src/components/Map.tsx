@@ -160,11 +160,16 @@ export const Map: React.FC<MapProps> = ({
           visibility: showDeposits ? "visible" : "none"
         },
         paint: {
-          "circle-color": "#FFD700",
-          "circle-radius": 5,
-          "circle-stroke-color": "#0F172A",
-          "circle-stroke-width": 1.5,
-          "circle-opacity": 0.95
+          "circle-color": "#FBBF24",
+          "circle-radius": [
+            "interpolate", ["linear"], ["zoom"],
+            5, 3,
+            8, 4.5,
+            12, 7
+          ],
+          "circle-stroke-color": "#020617",
+          "circle-stroke-width": 1.2,
+          "circle-opacity": 0.9
         }
       });
 
@@ -222,7 +227,7 @@ export const Map: React.FC<MapProps> = ({
         attributionControl: false
       });
 
-      m.addControl(new maplibregl.NavigationControl({ showCompass: true, showZoom: true }), "top-right");
+      m.addControl(new maplibregl.NavigationControl({ showCompass: true, showZoom: true }), "bottom-right");
 
       m.on("load", () => {
         if (cancelled) return;

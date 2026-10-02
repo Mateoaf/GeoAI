@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Layers, MapPin, Target, Eye, Sliders, Map as MapIcon, ChevronLeft, ChevronRight } from "lucide-react";
-
+import { Layers, MapPin, Target, Eye, Sliders, Map as MapIcon, ChevronLeft, ChevronRight, GripHorizontal, RotateCcw } from "lucide-react";
+import { useDraggable } from "../hooks/useDraggable";
 import { RasterLayerType } from "../types";
 
 interface LeftLayerPanelProps {
@@ -34,6 +34,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
   isCollapsed,
   setIsCollapsed
 }) => {
+  const { offset, isDragging, elementRef, dragProps, resetPosition } = useDraggable();
+
   if (isCollapsed) {
     return (
       <button
@@ -47,22 +49,49 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
   }
 
   return (
-    <aside className="absolute top-16 left-3 z-20 w-72 max-h-[calc(100vh-5rem)] overflow-y-auto bg-slate-950/90 backdrop-blur-md border border-cyan-900/40 rounded-xl shadow-2xl p-3.5 text-slate-200 text-xs font-sans select-none scrollbar-thin">
-      {/* Header del Panel */}
-      <div className="flex items-center justify-between border-b border-slate-800/80 pb-2 mb-3">
+    <aside
+      ref={elementRef}
+      style={{
+        transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`
+      }}
+      className={`absolute top-16 left-3 z-20 w-72 max-h-[calc(100vh-5.5rem)] overflow-y-auto bg-slate-950/95 backdrop-blur-md border rounded-xl shadow-2xl p-3.5 text-slate-200 text-xs font-sans select-none scrollbar-thin transition-shadow ${
+        isDragging
+          ? "border-cyan-400/80 shadow-cyan-500/20 ring-2 ring-cyan-400/30"
+          : "border-cyan-900/40"
+      }`}
+    >
+      {/* Header del Panel con Tirador de Arrastre */}
+      <div
+        {...dragProps}
+        onDoubleClick={resetPosition}
+        className="flex items-center justify-between border-b border-slate-800/80 pb-2 mb-3 cursor-grab active:cursor-grabbing hover:bg-slate-900/40 -mx-1 px-1 rounded transition-colors"
+        title="Arrastra para mover el panel · Doble clic para reiniciar posición"
+      >
         <div className="flex items-center gap-2">
+          <GripHorizontal className="w-4 h-4 text-slate-500 hover:text-cyan-400 transition-colors" />
           <Layers className="w-4 h-4 text-cyan-400" />
           <h2 className="font-bold tracking-wider uppercase text-cyan-300 text-[11px]">
             Capas GeoAI
           </h2>
         </div>
-        <button
-          onClick={() => setIsCollapsed(true)}
-          className="p-1 rounded text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 transition-colors"
-          title="Colapsar panel"
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </button>
+        <div className="flex items-center gap-1">
+          {(offset.x !== 0 || offset.y !== 0) && (
+            <button
+              onClick={resetPosition}
+              className="p-1 rounded text-slate-400 hover:text-cyan-300 hover:bg-slate-800/60 transition-colors cursor-pointer"
+              title="Restablecer posición inicial"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </button>
+          )}
+          <button
+            onClick={() => setIsCollapsed(true)}
+            className="p-1 rounded text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 transition-colors cursor-pointer"
+            title="Colapsar panel"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
       {/* 1. Capas Predictivas Raster */}
