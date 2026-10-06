@@ -47,6 +47,18 @@ def substance_tokens(value):
     return sorted({key(v) for v in re.split(r'[,;|]', normalize(value) or '') if key(v)})
 
 
+class CanonicalIndicios(gpd.GeoDataFrame):
+    """GeoDataFrame canónico con compatibilidad hacia atrás para acceso tipo diccionario ['gpkg']."""
+    @property
+    def _constructor(self):
+        return CanonicalIndicios
+
+    def __getitem__(self, key):
+        if isinstance(key, str) and key == 'gpkg' and 'gpkg' not in self.columns:
+            return self
+        return super().__getitem__(key)
+
+
 def load_phase_a(root, config):
     base = local_path(root, 'reports/fase_a')
     if config['phase_a_run']:
@@ -68,24 +80,19 @@ def load_phase_a(root, config):
     changes = verify_unchanged(root, manifest['sources'], rehash=True)
     if changes:
         raise RuntimeError(f'Fuentes cambiadas desde fase A; ejecutar 00 de nuevo: {changes}')
-    expected = [snapshot['canonical_candidates']['indicios'], 'IndiciosII.csv', 'Indicios.xlsx']
+    canonical_path = snapshot['canonical_candidates']['indicios']
     indexed = {row['path']: row for row in manifest['sources']}
-    for path in expected:
-        if path not in indexed or indexed[path]['status'] in ('error', 'sin_datos'):
-            raise RuntimeError(f'Fuente requerida ausente o no válida en manifiesto: {path}')
-    layers = indexed[expected[0]]['details']['layers']
+    if canonical_path not in indexed or indexed[canonical_path]['status'] in ('error', 'sin_datos'):
+        raise RuntimeError(f'Fuente canónica requerida ausente o no válida en manifiesto: {canonical_path}')
+    layers = indexed[canonical_path]['details']['layers']
     if len(layers) != 1:
         raise ValueError('La base de indicios requiere una capa inequívoca en fase A.')
-    frames = {
-        'gpkg': read_vector(local_path(root, expected[0]), layer=layers[0]['table_name'], max_features=None, allow_full=True),
-        'csv': read_table(local_path(root, expected[1]), nrows=None),
-        'excel': read_table(local_path(root, expected[2]), nrows=None),
-    }
-    for name, frame in frames.items():
-        needed = {'Codigo_indicio', 'Sustancia', 'X', 'Y', 'Morfologia', 'Nombre_mina', 'Provincia', 'Municipio'}
-        if not needed.issubset(frame.columns):
-            raise ValueError(f'{name}: faltan {needed - set(frame.columns)}')
-    return run, manifest, snapshot, frames
+    raw_vector = read_vector(local_path(root, canonical_path), layer=layers[0]['table_name'], max_features=None, allow_full=True)
+    indicios_gdf = CanonicalIndicios(raw_vector)
+    needed = {'Codigo_indicio', 'Sustancia', 'X', 'Y', 'Morfologia', 'Nombre_mina', 'Provincia', 'Municipio'}
+    if not needed.issubset(indicios_gdf.columns):
+        raise ValueError(f'indicios: faltan columnas requeridas {needed - set(indicios_gdf.columns)}')
+    return run, manifest, snapshot, indicios_gdf
 
 
 def reconcile(frames, gold_tokens=('oro', 'au')):
@@ -135,6 +142,8 @@ def reconcile(frames, gold_tokens=('oro', 'au')):
 
 
 def normalize_indicios(gdf, config):
+    if isinstance(gdf, dict):
+        gdf = gdf.get('gpkg', next(iter(gdf.values())))
     if gdf.crs is None:
         raise ValueError('No se pueden validar coordenadas sin CRS de origen.')
     # Conserva atributos originales y WKT antes de cualquier transformación/corrección.
@@ -152,6 +161,7 @@ def normalize_indicios(gdf, config):
         source = raw.get(field + '_raw', pd.Series(None, index=raw.index))
         raw[field] = source.map(lambda v: normalize(v, config['null_tokens']))
     raw['codigo_duplicado'] = raw.Codigo_indicio.duplicated(keep=False) | raw.Codigo_indicio.isna()
+    raw['conflicto_au'] = False
     raw['sustancias_tokens'] = raw.Sustancia.map(lambda v: '|'.join(substance_tokens(v)))
     raw['au_observado'] = raw.Sustancia.map(lambda v: bool(set(substance_tokens(v)) & set(config['gold_tokens'])))
     raw['label_observada'] = np.where(raw.au_observado, 'P', 'U')
@@ -258,8 +268,9 @@ def geometry_qc(gdf, config, mask=None, admin=None):
         _, _, distances = GEOD.inv(x.loc[ids].to_numpy(), y.loc[ids].to_numpy(), out.loc[ids, 'lon'].to_numpy(), out.loc[ids, 'lat'].to_numpy())
         out.loc[ids, 'xy_distancia_m_si_lonlat'] = distances
         out.loc[ids, 'xy_estado'] = np.where(np.asarray(distances) > config['xy_discrepancy_m'], 'discrepa_si_lonlat', 'coincide_si_lonlat')
-    out['geo_cuarentena'] = ~out.geometria_basica_ok | out.territorio_estado.eq('fuera_mascara') | out.estado_geometria.eq('rechazada')
-    out['motivo_geo'] = np.select([~point, ~finite, ~plausible, out.territorio_estado.eq('fuera_mascara'), out.estado_geometria.eq('rechazada')],
+    estado_geom = out.get('estado_geometria', pd.Series('', index=out.index))
+    out['geo_cuarentena'] = ~out.geometria_basica_ok | out.territorio_estado.eq('fuera_mascara') | estado_geom.eq('rechazada')
+    out['motivo_geo'] = np.select([~point, ~finite, ~plausible, out.territorio_estado.eq('fuera_mascara'), estado_geom.eq('rechazada')],
                                   ['geometria_nula_vacia_invalida_no_punto', 'coordenada_no_finita_o_fuera_rango', 'fuera_ventanas_plausibles', 'fuera_mascara', 'rechazada_por_revisor'],
                                   default='sin_fallo_basico; contrastes territoriales según estado')
     # No se corrige la geometría por discrepancias con X/Y: su CRS no está acreditado.
@@ -273,7 +284,8 @@ def short_id(prefix, members):
 def group_candidates(au, radii=(250,500,1000)):
     """Componentes conexas geodésicas. Una cadena puede superar el radio extremo a extremo."""
     out = au.copy()
-    valid = out.geometria_basica_ok & ~out.geo_cuarentena & ~out.estado_presencia.eq('rechazada')
+    estado_pres = out['estado_presencia'] if 'estado_presencia' in out else pd.Series('', index=out.index)
+    valid = out.geometria_basica_ok & ~out.geo_cuarentena & ~estado_pres.eq('rechazada')
     out['position_id'] = None
     for idx in out.index[valid]:
         out.at[idx, 'position_id'] = short_id('pos_', [float(out.at[idx,'lon']).hex(), float(out.at[idx,'lat']).hex()])
@@ -357,8 +369,8 @@ def review_template(au):
     return template
 
 
-def export_phase_b(root, config, phase_a_run, manifest, normalized, au, reconciliation,
-                   duplicates, changes, pairs, sensitivity, coverage, extra_inputs=None):
+def export_phase_b(root, config, phase_a_run, manifest, normalized, au, changes,
+                   pairs, sensitivity, coverage, reconciliation=None, duplicates=None, extra_inputs=None):
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S_%fZ')
     output = local_path(root, config['output_directory']) / stamp
     output.mkdir(parents=True, exist_ok=False)
@@ -372,8 +384,10 @@ def export_phase_b(root, config, phase_a_run, manifest, normalized, au, reconcil
                 if isinstance(serial[col].dtype, pd.StringDtype):
                     serial[col] = serial[col].astype(object).where(serial[col].notna(), None)
             serial.to_file(output / name, layer=layer, driver='GPKG', engine='pyogrio', index=False)
-    csv('reconciliacion_indicios.csv', reconciliation)
-    csv('duplicados_por_codigo_fuentes.csv', duplicates)
+    if reconciliation is not None:
+        csv('reconciliacion_indicios.csv', reconciliation)
+    if duplicates is not None:
+        csv('duplicados_por_codigo_fuentes.csv', duplicates)
     csv('correcciones_coordenadas.csv', changes[changes.campo.eq('geometry')] if len(changes) else changes)
     csv('registro_decisiones_revision.csv', changes)
     csv('pares_proximidad_au.csv', pairs)
@@ -381,6 +395,8 @@ def export_phase_b(root, config, phase_a_run, manifest, normalized, au, reconcil
     csv('cobertura_en_indicios_au.csv', coverage)
     csv('plantilla_revision.csv', review_template(au))
     csv('correspondencia_registros_grupos.csv', au[['record_id','Codigo_indicio','position_id','deposit_id','district_id'] + [c for c in au if c.startswith('proximity_group_')]])
+    exact_zero_pairs = pairs[pairs.distance_m == 0.0] if pairs is not None and len(pairs) and 'distance_m' in pairs else pd.DataFrame(columns=['record_a','record_b','distance_m'])
+    csv('duplicados_posicion_distancia_cero.csv', exact_zero_pairs)
     csv('indicios_normalizados.csv', normalized.drop(columns='geometry'))
     csv('etiquetas_au_candidatas.csv', au.drop(columns='geometry'))
     csv('cuarentena_geometria.csv', normalized.loc[normalized.geo_cuarentena].drop(columns='geometry'))
@@ -399,13 +415,16 @@ def export_phase_b(root, config, phase_a_run, manifest, normalized, au, reconcil
     write_json(output / 'environment.json', environment_info())
     write_json(output / 'inputs.json', {'phase_a_run': str(phase_a_run.relative_to(root)),
         'manifest_sha256': sha256_file(phase_a_run/'manifest.json'), 'additional_inputs': extra_inputs or [],
-        'source_policy': 'GPKG canónico candidato según snapshot fase A; CSV y Excel solo contraste, sin concatenación'})
+        'source_policy': 'IndiciosII.gpkg como fuente canónica única e íntegra de indicios BDMIN'})
     write_json(output / 'code_manifest.json', [{'path': str(p.relative_to(root)), 'sha256': sha256_file(p)}
         for p in [local_path(root,'src/geoau/labels.py'), local_path(root,'src/geoau/local_sources.py')]])
     control = {'estado_ejecucion': 'pendiente_integridad_final', 'fase_b_cientifica_cerrada': False,
                'registros_base': len(normalized), 'registros_au_observados': int(normalized.au_observado.sum()),
                'registros_candidatos_incluyendo_confirmaciones': len(au),
                'posiciones_au_localizables': int(au.position_id.nunique()),
+               'pares_au_distancia_cero': int(len(exact_zero_pairs)),
+               'outliers_latitud_cuarentena': int(normalized.lat.between(0, 10).sum()),
+               'registros_xy_tabular_no_lonlat': int(normalized.xy_estado.eq('crs_tabular_desconocido').sum()),
                'cuarentena_geometria_base': int(normalized.geo_cuarentena.sum()),
                'au_en_cuarentena': int(au.geo_cuarentena.sum()), 'positivos_revisados': len(reviewed),
                'depositos_con_id_revisado': int(au.deposit_id.nunique()),

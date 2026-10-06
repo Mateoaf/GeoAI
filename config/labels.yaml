@@ -16,4 +16,4 @@ admin_boundaries: null  # polígonos con columnas provincia/municipio
 admin_layer: null
 admin_province_column: null
 admin_municipality_column: null
-review_file: null  # CSV revisado, basado en plantilla_revision.csv de una ejecución
+review_file: data/review/revision_au_fase_b.csv

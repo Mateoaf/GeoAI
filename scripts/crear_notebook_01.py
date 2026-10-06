@@ -15,7 +15,7 @@ Implementa los pasos **07–12 de la fase B** y utiliza las fuentes, configuraci
 hashes guardados por `00_configuracion_y_fuentes`. No depende de variables de su kernel.
 Usa el mismo entorno `.venv-fase-a`; no requiere instalar nuevas librerías.
 
-**Entregables:** conciliación por código, atributos normalizados conservando originales,
+**Entregables:** verificación de integridad canónica, atributos normalizados conservando originales,
 control geográfico, cuarentena, candidatos Au, grupos de proximidad, cobertura puntual,
 análisis de representatividad y plantilla para incorporar revisión geológica.
 
@@ -66,36 +66,29 @@ print("Python:", sys.executable)
 display(pd.Series(CONFIG, dtype=object).to_frame("configuración"))
 ''')
 code('''
-A_RUN, MANIFEST_A, CONFIG_A, originales = load_phase_a(ROOT, CONFIG)
+A_RUN, MANIFEST_A, CONFIG_A, indicios_raw = load_phase_a(ROOT, CONFIG)
 canonical_name = CONFIG_A["canonical_candidates"]["indicios"]
 CONFIG["source_sha256"] = next(r["sha256"] for r in MANIFEST_A["sources"] if r["path"] == canonical_name)
 print("Fase A utilizada:", A_RUN)
-display(pd.DataFrame([{"fuente": k, "filas": len(v), "columnas": len(v.columns)} for k,v in originales.items()]))
+print(f"Fuente canónica única ({canonical_name}): {len(indicios_raw)} registros, {len(indicios_raw.columns)} columnas")
+display(indicios_raw.head())
 ''')
 md('''
-## 2. Conciliar GPKG, CSV y Excel — paso 07
+## 2. Verificación de integridad de la fuente canónica — paso 07
 
-Se comparan conjuntos de atributos por `Codigo_indicio`, conservando multiplicidades.
-No se hace una unión fila a fila ni un cruce muchos-a-muchos. `ESRI_OID` no se usa como
-clave común entre versiones. Las diferencias X/Y son **textuales**, no certifican
-desplazamiento: el CRS de esos campos aún no está documentado.
-
-La base GPKG sigue siendo candidata canónica por la decisión de fase A. Las diferencias
-de Au entre copias generan una lista de revisión, no borrados ni nuevas presencias automáticas.
+Habiendo adoptado `IndiciosII.gpkg` como fuente canónica única de verdad para indicios BDMIN,
+se verifica la unicidad de los identificadores `Codigo_indicio` y la ausencia de duplicados.
+No se realiza conciliación contra tablas CSV o Excel secundarias no acreditadas.
 ''')
 code('''
-conciliacion, duplicados_fuentes = reconcile(originales, CONFIG["gold_tokens"])
-display(conciliacion.head())
-display(pd.DataFrame([
-    {"fuente": source, "codigos_presentes": int(conciliacion[f"n_{source}"].gt(0).sum()),
-     "codigos_repetidos": int(conciliacion[f"n_{source}"].gt(1).sum())}
-    for source in originales
-]))
-display(conciliacion[conciliacion.conflicto_au].head(20))
-au_solo_copias = conciliacion[conciliacion.n_gpkg.eq(0) &
-    (conciliacion.au_csv.fillna(False).eq(True) | conciliacion.au_excel.fillna(False).eq(True))]
-print("Códigos con Au en otras copias y ausentes del GPKG:", len(au_solo_copias))
-display(au_solo_copias)
+duplicados_codigo = indicios_raw[indicios_raw.Codigo_indicio.duplicated(keep=False)]
+print("Registros con código duplicado en GPKG canónico:", len(duplicados_codigo))
+assert len(duplicados_codigo) == 0, "Se detectaron códigos duplicados en la fuente canónica."
+display(pd.Series({
+    "total_registros": len(indicios_raw),
+    "codigos_unicos": indicios_raw.Codigo_indicio.nunique(),
+    "duplicados_detectados": len(duplicados_codigo),
+}, name="Integridad fuente canónica").to_frame())
 ''')
 md('''
 ## 3. Normalizar sin perder originales — paso 08
@@ -110,10 +103,8 @@ en «fluorita», «bauxita» o «aurífero» por coincidencia parcial. El orden 
 no permite identificar por sí solo Au principal o acompañante.
 ''')
 code('''
-normalizados = normalize_indicios(originales["gpkg"], CONFIG)
-flags = conciliacion.set_index("Codigo_indicio")["conflicto_au"]
-normalizados["conflicto_au"] = normalizados.Codigo_indicio.map(flags).fillna(False).astype(bool)
-assert len(normalizados) == len(originales["gpkg"])
+normalizados = normalize_indicios(indicios_raw, CONFIG)
+assert len(normalizados) == len(indicios_raw)
 assert normalizados.record_id.is_unique
 display(normalizados[["Codigo_indicio_raw", "Codigo_indicio", "Sustancia_raw", "sustancias_tokens",
                        "au_observado", "label_observada", "Morfologia", "tipo_au_propuesto"]].head(12))
@@ -178,6 +169,9 @@ qc = geometry_qc(normalizados, CONFIG, mask=mascara, admin=limites)
 display(qc.groupby(["geo_cuarentena", "motivo_geo"],dropna=False).size().to_frame("registros"))
 display(qc.xy_estado.value_counts().to_frame("registros"))
 display(qc.loc[qc.geo_cuarentena, ["record_id","Codigo_indicio","Nombre_mina","Provincia","lon","lat","motivo_geo"]])
+outliers_lat = qc[qc.lat.between(0, 10)]
+print(f"Outliers latitudinales (<10°N en Golfo de Guinea): {len(outliers_lat)} (en cuarentena: {outliers_lat.geo_cuarentena.all()})")
+print(f"Registros con coordenadas proyectadas en X/Y tabular: {int(qc.xy_estado.eq('crs_tabular_desconocido').sum())} (geometría GPKG preservada)")
 print("No se han inferido coordenadas para registros en cuarentena.")
 ''')
 md('''
@@ -197,6 +191,9 @@ code('''
 candidatos = qc[qc.au_observado | qc.estado_presencia.eq("confirmada")].copy()
 candidatos, pares, sensibilidad = group_candidates(candidatos, CONFIG["cluster_radii_m"])
 display(sensibilidad)
+pares_cero = pares[pares.distance_m == 0.0]
+print(f"Pares de candidatos Au a distancia exacta 0.0 m (mismas coordenadas): {len(pares_cero)}")
+display(pares_cero)
 coincidentes = candidatos[candidatos.position_id.notna() & candidatos.position_id.duplicated(keep=False)]
 display(coincidentes[["Codigo_indicio","Nombre_mina","Morfologia","position_id","lon","lat"]])
 representantes_posicion = candidatos[candidatos.position_id.notna()].sort_values("record_id").drop_duplicates("position_id")
@@ -283,8 +280,7 @@ posterior. `control_cierre.json` distingue ambos estados.
 ''')
 code('''
 RUN_DIR, control = export_phase_b(ROOT, CONFIG, A_RUN, MANIFEST_A, qc, etiquetas,
-    conciliacion, duplicados_fuentes, decisiones, pares, sensibilidad, cobertura, extra_inputs)
-au_solo_copias.to_csv(RUN_DIR / "au_ausentes_de_base_canonica.csv", index=False, encoding="utf-8-sig")
+    decisiones, pares, sensibilidad, cobertura, extra_inputs=extra_inputs)
 representantes_posicion.drop(columns="geometry").to_csv(RUN_DIR / "representantes_posicion_no_depositos.csv", index=False, encoding="utf-8-sig")
 fig.savefig(RUN_DIR / "representatividad_au.png", dpi=140, bbox_inches="tight")
 changes = verify_unchanged(ROOT, MANIFEST_A["sources"], rehash=True)
@@ -300,7 +296,7 @@ display(pd.Series(control, dtype=object).to_frame("resultado"))
 md('''
 ## 11. Cómo continuar la revisión
 
-1. Revisar `reconciliacion_indicios.csv`, `au_ausentes_de_base_canonica.csv` y cuarentenas.
+1. Revisar `etiquetas_au_candidatas.csv` y cuarentenas.
 2. Copiar `plantilla_revision.csv` a una carpeta local de revisión y rellenar solo
    decisiones respaldadas por evidencia. No modificar IDs; conservar columnas.
 3. Para un mismo depósito confirmado, asignar el mismo `deposit_id` a sus registros.

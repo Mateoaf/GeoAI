@@ -98,5 +98,38 @@ class LabelTests(unittest.TestCase):
         row['record_id']='gpkg:otra_version:0'
         with self.assertRaises(ValueError):apply_reviews(clean,pd.DataFrame([row]))
 
+    def test_geometry_qc_without_reviews_and_conflicto_au(self):
+        clean = normalize_indicios(self.data(), self.cfg)
+        self.assertIn('conflicto_au', clean.columns)
+        self.assertFalse(clean.conflicto_au.any())
+        qc = geometry_qc(clean, self.cfg)
+        self.assertIn('geo_cuarentena', qc.columns)
+        self.assertFalse(qc.geo_cuarentena.iloc[0])
+
+    def test_spatial_anomalies_and_zero_distance_pairs(self):
+        data = self.data(('Oro', 'Oro', 'Oro'), ((-3.0, 4.4), (-3.0, 40.0), (-3.0, 40.0)))
+        data.loc[1, 'X'] = 500000; data.loc[1, 'Y'] = 4400000
+        qc = geometry_qc(normalize_indicios(data, self.cfg), self.cfg)
+        self.assertTrue(qc.geo_cuarentena.iloc[0])
+        self.assertEqual(qc.motivo_geo.iloc[0], 'fuera_ventanas_plausibles')
+        self.assertEqual(qc.xy_estado.iloc[1], 'crs_tabular_desconocido')
+        grouped, pairs, _ = group_candidates(qc, (250, 500))
+        self.assertEqual(pairs.loc[pairs.distance_m == 0.0].shape[0], 1)
+        self.assertEqual(grouped.position_id.iloc[1], grouped.position_id.iloc[2])
+
+
+    def test_canonical_indicios_backward_compatibility(self):
+        from geoau.labels import CanonicalIndicios
+        data = CanonicalIndicios(self.data())
+        # Indexación por máscara booleana
+        mask = data.Codigo_indicio.duplicated(keep=False)
+        self.assertEqual(len(data[mask]), 0)
+        # Acceso tipo diccionario legacy ['gpkg']
+        self.assertIs(data['gpkg'], data)
+        norm_from_key = normalize_indicios(data['gpkg'], self.cfg)
+        norm_from_dict = normalize_indicios({'gpkg': data}, self.cfg)
+        self.assertEqual(len(norm_from_key), len(data))
+        self.assertEqual(len(norm_from_dict), len(data))
+
 
 if __name__=='__main__':unittest.main()

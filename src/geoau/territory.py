@@ -196,7 +196,7 @@ def save_raster(path, arrays, descriptions, spec):
         dst.update_tags(grid_version=spec['grid_version'], support='area_terrestre_mascara_candidata')
     with rasterio.open(path) as check:
         assert check.transform == spec['transform'] and check.shape == spec['shape']
-        assert check.crs == CRS(spec['crs']) and check.nodata == -9999
+        assert (check.crs.to_epsg() == CRS(spec['crs']).to_epsg() or CRS(check.crs) == CRS(spec['crs'])) and check.nodata == -9999
 
 
 def make_grid(land, spec, out):
@@ -242,7 +242,8 @@ def align_rasters(root, aliases, land, spec, out):
         nclasses = (7 if alias in ('geoquimica_au', 'geoquimica_w') else 8) if alias.startswith('geoquimica_') else None
         with rasterio.open(local_path(root, name)) as src:
             # Evita remuestreo implícito si cambian las entradas; hay que revisar el nuevo soporte.
-            if src.crs != CRS(spec['crs']) or src.transform != spec['native_transform'] or src.shape != spec['native_shape']:
+            crs_match = (src.crs.to_epsg() == CRS(spec['crs']).to_epsg()) if (src.crs and src.crs.to_epsg()) else (CRS(src.crs) == CRS(spec['crs']))
+            if not crs_match or src.transform != spec['native_transform'] or src.shape != spec['native_shape']:
                 raise ValueError(f'{alias}: rejilla fuente no anidada exactamente; requiere política explícita nueva.')
             values = np.empty(src.shape, dtype='float32')
             valid = np.empty(src.shape, dtype=bool)
@@ -496,7 +497,8 @@ def harmonize_vectors(root, aliases, mask, land, spec, out):
     fractions = {}
     for name in ('litologia', 'edades', 'recintos'):
         with rasterio.open(out / f'rasters/{name}_support_1km.tif') as src:
-            if src.transform != spec['transform'] or src.shape != spec['shape'] or src.crs != CRS(spec['crs']):
+            crs_match = (src.crs.to_epsg() == CRS(spec['crs']).to_epsg()) if (src.crs and src.crs.to_epsg()) else (CRS(src.crs) == CRS(spec['crs']))
+            if src.transform != spec['transform'] or src.shape != spec['shape'] or not crs_match:
                 raise ValueError('Soporte de caché distinto de la rejilla.')
             fractions[name] = src.read(1, masked=True).filled(0).astype('float64')
     write_json(out / 'vector_cache_used.json', {'run': cache_name,
