@@ -16,6 +16,8 @@ export type RasterLayerType =
   | "global_v2_score"
   | "rock_score"
   | "alluvial_score"
+  | "v3_pu_score"
+  | "v3_uncertainty"
   | "none";
 
 export interface ProjectSummary {
@@ -49,6 +51,11 @@ export interface CellInfo {
   lat_wgs84: number;
   deposit_id: string | null;
   district_id: string | null;
+  favorabilidad_pu_media?: number | null;
+  incertidumbre_std?: number | null;
+  categoria_fiabilidad?: string | null;
+  es_extrapolacion?: boolean | null;
+  distancia_dominio_z?: number | null;
 }
 
 export interface CellResponse {
@@ -202,4 +209,74 @@ export interface CopilotResponse {
   sources: string[];
   suggested_queries: string[];
   action?: CopilotAction | null;
+}
+
+export interface IndicioFeature {
+  type: "Feature";
+  geometry: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+  properties: {
+    record_id: string;
+    codigo_indicio: string;
+    nombre_mina: string;
+    provincia: string;
+    municipio: string;
+    morfologia: string;
+    tipo_au: "roca" | "aluvial" | "desconocido";
+    deposit_id: string;
+    district_id: string;
+    estado_presencia: string;
+  };
+}
+
+export interface DistrictFeature {
+  type: "Feature";
+  geometry: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+  properties: {
+    district_id: string;
+    nombre: string;
+    n_depositos: number;
+    celdas_confirmadas: number;
+    celdas_totales: number;
+    area_km2: number;
+    recintos_documentados: string;
+  };
+}
+
+export interface BufferAnalysisResult {
+  center: {
+    lat: number;
+    lon: number;
+    x_epsg25830: number;
+    y_epsg25830: number;
+  };
+  radius_km: number;
+  indicios_count: number;
+  indicios_roca: number;
+  indicios_aluvial: number;
+  indicios: Array<{
+    record_id: string;
+    nombre_mina: string;
+    provincia: string;
+    municipio: string;
+    tipo_au: string;
+    morfologia: string;
+    distance_km: number;
+    lon: number;
+    lat: number;
+  }>;
+  nearest_district: {
+    district_id: string;
+    nombre: string;
+    distance_km: number;
+  } | null;
+  max_score: number;
+  mean_score: number;
+  cells_analyzed: number;
+  prospectivity_tier: string;
 }

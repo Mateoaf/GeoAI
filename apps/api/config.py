@@ -48,6 +48,16 @@ PATH_COG_EXP_DIR = REPO_ROOT / "reports" / "experimento_600_indicios" / "maps"
 PATH_COG_GLOBAL_V2 = PATH_COG_EXP_DIR / "mapa_nacional_oro_global_score.tif"
 PATH_COG_ROCA = PATH_COG_EXP_DIR / "mapa_nacional_oro_roca_score.tif"
 PATH_COG_ALUVIAL = PATH_COG_EXP_DIR / "mapa_nacional_oro_aluvial_score.tif"
+
+# Modelos y Rásteres Avanzados v3.0 (PU Learning, Incertidumbre y Fiabilidad Territorial)
+PATH_V3_DIR = REPO_ROOT / "reports" / "experimento_v3_riguroso"
+PATH_V3_MAPS_DIR = PATH_V3_DIR / "maps"
+PATH_V3_PARQUET = PATH_V3_DIR / "mapa_nacional_v3_incertidumbre.parquet"
+PATH_V3_PU_SCORE = PATH_V3_MAPS_DIR / "mapa_nacional_v3_pu_score.tif"
+PATH_V3_INCERTIDUMBRE_TIF = PATH_V3_MAPS_DIR / "mapa_nacional_v3_incertidumbre.tif"
+PATH_V3_BENCHMARK_CSV = PATH_V3_DIR / "resultados_benchmark_v3.csv"
+PATH_V3_RESUMEN_JSON = PATH_V3_DIR / "resumen_metricas_v3.json"
+
 PATH_CASOS_CSV = RUN_DIR_H / "interpretability" / "contribuciones_locales_casos_estudio.csv"
 PATH_CONTROL_CIERRE = RUN_DIR_H / "control_cierre.json"
 
@@ -58,6 +68,8 @@ PATH_DISTRITOS_CSV = DATA_REVIEW_DIR / "inventario_distritos_metalogeneticos.csv
 PATH_CACHE_FEATURES = CACHE_DIR / "features_approved_56.parquet"
 PATH_CACHE_ZONAS_GEOJSON = CACHE_DIR / "zonas_prospectividad_4326.geojson"
 PATH_CACHE_DEPOSITOS_GEOJSON = CACHE_DIR / "depositos_confirmados_4326.geojson"
+PATH_CACHE_INDICIOS_GEOJSON = CACHE_DIR / "indicios_787_4326.geojson"
+PATH_CACHE_DISTRITOS_GEOJSON = CACHE_DIR / "distritos_33_4326.geojson"
 
 # Servidor
 PORT = int(os.getenv("PORT", "8000"))

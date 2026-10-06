@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 interface UseDraggableOptions {
   defaultOffset?: { x: number; y: number };
-  minY?: number; // margen superior (ej. altura del header = 56px)
+  minY?: number;
 }
 
 export function useDraggable(options: UseDraggableOptions = {}) {
@@ -12,92 +12,147 @@ export function useDraggable(options: UseDraggableOptions = {}) {
   const [offset, setOffset] = useState<{ x: number; y: number }>(defaultOffset);
   const [isDragging, setIsDragging] = useState(false);
 
-  const dragStartRef = useRef<{
+  const elementRef = useRef<HTMLDivElement | null>(null);
+  const isDraggingRef = useRef(false);
+  const offsetRef = useRef<{ x: number; y: number }>(defaultOffset);
+  const rafIdRef = useRef<number | null>(null);
+
+  const dragInfoRef = useRef<{
     startX: number;
     startY: number;
-    initialOffsetX: number;
-    initialOffsetY: number;
-  }>({ startX: 0, startY: 0, initialOffsetX: 0, initialOffsetY: 0 });
+    originX: number;
+    originY: number;
+    windowWidth: number;
+    windowHeight: number;
+    isCentered: boolean;
+  }>({
+    startX: 0,
+    startY: 0,
+    originX: 0,
+    originY: 0,
+    windowWidth: 0,
+    windowHeight: 0,
+    isCentered: false,
+  });
 
-  const elementRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    offsetRef.current = offset;
+  }, [offset]);
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    // Solo responder al botón principal (izquierdo o toque)
     if (e.button !== 0) return;
 
-    // Evitar que inputs o botones dentro del header disparen drag
+    // Ignorar si se hace clic en botones, inputs o enlaces interactivos
     const target = e.target as HTMLElement;
     if (
       target.tagName === "BUTTON" ||
       target.tagName === "INPUT" ||
       target.tagName === "SELECT" ||
       target.closest("button") ||
-      target.closest("input")
+      target.closest("input") ||
+      target.closest("select")
     ) {
       return;
     }
 
     e.preventDefault();
+    isDraggingRef.current = true;
     setIsDragging(true);
 
-    dragStartRef.current = {
+    const elem = elementRef.current;
+    const isCentered = elem ? elem.style.transform.includes("calc(-50%") : false;
+
+    dragInfoRef.current = {
       startX: e.clientX,
       startY: e.clientY,
-      initialOffsetX: offset.x,
-      initialOffsetY: offset.y
+      originX: offsetRef.current.x,
+      originY: offsetRef.current.y,
+      windowWidth: typeof window !== "undefined" ? window.innerWidth : 1200,
+      windowHeight: typeof window !== "undefined" ? window.innerHeight : 800,
+      isCentered,
     };
 
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-  }, [offset]);
-
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (!isDragging) return;
-
-    const dx = e.clientX - dragStartRef.current.startX;
-    const dy = e.clientY - dragStartRef.current.startY;
-
-    let newX = dragStartRef.current.initialOffsetX + dx;
-    let newY = dragStartRef.current.initialOffsetY + dy;
-
-    // Clamping con respecto a los bordes de la ventana
-    if (elementRef.current && typeof window !== "undefined") {
-      const rect = elementRef.current.getBoundingClientRect();
-      const currentTop = rect.top;
-      const currentBottom = rect.bottom;
-      const currentLeft = rect.left;
-      const currentRight = rect.right;
-
-      // Si se pasa del header arriba
-      if (currentTop + dy < minY) {
-        newY = dragStartRef.current.initialOffsetY + (minY - (currentTop - dy));
-      }
-      // Si se pasa del fondo abajo
-      if (currentBottom + dy > window.innerHeight - 10) {
-        newY = dragStartRef.current.initialOffsetY + (window.innerHeight - 10 - (currentBottom - dy));
-      }
-      // Bordes laterales
-      if (currentLeft + dx < 10) {
-        newX = dragStartRef.current.initialOffsetX + (10 - (currentLeft - dx));
-      }
-      if (currentRight + dx > window.innerWidth - 10) {
-        newX = dragStartRef.current.initialOffsetX + (window.innerWidth - 10 - (currentRight - dx));
-      }
+    if (elem) {
+      elem.style.willChange = "transform";
+      elem.style.transition = "none";
     }
 
-    setOffset({ x: newX, y: newY });
-  }, [isDragging, minY]);
+    try {
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    } catch {
+      // Ignorar si el navegador no soporta pointer capture
+    }
+  }, []);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isDraggingRef.current || !elementRef.current) return;
+
+    const info = dragInfoRef.current;
+    const dx = e.clientX - info.startX;
+    const dy = e.clientY - info.startY;
+
+    let newX = info.originX + dx;
+    let newY = info.originY + dy;
+
+    // Limites de pantalla de alta velocidad (sin disparar reflow / getBoundingClientRect)
+    const maxBoundX = info.windowWidth * 0.48;
+    const minBoundX = -info.windowWidth * 0.48;
+    const maxBoundY = info.windowHeight - 80;
+    const minBoundY = -info.windowHeight * 0.4;
+
+    newX = Math.max(minBoundX, Math.min(maxBoundX, newX));
+    newY = Math.max(minBoundY, Math.min(maxBoundY, newY));
+
+    offsetRef.current = { x: newX, y: newY };
+
+    // Actualización directa al hardware GPU con requestAnimationFrame
+    if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    rafIdRef.current = requestAnimationFrame(() => {
+      if (elementRef.current) {
+        if (info.isCentered) {
+          elementRef.current.style.transform = `translate3d(calc(-50% + ${newX}px), ${newY}px, 0)`;
+        } else {
+          elementRef.current.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
+        }
+      }
+    });
+  }, []);
 
   const handlePointerUp = useCallback((e: React.PointerEvent) => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
     setIsDragging(false);
+
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+
+    if (elementRef.current) {
+      elementRef.current.style.willChange = "auto";
+      elementRef.current.style.transition = "";
+    }
+
+    // Sincronizar estado React final
+    setOffset({ ...offsetRef.current });
+
     try {
       (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
     } catch {
       // Ignorar si el puntero ya fue liberado
     }
-  }, [isDragging]);
+  }, []);
 
   const resetPosition = useCallback(() => {
+    offsetRef.current = defaultOffset;
+    if (elementRef.current) {
+      const isCentered = elementRef.current.style.transform.includes("calc(-50%");
+      if (isCentered) {
+        elementRef.current.style.transform = `translate3d(calc(-50% + ${defaultOffset.x}px), ${defaultOffset.y}px, 0)`;
+      } else {
+        elementRef.current.style.transform = `translate3d(${defaultOffset.x}px, ${defaultOffset.y}px, 0)`;
+      }
+    }
     setOffset(defaultOffset);
   }, [defaultOffset]);
 
@@ -113,6 +168,7 @@ export function useDraggable(options: UseDraggableOptions = {}) {
       onPointerDown: handlePointerDown,
       onPointerMove: handlePointerMove,
       onPointerUp: handlePointerUp,
+      onPointerCancel: handlePointerUp,
       style: {
         touchAction: "none" as const,
         cursor: isDragging ? "grabbing" : "grab"

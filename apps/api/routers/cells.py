@@ -5,9 +5,13 @@ Rutas de inspección territorial y explicabilidad de celdas de 1 km².
 
 from fastapi import APIRouter, HTTPException, Query
 
+# pyrefly: ignore [missing-import]
 from ..data_loader import get_data_loader
+# pyrefly: ignore [missing-import]
 from ..schemas.cell import CellInfo, CellResponse
+# pyrefly: ignore [missing-import]
 from ..schemas.explain import CellExplainResponse
+# pyrefly: ignore [missing-import]
 from ..services.explain_service import get_explain_service
 
 router = APIRouter(tags=["Cell Inspection"])

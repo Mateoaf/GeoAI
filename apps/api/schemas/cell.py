@@ -23,6 +23,11 @@ class CellInfo(BaseModel):
     lat_wgs84: float = Field(..., description="Latitud geográfica en WGS84")
     deposit_id: str | None = Field(None, description="Depósito mineral confirmado si existe presencia en la celda")
     district_id: str | None = Field(None, description="Distrito metalogenético asignado a la celda")
+    favorabilidad_pu_media: float | None = Field(None, description="Score calibrado de favorabilidad PU Learning v3.0 [0, 1]")
+    incertidumbre_std: float | None = Field(None, description="Incertidumbre epistémica std (desviación del ensamble bagging) v3.0")
+    categoria_fiabilidad: str | None = Field(None, description="Categoría de la matriz de fiabilidad territorial 2D (ej. 'Alta Favorabilidad + Alta Certeza (Prioridad A)')")
+    es_extrapolacion: bool | None = Field(None, description="Indica si la celda cae en extrapolación fuera de distribución (> 3 sigma)")
+    distancia_dominio_z: float | None = Field(None, description="Distancia multivariante normalizada Z al centroide de mineralizaciones conocidas")
 
 class CellResponse(BaseResponse):
     eligible: bool = Field(..., description="Indica si la celda pertenece a la máscara canónica eligible_approved_features")

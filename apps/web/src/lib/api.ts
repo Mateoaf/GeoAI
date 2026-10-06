@@ -109,5 +109,18 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(query)
     });
+  },
+
+  getIndiciosGeoJSON: async (tipo_au?: string): Promise<any> => {
+    const qs = tipo_au && tipo_au !== "todos" ? `?tipo_au=${encodeURIComponent(tipo_au)}` : "";
+    return fetchJson<any>(`/api/indicios${qs}`);
+  },
+
+  getDistrictsGeoJSON: async (): Promise<any> => {
+    return fetchJson<any>("/api/districts");
+  },
+
+  getBufferAnalysis: async (lat: number, lon: number, radiusKm: number = 10): Promise<any> => {
+    return fetchJson<any>(`/api/spatial/buffer-analysis?lat=${lat}&lon=${lon}&radius_km=${radiusKm}`);
   }
 };

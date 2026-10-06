@@ -1,7 +1,25 @@
 "use client";
 
 import React from "react";
-import { Layers, MapPin, Target, Eye, Sliders, Map as MapIcon, ChevronLeft, ChevronRight, GripHorizontal, RotateCcw } from "lucide-react";
+import {
+  Layers,
+  MapPin,
+  Target,
+  Eye,
+  Sliders,
+  Map as MapIcon,
+  ChevronLeft,
+  ChevronRight,
+  GripHorizontal,
+  RotateCcw,
+  Flame,
+  Waves,
+  Compass,
+  CircleDot,
+  Sparkles,
+  Crosshair,
+  Zap
+} from "lucide-react";
 import { useDraggable } from "../hooks/useDraggable";
 import { RasterLayerType } from "../types";
 
@@ -14,10 +32,21 @@ interface LeftLayerPanelProps {
   setShowZones: (val: boolean) => void;
   showDeposits: boolean;
   setShowDeposits: (val: boolean) => void;
+  showIndicios?: boolean;
+  setShowIndicios?: (val: boolean) => void;
+  indicioFilter?: "todos" | "roca" | "aluvial";
+  setIndicioFilter?: (val: "todos" | "roca" | "aluvial") => void;
+  showDistricts?: boolean;
+  setShowDistricts?: (val: boolean) => void;
+  bufferToolActive?: boolean;
+  setBufferToolActive?: (val: boolean) => void;
+  bufferRadiusKm?: number;
+  setBufferRadiusKm?: (val: number) => void;
   baseMap: "dark" | "street" | "satellite";
   setBaseMap: (val: "dark" | "street" | "satellite") => void;
   isCollapsed: boolean;
   setIsCollapsed: (val: boolean) => void;
+  onToggleAB?: () => void;
 }
 
 export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
@@ -29,10 +58,21 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
   setShowZones,
   showDeposits,
   setShowDeposits,
+  showIndicios = true,
+  setShowIndicios,
+  indicioFilter = "todos",
+  setIndicioFilter,
+  showDistricts = true,
+  setShowDistricts,
+  bufferToolActive = false,
+  setBufferToolActive,
+  bufferRadiusKm = 10,
+  setBufferRadiusKm,
   baseMap,
   setBaseMap,
   isCollapsed,
-  setIsCollapsed
+  setIsCollapsed,
+  onToggleAB
 }) => {
   const { offset, isDragging, elementRef, dragProps, resetPosition } = useDraggable();
 
@@ -40,10 +80,11 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
     return (
       <button
         onClick={() => setIsCollapsed(false)}
-        className="absolute top-16 left-3 z-20 p-2.5 rounded-lg bg-slate-900/90 text-cyan-400 hover:text-cyan-200 border border-cyan-800/60 shadow-xl backdrop-blur-md transition-all cursor-pointer"
-        title="Mostrar Capas"
+        className="absolute top-16 left-3 z-20 flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-950/90 text-cyan-400 hover:text-cyan-200 border border-cyan-800/70 shadow-2xl backdrop-blur-md transition-all cursor-pointer group hover:border-cyan-400"
+        title="Mostrar Capas GeoAI"
       >
-        <Layers className="w-5 h-5" />
+        <Layers className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+        <span className="font-mono text-[11px] font-bold text-slate-200">Capas</span>
       </button>
     );
   }
@@ -194,6 +235,43 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
               className="accent-amber-400 cursor-pointer"
             />
           </label>
+        </div>
+
+        {/* Modelos v3.0 (PU Learning & Incertidumbre Epistémica) */}
+        <div className="flex items-center justify-between mb-1.5 pt-2 border-t border-slate-800/80">
+          <label className="text-[10px] uppercase font-mono tracking-wider text-purple-400 font-bold">
+            Modelos v3.0 (PU & Incertidumbre)
+          </label>
+          <span className="text-[9px] bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded font-mono">15km CV</span>
+        </div>
+        <div className="space-y-1.5">
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "v3_pu_score" ? "bg-purple-950/50 border-purple-500/50 text-purple-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm"></span>
+              Score PU Calibrado (c=0.72)
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "v3_pu_score"}
+              onChange={() => setActiveRasterLayer("v3_pu_score")}
+              className="accent-purple-400 cursor-pointer"
+            />
+          </label>
+
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "v3_uncertainty" ? "bg-purple-950/50 border-purple-500/50 text-purple-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-fuchsia-400 shadow-sm"></span>
+              Incertidumbre Epistémica (σ)
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "v3_uncertainty"}
+              onChange={() => setActiveRasterLayer("v3_uncertainty")}
+              className="accent-purple-400 cursor-pointer"
+            />
+          </label>
 
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "none" ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-slate-900/50 border-slate-800 text-slate-400"}`}>
             <span className="font-medium text-slate-400">Ocultar Ráster</span>
@@ -206,6 +284,19 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
             />
           </label>
         </div>
+
+        {/* Botón de Comparativa Rápida A/B */}
+        {onToggleAB && (
+          <button
+            type="button"
+            onClick={onToggleAB}
+            className="w-full mt-2 py-1.5 px-2.5 rounded-lg bg-slate-900/90 hover:bg-amber-950/60 text-slate-300 hover:text-amber-300 border border-slate-800 hover:border-amber-600/50 transition-all text-[11px] font-mono flex items-center justify-center gap-1.5 cursor-pointer shadow"
+            title="Alternar comparativa rápida de modelos A/B (Roca ↔ Aluvial o v1 ↔ v2)"
+          >
+            <Zap className="w-3.5 h-3.5 text-amber-400" />
+            <span>Alternar Modelo A/B Rápido</span>
+          </button>
+        )}
 
         {/* Control de Opacidad del Ráster */}
         {activeRasterLayer !== "none" && (
@@ -229,29 +320,101 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
         )}
       </div>
 
-      {/* 2. Capas Vectoriales de Contexto */}
+      {/* 2. Capas Vectoriales e Inteligencia Minera */}
       <div className="mb-4 pt-3 border-t border-slate-800/80">
-        <label className="text-[10px] uppercase font-mono tracking-wider text-slate-400 block mb-2">
-          Elementos Vectoriales
+        <label className="text-[10px] uppercase font-mono tracking-wider text-cyan-400 font-bold block mb-2">
+          Inteligencia Minera (Vectorial)
         </label>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
+          {/* Indicios BDMIN 787 */}
+          <div className="p-2 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-colors">
+            <label className="flex items-center justify-between cursor-pointer">
+              <span className="flex items-center gap-2 font-medium">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>Indicios BDMIN ({indicioFilter === "roca" ? "294" : indicioFilter === "aluvial" ? "299" : "787"})</span>
+              </span>
+              <input
+                type="checkbox"
+                checked={showIndicios}
+                onChange={(e) => setShowIndicios?.(e.target.checked)}
+                className="accent-amber-400 w-3.5 h-3.5 cursor-pointer rounded"
+              />
+            </label>
+
+            {showIndicios && setIndicioFilter && (
+              <div className="mt-2 pt-2 border-t border-slate-800/60 flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => setIndicioFilter("todos")}
+                  className={`flex-1 py-1 px-1.5 rounded text-[10px] font-mono transition-all ${
+                    indicioFilter === "todos"
+                      ? "bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold"
+                      : "text-slate-400 hover:text-slate-200 bg-slate-800/40"
+                  }`}
+                >
+                  Todos (787)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIndicioFilter("roca")}
+                  className={`flex items-center justify-center gap-1 py-1 px-1.5 rounded text-[10px] font-mono transition-all ${
+                    indicioFilter === "roca"
+                      ? "bg-amber-500/30 text-amber-200 border border-amber-500/60 font-bold"
+                      : "text-slate-400 hover:text-slate-200 bg-slate-800/40"
+                  }`}
+                  title="Oro primario en roca / filones"
+                >
+                  <Flame className="w-2.5 h-2.5 text-amber-400" /> Roca
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIndicioFilter("aluvial")}
+                  className={`flex items-center justify-center gap-1 py-1 px-1.5 rounded text-[10px] font-mono transition-all ${
+                    indicioFilter === "aluvial"
+                      ? "bg-cyan-500/30 text-cyan-200 border border-cyan-500/60 font-bold"
+                      : "text-slate-400 hover:text-slate-200 bg-slate-800/40"
+                  }`}
+                  title="Oro secundario aluvial / placeres"
+                >
+                  <Waves className="w-2.5 h-2.5 text-cyan-400" /> Aluvial
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Distritos Metalogénicos (32) */}
           <label className="flex items-center justify-between p-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-slate-700 cursor-pointer">
             <span className="flex items-center gap-2">
-              <Target className="w-3.5 h-3.5 text-amber-400" />
+              <Compass className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Distritos Metalogénicos (32)</span>
+            </span>
+            <input
+              type="checkbox"
+              checked={showDistricts}
+              onChange={(e) => setShowDistricts?.(e.target.checked)}
+              className="accent-cyan-400 w-3.5 h-3.5 cursor-pointer rounded"
+            />
+          </label>
+
+          {/* Zonas de Prospectividad (1.529) */}
+          <label className="flex items-center justify-between p-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-slate-700 cursor-pointer">
+            <span className="flex items-center gap-2">
+              <Target className="w-3.5 h-3.5 text-emerald-400" />
               <span>Zonas de Prospectividad (1.529)</span>
             </span>
             <input
               type="checkbox"
               checked={showZones}
               onChange={(e) => setShowZones(e.target.checked)}
-              className="accent-amber-400 w-3.5 h-3.5 cursor-pointer rounded"
+              className="accent-emerald-400 w-3.5 h-3.5 cursor-pointer rounded"
             />
           </label>
 
+          {/* Depósitos Auditados (46) */}
           <label className="flex items-center justify-between p-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-slate-700 cursor-pointer">
             <span className="flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-yellow-400" />
-              <span>Depósitos Auditados (46)</span>
+              <span>Yacimientos Mayores (46)</span>
             </span>
             <input
               type="checkbox"
@@ -260,6 +423,67 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
               className="accent-yellow-400 w-3.5 h-3.5 cursor-pointer rounded"
             />
           </label>
+        </div>
+      </div>
+
+      {/* 2.5. Herramienta Espacial: Buffer de Prospección */}
+      <div className="mb-4 pt-3 border-t border-slate-800/80">
+        <div className="flex items-center justify-between mb-2">
+          <label className="text-[10px] uppercase font-mono tracking-wider text-cyan-400 font-bold flex items-center gap-1.5">
+            <Crosshair className="w-3.5 h-3.5 text-cyan-400" /> Buffer Espacial GIS
+          </label>
+          {bufferToolActive && (
+            <span className="text-[8px] bg-cyan-500/20 text-cyan-300 font-mono px-1 py-0.2 rounded border border-cyan-500/40 animate-pulse">
+              EN VIVO
+            </span>
+          )}
+        </div>
+
+        <div className={`p-2.5 rounded-lg border transition-all ${
+          bufferToolActive
+            ? "bg-cyan-950/40 border-cyan-500/60 shadow-lg shadow-cyan-950/50"
+            : "bg-slate-900/50 border-slate-800"
+        }`}>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] font-medium text-slate-200">Herramienta de Radio</span>
+            <button
+              type="button"
+              onClick={() => setBufferToolActive?.(!bufferToolActive)}
+              className={`px-2.5 py-1 rounded text-[10px] font-mono font-bold transition-all cursor-pointer ${
+                bufferToolActive
+                  ? "bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/40"
+                  : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+              }`}
+            >
+              {bufferToolActive ? "Activada" : "Activar"}
+            </button>
+          </div>
+
+          <p className="text-[10px] text-slate-400 mb-2 leading-tight">
+            {bufferToolActive
+              ? "🎯 Haz clic en cualquier punto del mapa para lanzar el buffer geodésico y calcular el potencial mineral."
+              : "Calcula en <1 ms indicios en radio, distrito metalogénico más cercano y favorabilidad máxima."}
+          </p>
+
+          {bufferToolActive && setBufferRadiusKm && (
+            <div className="flex items-center gap-1 pt-1.5 border-t border-cyan-900/40">
+              <span className="text-[10px] font-mono text-cyan-300">Radio:</span>
+              {[5, 10, 20].map((r) => (
+                <button
+                  key={r}
+                  type="button"
+                  onClick={() => setBufferRadiusKm(r)}
+                  className={`flex-1 py-0.5 rounded text-[10px] font-mono font-semibold transition-all ${
+                    bufferRadiusKm === r
+                      ? "bg-cyan-500/30 text-cyan-200 border border-cyan-400"
+                      : "bg-slate-800/60 text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  {r} km
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -294,10 +518,18 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
       {activeRasterLayer !== "none" && (
         <div className="pt-3 border-t border-slate-800/80">
           <label className="text-[10px] uppercase font-mono tracking-wider text-slate-400 block mb-2">
-            Leyenda: {activeRasterLayer === "score" ? "Favorabilidad (0 - 1)" : activeRasterLayer === "percentile" ? "Percentil (0 - 100)" : "Bandas de Prioridad"}
+            Leyenda: {
+              activeRasterLayer === "score" || activeRasterLayer === "global_v2_score" ? "Favorabilidad (0 - 1)" :
+              activeRasterLayer === "rock_score" ? "Oro en Roca (0 - 1)" :
+              activeRasterLayer === "alluvial_score" ? "Oro Aluvial (0 - 1)" :
+              activeRasterLayer === "v3_pu_score" ? "Score PU Calibrado v3.0 (0 - 1)" :
+              activeRasterLayer === "v3_uncertainty" ? "Incertidumbre Epistémica σ (0.00 - 0.20+)" :
+              activeRasterLayer === "percentile" ? "Percentil (0 - 100)" :
+              "Bandas de Prioridad"
+            }
           </label>
 
-          {activeRasterLayer === "score" && (
+          {(activeRasterLayer === "score" || activeRasterLayer === "global_v2_score") && (
             <div>
               <div className="h-3 w-full rounded bg-gradient-to-r from-[#440154] via-[#21908d] to-[#fde725] border border-slate-700/60 shadow-inner"></div>
               <div className="flex justify-between text-[9px] font-mono text-slate-400 mt-1">
@@ -305,6 +537,57 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
                 <span className="text-cyan-300 font-semibold">0.52 (p90)</span>
                 <span className="text-amber-300 font-semibold">0.65 (p95)</span>
                 <span className="text-emerald-300 font-bold">0.83 (p99)</span>
+                <span>1.00</span>
+              </div>
+            </div>
+          )}
+
+          {activeRasterLayer === "v3_pu_score" && (
+            <div>
+              <div className="h-3 w-full rounded bg-gradient-to-r from-[#440154] via-[#21908d] to-[#fde725] border border-slate-700/60 shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400 mt-1">
+                <span>0.00 (Fondo)</span>
+                <span className="text-cyan-300 font-semibold">0.30 (Moderado)</span>
+                <span className="text-amber-300 font-semibold">0.60 (Alto)</span>
+                <span className="text-emerald-300 font-bold">1.00 (Máx PU)</span>
+              </div>
+              <div className="text-[9px] text-purple-300/80 font-mono mt-1 text-center">
+                Calibrado con factor Elkan-Noto (c = 0.72)
+              </div>
+            </div>
+          )}
+
+          {activeRasterLayer === "v3_uncertainty" && (
+            <div>
+              <div className="h-3 w-full rounded bg-gradient-to-r from-[#0d0887] via-[#cc4778] to-[#f0f921] border border-slate-700/60 shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400 mt-1">
+                <span className="text-emerald-300">0.00 (Certeza Alta)</span>
+                <span className="text-amber-300">0.05 (Media)</span>
+                <span className="text-rose-400 font-bold">&gt;0.15 (Alta σ)</span>
+              </div>
+              <div className="text-[9px] text-purple-300/80 font-mono mt-1 text-center">
+                Desviación estándar inter-modelos en ensamble Bagging
+              </div>
+            </div>
+          )}
+
+          {activeRasterLayer === "rock_score" && (
+            <div>
+              <div className="h-3 w-full rounded bg-gradient-to-r from-[#000004] via-[#b63679] to-[#fcfdbf] border border-slate-700/60 shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400 mt-1">
+                <span>0.00</span>
+                <span className="text-rose-300">Primario</span>
+                <span>1.00</span>
+              </div>
+            </div>
+          )}
+
+          {activeRasterLayer === "alluvial_score" && (
+            <div>
+              <div className="h-3 w-full rounded bg-gradient-to-r from-[#00204d] via-[#7c7b78] to-[#ffea46] border border-slate-700/60 shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400 mt-1">
+                <span>0.00</span>
+                <span className="text-blue-300">Placer</span>
                 <span>1.00</span>
               </div>
             </div>

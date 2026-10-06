@@ -48,6 +48,8 @@ class DataLoader:
 
         self.depositos_geojson: dict[str, Any] = {}
         self.zonas_geojson: dict[str, Any] = {}
+        self.indicios_geojson: dict[str, Any] = {}
+        self.distritos_geojson: dict[str, Any] = {}
 
         self.model: Any = None
         self.model_meta: dict[str, Any] = {}
@@ -126,6 +128,14 @@ class DataLoader:
         with open(config.PATH_CACHE_ZONAS_GEOJSON, "r", encoding="utf-8") as f:
             self.zonas_geojson = json.load(f)
 
+        if config.PATH_CACHE_INDICIOS_GEOJSON.exists():
+            with open(config.PATH_CACHE_INDICIOS_GEOJSON, "r", encoding="utf-8") as f:
+                self.indicios_geojson = json.load(f)
+
+        if config.PATH_CACHE_DISTRITOS_GEOJSON.exists():
+            with open(config.PATH_CACHE_DISTRITOS_GEOJSON, "r", encoding="utf-8") as f:
+                self.distritos_geojson = json.load(f)
+
         # 10. Relaciones de celda a depósito / distrito
         df_rel_dep = pq.read_table(config.PATH_REL_DEPOSIT).to_pandas()
         self.rel_deposit_by_cell = dict(zip(df_rel_dep["cell_id"], df_rel_dep["deposit_id"]))
@@ -168,7 +178,27 @@ class DataLoader:
                 "district_id": self.rel_district_by_cell.get(cid)
             }
 
-        # 13. Cargar características aprobadas (caché derivado de alto rendimiento)
+        # 13. Cargar métricas avanzadas v3.0 (PU Learning, Incertidumbre, Matriz de Fiabilidad) si existen
+        if config.PATH_V3_PARQUET.exists():
+            logger.info("Enriqueciendo celdas con métricas v3.0 (mapa_nacional_v3_incertidumbre.parquet)...")
+            try:
+                df_v3 = pq.read_table(
+                    config.PATH_V3_PARQUET,
+                    columns=["cell_id", "favorabilidad_pu_media", "incertidumbre_std", "distancia_dominio_z", "es_extrapolacion", "categoria_fiabilidad"]
+                ).to_pandas()
+                for row_v3 in df_v3.itertuples(index=False):
+                    cid = row_v3.cell_id
+                    if cid in self.cell_lookup:
+                        self.cell_lookup[cid]["favorabilidad_pu_media"] = round(float(row_v3.favorabilidad_pu_media), 4)
+                        self.cell_lookup[cid]["incertidumbre_std"] = round(float(row_v3.incertidumbre_std), 4)
+                        self.cell_lookup[cid]["distancia_dominio_z"] = round(float(row_v3.distancia_dominio_z), 2)
+                        self.cell_lookup[cid]["es_extrapolacion"] = bool(row_v3.es_extrapolacion)
+                        self.cell_lookup[cid]["categoria_fiabilidad"] = str(row_v3.categoria_fiabilidad)
+                logger.info("Enriquecimiento v3.0 completado exitosamente.")
+            except Exception as e:
+                logger.warning(f"Error al enriquecer celdas con v3.0: {e}")
+
+        # 14. Cargar características aprobadas (caché derivado de alto rendimiento)
         logger.info("Cargando features_approved_56.parquet...")
         self.features_df = pd.read_parquet(config.PATH_CACHE_FEATURES).set_index("cell_id")
 

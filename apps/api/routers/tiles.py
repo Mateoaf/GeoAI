@@ -20,7 +20,10 @@ router = APIRouter(tags=["Map Tiles"])
     }
 )
 def get_tile(layer: str, z: int, x: int, y: int):
-    valid_layers = ("score", "percentile", "priority", "global_v2_score", "rock_score", "alluvial_score")
+    valid_layers = (
+        "score", "percentile", "priority", "global_v2_score", "rock_score", "alluvial_score",
+        "v3_pu_score", "v3_uncertainty"
+    )
     if layer not in valid_layers:
         raise HTTPException(
             status_code=400,

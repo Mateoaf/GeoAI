@@ -5,10 +5,39 @@
   --foreground: #f8fafc;
 }
 
+/* Modo Claro: Tokens de Color y Estilos de Interfaz */
+html.light {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+
+  /* Re-mapeo del sistema de colores Slate en Tailwind v4 */
+  --color-slate-950: #f8fafc;
+  --color-slate-900: #ffffff;
+  --color-slate-850: #f1f5f9;
+  --color-slate-800: #e2e8f0;
+  --color-slate-700: #cbd5e1;
+  --color-slate-600: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-400: #475569;
+  --color-slate-300: #334155;
+  --color-slate-200: #1e293b;
+  --color-slate-100: #0f172a;
+  --color-slate-50: #020617;
+}
+
+html {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   overflow: hidden;
+}
+
+html.light body {
+  background-color: #f8fafc;
+  color: #0f172a;
 }
 
 /* Scrollbars estilizadas */
@@ -40,3 +69,109 @@ body {
 .maplibregl-popup-tip {
   border-top-color: #0f172a !important;
 }
+
+/* Evitar deslizamientos o transiciones bruscas en marcadores MapLibre */
+.maplibregl-marker,
+.maplibregl-marker *,
+.geoai-reticle-marker,
+.geoai-reticle-marker * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Glassmorphism & High-Tech HUD Styling */
+.glass-panel {
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 41, 59, 0.8);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Overrides para Modo Claro */
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+}
+
+html.light .glass-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+}
+
+html.light .maplibregl-popup-tip {
+  border-top-color: #ffffff !important;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.8);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.35);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.6);
+}
+
+/* Asegurar texto oscuro en botones e insignias con fondos luminosos (amber, cyan, emerald) */
+html.light .text-slate-950 {
+  color: #020617 !important;
+}
+
+.glow-cyan {
+  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.35);
+}
+
+.glow-amber {
+  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+}
+
+/* Micro-animations */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(245,158,11,0.15) 0%, rgba(245,158,11,0.35) 50%, rgba(245,158,11,0.15) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 4s infinite linear;
+}
+

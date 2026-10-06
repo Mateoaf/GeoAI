@@ -58,6 +58,17 @@ class TileService:
             with rasterio.open(config.PATH_COG_ALUVIAL) as src:
                 self.data_aluvial = src.read(1)
 
+        # Cargar rasters avanzados v3.0 si existen
+        self.data_v3_pu = None
+        if config.PATH_V3_PU_SCORE.exists():
+            with rasterio.open(config.PATH_V3_PU_SCORE) as src:
+                self.data_v3_pu = src.read(1)
+
+        self.data_v3_unc = None
+        if config.PATH_V3_INCERTIDUMBRE_TIF.exists():
+            with rasterio.open(config.PATH_V3_INCERTIDUMBRE_TIF) as src:
+                self.data_v3_unc = src.read(1)
+
         # Colormaps
         self.cmap_viridis = matplotlib.colormaps["viridis"]
         self.cmap_plasma = matplotlib.colormaps["plasma"]
@@ -102,6 +113,10 @@ class TileService:
             source_arr = self.data_roca
         elif layer == "alluvial_score" and self.data_aluvial is not None:
             source_arr = self.data_aluvial
+        elif layer == "v3_pu_score" and self.data_v3_pu is not None:
+            source_arr = self.data_v3_pu
+        elif layer == "v3_uncertainty" and self.data_v3_unc is not None:
+            source_arr = self.data_v3_unc
         else:
             return self.empty_png
 
@@ -130,15 +145,25 @@ class TileService:
 
         rgba = np.zeros((256, 256, 4), dtype=np.uint8)
 
-        if layer in ("score", "global_v2_score"):
+        if layer in ("score", "global_v2_score", "v3_pu_score"):
             norm_vals = np.clip(dst_array, 0.0, 1.0)
             colored = self.cmap_viridis(norm_vals)
             rgb = (colored[:, :, :3] * 255).astype(np.uint8)
-            # Solo hacer visibles celdas con señal (>0.08) para no tapar el mapa con un fondo opaco
-            show_mask = valid_mask & (dst_array >= 0.08)
+            # Solo hacer visibles celdas con señal (>0.06) para no tapar el mapa con un fondo opaco
+            show_mask = valid_mask & (dst_array >= 0.06)
             rgba[show_mask, :3] = rgb[show_mask]
-            alpha_scaled = np.clip((dst_array[show_mask] - 0.08) / 0.5, 0.0, 1.0)
+            alpha_scaled = np.clip((dst_array[show_mask] - 0.06) / 0.5, 0.0, 1.0)
             rgba[show_mask, 3] = (90 + alpha_scaled * 145).astype(np.uint8)
+
+        elif layer == "v3_uncertainty":
+            # Incertidumbre epistémica: desviación std del ensamble (0.00 a 0.20+)
+            norm_vals = np.clip(dst_array / 0.15, 0.0, 1.0)
+            colored = self.cmap_plasma(norm_vals)
+            rgb = (colored[:, :, :3] * 255).astype(np.uint8)
+            show_mask = valid_mask & (dst_array >= 0.01)
+            rgba[show_mask, :3] = rgb[show_mask]
+            alpha_scaled = np.clip((dst_array[show_mask] - 0.01) / 0.10, 0.0, 1.0)
+            rgba[show_mask, 3] = (85 + alpha_scaled * 155).astype(np.uint8)
 
         elif layer == "rock_score":
             norm_vals = np.clip(dst_array, 0.0, 1.0)

@@ -102,3 +102,13 @@ El bagging aplica el candidato RF elegido internamente en cada fold a las tres r
 Para continuar científicamente hacen falta las revisiones de etiquetas y predictores descritas en E, identificación/cartografía de depósitos y distritos, justificación de la independencia espacial y nuevo protocolo aprobado. G deberá evaluar estabilidad, sesgo, aplicabilidad y criterios de aceptación. No se ha generado un mapa de producción ni un servicio de probabilidad por coordenada.
 
 Referencias técnicas: [prevención de fuga con pipelines](https://scikit-learn.org/stable/common_pitfalls.html), [codificación categórica OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html), [validación anidada](https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html) y [PU con registro dependiente de características](https://proceedings.mlr.press/v94/bekker18a.html).
+
+---
+
+## 18 · Modelización Avanzada: PU Learning, Buffered Spatial CV e Incertidumbre Territorial (v3.0)
+
+El cuaderno [18_modelos_avanzados_pu_ebm_incertidumbre.ipynb](18_modelos_avanzados_pu_ebm_incertidumbre.ipynb) y el script [experimento_v3_riguroso.py](../scripts/experimento_v3_riguroso.py) implementan las 4 innovaciones de vanguardia para prospección minera:
+1. **PU Learning Formal**: Estimador de propensión de Elkan & Noto ($c=0.72$) y Bagging PU con remuestreo iterativo de fondo no etiquetado.
+2. **Buffered Spatial Cross-Validation**: Validación con macro-bloques de 50 km y zona muerta de exclusión de 15 km, eliminando la sobrestimación por autocorrelación espacial de Tobler.
+3. **Benchmark Comparativo**: Evaluación cruzada de Regresión Logística L2, Random Forest, LightGBM y Bagging PU bajo Random CV, Spatial Block CV y Buffered Spatial CV.
+4. **Matriz de Fiabilidad Territorial**: Descomposición de las 478.443 celdas peninsulares en Favorabilidad $\mu(x)$, Incertidumbre $\sigma(x)$ y Detección de celdas en extrapolación ($D_Z > p95$).
