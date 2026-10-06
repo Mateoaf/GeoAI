@@ -610,9 +610,9 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
             </div>
           </div>
 
-          {/* Selector de Modelos & Botón de Descarga */}
+          {/* Selector de Perspectiva Analítica & Botón de Descarga */}
           <div className="flex flex-wrap items-center gap-2 self-start lg:self-auto shrink-0">
-            <div className="flex items-center p-1 bg-slate-950/80 rounded-xl border border-slate-800">
+            <div className="flex items-center p-1 bg-slate-950/80 rounded-xl border border-slate-800 shadow-inner">
               <button
                 onClick={() => setActiveDatasetView("v3_pu")}
                 className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
@@ -620,21 +620,10 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
                     ? "bg-purple-500 text-slate-950 shadow-md shadow-purple-500/20 font-black"
                     : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
                 }`}
+                title="Modelo Oficial de Producción basado en Positive-Unlabeled Learning y Validación Espacial con Dead-Zone de 15 km"
               >
                 <Target className="w-3.5 h-3.5" />
-                <span>v3.0 PU & Incertidumbre</span>
-              </button>
-
-              <button
-                onClick={() => setActiveDatasetView("experimental")}
-                className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeDatasetView === "experimental"
-                    ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
-                }`}
-              >
-                <GitBranch className="w-3.5 h-3.5" />
-                <span>Exp. 787 Indicios</span>
+                <span>Producción v3.0 (Oficial)</span>
               </button>
 
               <button
@@ -644,21 +633,23 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
                     ? "bg-teal-500 text-slate-950 shadow-md shadow-teal-500/20 font-black"
                     : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
                 }`}
+                title="Bifurcación metalogenética especializada entre sistemas primarios de veta/skarn y placeres aluviales secundarios"
               >
                 <Flame className="w-3.5 h-3.5" />
-                <span>Roca vs Aluvial</span>
+                <span>Tipologías (Roca vs Aluvial)</span>
               </button>
 
               <button
-                onClick={() => setActiveDatasetView("oficial")}
+                onClick={() => setActiveDatasetView("experimental")}
                 className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeDatasetView === "oficial"
-                    ? "bg-slate-800 text-white shadow-md font-black border border-slate-700"
+                  activeDatasetView === "experimental"
+                    ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black"
                     : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
                 }`}
+                title="Auditoría comparativa y evolución metodológica entre la Línea Base v1.0, el Ensamble v2.0 y el Motor v3.0"
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                <span>Oficial v1.0</span>
+                <GitBranch className="w-3.5 h-3.5" />
+                <span>Benchmarking (v1 ➔ v2 ➔ v3)</span>
               </button>
             </div>
 
@@ -986,38 +977,34 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
                   <div className="flex items-center gap-2">
                     <h2 className="text-base font-bold text-slate-100">
                       {activeDatasetView === "v3_pu"
-                        ? "Modelo v3.0 · PU Learning (Elkan-Noto c=0.72) & Buffer Espacial 15 km"
-                        : activeDatasetView === "oficial"
-                        ? "Modelo Oficial Auditado v1.0 · Validación Espacial y Holdout"
-                        : activeDatasetView === "experimental"
-                        ? "Experimento 787 Indicios · Benchmark de Algoritmos (664 Celdas P)"
-                        : "Comparativa Metalogénica: Oro en Roca vs. Oro Aluvial"}
+                        ? "Motor de Producción GeoAI v3.0 · PU Learning (Elkan-Noto c=0.72) & Buffer Espacial 15 km"
+                        : activeDatasetView === "genetico"
+                        ? "Especialización Metalogenética: Oro en Roca vs. Oro Aluvial"
+                        : "Evolución Metodológica & Benchmarking Científico (v1.0 ➔ v2.0 ➔ v3.0)"}
                     </h2>
                     <button
-                      onClick={() => scrollToNotebook(activeDatasetView === "v3_pu" ? "18" : activeDatasetView === "genetico" ? "13" : activeDatasetView === "experimental" ? "12" : "01")}
+                      onClick={() => scrollToNotebook(activeDatasetView === "v3_pu" ? "18" : activeDatasetView === "genetico" ? "13" : "12")}
                       className="text-[10px] font-mono font-bold text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800/60 hover:underline cursor-pointer"
                     >
-                      {activeDatasetView === "v3_pu" ? "NB 18" : activeDatasetView === "genetico" ? "NB 13" : activeDatasetView === "experimental" ? "NB 12" : "NB 01"}
+                      {activeDatasetView === "v3_pu" ? "NB 18" : activeDatasetView === "genetico" ? "NB 13" : "NB 12"}
                     </button>
                   </div>
                   <p className="text-xs text-slate-400 mt-1">
                     {activeDatasetView === "v3_pu"
                       ? "Aislamiento espacial riguroso (Dead-Zone 15 km) para eliminar autocorrelación territorial y Matriz 2D de fiabilidad"
-                      : activeDatasetView === "oficial"
-                      ? "Datos inmutables certificados de Fase F (Nested Spatial CV) y Fase G (Evaluación Ciega)"
-                      : activeDatasetView === "experimental"
-                      ? "Validación por bloques espaciales de 50 km con purga espacial de 10 km vs K-Fold aleatorio"
-                      : "Modelos independientes entrenados con firmas litológicas, morfométricas e hidrológicas"}
+                      : activeDatasetView === "genetico"
+                      ? "Modelos independientes entrenados con firmas litológicas, morfométricas e hidrológicas específicas"
+                      : "Auditoría comparativa: Regresión Logística L2 (v1) vs Árboles Ensamble (v2) vs PU Learning y Dead-Zone 15km (v3)"}
                   </p>
                 </div>
                 <span className={`text-[11px] font-bold px-2.5 py-1 rounded-lg border shrink-0 ${
                   activeDatasetView === "v3_pu"
                     ? "bg-purple-500/15 text-purple-300 border-purple-500/30"
-                    : activeDatasetView === "oficial"
-                    ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+                    : activeDatasetView === "genetico"
+                    ? "bg-teal-500/15 text-teal-300 border-teal-500/30"
                     : "bg-amber-500/15 text-amber-300 border-amber-500/30"
                 }`}>
-                  {activeDatasetView === "v3_pu" ? "v3.0 State of the Art" : activeDatasetView === "oficial" ? "Liberado: logistic_01" : "Ganador: Random Forest / LGBM"}
+                  {activeDatasetView === "v3_pu" ? "Producción Oficial" : activeDatasetView === "genetico" ? "Bifurcación Genética" : "Auditoría Científica"}
                 </span>
               </div>
 

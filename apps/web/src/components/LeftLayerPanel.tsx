@@ -137,118 +137,19 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
 
       {/* 1. Capas Predictivas Raster */}
       <div className="mb-4">
+        {/* Grupo 1: Motor Oficial de Producción GeoAI v3.0 */}
         <div className="flex items-center justify-between mb-1.5">
-          <label className="text-[10px] uppercase font-mono tracking-wider text-cyan-400 font-bold">
-            Modelo Oficial v1.0 (Auditado)
+          <label className="text-[10px] uppercase font-mono tracking-wider text-purple-400 font-bold flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+            Motor Oficial GeoAI v3.0 (Producción)
           </label>
+          <span className="text-[9px] bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded font-mono font-bold">15km CV</span>
         </div>
         <div className="space-y-1.5 mb-3">
-          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "score" ? "bg-cyan-950/50 border-cyan-500/50 text-cyan-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
-            <span className="flex items-center gap-2 font-medium">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm"></span>
-              Score Oficial v1.0 (LR)
-            </span>
-            <input
-              type="radio"
-              name="raster_layer"
-              checked={activeRasterLayer === "score"}
-              onChange={() => setActiveRasterLayer("score")}
-              className="accent-cyan-400 cursor-pointer"
-            />
-          </label>
-
-          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "percentile" ? "bg-cyan-950/50 border-cyan-500/50 text-cyan-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
-            <span className="flex items-center gap-2 font-medium">
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shadow-sm"></span>
-              Percentil Territorial
-            </span>
-            <input
-              type="radio"
-              name="raster_layer"
-              checked={activeRasterLayer === "percentile"}
-              onChange={() => setActiveRasterLayer("percentile")}
-              className="accent-cyan-400 cursor-pointer"
-            />
-          </label>
-
-          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "priority" ? "bg-cyan-950/50 border-cyan-500/50 text-cyan-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
-            <span className="flex items-center gap-2 font-medium">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-sm"></span>
-              Bandas Top 1 / 5 / 10%
-            </span>
-            <input
-              type="radio"
-              name="raster_layer"
-              checked={activeRasterLayer === "priority"}
-              onChange={() => setActiveRasterLayer("priority")}
-              className="accent-cyan-400 cursor-pointer"
-            />
-          </label>
-        </div>
-
-        {/* Modelos Especializados v2 (787 Indicios) */}
-        <div className="flex items-center justify-between mb-1.5 pt-2 border-t border-slate-800/80">
-          <label className="text-[10px] uppercase font-mono tracking-wider text-amber-400 font-bold">
-            Modelos Avanzados v2 (787 Indicios)
-          </label>
-          <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono">ROC 0.96+</span>
-        </div>
-        <div className="space-y-1.5">
-          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "global_v2_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
-            <span className="flex items-center gap-2 font-medium">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm"></span>
-              Oro Global v2 (LightGBM)
-            </span>
-            <input
-              type="radio"
-              name="raster_layer"
-              checked={activeRasterLayer === "global_v2_score"}
-              onChange={() => setActiveRasterLayer("global_v2_score")}
-              className="accent-amber-400 cursor-pointer"
-            />
-          </label>
-
-          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "rock_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
-            <span className="flex items-center gap-2 font-medium">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm"></span>
-              Oro en Roca (Primario)
-            </span>
-            <input
-              type="radio"
-              name="raster_layer"
-              checked={activeRasterLayer === "rock_score"}
-              onChange={() => setActiveRasterLayer("rock_score")}
-              className="accent-amber-400 cursor-pointer"
-            />
-          </label>
-
-          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "alluvial_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
-            <span className="flex items-center gap-2 font-medium">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-sm"></span>
-              Oro Aluvial (Placeres)
-            </span>
-            <input
-              type="radio"
-              name="raster_layer"
-              checked={activeRasterLayer === "alluvial_score"}
-              onChange={() => setActiveRasterLayer("alluvial_score")}
-              className="accent-amber-400 cursor-pointer"
-            />
-          </label>
-        </div>
-
-        {/* Modelos v3.0 (PU Learning & Incertidumbre Epistémica) */}
-        <div className="flex items-center justify-between mb-1.5 pt-2 border-t border-slate-800/80">
-          <label className="text-[10px] uppercase font-mono tracking-wider text-purple-400 font-bold">
-            Modelos v3.0 (PU & Incertidumbre)
-          </label>
-          <span className="text-[9px] bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded font-mono">15km CV</span>
-        </div>
-        <div className="space-y-1.5">
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "v3_pu_score" ? "bg-purple-950/50 border-purple-500/50 text-purple-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm"></span>
-              Score PU Calibrado (c=0.72)
+              Favorabilidad PU Calibrada (c=0.72)
             </span>
             <input
               type="radio"
@@ -272,9 +173,118 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
               className="accent-purple-400 cursor-pointer"
             />
           </label>
+        </div>
+
+        {/* Grupo 2: Modelos Metalogenéticos Especializados */}
+        <div className="flex items-center justify-between mb-1.5 pt-2 border-t border-slate-800/80">
+          <label className="text-[10px] uppercase font-mono tracking-wider text-amber-400 font-bold">
+            Especialización Metalogenética
+          </label>
+          <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono font-bold">Tipologías</span>
+        </div>
+        <div className="space-y-1.5 mb-3">
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "rock_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm"></span>
+              Oro en Roca (Vetas & Skarns)
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "rock_score"}
+              onChange={() => setActiveRasterLayer("rock_score")}
+              className="accent-amber-400 cursor-pointer"
+            />
+          </label>
+
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "alluvial_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-sm"></span>
+              Oro Aluvial (Placeres Cuaternarios)
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "alluvial_score"}
+              onChange={() => setActiveRasterLayer("alluvial_score")}
+              className="accent-amber-400 cursor-pointer"
+            />
+          </label>
+
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "global_v2_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm"></span>
+              Ensamble Multitipología v2
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "global_v2_score"}
+              onChange={() => setActiveRasterLayer("global_v2_score")}
+              className="accent-amber-400 cursor-pointer"
+            />
+          </label>
+        </div>
+
+        {/* Grupo 3: Zonificación Territorial y Prioridades */}
+        <div className="flex items-center justify-between mb-1.5 pt-2 border-t border-slate-800/80">
+          <label className="text-[10px] uppercase font-mono tracking-wider text-cyan-400 font-bold">
+            Zonificación y Prioridades
+          </label>
+        </div>
+        <div className="space-y-1.5 mb-3">
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "priority" ? "bg-cyan-950/50 border-cyan-500/50 text-cyan-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-sm"></span>
+              Bandas Top 1% / 5% / 10%
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "priority"}
+              onChange={() => setActiveRasterLayer("priority")}
+              className="accent-cyan-400 cursor-pointer"
+            />
+          </label>
+
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "percentile" ? "bg-cyan-950/50 border-cyan-500/50 text-cyan-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
+            <span className="flex items-center gap-2 font-medium">
+              <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shadow-sm"></span>
+              Percentil Territorial Continuo
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "percentile"}
+              onChange={() => setActiveRasterLayer("percentile")}
+              className="accent-cyan-400 cursor-pointer"
+            />
+          </label>
+        </div>
+
+        {/* Grupo 4: Referencia Metodológica & Visibilidad */}
+        <div className="flex items-center justify-between mb-1.5 pt-2 border-t border-slate-800/80">
+          <label className="text-[10px] uppercase font-mono tracking-wider text-slate-500 font-bold">
+            Referencia Histórica & Control
+          </label>
+        </div>
+        <div className="space-y-1.5">
+          <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "score" ? "bg-slate-800 border-slate-600 text-slate-200 shadow-sm" : "bg-slate-900/40 border-slate-800/80 hover:border-slate-700 text-slate-400"}`}>
+            <span className="flex items-center gap-2 font-medium text-xs">
+              <span className="w-2 h-2 rounded-full bg-slate-500 shadow-sm"></span>
+              Línea Base v1.0 (Regresión Logística 2024)
+            </span>
+            <input
+              type="radio"
+              name="raster_layer"
+              checked={activeRasterLayer === "score"}
+              onChange={() => setActiveRasterLayer("score")}
+              className="accent-slate-400 cursor-pointer"
+            />
+          </label>
 
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "none" ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-slate-900/50 border-slate-800 text-slate-400"}`}>
-            <span className="font-medium text-slate-400">Ocultar Ráster</span>
+            <span className="font-medium text-slate-400 text-xs">Ocultar Ráster</span>
             <input
               type="radio"
               name="raster_layer"

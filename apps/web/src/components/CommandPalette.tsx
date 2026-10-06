@@ -84,6 +84,34 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   const commands: CommandItem[] = [
     // Modelos
     {
+      id: "mod_v3_pu",
+      title: "Cargar Motor GeoAI v3.0 (Producción)",
+      subtitle: "Positive-Unlabeled bagging calibrado · Susceptibilidad Minera Oficial",
+      category: "Modelos",
+      icon: <ShieldCheck className="w-4 h-4 text-emerald-400" />,
+      badge: "v3.0 Oficial",
+      action: () => {
+        onSelectRasterLayer("v3_pu_score");
+        onSwitchView("map");
+        onShowToast?.("🎯 Capa activa: Motor Oficial GeoAI v3.0 (Producción)");
+        onClose();
+      }
+    },
+    {
+      id: "mod_v3_uncertainty",
+      title: "Cargar Fiabilidad e Incertidumbre v3.0",
+      subtitle: "Desviación estándar y detección de extrapolación fuera de dominio",
+      category: "Modelos",
+      icon: <Sparkles className="w-4 h-4 text-amber-400" />,
+      badge: "Incertidumbre",
+      action: () => {
+        onSelectRasterLayer("v3_uncertainty");
+        onSwitchView("map");
+        onShowToast?.("🛡️ Capa activa: Incertidumbre y Fiabilidad v3.0");
+        onClose();
+      }
+    },
+    {
       id: "mod_rock",
       title: "Cargar Modelo Oro en Roca v2",
       subtitle: "Vetas primarias hercínicas y skarns · LightGBM (ROC 0.976)",
@@ -141,15 +169,15 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: "mod_v1",
-      title: "Cargar Modelo Oficial v1.0 Auditado",
-      subtitle: "Regresión Logística L2 de referencia científica (190 confirmados)",
+      title: "Cargar Línea Base Histórica v1.0",
+      subtitle: "Regresión Logística L2 de referencia científica y benchmark (190 confirmados)",
       category: "Modelos",
       icon: <BarChart3 className="w-4 h-4 text-slate-300" />,
       badge: "v1.0 Base",
       action: () => {
         onSelectRasterLayer("score");
         onSwitchView("map");
-        onShowToast?.("📐 Capa activa: Modelo Oficial v1.0 (Regresión Logística)");
+        onShowToast?.("📐 Capa activa: Línea Base Histórica v1.0 (Auditado)");
         onClose();
       }
     },

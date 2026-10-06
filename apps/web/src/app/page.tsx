@@ -21,8 +21,8 @@ export default function Home() {
   // Estado global del proyecto
   const [summary, setSummary] = useState<ProjectSummary | null>(null);
 
-  // Estados de visualización cartográfica - Por defecto: Oro en Roca (v2) con mapa satelital/oscuro
-  const [activeRasterLayer, setActiveRasterLayer] = useState<RasterLayerType>("rock_score");
+  // Estados de visualización cartográfica - Por defecto: Motor Oficial v3.0 (PU Calibrado c=0.72)
+  const [activeRasterLayer, setActiveRasterLayer] = useState<RasterLayerType>("v3_pu_score");
   const [rasterOpacity, setRasterOpacity] = useState<number>(0.90);
   const [showZones, setShowZones] = useState<boolean>(true);
   const [showDeposits, setShowDeposits] = useState<boolean>(true);
