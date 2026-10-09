@@ -118,6 +118,44 @@ export const MapLegend: React.FC<MapLegendProps> = ({ activeRasterLayer }) => {
             </div>
           )}
 
+          {/* 4b. Leyenda Motor Oficial v3.0 (Viridis) */}
+          {activeRasterLayer === "v3_pu_score" && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
+                <span className="text-purple-300 font-bold">Motor Oficial v3.0 (PU Learning)</span>
+                <span className="text-emerald-400 font-bold">c = 0.72</span>
+              </div>
+              <div className="h-3 w-full rounded-md bg-gradient-to-r from-indigo-950 via-teal-600 via-emerald-500 to-yellow-300 shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400">
+                <span>0.06 (Umbral)</span>
+                <span>0.50</span>
+                <span className="text-yellow-300 font-bold">1.00 (Máx)</span>
+              </div>
+              <p className="text-[9px] text-slate-400 pt-1 border-t border-slate-800/80">
+                Amarillo = Máxima favorabilidad calibrada v3.0
+              </p>
+            </div>
+          )}
+
+          {/* 4c. Leyenda Incertidumbre Epistémica v3.0 (Plasma) */}
+          {activeRasterLayer === "v3_uncertainty" && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
+                <span className="text-purple-300 font-bold">Incertidumbre Epistémica (σ)</span>
+                <span className="text-amber-400 font-bold">Desv. Estándar</span>
+              </div>
+              <div className="h-3 w-full rounded-md bg-gradient-to-r from-purple-950 via-pink-600 to-yellow-300 shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400">
+                <span className="text-purple-400 font-semibold">0.01 (Certeza)</span>
+                <span>0.08</span>
+                <span className="text-yellow-300 font-bold">0.20+ (Alta Duda)</span>
+              </div>
+              <p className="text-[9px] text-amber-300/90 pt-1 border-t border-slate-800/80 leading-tight">
+                ⚠️ Amarillo = Máxima dispersión/duda del modelo (no es potencial de oro).
+              </p>
+            </div>
+          )}
+
           {/* 5. Leyenda Percentil (Plasma) */}
           {activeRasterLayer === "percentile" && (
             <div className="space-y-2">

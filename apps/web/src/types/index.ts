@@ -56,6 +56,8 @@ export interface CellInfo {
   categoria_fiabilidad?: string | null;
   es_extrapolacion?: boolean | null;
   distancia_dominio_z?: number | null;
+  percentile_pu?: number | null;
+  prioridad_banda_pu?: string | null;
 }
 
 export interface CellResponse {

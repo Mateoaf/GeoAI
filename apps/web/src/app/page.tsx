@@ -335,6 +335,7 @@ export default function Home() {
           cell={selectedCell}
           eligible={cellEligible}
           queryCoordinates={selectedCoordinates}
+          activeRasterLayer={activeRasterLayer}
           onClose={() => {
             setSelectedCoordinates(null);
             setSelectedCell(null);
