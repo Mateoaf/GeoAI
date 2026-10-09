@@ -29,6 +29,7 @@ import {
   MapPin
 } from "lucide-react";
 import { CellExplanation, CellInfo, FeatureContribution, ModelCoefficient } from "../types";
+import { HelpTooltip } from "./HelpTooltip";
 
 interface ExplainabilityViewProps {
   activeCellExplanation: CellExplanation | null;
@@ -458,7 +459,10 @@ ${negLines}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono">
               {/* Score P(Au) */}
               <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800 flex flex-col justify-between">
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider">Score P(Au)</span>
+                <span className="text-[10px] text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                  <span>Score P(Au)</span>
+                  <HelpTooltip term="score_favorabilidad" iconSize="xs" />
+                </span>
                 <div className="my-1">
                   <span
                     className={`text-base font-black ${
@@ -484,7 +488,10 @@ ${negLines}
 
               {/* Intercepto β₀ */}
               <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800 flex flex-col justify-between">
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider">Intercepto β₀</span>
+                <span className="text-[10px] text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                  <span>Intercepto β₀</span>
+                  <HelpTooltip term="intercepto_beta0" iconSize="xs" />
+                </span>
                 <div className="my-1">
                   <span className="text-sm font-bold text-slate-300 font-mono">
                     {activeCellExplanation.intercept.toFixed(3)}
@@ -499,7 +506,10 @@ ${negLines}
                 const netContrib = activeCellExplanation.logit_calculated - activeCellExplanation.intercept;
                 return (
                   <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800 flex flex-col justify-between">
-                    <span className="text-[10px] text-slate-400 uppercase tracking-wider">Impulso Σ(β·z)</span>
+                    <span className="text-[10px] text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                      <span>Impulso Σ(β·z)</span>
+                      <HelpTooltip term="impulso_neto" iconSize="xs" />
+                    </span>
                     <div className="my-1">
                       <span
                         className={`text-sm font-black ${
@@ -519,7 +529,10 @@ ${negLines}
 
               {/* Logit Total */}
               <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800 flex flex-col justify-between">
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider">Logit Total</span>
+                <span className="text-[10px] text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                  <span>Logit Total</span>
+                  <HelpTooltip term="logit_total" iconSize="xs" />
+                </span>
                 <div className="my-1">
                   <span className="text-sm font-bold text-cyan-300 font-mono">
                     {activeCellExplanation.logit_calculated.toFixed(3)}
@@ -532,9 +545,10 @@ ${negLines}
 
             {/* Verificación de Exactitud Numérica */}
             <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] font-mono">
-              <span className="flex items-center gap-1 text-emerald-400">
+              <span className="flex items-center gap-1.5 text-emerald-400">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Test de Cierre Numérico: Exacto</span>
+                <HelpTooltip term="cierre_numerico" iconSize="xs" />
               </span>
               <span className="text-slate-400">
                 Error residual:{" "}
@@ -551,6 +565,7 @@ ${negLines}
               <h4 className="font-bold text-xs uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                 <Layers className="w-3.5 h-3.5 text-cyan-400" />
                 <span>Aportación Neta por Disciplina Geológica</span>
+                <HelpTooltip term="disciplina_geologica" iconSize="xs" />
               </h4>
               {selectedFamilyFilter !== "todas" && (
                 <button
@@ -706,7 +721,10 @@ ${negLines}
                   Mostrando <strong>{displayedContributions.length}</strong> de 56 covariables
                   {selectedFamilyFilter !== "todas" ? ` en ${selectedFamilyFilter}` : ""}
                 </span>
-                <span className="text-slate-500">Divergencia centrada a 0.0</span>
+                <span className="text-slate-500 flex items-center gap-1">
+                  <span>Divergencia centrada a 0.0</span>
+                  <HelpTooltip term="divergencia_impacto" iconSize="xs" />
+                </span>
               </div>
 
               {displayedContributions.length === 0 ? (
@@ -802,7 +820,10 @@ ${negLines}
                       {/* 4 Chips de Telemetría Científica */}
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 text-[9.5px] font-mono mt-2 pt-1.5 border-t border-slate-800/60">
                         <div className="bg-slate-950/70 p-1 rounded border border-slate-800/80 flex items-center justify-between">
-                          <span className="text-slate-400">z-score:</span>
+                          <span className="text-slate-400 flex items-center gap-0.5">
+                            <span>z-score:</span>
+                            <HelpTooltip term="z_score" iconSize="xs" />
+                          </span>
                           <strong
                             className={
                               Math.abs(c.standardized_z) >= 2.0
@@ -817,7 +838,10 @@ ${negLines}
                         </div>
 
                         <div className="bg-slate-950/70 p-1 rounded border border-slate-800/80 flex items-center justify-between">
-                          <span className="text-slate-400">β modelo:</span>
+                          <span className="text-slate-400 flex items-center gap-0.5">
+                            <span>β modelo:</span>
+                            <HelpTooltip term="beta_modelo" iconSize="xs" />
+                          </span>
                           <strong
                             className={c.coefficient >= 0 ? "text-emerald-400" : "text-rose-400"}
                           >
@@ -828,12 +852,18 @@ ${negLines}
                         </div>
 
                         <div className="bg-slate-950/70 p-1 rounded border border-slate-800/80 flex items-center justify-between">
-                          <span className="text-slate-400">Odds Ratio:</span>
+                          <span className="text-slate-400 flex items-center gap-0.5">
+                            <span>Odds Ratio:</span>
+                            <HelpTooltip term="odds_ratio" iconSize="xs" />
+                          </span>
                           <strong className="text-cyan-300">{c.odds_ratio.toFixed(2)}x</strong>
                         </div>
 
                         <div className="bg-slate-950/70 p-1 rounded border border-slate-800/80 flex items-center justify-between">
-                          <span className="text-slate-400">Valor real:</span>
+                          <span className="text-slate-400 flex items-center gap-0.5">
+                            <span>Valor real:</span>
+                            <HelpTooltip term="valor_real" iconSize="xs" />
+                          </span>
                           <strong className="text-slate-200">{c.raw_value.toFixed(2)}</strong>
                         </div>
                       </div>
