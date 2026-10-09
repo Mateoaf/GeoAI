@@ -173,5 +173,95 @@ export const GLOSSARY: Record<string, GlossaryEntry> = {
       "Desglose transparente que responde a la pregunta: ¿por qué la IA le dio esa nota a este lugar? Muestra qué factores geológicos sumaron puntos (ej. cercanía a fallas, presencia de arsénico o granitos) y cuáles restaron puntos.",
     example: "Permite a los geólogos auditar y entender el razonamiento exacto de la máquina.",
     badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/40"
+  },
+
+  disciplina_geologica: {
+    title: "Aportación Neta por Disciplina",
+    category: "Concepto Geológico",
+    summary:
+      "Agrupa las 56 variables geológicas analizadas en 5 disciplinas científicas: Estructuras (fallas y fracturas), Litología (tipos de roca), Edades (periodos geológicos), Relieve (montañas y pendientes) e Hidrografía (arroyos y ríos). Permite ver de un vistazo qué aspecto natural aporta más o penaliza en esta zona.",
+    example: "Si 'Estructuras' es +0.59, significa que las fracturas tectónicas son el motor principal de favorabilidad aquí.",
+    badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40"
+  },
+
+  z_score: {
+    title: "Puntuación Z (z-score / Desviación σ)",
+    category: "Métrica de Calidad",
+    summary:
+      "Mide lo rara o anómala que es esta característica comparada con la media de España, en unidades de desviación típica (σ). Un valor de +2.60σ significa que esta zona tiene una condición atípica muy pronunciada (supera a casi el 99% de España). Un valor negativo significa que está por debajo del promedio nacional.",
+    example: "+2.60σ en cercanía a fallas = la celda está pegada a una fractura tectónica mucho más que la media peninsular.",
+    badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/40"
+  },
+
+  beta_modelo: {
+    title: "Peso del Modelo (Coeficiente β)",
+    category: "Predicción de IA",
+    summary:
+      "El multiplicador de importancia que el modelo estadístico le asigna a cada variable. Si es positivo (+), tener más de esta variable favorece la existencia de oro. Si es negativo (-), la presencia de este factor resta probabilidad.",
+    example: "+0.212 significa que la variable suma puntos matemáticos al potencial del terreno.",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+  },
+
+  odds_ratio: {
+    title: "Multiplicador de Probabilidad (Odds Ratio)",
+    category: "Métrica de Calidad",
+    summary:
+      "Factor que indica cuánto se multiplican las posibilidades relativas de albergar un yacimiento aurífero por cada incremento en esta variable. 1.00x es neutro (no cambia nada); 1.24x multiplica un 24% las probabilidades.",
+    example: "1.48x significa que la probabilidad relativa de mineralización aumenta casi un 50% con este factor.",
+    badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40"
+  },
+
+  valor_real: {
+    title: "Valor Real Medido",
+    category: "Concepto Geológico",
+    summary:
+      "La magnitud física cruda y medible sobre el terreno antes de cualquier procesamiento matemático: metros de distancia a una falla, metros de altitud sobre el mar, o fracción de superficie de una roca determinada.",
+    example: "Ej: 7075.84 metros a la falla, 889.91 metros de altitud media, o 0.00 de fracción de cuarcitas.",
+    badgeColor: "bg-slate-500/20 text-slate-300 border-slate-500/40"
+  },
+
+  divergencia_impacto: {
+    title: "Impacto Local (Divergencia β·z)",
+    category: "Predicción de IA",
+    summary:
+      "El empuje matemático neto de esta característica en este punto concreto (resultado de multiplicar el peso β por la anomalía z). La barra verde que apunta a la derecha (+) suma puntos al potencial aurífero; la barra roja a la izquierda (-) actúa como freno y resta puntos.",
+    example: "La longitud de la barra muestra la fuerza con la que esta variable empuja a favor o en contra.",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+  },
+
+  intercepto_beta0: {
+    title: "Intercepto β₀ (Tasa Base)",
+    category: "Predicción de IA",
+    summary:
+      "La tasa base previa de oro en España antes de analizar ninguna roca o falla. Como el oro es un metal precioso extremadamente escaso en la corteza terrestre, por defecto la probabilidad inicial en cualquier punto es bajísima (~0.16%). Las características geológicas deben compensar y remontar este punto de partida.",
+    example: "Punto de partida conservador para evitar falsas expectativas.",
+    badgeColor: "bg-slate-500/20 text-slate-300 border-slate-500/40"
+  },
+
+  impulso_neto: {
+    title: "Impulso Neto Σ(β·z)",
+    category: "Predicción de IA",
+    summary:
+      "La suma acumulada de todos los factores a favor (aceleradores) menos todos los factores en contra (frenos). Si es positivo y alto, las evidencias geológicas superan ampliamente a la rareza natural del oro.",
+    example: "+4.12 indica un fortísimo impulso geológico favorable que remonta el fondo estéril.",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+  },
+
+  logit_total: {
+    title: "Logit Total (Log-Odds)",
+    category: "Predicción de IA",
+    summary:
+      "La puntuación matemática combinada (Intercepto + Impulso). Mediante la fórmula sigmoide σ(logit) = 1 / (1 + e^-logit), este número se convierte matemáticamente en el porcentaje final de favorabilidad (entre 0% y 100%).",
+    example: "Un logit negativo da probabilidades bajas; un logit de 0 da 50%; números positivos dan >80%.",
+    badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40"
+  },
+
+  cierre_numerico: {
+    title: "Test de Cierre Numérico",
+    category: "Métrica de Calidad",
+    summary:
+      "Auditoría matemática automática que verifica en tiempo real que la suma de las 56 variables coincide con la predicción del modelo con un error menor a 10⁻¹⁵. Demuestra transparencia científica absoluta y ausencia total de sesgos ocultos.",
+    example: "Garantiza que la IA no esconde ningún factor opaco.",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
   }
 };
