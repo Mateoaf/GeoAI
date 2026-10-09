@@ -186,14 +186,19 @@ class DataLoader:
                     config.PATH_V3_PARQUET,
                     columns=["cell_id", "favorabilidad_pu_media", "incertidumbre_std", "distancia_dominio_z", "es_extrapolacion", "categoria_fiabilidad"]
                 ).to_pandas()
+                df_v3["percentile_pu"] = (df_v3["favorabilidad_pu_media"].rank(pct=True) * 100.0).round(2)
                 for row_v3 in df_v3.itertuples(index=False):
                     cid = row_v3.cell_id
                     if cid in self.cell_lookup:
+                        pct_pu = float(row_v3.percentile_pu)
+                        banda_pu = "top_01" if pct_pu >= 99.0 else "top_05" if pct_pu >= 95.0 else "top_10" if pct_pu >= 90.0 else "resto"
                         self.cell_lookup[cid]["favorabilidad_pu_media"] = round(float(row_v3.favorabilidad_pu_media), 4)
                         self.cell_lookup[cid]["incertidumbre_std"] = round(float(row_v3.incertidumbre_std), 4)
                         self.cell_lookup[cid]["distancia_dominio_z"] = round(float(row_v3.distancia_dominio_z), 2)
                         self.cell_lookup[cid]["es_extrapolacion"] = bool(row_v3.es_extrapolacion)
                         self.cell_lookup[cid]["categoria_fiabilidad"] = str(row_v3.categoria_fiabilidad)
+                        self.cell_lookup[cid]["percentile_pu"] = pct_pu
+                        self.cell_lookup[cid]["prioridad_banda_pu"] = banda_pu
                 logger.info("Enriquecimiento v3.0 completado exitosamente.")
             except Exception as e:
                 logger.warning(f"Error al enriquecer celdas con v3.0: {e}")

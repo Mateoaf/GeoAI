@@ -65,3 +65,15 @@ desktop.ini
 !/.*/
 notebooks/malla_espana.gpkg
 mdt/
+
+# AI Agent/Editor local directories
+.agent/
+.agents/
+.claude/
+.codex/
+.gemini/
+.kiro/
+.opencode/
+.pi/
+.qoder/
+.vibe/

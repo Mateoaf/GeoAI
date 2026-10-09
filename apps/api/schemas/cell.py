@@ -28,6 +28,8 @@ class CellInfo(BaseModel):
     categoria_fiabilidad: str | None = Field(None, description="Categoría de la matriz de fiabilidad territorial 2D (ej. 'Alta Favorabilidad + Alta Certeza (Prioridad A)')")
     es_extrapolacion: bool | None = Field(None, description="Indica si la celda cae en extrapolación fuera de distribución (> 3 sigma)")
     distancia_dominio_z: float | None = Field(None, description="Distancia multivariante normalizada Z al centroide de mineralizaciones conocidas")
+    percentile_pu: float | None = Field(None, description="Percentil territorial nacional del score PU v3.0 [0, 100]")
+    prioridad_banda_pu: str | None = Field(None, description="Banda de prioridad de exploración v3.0: top_01, top_05, top_10, resto")
 
 class CellResponse(BaseResponse):
     eligible: bool = Field(..., description="Indica si la celda pertenece a la máscara canónica eligible_approved_features")
