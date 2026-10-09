@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useDraggable } from "../hooks/useDraggable";
 import { RasterLayerType } from "../types";
+import { HelpTooltip } from "./HelpTooltip";
 
 interface LeftLayerPanelProps {
   activeRasterLayer: RasterLayerType;
@@ -149,7 +150,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "v3_pu_score" ? "bg-purple-950/50 border-purple-500/50 text-purple-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm"></span>
-              Favorabilidad PU Calibrada (c=0.72)
+              <span>Favorabilidad PU Calibrada (c=0.72)</span>
+              <HelpTooltip term="pu_learning" />
             </span>
             <input
               type="radio"
@@ -163,7 +165,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "v3_uncertainty" ? "bg-purple-950/50 border-purple-500/50 text-purple-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-fuchsia-400 shadow-sm"></span>
-              Incertidumbre Epistémica (σ)
+              <span>Incertidumbre Epistémica (σ)</span>
+              <HelpTooltip term="incertidumbre_epistemica" />
             </span>
             <input
               type="radio"
@@ -186,7 +189,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "rock_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm"></span>
-              Oro en Roca (Vetas & Skarns)
+              <span>Oro en Roca (Vetas & Skarns)</span>
+              <HelpTooltip term="oro_roca" />
             </span>
             <input
               type="radio"
@@ -200,7 +204,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "alluvial_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-sm"></span>
-              Oro Aluvial (Placeres Cuaternarios)
+              <span>Oro Aluvial (Placeres Cuaternarios)</span>
+              <HelpTooltip term="oro_aluvial" />
             </span>
             <input
               type="radio"
@@ -214,7 +219,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "global_v2_score" ? "bg-amber-950/50 border-amber-500/50 text-amber-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm"></span>
-              Ensamble Multitipología v2
+              <span>Ensamble Multitipología v2</span>
+              <HelpTooltip term="ensamble_multitipologia" />
             </span>
             <input
               type="radio"
@@ -236,7 +242,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "priority" ? "bg-cyan-950/50 border-cyan-500/50 text-cyan-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-sm"></span>
-              Bandas Top 1% / 5% / 10%
+              <span>Bandas Top 1% / 5% / 10%</span>
+              <HelpTooltip term="bandas_prioritarias" />
             </span>
             <input
               type="radio"
@@ -250,7 +257,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "percentile" ? "bg-cyan-950/50 border-cyan-500/50 text-cyan-200 shadow-sm" : "bg-slate-900/50 border-slate-800 hover:border-slate-700 text-slate-300"}`}>
             <span className="flex items-center gap-2 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shadow-sm"></span>
-              Percentil Territorial Continuo
+              <span>Percentil Territorial Continuo</span>
+              <HelpTooltip term="percentil_territorial" />
             </span>
             <input
               type="radio"
@@ -272,7 +280,8 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
           <label className={`flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all ${activeRasterLayer === "score" ? "bg-slate-800 border-slate-600 text-slate-200 shadow-sm" : "bg-slate-900/40 border-slate-800/80 hover:border-slate-700 text-slate-400"}`}>
             <span className="flex items-center gap-2 font-medium text-xs">
               <span className="w-2 h-2 rounded-full bg-slate-500 shadow-sm"></span>
-              Línea Base v1.0 (Regresión Logística 2024)
+              <span>Línea Base v1.0 (Regresión Logística 2024)</span>
+              <HelpTooltip term="linea_base_v1" />
             </span>
             <input
               type="radio"
@@ -342,6 +351,7 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
               <span className="flex items-center gap-2 font-medium">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                 <span>Indicios BDMIN ({indicioFilter === "roca" ? "294" : indicioFilter === "aluvial" ? "299" : "787"})</span>
+                <HelpTooltip term="indicios_bdmin" />
               </span>
               <input
                 type="checkbox"
@@ -397,6 +407,7 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
             <span className="flex items-center gap-2">
               <Compass className="w-3.5 h-3.5 text-cyan-400" />
               <span>Distritos Metalogénicos (32)</span>
+              <HelpTooltip term="distritos_metalogenicos" />
             </span>
             <input
               type="checkbox"
@@ -411,6 +422,7 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
             <span className="flex items-center gap-2">
               <Target className="w-3.5 h-3.5 text-emerald-400" />
               <span>Zonas de Prospectividad (1.529)</span>
+              <HelpTooltip term="zonas_prospectividad" />
             </span>
             <input
               type="checkbox"
@@ -425,6 +437,7 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
             <span className="flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-yellow-400" />
               <span>Yacimientos Mayores (46)</span>
+              <HelpTooltip term="yacimientos_mayores" />
             </span>
             <input
               type="checkbox"
@@ -441,6 +454,7 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
         <div className="flex items-center justify-between mb-2">
           <label className="text-[10px] uppercase font-mono tracking-wider text-cyan-400 font-bold flex items-center gap-1.5">
             <Crosshair className="w-3.5 h-3.5 text-cyan-400" /> Buffer Espacial GIS
+            <HelpTooltip term="buffer_espacial" />
           </label>
           {bufferToolActive && (
             <span className="text-[8px] bg-cyan-500/20 text-cyan-300 font-mono px-1 py-0.2 rounded border border-cyan-500/40 animate-pulse">

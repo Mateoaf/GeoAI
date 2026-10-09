@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { RasterLayerType } from "../types";
 import { Info, ChevronDown, ChevronUp, Layers } from "lucide-react";
+import { HelpTooltip } from "./HelpTooltip";
 
 interface MapLegendProps {
   activeRasterLayer: RasterLayerType;
@@ -12,6 +13,28 @@ export const MapLegend: React.FC<MapLegendProps> = ({ activeRasterLayer }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   if (activeRasterLayer === "none") return null;
+
+  const getLegendTerm = (): string => {
+    switch (activeRasterLayer) {
+      case "v3_pu_score":
+        return "pu_learning";
+      case "v3_uncertainty":
+        return "incertidumbre_epistemica";
+      case "rock_score":
+        return "oro_roca";
+      case "alluvial_score":
+        return "oro_aluvial";
+      case "global_v2_score":
+        return "ensamble_multitipologia";
+      case "percentile":
+        return "percentil_territorial";
+      case "priority":
+        return "bandas_prioritarias";
+      case "score":
+      default:
+        return "linea_base_v1";
+    }
+  };
 
   return (
     <div className="absolute bottom-6 right-14 z-20 select-none">
@@ -29,7 +52,8 @@ export const MapLegend: React.FC<MapLegendProps> = ({ activeRasterLayer }) => {
           <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-slate-800">
             <span className="text-[10px] font-bold uppercase font-mono tracking-wider text-slate-300 flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5 text-cyan-400" />
-              Leyenda de Capa
+              <span>Leyenda de Capa</span>
+              <HelpTooltip term={getLegendTerm()} iconSize="xs" />
             </span>
             <button
               onClick={() => setIsCollapsed(true)}

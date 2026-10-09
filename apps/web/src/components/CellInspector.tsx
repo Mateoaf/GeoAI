@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useDraggable } from "../hooks/useDraggable";
 import { formatWgs84, formatUtm30 } from "../lib/geo";
+import { HelpTooltip } from "./HelpTooltip";
 
 interface CellInspectorProps {
   cell: CellInfo | null;
@@ -244,21 +245,30 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
 
                   <div className="grid grid-cols-3 gap-2.5">
                     <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center">
-                      <span className="text-[10px] text-slate-400 font-medium block mb-0.5 uppercase tracking-wider">Incertidumbre (σ)</span>
+                      <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-0.5 uppercase tracking-wider">
+                        <span>Incertidumbre (σ)</span>
+                        <HelpTooltip term="incertidumbre_epistemica" iconSize="xs" />
+                      </span>
                       <span className={`text-xl font-black font-mono ${(cell.incertidumbre_std ?? 0) > 0.08 ? 'text-rose-400' : (cell.incertidumbre_std ?? 0) > 0.04 ? 'text-amber-300' : 'text-emerald-300'}`}>
                         ±{((cell.incertidumbre_std ?? 0) * 100).toFixed(1)}%
                       </span>
                     </div>
 
                     <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center">
-                      <span className="text-[10px] text-slate-400 font-medium block mb-0.5 uppercase tracking-wider">Distancia Z</span>
+                      <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-0.5 uppercase tracking-wider">
+                        <span>Distancia Z</span>
+                        <HelpTooltip term="distancia_z" iconSize="xs" />
+                      </span>
                       <span className="text-xl font-black font-mono text-cyan-300">
                         {cell.distancia_dominio_z !== undefined && cell.distancia_dominio_z !== null ? `${cell.distancia_dominio_z.toFixed(1)}σ` : "N/A"}
                       </span>
                     </div>
 
                     <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center flex flex-col justify-center items-center">
-                      <span className="text-[10px] text-slate-400 font-medium block mb-0.5 uppercase tracking-wider">Estado Dominio</span>
+                      <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-0.5 uppercase tracking-wider">
+                        <span>Estado Dominio</span>
+                        <HelpTooltip term="extrapolacion_ood" iconSize="xs" />
+                      </span>
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md font-mono ${cell.es_extrapolacion ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'}`}>
                         {cell.es_extrapolacion ? "Extrapolación OOD" : "En Dominio"}
                       </span>
@@ -269,8 +279,9 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                 /* Modo Normal / Favorabilidad Adaptativo */
                 <div className="grid grid-cols-3 gap-2.5">
                   <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center relative overflow-hidden">
-                    <span className="text-[10px] text-slate-400 font-medium block mb-0.5 uppercase tracking-wider">
-                      {isV3PU ? "Score PU v3.0" : "Favorabilidad"}
+                    <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-0.5 uppercase tracking-wider">
+                      <span>{isV3PU ? "Score PU v3.0" : "Favorabilidad"}</span>
+                      <HelpTooltip term={isV3PU ? "pu_learning" : "score_favorabilidad"} iconSize="xs" />
                     </span>
                     <span className="text-xl font-black font-mono text-cyan-300">
                       {displayScore.toFixed(3)}
@@ -284,8 +295,9 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                   </div>
 
                   <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center relative overflow-hidden">
-                    <span className="text-[10px] text-slate-400 font-medium block mb-0.5 uppercase tracking-wider">
-                      {isV3PU ? "Percentil v3.0" : "Percentil"}
+                    <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-0.5 uppercase tracking-wider">
+                      <span>{isV3PU ? "Percentil v3.0" : "Percentil"}</span>
+                      <HelpTooltip term="percentil_territorial" iconSize="xs" />
                     </span>
                     <span className="text-xl font-black font-mono text-purple-300">
                       {displayPercentile.toFixed(1)}%
@@ -299,8 +311,9 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                   </div>
 
                   <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center flex flex-col justify-center items-center">
-                    <span className="text-[10px] text-slate-400 font-medium block mb-1 uppercase tracking-wider">
-                      {isV3PU ? "Banda v3.0" : "Banda Territorial"}
+                    <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-1 uppercase tracking-wider">
+                      <span>{isV3PU ? "Banda v3.0" : "Banda Territorial"}</span>
+                      <HelpTooltip term="bandas_prioritarias" iconSize="xs" />
                     </span>
                     <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md font-mono ${
                       displayBanda === "top_01"
@@ -347,14 +360,20 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-center font-mono">
                     <div className="p-1.5 rounded-lg bg-slate-900/80 border border-slate-800">
-                      <span className="text-[9px] text-slate-400 block uppercase">Score PU Calibrado</span>
+                      <span className="text-[9px] text-slate-400 flex items-center justify-center gap-1 uppercase">
+                        <span>Score PU Calibrado</span>
+                        <HelpTooltip term="pu_learning" iconSize="xs" />
+                      </span>
                       <span className="text-base font-black text-purple-300">
                         {cell.favorabilidad_pu_media.toFixed(3)}
                       </span>
                     </div>
 
                     <div className="p-1.5 rounded-lg bg-slate-900/80 border border-slate-800">
-                      <span className="text-[9px] text-slate-400 block uppercase">Incertidumbre (σ)</span>
+                      <span className="text-[9px] text-slate-400 flex items-center justify-center gap-1 uppercase">
+                        <span>Incertidumbre (σ)</span>
+                        <HelpTooltip term="incertidumbre_epistemica" iconSize="xs" />
+                      </span>
                       <span className={`text-base font-black ${
                         (cell.incertidumbre_std ?? 0) > 0.08
                           ? "text-rose-400"
@@ -367,7 +386,10 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                     </div>
 
                     <div className="col-span-2 sm:col-span-1 p-1.5 rounded-lg bg-slate-900/80 border border-slate-800 flex flex-col justify-center">
-                      <span className="text-[9px] text-slate-400 block uppercase">Distancia Z</span>
+                      <span className="text-[9px] text-slate-400 flex items-center justify-center gap-1 uppercase">
+                        <span>Distancia Z</span>
+                        <HelpTooltip term="distancia_z" iconSize="xs" />
+                      </span>
                       <span className="text-sm font-bold text-slate-300">
                         {cell.distancia_dominio_z !== undefined && cell.distancia_dominio_z !== null
                           ? `${cell.distancia_dominio_z.toFixed(1)}σ`
@@ -378,7 +400,10 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
 
                   {cell.categoria_fiabilidad && (
                     <div className="flex items-center justify-between pt-1 border-t border-purple-900/40 text-[10px]">
-                      <span className="text-slate-400">Matriz de Fiabilidad 2D:</span>
+                      <span className="text-slate-400 flex items-center gap-1">
+                        <span>Matriz de Fiabilidad 2D:</span>
+                        <HelpTooltip term="matriz_fiabilidad" iconSize="xs" />
+                      </span>
                       <span className={`font-mono font-bold px-2 py-0.5 rounded border text-[10px] ${
                         cell.categoria_fiabilidad.includes("Prioridad A")
                           ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
@@ -439,14 +464,17 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                   </button>
                 )}
 
-                <button
-                  onClick={onExplainClick}
-                  className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all cursor-pointer"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-slate-950" />
-                  <span>Explicar Celda (XAI)</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
-                </button>
+                <div className="flex-1 flex items-center gap-1.5">
+                  <button
+                    onClick={onExplainClick}
+                    className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all cursor-pointer"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+                    <span>Explicar Celda (XAI)</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
+                  </button>
+                  <HelpTooltip term="xai_explicabilidad" />
+                </div>
               </div>
             </div>
           ) : null}
