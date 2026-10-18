@@ -85,12 +85,21 @@ const FAMILY_CONFIG: Record<
     border: "border-sky-800/50",
     bar: "from-sky-500 to-cyan-400",
     icon: "💧"
+  },
+  Geoquímica: {
+    label: "Geoquímica",
+    text: "text-fuchsia-400",
+    bg: "bg-fuchsia-950/60",
+    border: "border-fuchsia-800/50",
+    bar: "from-fuchsia-500 to-pink-500",
+    icon: "🧪"
   }
 };
 
 function normalizeFamily(fam: string): string {
   if (!fam) return "General";
   const f = fam.toLowerCase();
+  if (f.includes("geoq") || f.includes("quim") || f.includes("clase_modal")) return "Geoquímica";
   if (f.includes("estruct")) return "Estructuras";
   if (f.includes("lito")) return "Litología";
   if (f.includes("edad")) return "Edades";

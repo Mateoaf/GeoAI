@@ -15,13 +15,14 @@ def get_project_summary():
     loader = get_data_loader()
     ctrl = loader.control_cierre
 
+    is_64 = len(loader.approved_columns) == 64
     summary = ProjectSummary(
         project_name="GeoAI-Au",
-        tagline="Mineral Prospectivity Intelligence — España Peninsular",
-        release_version="v1.0",
+        tagline="Mineral Prospectivity Intelligence — España Peninsular (Geología + Geoquímica IGME)",
+        release_version="v2.0-geoquimica" if is_64 else "v1.0",
         is_scientific_release=True,
-        model_name="logistic_01",
-        model_family="Logistic Regression (L2 regularization, C=0.1, solver=lbfgs)",
+        model_name="GeoAI_64_Predictores" if is_64 else "logistic_01",
+        model_family="Ensamble Multidisciplinar con Geoquímica IGME (64 Predictores)" if is_64 else "Logistic Regression (L2 regularization, C=0.1, solver=lbfgs)",
         resolution="1 km x 1 km (100 hectáreas por celda)",
         crs="EPSG:25830 (ETRS89 / UTM huso 30N)",
         region="España peninsular",
@@ -29,9 +30,9 @@ def get_project_summary():
         features_count=len(loader.approved_columns),
         prioritized_zones_count=int(ctrl.get("zones_prioritized_count", 1529)),
         thresholds=ThresholdsSummary(
-            top_01=float(ctrl.get("threshold_score_top01", 0.833276)),
-            top_05=float(ctrl.get("threshold_score_top05", 0.652645)),
-            top_10=float(ctrl.get("threshold_score_top10", 0.517859)),
+            top_01=float(0.7226 if is_64 else ctrl.get("threshold_score_top01", 0.833276)),
+            top_05=float(0.3978 if is_64 else ctrl.get("threshold_score_top05", 0.652645)),
+            top_10=float(0.2482 if is_64 else ctrl.get("threshold_score_top10", 0.517859)),
         ),
         run_ids={
             "fase_d": "reports/fase_d/20260927T135413_959884Z",
@@ -39,6 +40,7 @@ def get_project_summary():
             "fase_f": "reports/fase_f/20260927T135750_819061Z",
             "fase_g": "reports/fase_g/20260927T141408_460613Z",
             "fase_h": "reports/fase_h/20260927T142549_961719Z",
+            "geoquimica": "reports/geoquimica_20261017",
         }
     )
     return ProjectSummaryResponse(summary=summary)

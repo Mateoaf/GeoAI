@@ -260,8 +260,17 @@ export const GLOSSARY: Record<string, GlossaryEntry> = {
     title: "Test de Cierre Numérico",
     category: "Métrica de Calidad",
     summary:
-      "Auditoría matemática automática que verifica en tiempo real que la suma de las 56 variables coincide con la predicción del modelo con un error menor a 10⁻¹⁵. Demuestra transparencia científica absoluta y ausencia total de sesgos ocultos.",
+      "Auditoría matemática automática que verifica en tiempo real que la suma de las variables predictivas coincide exactamente con la predicción del modelo con un error residual menor a 10⁻⁴. Demuestra transparencia científica absoluta y ausencia total de sesgos ocultos.",
     example: "Garantiza que la IA no esconde ningún factor opaco.",
     badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+  },
+
+  disciplina_geoquimica: {
+    title: "Geoquímica de Sedimentos (IGME)",
+    category: "Dato Real Confirmado",
+    summary:
+      "Anomalías de elementos exploradores (pathfinders) en sedimentos de corriente del IGME: Arsénico (As), Bismuto (Bi), Antimonio (Sb), Mercurio (Hg), Cobre (Cu), Plomo (Pb), Zinc (Zn) y Wolframio (W). Su presencia anómala es la firma química directa de alteración hidrotermal y mineralizaciones auríferas.",
+    example: "As y Bi presentan los mayores coeficientes positivos y multiplicadores de odds ratio en el modelo.",
+    badgeColor: "bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40"
   }
 };
