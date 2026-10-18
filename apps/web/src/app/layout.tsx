@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "GEOAI-AU | Mineral Prospectivity Intelligence (España Peninsular)",
-  description: "Plataforma geoespacial interactiva de prospectividad aurífera para España peninsular basada en GeoAI-Au v1.0.",
+  description: "Plataforma geoespacial interactiva de prospectividad aurífera para España peninsular basada en GeoAI-Au.",
 };
 
 export default function RootLayout({

@@ -48,22 +48,17 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
   if (!cell && !queryCoordinates) return null;
 
   // Determinar métricas contextuales según la capa cartográfica visible
-  const isV3PU = activeRasterLayer === "v3_pu_score";
-  const isV3Unc = activeRasterLayer === "v3_uncertainty";
-  const isRock = activeRasterLayer === "rock_score";
-  const isAlluvial = activeRasterLayer === "alluvial_score";
-  const isV2 = activeRasterLayer === "global_v2_score";
-  const isV1 = activeRasterLayer === "score" || activeRasterLayer === "percentile" || activeRasterLayer === "priority";
+  const isUncertainty = activeRasterLayer === "v3_uncertainty";
 
-  const displayScore = (isV3PU && cell?.favorabilidad_pu_media !== undefined && cell?.favorabilidad_pu_media !== null)
+  const displayScore = (cell?.favorabilidad_pu_media !== undefined && cell?.favorabilidad_pu_media !== null)
     ? cell.favorabilidad_pu_media
     : (cell?.score ?? 0);
 
-  const displayPercentile = (isV3PU && cell?.percentile_pu !== undefined && cell?.percentile_pu !== null)
+  const displayPercentile = (cell?.percentile_pu !== undefined && cell?.percentile_pu !== null)
     ? cell.percentile_pu
     : (cell?.percentile_favorabilidad ?? 0);
 
-  const displayBanda = (isV3PU && cell?.prioridad_banda_pu)
+  const displayBanda = cell?.prioridad_banda_pu
     ? cell.prioridad_banda_pu
     : (cell?.prioridad_banda ?? "resto");
 
@@ -147,13 +142,13 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
           <div className="flex items-center gap-2 font-mono">
             <span className="text-cyan-300 font-bold">R{cell.row} C{cell.col}</span>
             <span className="text-slate-600">|</span>
-            {isV3Unc ? (
+            {isUncertainty ? (
               <span className="text-amber-300">Incertidumbre: <strong>±{((cell.incertidumbre_std ?? 0) * 100).toFixed(1)}%</strong></span>
             ) : (
               <>
-                <span className="text-slate-300">{isV3PU ? "PU v3:" : "Score:"} <strong className="text-cyan-400 font-bold">{displayScore.toFixed(3)}</strong></span>
+                <span className="text-slate-300">Favorabilidad: <strong className="text-cyan-400 font-bold">{displayScore.toFixed(3)}</strong></span>
                 <span className="text-slate-600">|</span>
-                <span className="text-purple-300">p{displayPercentile.toFixed(1)}{isV3PU ? " (v3)" : ""}</span>
+                <span className="text-purple-300">Percentil: <strong className="text-purple-300">{displayPercentile.toFixed(1)}%</strong></span>
               </>
             )}
           </div>
@@ -217,20 +212,17 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
               {/* Badge Contextual de Capa Visualizada */}
               <div className="flex items-center justify-between px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 text-[10px] font-mono">
                 <span className="text-slate-400 flex items-center gap-1.5">
-                  <span className={`w-2 h-2 rounded-full ${isV3Unc ? 'bg-amber-400' : isV3PU ? 'bg-purple-400 animate-pulse' : 'bg-cyan-400'}`} />
+                  <span className={`w-2 h-2 rounded-full ${isUncertainty ? 'bg-amber-400' : 'bg-purple-400 animate-pulse'}`} />
                   Capa activa:
                 </span>
-                <span className={`font-bold ${isV3Unc ? 'text-amber-300' : isV3PU ? 'text-purple-300' : isRock ? 'text-rose-300' : isAlluvial ? 'text-cyan-300' : isV2 ? 'text-amber-300' : 'text-emerald-300'}`}>
-                  {isV3PU ? "Motor Oficial v3.0 (PU Learning c=0.72)" :
-                   isV3Unc ? "Incertidumbre Epistémica (σ)" :
-                   isRock ? "Especializado: Oro en Roca" :
-                   isAlluvial ? "Especializado: Oro Aluvial" :
-                   isV2 ? "Ensamble Multitipología v2.0" :
-                   "Modelo Canónico v1.0 (Regresión Logística)"}
+                <span className={`font-bold ${isUncertainty ? 'text-amber-300' : 'text-purple-300'}`}>
+                  {isUncertainty
+                    ? "Incertidumbre Epistémica (σ)"
+                    : "Favorabilidad Aurífera (PU Learning c=0.72)"}
                 </span>
               </div>
 
-              {isV3Unc ? (
+              {isUncertainty ? (
                 /* Modo Incertidumbre Epistémica */
                 <div className="space-y-2.5">
                   <div className="p-3 rounded-xl bg-amber-950/30 border border-amber-600/40 text-amber-200 text-xs flex items-start gap-2.5">
@@ -280,8 +272,8 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                 <div className="grid grid-cols-3 gap-2.5">
                   <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center relative overflow-hidden">
                     <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-0.5 uppercase tracking-wider">
-                      <span>{isV3PU ? "Score PU v3.0" : "Favorabilidad"}</span>
-                      <HelpTooltip term={isV3PU ? "pu_learning" : "score_favorabilidad"} iconSize="xs" />
+                      <span>Favorabilidad</span>
+                      <HelpTooltip term="pu_learning" iconSize="xs" />
                     </span>
                     <span className="text-xl font-black font-mono text-cyan-300">
                       {displayScore.toFixed(3)}
@@ -296,7 +288,7 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
 
                   <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center relative overflow-hidden">
                     <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-0.5 uppercase tracking-wider">
-                      <span>{isV3PU ? "Percentil v3.0" : "Percentil"}</span>
+                      <span>Percentil Territorial</span>
                       <HelpTooltip term="percentil_territorial" iconSize="xs" />
                     </span>
                     <span className="text-xl font-black font-mono text-purple-300">
@@ -312,7 +304,7 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
 
                   <div className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 text-center flex flex-col justify-center items-center">
                     <span className="text-[10px] text-slate-400 font-medium flex items-center justify-center gap-1 mb-1 uppercase tracking-wider">
-                      <span>{isV3PU ? "Banda v3.0" : "Banda Territorial"}</span>
+                      <span>Banda Territorial</span>
                       <HelpTooltip term="bandas_prioritarias" iconSize="xs" />
                     </span>
                     <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md font-mono ${
@@ -330,28 +322,13 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                 </div>
               )}
 
-              {/* Comparativa con Baseline v1.0 cuando estamos en v3.0 */}
-              {isV3PU && (
-                <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80 text-[10px] font-mono flex items-center justify-between text-slate-400">
-                  <span className="text-slate-500 flex items-center gap-1">
-                    <Info className="w-3 h-3 text-slate-400" />
-                    Baseline v1.0 (LR):
-                  </span>
-                  <span>Score: <strong className="text-slate-200">{cell.score.toFixed(3)}</strong></span>
-                  <span className="text-slate-700">|</span>
-                  <span>Percentil: <strong className="text-slate-200">{cell.percentile_favorabilidad.toFixed(1)}%</strong></span>
-                  <span className="text-slate-700">|</span>
-                  <span className="text-slate-400">{cell.prioridad_banda === "top_01" ? "Top 1%" : cell.prioridad_banda === "top_05" ? "Top 5%" : cell.prioridad_banda === "top_10" ? "Top 10%" : "Fondo"}</span>
-                </div>
-              )}
-
-              {/* Métricas Avanzadas v3.0 (PU Learning, Incertidumbre y Fiabilidad) */}
-              {!isV3Unc && cell.favorabilidad_pu_media !== undefined && cell.favorabilidad_pu_media !== null && (
+              {/* Métricas Avanzadas (PU Learning, Incertidumbre y Fiabilidad) */}
+              {!isUncertainty && cell.favorabilidad_pu_media !== undefined && cell.favorabilidad_pu_media !== null && (
                 <div className="p-3 rounded-xl bg-purple-950/30 border border-purple-800/60 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-purple-300 font-bold flex items-center gap-1.5">
                       <Target className="w-3.5 h-3.5 text-purple-400" />
-                      Evaluación v3.0 (PU Learning & Incertidumbre)
+                      Evaluación de Fiabilidad e Incertidumbre
                     </span>
                     <span className="text-[9px] font-mono bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded border border-purple-500/30">
                       c = 0.72

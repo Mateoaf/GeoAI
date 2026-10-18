@@ -25,8 +25,8 @@ interface HeaderProps {
   onOpenTab: (tab: "explain" | "targets" | "validation" | "copilot") => void;
   activeTab: "explain" | "targets" | "validation" | "copilot";
   isRightOpen: boolean;
-  baseMap: "dark" | "street" | "satellite";
-  setBaseMap: (val: "dark" | "street" | "satellite") => void;
+  baseMap?: "dark" | "street";
+  setBaseMap?: (val: "dark" | "street") => void;
   onZoomToZone?: (target: { lon: number; lat: number; zoom?: number }) => void;
   onOpenCommandPalette?: () => void;
   isZenMode?: boolean;
@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
               GEOAI-AU
             </span>
             <span className="text-[9px] font-mono uppercase font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30">
-              PROSPECTIVITY v3.0
+              FAVORABILIDAD AURÍFERA
             </span>
           </div>
         </div>

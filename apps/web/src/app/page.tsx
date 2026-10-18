@@ -29,7 +29,7 @@ export default function Home() {
   const [showIndicios, setShowIndicios] = useState<boolean>(true);
   const [indicioFilter, setIndicioFilter] = useState<"todos" | "roca" | "aluvial">("todos");
   const [showDistricts, setShowDistricts] = useState<boolean>(true);
-  const [baseMap, setBaseMap] = useState<"dark" | "street" | "satellite">("dark");
+  const [baseMap, setBaseMap] = useState<"dark" | "street">("dark");
 
   // Tema de interfaz: "dark" vs "light"
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -119,23 +119,6 @@ export default function Home() {
     });
   };
 
-  // Comparativa A/B rápida de modelos de favorabilidad
-  const handleToggleAB = () => {
-    if (activeRasterLayer === "rock_score") {
-      setActiveRasterLayer("alluvial_score");
-      showToast("⚡ Comparativa A/B: Oro Aluvial v2 activado (Placeres secundarios)", "info");
-    } else if (activeRasterLayer === "alluvial_score") {
-      setActiveRasterLayer("rock_score");
-      showToast("⚡ Comparativa A/B: Oro en Roca v2 activado (Filones primarios)", "info");
-    } else if (activeRasterLayer === "score") {
-      setActiveRasterLayer("global_v2_score");
-      showToast("⚡ Comparativa A/B: Oro Global v2 activado (ROC 0.966)", "info");
-    } else {
-      setActiveRasterLayer("rock_score");
-      showToast("⚡ Comparativa A/B: Oro en Roca v2 activado", "info");
-    }
-  };
-
   // Atajo de teclado global Ctrl+K / Cmd+K para abrir Command Palette
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -221,7 +204,7 @@ export default function Home() {
         currentView={currentView}
         setCurrentView={(v) => {
           setCurrentView(v);
-          showToast(v === "map" ? "🗺️ Vista: Mapa GIS Interactivo" : "📊 Vista: Dashboard Ejecutivo v3.0");
+          showToast(v === "map" ? "🗺️ Vista: Mapa GIS Interactivo" : "📊 Vista: Dashboard Ejecutivo");
         }}
         summary={summary}
         onOpenMethodology={() => setIsMethodologyOpen(true)}
@@ -236,7 +219,7 @@ export default function Home() {
         baseMap={baseMap}
         setBaseMap={(b) => {
           setBaseMap(b);
-          showToast(`Mapa base: ${b === "satellite" ? "Satélite" : b === "dark" ? "Oscuro" : "Callejero"}`);
+          showToast(`Mapa base: ${b === "dark" ? "Oscuro" : "Callejero"}`);
         }}
         onZoomToZone={(target) => {
           setCurrentView("map");
@@ -261,7 +244,7 @@ export default function Home() {
         onToggleTheme={handleToggleTheme}
       />
 
-      {/* 2. PESTAÑA A: DASHBOARD EJECUTIVO V3.0 (Estilo foto de referencia) */}
+      {/* 2. PESTAÑA A: DASHBOARD EJECUTIVO (Estilo foto de referencia) */}
       <div className={currentView === "dashboard" ? "flex-1 w-full h-[calc(100vh-3.5rem)] overflow-y-auto" : "hidden"}>
         <ExecutiveDashboard
           onNavigateToMapTarget={(target) => {
@@ -326,7 +309,6 @@ export default function Home() {
             setBaseMap={setBaseMap}
             isCollapsed={isLeftCollapsed}
             setIsCollapsed={setIsLeftCollapsed}
-            onToggleAB={handleToggleAB}
           />
         )}
 

@@ -408,7 +408,7 @@ const NOTEBOOK_SPECS: Record<string, NotebookSpec> = {
     title: "PU Learning, Buffered Spatial CV (15 km) & Incertidumbre Epistémica",
     notebookFile: "notebooks/18_modelos_avanzados_pu_ebm_incertidumbre.ipynb",
     section: "Sección 10: Validación Rigurosa con Buffer de 15 km & Matriz 2D",
-    badge: "v3.0 State of the Art",
+    badge: "State of the Art (Oficial)",
     badgeBg: "bg-purple-950/80 border-purple-800/80",
     badgeText: "text-purple-300",
     summary:
@@ -605,54 +605,13 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
               <p className="text-xs text-slate-400 mt-1.5 leading-relaxed max-w-4xl">
                 Reducción de incertidumbre geológica sobre <strong>478.443 Celdas Peninsulares</strong> (478.378 km²) ·{" "}
                 <strong>56 Covariables Aprobadas</strong> (Litologías GEODE 1:1M, Edades, Contactos Ígneos, Fallas IGN, Morfometría MDT 500m, Red Fluvial) ·{" "}
-                Factor de Enriquecimiento (Lift) de <strong>97.2x</strong> en el Top 0.5% · Modelo v3.0 con <strong>PU Learning (Elkan-Noto)</strong> y <strong>CV Buffered 15 km</strong>.
+                Factor de Enriquecimiento (Lift) de <strong>97.2x</strong> en el Top 0.5% · Modelo GeoAI con <strong>PU Learning (Elkan-Noto)</strong> y <strong>CV Buffered 15 km</strong>.
               </p>
             </div>
           </div>
 
-          {/* Selector de Perspectiva Analítica & Botón de Descarga */}
-          <div className="flex flex-wrap items-center gap-2 self-start lg:self-auto shrink-0">
-            <div className="flex items-center p-1 bg-slate-950/80 rounded-xl border border-slate-800 shadow-inner">
-              <button
-                onClick={() => setActiveDatasetView("v3_pu")}
-                className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeDatasetView === "v3_pu"
-                    ? "bg-purple-500 text-slate-950 shadow-md shadow-purple-500/20 font-black"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
-                }`}
-                title="Modelo Oficial de Producción basado en Positive-Unlabeled Learning y Validación Espacial con Dead-Zone de 15 km"
-              >
-                <Target className="w-3.5 h-3.5" />
-                <span>Producción v3.0 (Oficial)</span>
-              </button>
-
-              <button
-                onClick={() => setActiveDatasetView("genetico")}
-                className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeDatasetView === "genetico"
-                    ? "bg-teal-500 text-slate-950 shadow-md shadow-teal-500/20 font-black"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
-                }`}
-                title="Bifurcación metalogenética especializada entre sistemas primarios de veta/skarn y placeres aluviales secundarios"
-              >
-                <Flame className="w-3.5 h-3.5" />
-                <span>Tipologías (Roca vs Aluvial)</span>
-              </button>
-
-              <button
-                onClick={() => setActiveDatasetView("experimental")}
-                className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeDatasetView === "experimental"
-                    ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
-                }`}
-                title="Auditoría comparativa y evolución metodológica entre la Línea Base v1.0, el Ensamble v2.0 y el Motor v3.0"
-              >
-                <GitBranch className="w-3.5 h-3.5" />
-                <span>Benchmarking (v1 ➔ v2 ➔ v3)</span>
-              </button>
-            </div>
-
+          {/* Botón de Descarga del Dossier */}
+          <div className="flex items-center gap-2 self-start lg:self-auto shrink-0">
             <button
               onClick={handleDownloadDossier}
               className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-black text-xs flex items-center gap-2 shadow-lg shadow-amber-500/10 transition-all cursor-pointer border border-amber-300/40"
@@ -976,35 +935,21 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
                 <div>
                   <div className="flex items-center gap-2">
                     <h2 className="text-base font-bold text-slate-100">
-                      {activeDatasetView === "v3_pu"
-                        ? "Motor de Producción GeoAI v3.0 · PU Learning (Elkan-Noto c=0.72) & Buffer Espacial 15 km"
-                        : activeDatasetView === "genetico"
-                        ? "Especialización Metalogenética: Oro en Roca vs. Oro Aluvial"
-                        : "Evolución Metodológica & Benchmarking Científico (v1.0 ➔ v2.0 ➔ v3.0)"}
+                      Motor de Producción GeoAI · PU Learning (Elkan-Noto c=0.72) & Buffer Espacial 15 km
                     </h2>
                     <button
-                      onClick={() => scrollToNotebook(activeDatasetView === "v3_pu" ? "18" : activeDatasetView === "genetico" ? "13" : "12")}
+                      onClick={() => scrollToNotebook("18")}
                       className="text-[10px] font-mono font-bold text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800/60 hover:underline cursor-pointer"
                     >
-                      {activeDatasetView === "v3_pu" ? "NB 18" : activeDatasetView === "genetico" ? "NB 13" : "NB 12"}
+                      NB 18
                     </button>
                   </div>
                   <p className="text-xs text-slate-400 mt-1">
-                    {activeDatasetView === "v3_pu"
-                      ? "Aislamiento espacial riguroso (Dead-Zone 15 km) para eliminar autocorrelación territorial y Matriz 2D de fiabilidad"
-                      : activeDatasetView === "genetico"
-                      ? "Modelos independientes entrenados con firmas litológicas, morfométricas e hidrológicas específicas"
-                      : "Auditoría comparativa: Regresión Logística L2 (v1) vs Árboles Ensamble (v2) vs PU Learning y Dead-Zone 15km (v3)"}
+                    Aislamiento espacial riguroso (Dead-Zone 15 km) para eliminar autocorrelación territorial y Matriz 2D de fiabilidad
                   </p>
                 </div>
-                <span className={`text-[11px] font-bold px-2.5 py-1 rounded-lg border shrink-0 ${
-                  activeDatasetView === "v3_pu"
-                    ? "bg-purple-500/15 text-purple-300 border-purple-500/30"
-                    : activeDatasetView === "genetico"
-                    ? "bg-teal-500/15 text-teal-300 border-teal-500/30"
-                    : "bg-amber-500/15 text-amber-300 border-amber-500/30"
-                }`}>
-                  {activeDatasetView === "v3_pu" ? "Producción Oficial" : activeDatasetView === "genetico" ? "Bifurcación Genética" : "Auditoría Científica"}
+                <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg border shrink-0 bg-purple-500/15 text-purple-300 border-purple-500/30">
+                  Modelo Oficial
                 </span>
               </div>
 
@@ -1099,7 +1044,7 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
                           <td className="py-2 text-purple-300 font-bold flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3 text-purple-400" /> Buffered Spatial (15 km)
                           </td>
-                          <td className="py-2 text-purple-200">Bagging PU + Elkan-Noto (v3.0)</td>
+                          <td className="py-2 text-purple-200">Bagging PU + Elkan-Noto (Oficial)</td>
                           <td className="py-2 text-center text-purple-300 font-black">0.7920</td>
                           <td className="py-2 text-center text-purple-300 font-bold">0.5492</td>
                           <td className="py-2 text-center text-emerald-300 font-black">33.89%</td>
@@ -1671,18 +1616,18 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
                   </span>
                 </div>
 
-                {/* Métricas Multimodelo del Yacimiento (v1, v2 Exp, v3 PU) */}
+                {/* Métricas del Yacimiento */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center pt-1 font-mono">
                   <div className="p-2 bg-slate-900 rounded-lg border border-slate-800">
-                    <span className="text-[9px] uppercase text-slate-400 block">Oficial v1.0</span>
-                    <span className="text-base font-black text-amber-400">{selectedDistrict.v1Score.toFixed(3)}</span>
+                    <span className="text-[9px] uppercase text-slate-400 block">Percentil</span>
+                    <span className="text-base font-black text-amber-400">{selectedDistrict.v1Percentile.toFixed(1)}%</span>
                   </div>
                   <div className="p-2 bg-slate-900 rounded-lg border border-slate-800">
-                    <span className="text-[9px] uppercase text-slate-400 block">Exp. 787</span>
-                    <span className="text-base font-black text-emerald-400">{selectedDistrict.expScore.toFixed(3)}</span>
+                    <span className="text-[9px] uppercase text-slate-400 block">Banda</span>
+                    <span className="text-base font-black text-emerald-400">{selectedDistrict.v1Band}</span>
                   </div>
                   <div className="p-2 bg-purple-950/40 rounded-lg border border-purple-800/60">
-                    <span className="text-[9px] uppercase text-purple-300 block">Score PU v3.0</span>
+                    <span className="text-[9px] uppercase text-purple-300 block">Favorabilidad PU</span>
                     <span className="text-base font-black text-purple-200">
                       {selectedDistrict.v3Score !== undefined ? selectedDistrict.v3Score.toFixed(3) : "—"}
                     </span>
@@ -1697,7 +1642,7 @@ Documento generado automáticamente por GeoAI-Au Prospectivity Platform.
 
                 {selectedDistrict.v3Category && (
                   <div className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-purple-950/30 border border-purple-800/50 text-[10px] font-mono">
-                    <span className="text-slate-400">Fiabilidad Territorial v3:</span>
+                    <span className="text-slate-400">Fiabilidad Territorial:</span>
                     <span className={`font-bold px-2 py-0.5 rounded border ${
                       selectedDistrict.v3Category.includes("Prioridad A")
                         ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"

@@ -4,9 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   Search,
   Sparkles,
-  Flame,
-  Waves,
-  Globe2,
   Layers,
   MapPin,
   Compass,
@@ -18,7 +15,6 @@ import {
   ArrowRight,
   Maximize2,
   X,
-  Satellite,
   Moon,
   Sun,
   ChevronRight
@@ -44,7 +40,7 @@ interface CommandPaletteProps {
   onOpenMethodology: () => void;
   onToggle3D: () => void;
   onToggleBuffer: () => void;
-  onSetBaseMap: (map: "dark" | "street" | "satellite") => void;
+  onSetBaseMap: (map: "dark" | "street") => void;
   onSwitchView: (view: "map" | "dashboard") => void;
   onShowToast?: (msg: string) => void;
   theme?: "dark" | "light";
@@ -84,100 +80,72 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   const commands: CommandItem[] = [
     // Modelos
     {
-      id: "mod_v3_pu",
-      title: "Cargar Motor GeoAI v3.0 (Producción)",
+      id: "mod_pu_score",
+      title: "Cargar Favorabilidad Aurífera (Modelo Consolidado)",
       subtitle: "Positive-Unlabeled bagging calibrado · Susceptibilidad Minera Oficial",
       category: "Modelos",
       icon: <ShieldCheck className="w-4 h-4 text-emerald-400" />,
-      badge: "v3.0 Oficial",
+      badge: "Oficial",
       action: () => {
         onSelectRasterLayer("v3_pu_score");
         onSwitchView("map");
-        onShowToast?.("🎯 Capa activa: Motor Oficial GeoAI v3.0 (Producción)");
+        onShowToast?.("🎯 Capa activa: Favorabilidad Aurífera");
         onClose();
       }
     },
     {
-      id: "mod_v3_uncertainty",
-      title: "Cargar Fiabilidad e Incertidumbre v3.0",
-      subtitle: "Desviación estándar y detección de extrapolación fuera de dominio",
+      id: "mod_uncertainty",
+      title: "Cargar Incertidumbre Epistémica (σ)",
+      subtitle: "Desviación estándar inter-modelos y evaluación de fiabilidad",
       category: "Modelos",
       icon: <Sparkles className="w-4 h-4 text-amber-400" />,
       badge: "Incertidumbre",
       action: () => {
         onSelectRasterLayer("v3_uncertainty");
         onSwitchView("map");
-        onShowToast?.("🛡️ Capa activa: Incertidumbre y Fiabilidad v3.0");
+        onShowToast?.("🛡️ Capa activa: Incertidumbre Epistémica (σ)");
         onClose();
       }
     },
     {
-      id: "mod_rock",
-      title: "Cargar Modelo Oro en Roca v2",
-      subtitle: "Vetas primarias hercínicas y skarns · LightGBM (ROC 0.976)",
+      id: "mod_rock_score",
+      title: "Cargar Oro en Roca (Vetas & Skarns)",
+      subtitle: "Especialización metalogénica en oro primario hidrotermal",
       category: "Modelos",
-      icon: <Flame className="w-4 h-4 text-amber-400" />,
-      badge: "ROC 0.976",
+      icon: <Sparkles className="w-4 h-4 text-rose-400" />,
+      badge: "Roca",
       action: () => {
         onSelectRasterLayer("rock_score");
         onSwitchView("map");
-        onShowToast?.("🔥 Capa activa: Oro en Roca v2 (LightGBM)");
+        onShowToast?.("🪨 Capa activa: Oro en Roca");
         onClose();
       }
     },
     {
-      id: "mod_alluvial",
-      title: "Cargar Modelo Oro Aluvial v2",
-      subtitle: "Placeres fluviales, abanicos y terrazas cenozoicas (ROC 0.951)",
+      id: "mod_alluvial_score",
+      title: "Cargar Oro Aluvial (Placeres Cuaternarios)",
+      subtitle: "Especialización metalogénica en arenas, gravas y terrazas",
       category: "Modelos",
-      icon: <Waves className="w-4 h-4 text-cyan-400" />,
-      badge: "ROC 0.951",
+      icon: <Compass className="w-4 h-4 text-blue-400" />,
+      badge: "Aluvial",
       action: () => {
         onSelectRasterLayer("alluvial_score");
         onSwitchView("map");
-        onShowToast?.("🌊 Capa activa: Oro Aluvial v2 (LightGBM)");
+        onShowToast?.("🌊 Capa activa: Oro Aluvial");
         onClose();
       }
     },
     {
-      id: "mod_global",
-      title: "Cargar Modelo Ensamble Global v2",
-      subtitle: "Integración de 787 indicios y 56 covariables (ROC 0.966)",
+      id: "mod_global_v2_score",
+      title: "Cargar Ensamble Multitipología",
+      subtitle: "Fusión no lineal de oro en roca y oro aluvial",
       category: "Modelos",
-      icon: <Globe2 className="w-4 h-4 text-emerald-400" />,
-      badge: "ROC 0.966",
+      icon: <ShieldCheck className="w-4 h-4 text-cyan-400" />,
+      badge: "Multitipología",
       action: () => {
         onSelectRasterLayer("global_v2_score");
         onSwitchView("map");
-        onShowToast?.("🌐 Capa activa: Ensamble Global v2");
-        onClose();
-      }
-    },
-    {
-      id: "mod_priority",
-      title: "Cargar Bandas Prioritarias Top 1%, 5%, 10%",
-      subtitle: "Clasificación territorial en macro-clusters conexos (Fase H)",
-      category: "Modelos",
-      icon: <Layers className="w-4 h-4 text-rose-400" />,
-      badge: "754 Clusters",
-      action: () => {
-        onSelectRasterLayer("priority");
-        onSwitchView("map");
-        onShowToast?.("🎯 Capa activa: Bandas Prioritarias Top 1%, 5%, 10%");
-        onClose();
-      }
-    },
-    {
-      id: "mod_v1",
-      title: "Cargar Línea Base Histórica v1.0",
-      subtitle: "Regresión Logística L2 de referencia científica y benchmark (190 confirmados)",
-      category: "Modelos",
-      icon: <BarChart3 className="w-4 h-4 text-slate-300" />,
-      badge: "v1.0 Base",
-      action: () => {
-        onSelectRasterLayer("score");
-        onSwitchView("map");
-        onShowToast?.("📐 Capa activa: Línea Base Histórica v1.0 (Auditado)");
+        onShowToast?.("🌐 Capa activa: Ensamble Multitipología");
         onClose();
       }
     },
@@ -356,19 +324,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       }
     },
     {
-      id: "tool_sat",
-      title: "Activar Mapa Base Satélite Alta Resolución",
-      subtitle: "Imágenes satelitales globales de Esri World Imagery",
-      category: "Herramientas",
-      icon: <Satellite className="w-4 h-4 text-cyan-400" />,
-      badge: "Esri",
-      action: () => {
-        onSetBaseMap("satellite");
-        onShowToast?.("🛰️ Mapa base cambiado a Satélite");
-        onClose();
-      }
-    },
-    {
       id: "tool_dark",
       title: "Activar Mapa Base Oscuro Carto Dark",
       subtitle: "Modo nocturno de alto contraste ideal para anomalías ráster",
@@ -378,6 +333,19 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       action: () => {
         onSetBaseMap("dark");
         onShowToast?.("🌙 Mapa base cambiado a Carto Dark");
+        onClose();
+      }
+    },
+    {
+      id: "tool_street",
+      title: "Activar Mapa Base Callejero Carto Voyager",
+      subtitle: "Cartografía clara y topográfica detallada",
+      category: "Herramientas",
+      icon: <Compass className="w-4 h-4 text-cyan-400" />,
+      badge: "Carto",
+      action: () => {
+        onSetBaseMap("street");
+        onShowToast?.("🗺️ Mapa base cambiado a Carto Voyager");
         onClose();
       }
     },
@@ -397,7 +365,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     // Vistas y Paneles
     {
       id: "view_dash",
-      title: "Abrir Dashboard Ejecutivo v3.0",
+      title: "Abrir Dashboard Ejecutivo",
       subtitle: "Métricas de Lift, simulador de distritos y trazabilidad de cuadernos",
       category: "Vistas",
       icon: <BarChart3 className="w-4 h-4 text-amber-400" />,
@@ -623,7 +591,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           </div>
           <div className="flex items-center gap-1.5 text-slate-400">
             <Command className="w-3 h-3 text-cyan-400" />
-            <span>GeoAI Spotlight v3.0</span>
+            <span>GeoAI Spotlight</span>
           </div>
         </div>
       </div>

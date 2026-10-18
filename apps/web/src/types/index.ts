@@ -10,15 +10,15 @@ export interface Thresholds {
 }
 
 export type RasterLayerType =
-  | "score"
-  | "percentile"
-  | "priority"
-  | "global_v2_score"
-  | "rock_score"
-  | "alluvial_score"
   | "v3_pu_score"
   | "v3_uncertainty"
+  | "rock_score"
+  | "alluvial_score"
+  | "global_v2_score"
+  | "score"
   | "none";
+
+export type BaseMapType = "dark" | "street";
 
 export interface ProjectSummary {
   project_name: string;

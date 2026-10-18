@@ -25,7 +25,7 @@ export const MethodologyModal: React.FC<MethodologyModalProps> = ({ isOpen, onCl
                 Metodología, Model Card y Limitaciones Científicas
               </h2>
               <p className="text-xs text-slate-400 font-mono">
-                GeoAI-Au v1.0 — Cadena Metodológica Sellada B → H
+                GeoAI-Au — Cadena Metodológica de Prospectividad Aurífera
               </p>
             </div>
           </div>

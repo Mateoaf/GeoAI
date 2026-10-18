@@ -86,7 +86,7 @@ export const GLOSSARY: Record<string, GlossaryEntry> = {
   },
 
   ensamble_multitipologia: {
-    title: "Ensamble Multitipología v2",
+    title: "Ensamble Multitipología",
     category: "Predicción de IA",
     summary:
       "Unión de los modelos de roca y de río mediante un ensamble de algoritmos Gradient Boosting. Permite detectar zonas híbridas donde puede haber yacimientos en la montaña y depósitos en el valle adyacente.",

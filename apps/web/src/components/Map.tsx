@@ -34,7 +34,7 @@ interface MapProps {
   showIndicios?: boolean;
   indicioFilter?: "todos" | "roca" | "aluvial";
   showDistricts?: boolean;
-  baseMap: "dark" | "street" | "satellite";
+  baseMap: "dark" | "street";
   onSelectCoordinate: (lat: number, lon: number) => void;
   selectedCoordinates?: { lat: number; lon: number } | null;
   targetToZoom?: { lon: number; lat: number; zoom?: number } | null;
@@ -45,7 +45,6 @@ interface MapProps {
   bufferResult?: BufferAnalysisResult | null;
   onRunBufferAnalysis?: (lat: number, lon: number, radiusKm: number) => void;
   onCloseBufferResult?: () => void;
-  onToggleAB?: () => void;
   is3DActive?: boolean;
   onToggle3D?: () => void;
 }
@@ -113,7 +112,6 @@ export const Map: React.FC<MapProps> = ({
   bufferResult,
   onRunBufferAnalysis,
   onCloseBufferResult,
-  onToggleAB,
   is3DActive,
   onToggle3D
 }) => {
@@ -166,31 +164,8 @@ export const Map: React.FC<MapProps> = ({
   }, [searchQuery]);
 
   // 1. Obtener estilo base
-  const getBaseStyle = (type: "dark" | "street" | "satellite"): any => {
-    if (type === "satellite") {
-      return {
-        version: 8,
-        sources: {
-          esri_satellite: {
-            type: "raster",
-            tiles: [
-              "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-            ],
-            tileSize: 256,
-            attribution: "Esri, Maxar, Earthstar Geographics"
-          }
-        },
-        layers: [
-          {
-            id: "esri_satellite_layer",
-            type: "raster",
-            source: "esri_satellite",
-            minzoom: 0,
-            maxzoom: 19
-          }
-        ]
-      };
-    } else if (type === "street") {
+  const getBaseStyle = (type: "dark" | "street"): any => {
+    if (type === "street") {
       return "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
     } else {
       return "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";

@@ -16,8 +16,6 @@ export const MapLegend: React.FC<MapLegendProps> = ({ activeRasterLayer }) => {
 
   const getLegendTerm = (): string => {
     switch (activeRasterLayer) {
-      case "v3_pu_score":
-        return "pu_learning";
       case "v3_uncertainty":
         return "incertidumbre_epistemica";
       case "rock_score":
@@ -26,13 +24,10 @@ export const MapLegend: React.FC<MapLegendProps> = ({ activeRasterLayer }) => {
         return "oro_aluvial";
       case "global_v2_score":
         return "ensamble_multitipologia";
-      case "percentile":
-        return "percentil_territorial";
-      case "priority":
-        return "bandas_prioritarias";
+      case "v3_pu_score":
       case "score":
       default:
-        return "linea_base_v1";
+        return "pu_learning";
     }
   };
 
@@ -64,105 +59,8 @@ export const MapLegend: React.FC<MapLegendProps> = ({ activeRasterLayer }) => {
             </button>
           </div>
 
-          {/* 1. Leyenda de Bandas Prioritarias */}
-          {activeRasterLayer === "priority" && (
-            <div className="space-y-1.5 text-[11px] font-mono">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-sm bg-red-500 shadow-sm shadow-red-500/50"></span>
-                  <span className="text-slate-200 font-bold">Top 1%</span>
-                </span>
-                <span className="text-red-400 font-semibold">Muy Alta</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-sm bg-amber-400 shadow-sm shadow-amber-400/50"></span>
-                  <span className="text-slate-300">Top 5%</span>
-                </span>
-                <span className="text-amber-300">Alta</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-sm bg-emerald-400 shadow-sm shadow-emerald-400/50"></span>
-                  <span className="text-slate-300">Top 10%</span>
-                </span>
-                <span className="text-emerald-300">Moderada-Alta</span>
-              </div>
-              <p className="text-[9px] text-slate-500 pt-1 border-t border-slate-800/80">
-                Fondo territorial transparente (&gt;90% restante)
-              </p>
-            </div>
-          )}
-
-          {/* 2. Leyenda Oro en Roca (Magma) */}
-          {activeRasterLayer === "rock_score" && (
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
-                <span>Vetas Primarias</span>
-                <span className="text-amber-400 font-bold">ROC 0.976</span>
-              </div>
-              <div className="h-3 w-full rounded-md bg-gradient-to-r from-purple-950 via-rose-600 via-amber-500 to-yellow-200 shadow-inner"></div>
-              <div className="flex justify-between text-[9px] font-mono text-slate-400">
-                <span>0.10 (Anomalía)</span>
-                <span>0.50</span>
-                <span className="text-amber-300 font-bold">0.99 (Veta)</span>
-              </div>
-            </div>
-          )}
-
-          {/* 3. Leyenda Oro Aluvial (Cividis) */}
-          {activeRasterLayer === "alluvial_score" && (
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
-                <span>Placeres y Terrazas</span>
-                <span className="text-cyan-400 font-bold">ROC 0.951</span>
-              </div>
-              <div className="h-3 w-full rounded-md bg-gradient-to-r from-blue-950 via-teal-700 via-yellow-600 to-yellow-300 shadow-inner"></div>
-              <div className="flex justify-between text-[9px] font-mono text-slate-400">
-                <span>0.08 (Fondo)</span>
-                <span>0.40</span>
-                <span className="text-cyan-300 font-bold">0.95 (Placer)</span>
-              </div>
-            </div>
-          )}
-
-          {/* 4. Leyenda Global v2 o v1.0 (Viridis) */}
-          {(activeRasterLayer === "score" || activeRasterLayer === "global_v2_score") && (
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
-                <span>Score Favorabilidad</span>
-                <span className="text-emerald-400 font-bold">{activeRasterLayer === "global_v2_score" ? "v2.0" : "v1.0 LR"}</span>
-              </div>
-              <div className="h-3 w-full rounded-md bg-gradient-to-r from-indigo-950 via-teal-600 via-emerald-500 to-yellow-300 shadow-inner"></div>
-              <div className="flex justify-between text-[9px] font-mono text-slate-400">
-                <span>0.08 (Umbral)</span>
-                <span>0.50</span>
-                <span className="text-emerald-300 font-bold">1.00 (Máx)</span>
-              </div>
-            </div>
-          )}
-
-          {/* 4b. Leyenda Motor Oficial v3.0 (Viridis) */}
-          {activeRasterLayer === "v3_pu_score" && (
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
-                <span className="text-purple-300 font-bold">Motor Oficial v3.0 (PU Learning)</span>
-                <span className="text-emerald-400 font-bold">c = 0.72</span>
-              </div>
-              <div className="h-3 w-full rounded-md bg-gradient-to-r from-indigo-950 via-teal-600 via-emerald-500 to-yellow-300 shadow-inner"></div>
-              <div className="flex justify-between text-[9px] font-mono text-slate-400">
-                <span>0.06 (Umbral)</span>
-                <span>0.50</span>
-                <span className="text-yellow-300 font-bold">1.00 (Máx)</span>
-              </div>
-              <p className="text-[9px] text-slate-400 pt-1 border-t border-slate-800/80">
-                Amarillo = Máxima favorabilidad calibrada v3.0
-              </p>
-            </div>
-          )}
-
-          {/* 4c. Leyenda Incertidumbre Epistémica v3.0 (Plasma) */}
-          {activeRasterLayer === "v3_uncertainty" && (
+          {/* Leyenda Incertidumbre Epistémica (Plasma) */}
+          {activeRasterLayer === "v3_uncertainty" ? (
             <div className="space-y-2">
               <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
                 <span className="text-purple-300 font-bold">Incertidumbre Epistémica (σ)</span>
@@ -178,21 +76,73 @@ export const MapLegend: React.FC<MapLegendProps> = ({ activeRasterLayer }) => {
                 ⚠️ Amarillo = Máxima dispersión/duda del modelo (no es potencial de oro).
               </p>
             </div>
-          )}
-
-          {/* 5. Leyenda Percentil (Plasma) */}
-          {activeRasterLayer === "percentile" && (
+          ) : activeRasterLayer === "rock_score" ? (
+            /* Leyenda Oro en Roca (Magma) */
             <div className="space-y-2">
               <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
-                <span>Percentil Territorial</span>
-                <span className="text-purple-400 font-bold">50% - 100%</span>
+                <span className="text-rose-400 font-bold">Oro en Roca</span>
+                <span className="text-amber-400 font-bold">Vetas & Skarns</span>
               </div>
-              <div className="h-3 w-full rounded-md bg-gradient-to-r from-purple-950 via-pink-600 to-yellow-300 shadow-inner"></div>
+              <div className="h-3 w-full rounded-md bg-gradient-to-r from-[#000004] via-[#b63679] to-[#fcfdbf] shadow-inner"></div>
               <div className="flex justify-between text-[9px] font-mono text-slate-400">
-                <span>P50</span>
-                <span>P80</span>
-                <span className="text-purple-300 font-bold">P99.9</span>
+                <span>0.00 (Fondo)</span>
+                <span className="text-rose-300">Primario</span>
+                <span className="text-amber-300 font-bold">1.00 (Máxima)</span>
               </div>
+              <p className="text-[9px] text-slate-400 pt-1 border-t border-slate-800/80">
+                Oro primario hidrotermal en roca madre
+              </p>
+            </div>
+          ) : activeRasterLayer === "alluvial_score" ? (
+            /* Leyenda Oro Aluvial (Cividis) */
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
+                <span className="text-blue-400 font-bold">Oro Aluvial</span>
+                <span className="text-amber-400 font-bold">Placeres</span>
+              </div>
+              <div className="h-3 w-full rounded-md bg-gradient-to-r from-[#00204d] via-[#7c7b78] to-[#ffea46] shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400">
+                <span>0.00 (Fondo)</span>
+                <span className="text-blue-300">Sedimentos</span>
+                <span className="text-amber-300 font-bold">1.00 (Máxima)</span>
+              </div>
+              <p className="text-[9px] text-slate-400 pt-1 border-t border-slate-800/80">
+                Placeres aluviales en gravas y terrazas fluviales
+              </p>
+            </div>
+          ) : activeRasterLayer === "global_v2_score" ? (
+            /* Leyenda Ensamble Multitipología (Viridis) */
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
+                <span className="text-cyan-300 font-bold">Ensamble Multitipología</span>
+                <span className="text-amber-400 font-bold">Roca + Placer</span>
+              </div>
+              <div className="h-3 w-full rounded-md bg-gradient-to-r from-indigo-950 via-teal-600 via-emerald-500 to-yellow-300 shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400">
+                <span>0.00 (Fondo)</span>
+                <span>0.50</span>
+                <span className="text-yellow-300 font-bold">1.00 (Máxima)</span>
+              </div>
+              <p className="text-[9px] text-slate-400 pt-1 border-t border-slate-800/80">
+                Integración multivariable de yacimientos primarios y secundarios
+              </p>
+            </div>
+          ) : (
+            /* Leyenda Favorabilidad Aurífera (Viridis) */
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
+                <span className="text-purple-300 font-bold">Favorabilidad Aurífera</span>
+                <span className="text-emerald-400 font-bold">c = 0.72</span>
+              </div>
+              <div className="h-3 w-full rounded-md bg-gradient-to-r from-indigo-950 via-teal-600 via-emerald-500 to-yellow-300 shadow-inner"></div>
+              <div className="flex justify-between text-[9px] font-mono text-slate-400">
+                <span>0.06 (Fondo)</span>
+                <span>0.50</span>
+                <span className="text-yellow-300 font-bold">1.00 (Máxima)</span>
+              </div>
+              <p className="text-[9px] text-slate-400 pt-1 border-t border-slate-800/80">
+                Amarillo = Máxima favorabilidad calibrada
+              </p>
             </div>
           )}
         </div>
