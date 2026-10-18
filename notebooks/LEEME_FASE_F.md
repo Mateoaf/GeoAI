@@ -112,3 +112,10 @@ El cuaderno [18_modelos_avanzados_pu_ebm_incertidumbre.ipynb](18_modelos_avanzad
 2. **Buffered Spatial Cross-Validation**: Validación con macro-bloques de 50 km y zona muerta de exclusión de 15 km, eliminando la sobrestimación por autocorrelación espacial de Tobler.
 3. **Benchmark Comparativo**: Evaluación cruzada de Regresión Logística L2, Random Forest, LightGBM y Bagging PU bajo Random CV, Spatial Block CV y Buffered Spatial CV.
 4. **Matriz de Fiabilidad Territorial**: Descomposición de las 478.443 celdas peninsulares en Favorabilidad $\mu(x)$, Incertidumbre $\sigma(x)$ y Detección de celdas en extrapolación ($D_Z > p95$).
+
+---
+
+## Extensión Geoquímica y Fusión Heterogénea (64 Predictores · Atlas IGME)
+
+Los cuadernos `10`–`14` y `16`–`18` incluyen al final la extensión con los **64 predictores** (56 de geología, estructuras, relieve e hidrología + 8 clases modales geoquímicas `As`, `Sb`, `Bi`, `Hg`, `Cu`, `Pb`, `Zn`, `W`), el diagnóstico de propensión Elkan–Noto con calibración interna, las tres estrategias de validación cruzada, las siete rotaciones por grupos de distritos y la fusión heterogénea de seis familias algorítmicas (`config/geoquimica_20261017.yaml`, `src/geoau/geochemical_experiment.py`, `src/geoau/model_fusion.py`, `reports/geoquimica_20261017/` e `informes/geoquimica_20261017/`).
+

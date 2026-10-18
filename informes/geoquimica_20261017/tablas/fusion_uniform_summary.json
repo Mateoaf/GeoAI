@@ -1,0 +1,44 @@
+{
+  "n_input_features": 64,
+  "components": [
+    "logistic",
+    "random_forest",
+    "lightgbm",
+    "bagging_pu"
+  ],
+  "weights": {
+    "logistic": 0.25,
+    "random_forest": 0.25,
+    "lightgbm": 0.25,
+    "bagging_pu": 0.25
+  },
+  "weight_selection": "fixed equal weights; no label-dependent tuning",
+  "rotations": {
+    "model": "heterogeneous_uniform",
+    "n_deposits": 45,
+    "captured_deposits_at_01": 2,
+    "deposit_recovery_at_01": 0.044444444444444446,
+    "captured_deposits_at_05": 6,
+    "deposit_recovery_at_05": 0.13333333333333333,
+    "captured_deposits_at_10": 6,
+    "deposit_recovery_at_10": 0.13333333333333333
+  },
+  "buffered_metrics": {
+    "strategy": "buffered",
+    "model": "heterogeneous_uniform",
+    "n_input_features": 64,
+    "n_P": 629,
+    "n_U": 1887,
+    "sample_hash": "00ce7bef1a7ff2cc5670024db9f901acf7d1725f9339b42db0de1741d6a7a10a",
+    "fraction_score_one": 0.0,
+    "roc_auc": 0.882744710482483,
+    "average_precision": 0.714075058883616,
+    "pr_auc_trapezoid": 0.713256978143628,
+    "brier_loss": 0.125440576217869,
+    "positive_cell_recovery_at_01": 0.034976152623211,
+    "positive_cell_recovery_at_05": 0.170111287758347,
+    "positive_cell_recovery_at_10": 0.332273449920509
+  },
+  "absolute_probability": false,
+  "validation_scope": "internal evaluation on known catalogue"
+}

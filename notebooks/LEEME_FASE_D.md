@@ -189,3 +189,10 @@ de un plano, huecos del terreno, clase cero, rechazo RGB y detección de modific
 Referencias técnicas consultadas para la implementación:
 [consultas espaciales de Shapely](https://shapely.readthedocs.io/en/2.1.2/strtree.html),
 [convolución y tratamiento de bordes de SciPy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.convolve.html).
+
+---
+
+## Extensión Geoquímica (64 Predictores · Atlas Geoquímico IGME)
+
+Los cuadernos `04` y `06` incorporan al final la extensión geoquímica con los ocho elementos del Atlas Geoquímico del IGME (`As`, `Sb`, `Bi`, `Hg`, `Cu`, `Pb`, `Zn`, `W`) mediante su clase modal por celda (`*_clase_modal`), excluyendo `Au` de los predictores para evitar circularidad con la etiqueta objetivo y conformando el contrato de **64 predictores** (`config/geoquimica_20261017.yaml`, `data/review/auditoria_predictores_fase_d.csv`).
+

@@ -1,0 +1,18 @@
+{
+  "n_input_features": 64,
+  "strategies": {
+    "random": "Random CV",
+    "spatial": "Spatial Block CV (0 km)",
+    "buffered": "Buffered Spatial CV (15 km)"
+  },
+  "folds": 5,
+  "sample_hash": "00ce7bef1a7ff2cc5670024db9f901acf7d1725f9339b42db0de1741d6a7a10a",
+  "n_P": 629,
+  "n_U": 1887,
+  "PR_AUC_display_definition": "average_precision_score; trapezoidal area exported separately as pr_auc_trapezoid",
+  "Brier_definition": "mean squared error against observed P/U labels, not latent geological labels",
+  "Recovery_definition": "exact ceil(percent * n) cells; descending score then cell_id",
+  "EN_calibration": "first internal fold; same random/block/buffer strategy; no outer test labels",
+  "EN_prediction": "mean over members of clip(raw_member_score / c_member, 0, 1)",
+  "national_map": "relative raw scores; the catalogue diagnostic factor is not transferred to different fitted models"
+}

@@ -69,3 +69,10 @@ Los scores distinguen presencia registrada frente a fondo bajo este diseño. No 
 6. Revisar las nuevas particiones y sus tamaños antes del entrenamiento F. El cierre automatizado acredita condiciones registradas, no sustituye la revisión geológica. Si no caben reserva y validación anidada, se debe rediseñar el ámbito/protocolo y documentar la limitación; no abrir una reserva repetidamente.
 
 Referencias metodológicas: [validación anidada, documentación de scikit-learn](https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html) y [Bekker y Davis, PU con selección dependiente de características](https://proceedings.mlr.press/v94/bekker18a.html).
+
+---
+
+## Extensión Geoquímica (64 Predictores · Particiones, Buffer y Rotaciones)
+
+Los cuadernos `07`, `08` y `09` incluyen al final la extensión geoquímica con 664 celdas positivas P (de 786 indicios en el dominio elegible de 478.443 celdas), muestreo estratificado P/U con pesos de confianza del inventario (`1.0` confirmada, `0.5` pendiente), validación espacial por bloques de 50 km con zona de exclusión de 15 km y las siete rotaciones territoriales por grupos de distritos (`reports/geoquimica_20261017/`).
+

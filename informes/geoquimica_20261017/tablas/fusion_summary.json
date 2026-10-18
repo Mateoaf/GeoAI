@@ -1,0 +1,45 @@
+{
+  "n_input_features": 64,
+  "selection_metric": "average_precision",
+  "weight_selection_uses_outer_test": false,
+  "inner_folds": 3,
+  "components": [
+    "logistic",
+    "random_forest",
+    "lightgbm",
+    "bagging_pu"
+  ],
+  "buffered_metrics": {
+    "model": "heterogeneous_fusion",
+    "n_input_features": 64,
+    "n_P": 629,
+    "n_U": 1887,
+    "sample_hash": "00ce7bef1a7ff2cc5670024db9f901acf7d1725f9339b42db0de1741d6a7a10a",
+    "fraction_score_one": 0.0,
+    "roc_auc": 0.8700707628,
+    "average_precision": 0.6915104009,
+    "pr_auc_trapezoid": 0.6909097442,
+    "brier_loss": 0.1308554117,
+    "positive_cell_recovery_at_01": 0.0365659777,
+    "positive_cell_recovery_at_05": 0.1717011129,
+    "positive_cell_recovery_at_10": 0.3211446741,
+    "fit_seconds": 23.0592557
+  },
+  "rotations": {
+    "model": "heterogeneous_fusion",
+    "n_deposits": 45,
+    "captured_deposits_at_01": 2,
+    "deposit_recovery_at_01": 0.044444444444444446,
+    "captured_deposits_at_05": 4,
+    "deposit_recovery_at_05": 0.08888888888888889,
+    "captured_deposits_at_10": 7,
+    "deposit_recovery_at_10": 0.15555555555555556
+  },
+  "national_weights": {
+    "logistic": 0.2,
+    "random_forest": 0.1,
+    "lightgbm": 0.7,
+    "bagging_pu": 0.0
+  },
+  "validation_scope": "internal nested evaluation on known catalogue; no prospective campaign"
+}

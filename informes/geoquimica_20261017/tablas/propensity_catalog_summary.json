@@ -1,0 +1,27 @@
+{
+  "method": "Elkan-Noto mean score on held-out positive cells; member-wise correction",
+  "n_input_features": 64,
+  "catalog_positive_cells": 664,
+  "sample_P": 664,
+  "sample_U": 1992,
+  "fit_cells": 1778,
+  "calibration_cells": 530,
+  "calibration_positive_cells": 154,
+  "c_members": [
+    0.42024476364543784,
+    0.40441966963015247,
+    0.45184539494743226,
+    0.42089341507331307,
+    0.4582071029486605
+  ],
+  "c_mean": 0.4311220692489992,
+  "inverse_c_mean": 2.319528670248702,
+  "mean_inverse_c": 2.3247417251550715,
+  "c_role": "apparent_rescaling_factor_under_PU_sampling_and_confidence_weights",
+  "population_registration_probability_identified": false,
+  "SCAR_verified": false,
+  "calibration_excluded_from_fit": true,
+  "applied_to_national_map": false,
+  "scope": "catalogue diagnostic ensemble; national map retains its own raw relative-score pipelines",
+  "reference": "https://cseweb.ucsd.edu/~elkan/posonly.pdf"
+}

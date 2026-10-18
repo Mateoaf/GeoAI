@@ -1,0 +1,33 @@
+schema_version: 1
+phase_d_run: reports/fase_d/20260923T211448_267684Z
+phase_c_run: reports/fase_c/20260923T190410_493192Z
+output_directory: reports/geoquimica_20261017
+report_directory: informes/geoquimica_20261017
+seed: 42
+n_jobs: 4
+block_size_m: 50000
+cv_folds: 5
+cv_buffer_m: 15000
+rotation_buffer_m: 15000
+u_per_p: 3
+pending_weight: 0.5
+benchmark_models: [logistic, random_forest, lightgbm, bagging_pu]
+rotation_models: [logistic, lightgbm, bagging_pu]
+random_forest_trees: 200
+lightgbm_trees: 150
+pu_bags: 5
+pu_u_per_p: 2
+national_bags: 8
+prediction_batch_size: 25000
+diagnostic_cv_strategies: [random, spatial, buffered]
+en_calibration_folds: 5
+en_c_min: 0.000001
+fusion_components: [logistic, random_forest, lightgbm, bagging_pu]
+fusion_inner_folds: 3
+fusion_weight_step: 0.1
+fusion_selection_metric: average_precision
+geochemical_columns: [as_clase_modal, sb_clase_modal, bi_clase_modal, hg_clase_modal, cu_clase_modal, pb_clase_modal, zn_clase_modal, w_clase_modal]
+
+# Clases del atlas, codificadas como categorías; no concentraciones ppm/ppb.
+# Au no se usa como predictor de su propio inventario de indicios.
+# La cobertura incompleta se conserva como ausencia, sin recortar el dominio.
