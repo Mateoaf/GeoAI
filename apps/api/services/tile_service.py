@@ -17,7 +17,7 @@ from rasterio.transform import from_bounds
 from rasterio.warp import Resampling, reproject
 
 # pyrefly: ignore [missing-import]
-from .. import config
+from .. import calibration, config
 
 ORIGIN_SHIFT = 20037508.342789244
 INITIAL_RESOLUTION = ORIGIN_SHIFT * 2.0 / 256.0
@@ -149,10 +149,16 @@ class TileService:
             norm_vals = np.clip(dst_array, 0.0, 1.0)
             colored = self.cmap_viridis(norm_vals)
             rgb = (colored[:, :, :3] * 255).astype(np.uint8)
-            # Solo hacer visibles celdas con señal (>0.06) para no tapar el mapa con un fondo opaco
-            show_mask = valid_mask & (dst_array >= 0.06)
+            # Solo hacer visibles celdas con señal para no tapar el mapa con un fondo opaco.
+            # Umbrales históricos (0.06 -> 0.56) expresados en la escala activa del ráster, de modo
+            # que la calibración (monótona) no cambie qué celdas son visibles.
+            if layer == "global_v2_score" or not calibration.is_active():
+                floor, full = 0.06, 0.56
+            else:
+                floor, full = calibration.display_floor(0.06), calibration.display_floor(0.56)
+            show_mask = valid_mask & (dst_array >= floor)
             rgba[show_mask, :3] = rgb[show_mask]
-            alpha_scaled = np.clip((dst_array[show_mask] - 0.06) / 0.5, 0.0, 1.0)
+            alpha_scaled = np.clip((dst_array[show_mask] - floor) / (full - floor), 0.0, 1.0)
             rgba[show_mask, 3] = (90 + alpha_scaled * 145).astype(np.uint8)
 
         elif layer == "v3_uncertainty":

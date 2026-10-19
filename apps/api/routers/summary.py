@@ -5,6 +5,7 @@ Rutas de resumen del proyecto, configuración de capas y metadatos de release.
 
 from fastapi import APIRouter
 
+from .. import calibration
 from ..data_loader import get_data_loader
 from ..schemas.summary import ProjectSummary, ProjectSummaryResponse, ThresholdsSummary
 
@@ -30,9 +31,9 @@ def get_project_summary():
         features_count=len(loader.approved_columns),
         prioritized_zones_count=int(ctrl.get("zones_prioritized_count", 1529)),
         thresholds=ThresholdsSummary(
-            top_01=float(0.7226 if is_64 else ctrl.get("threshold_score_top01", 0.833276)),
-            top_05=float(0.3978 if is_64 else ctrl.get("threshold_score_top05", 0.652645)),
-            top_10=float(0.2482 if is_64 else ctrl.get("threshold_score_top10", 0.517859)),
+            top_01=float(calibration.calibrate(0.7226) if is_64 else ctrl.get("threshold_score_top01", 0.833276)),
+            top_05=float(calibration.calibrate(0.3978) if is_64 else ctrl.get("threshold_score_top05", 0.652645)),
+            top_10=float(calibration.calibrate(0.2482) if is_64 else ctrl.get("threshold_score_top10", 0.517859)),
         ),
         run_ids={
             "fase_d": "reports/fase_d/20260927T135413_959884Z",

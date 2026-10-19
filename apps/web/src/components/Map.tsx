@@ -25,6 +25,8 @@ import {
 } from "lucide-react";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Versión de teselas: incrementar al cambiar la escala/ráster servido (el backend las marca como immutable)
+const TILE_VERSION = "cal1";
 
 interface MapProps {
   activeRasterLayer: RasterLayerType;
@@ -178,7 +180,7 @@ export const Map: React.FC<MapProps> = ({
     if (!m.getSource("geoai_raster_source")) {
       m.addSource("geoai_raster_source", {
         type: "raster",
-        tiles: [`${API_BASE_URL}/api/tiles/${currentRasterLayer === "none" ? "score" : currentRasterLayer}/{z}/{x}/{y}.png`],
+        tiles: [`${API_BASE_URL}/api/tiles/${currentRasterLayer === "none" ? "score" : currentRasterLayer}/{z}/{x}/{y}.png?v=${TILE_VERSION}`],
         tileSize: 256
       });
 
@@ -686,7 +688,7 @@ export const Map: React.FC<MapProps> = ({
 
     const source = m.getSource("geoai_raster_source") as any;
     if (source && activeRasterLayer !== "none") {
-      source.setTiles([`${API_BASE_URL}/api/tiles/${activeRasterLayer}/{z}/{x}/{y}.png`]);
+      source.setTiles([`${API_BASE_URL}/api/tiles/${activeRasterLayer}/{z}/{x}/{y}.png?v=${TILE_VERSION}`]);
     }
 
     if (m.getLayer("geoai_raster_layer")) {

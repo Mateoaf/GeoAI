@@ -218,7 +218,7 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                 <span className={`font-bold ${isUncertainty ? 'text-amber-300' : 'text-purple-300'}`}>
                   {isUncertainty
                     ? "Incertidumbre Epistémica (σ)"
-                    : "Favorabilidad Aurífera (PU Learning c=0.72)"}
+                    : "Favorabilidad Aurífera (calibrada)"}
                 </span>
               </div>
 
@@ -331,7 +331,7 @@ export const CellInspector: React.FC<CellInspectorProps> = ({
                       Evaluación de Fiabilidad e Incertidumbre
                     </span>
                     <span className="text-[9px] font-mono bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded border border-purple-500/30">
-                      c = 0.72
+                      Calibrada
                     </span>
                   </div>
 

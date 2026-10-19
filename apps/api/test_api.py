@@ -193,6 +193,36 @@ def test_absence_of_forbidden_words_in_schemas():
     assert "probabilidad_deposito" not in openapi_str
 
 
+def test_calibration_is_monotone_and_bounded():
+    import numpy as np
+
+    from apps.api import calibration
+
+    grid = np.linspace(0.0, 1.0, 5001)
+    out = calibration.calibrate(grid)
+    assert np.all(np.diff(out) >= 0), "La calibración debe preservar el orden"
+    assert np.all((out >= 0.0) & (out <= 1.0))
+    if calibration.is_active():
+        # La calibración corrige la subestimación sistemática del score bruto en validación espacial
+        assert calibration.calibrate(0.4) > 0.4
+
+
+def test_calibrated_scores_preserve_ranking_and_thresholds():
+    from apps.api.data_loader import get_data_loader
+
+    loader = get_data_loader()
+    cells = list(loader.cell_lookup.values())[::97]  # muestra determinista (~5k celdas)
+    by_score = sorted(cells, key=lambda c: c["score"])
+    pcts = [c["percentile_favorabilidad"] for c in by_score]
+    # El percentil (calculado sobre el score bruto) no puede decrecer al subir el score calibrado
+    assert all(b >= a - 0.011 for a, b in zip(pcts, pcts[1:]))
+    assert all(0.0 <= c["score"] <= 1.0 for c in cells)
+    assert all(c["favorabilidad_pu_media"] == pytest.approx(c["score"], abs=1e-4) for c in cells)
+
+    th = client.get("/api/project/summary").json()["summary"]["thresholds"]
+    assert 0 < th["top_10"] < th["top_05"] < th["top_01"] <= 1.0
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-v"]))
 

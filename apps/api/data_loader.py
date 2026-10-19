@@ -14,7 +14,7 @@ import pandas as pd
 import pyarrow.parquet as pq
 from pyproj import Transformer
 
-from . import config
+from . import calibration, config
 
 logger = logging.getLogger("geoau_api.data_loader")
 
@@ -171,9 +171,13 @@ class DataLoader:
         score_col = "favorability_mean" if has_favorability else "score"
         pct_col = "score_percentile" if "score_percentile" in df_geo.columns else "percentile_favorabilidad"
 
+        # Favorabilidad calibrada (monótona): mismo ranking/percentil, escala alineada con la tasa
+        # de acierto observada en validación espacial. Identidad si no hay calibración activa.
+        df_geo["score_calibrado"] = calibration.calibrate(df_geo[score_col].to_numpy(dtype="float64"))
+
         for row in df_geo.itertuples(index=False):
             cid = row.cell_id
-            r_score = float(getattr(row, score_col))
+            r_score = float(row.score_calibrado)
             r_pct = float(getattr(row, pct_col, 50.0))
             if r_pct <= 1.05:
                 r_pct = r_pct * 100.0

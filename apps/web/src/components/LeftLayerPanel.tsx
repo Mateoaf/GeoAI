@@ -488,7 +488,7 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
               <div className="text-[9px] text-purple-300/80 font-mono mt-1 text-center">
                 {activeRasterLayer === "global_v2_score"
                   ? "Integración sinérgica de modelos roca y aluvial"
-                  : "Calibrado con factor Elkan-Noto (c = 0.72)"}
+                  : "Calibrada con validación espacial (buffer 15 km)"}
               </div>
             </div>
           )}

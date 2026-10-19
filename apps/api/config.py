@@ -49,7 +49,17 @@ PATH_BENCHMARK_SUMMARY_CSV = GEOQ_DIR / "benchmark_summary.csv"
 PATH_FUSION_SUMMARY_JSON = GEOQ_DIR / "fusion_summary.json"
 PATH_FUSION_MODEL_JOBLIB = GEOQ_MODELS_DIR / "fusion" / "model.joblib"
 
-PATH_COG_SCORE = GEOQ_MAPS_DIR / "GeoAI_score.tif"
+PATH_COG_SCORE_RAW = GEOQ_MAPS_DIR / "GeoAI_score.tif"
+PATH_COG_SCORE_CALIBRATED = GEOQ_MAPS_DIR / "GeoAI_score_calibrated.tif"
+PATH_CALIBRATION_JSON = GEOQ_DIR / "calibracion_score.json"
+
+# El mapa de favorabilidad usa el score calibrado (monotono: mismo ranking) salvo GEOAI_SCORE_MODE=raw
+_USE_CALIBRATED = (
+    os.getenv("GEOAI_SCORE_MODE", "calibrated").lower() != "raw"
+    and PATH_COG_SCORE_CALIBRATED.exists()
+    and PATH_CALIBRATION_JSON.exists()
+)
+PATH_COG_SCORE = PATH_COG_SCORE_CALIBRATED if _USE_CALIBRATED else PATH_COG_SCORE_RAW
 PATH_COG_PERCENTILE = RUN_DIR_H / "maps" / "mapa_nacional_favorabilidad_percentil.tif"
 PATH_COG_PRIORITY = RUN_DIR_H / "maps" / "mapa_nacional_bandas_prioritarias.tif"
 PATH_COG_STD = GEOQ_MAPS_DIR / "GeoAI_std.tif"
@@ -70,7 +80,7 @@ PATH_COG_ALUVIAL = PATH_COG_EXP_DIR / "mapa_nacional_oro_aluvial_score.tif"
 PATH_V3_DIR = REPO_ROOT / "reports" / "experimento_v3_riguroso"
 PATH_V3_MAPS_DIR = GEOQ_MAPS_DIR
 PATH_V3_PARQUET = GEOQ_MAPS_DIR / "GeoAI_national.parquet"
-PATH_V3_PU_SCORE = GEOQ_MAPS_DIR / "GeoAI_score.tif"
+PATH_V3_PU_SCORE = PATH_COG_SCORE
 PATH_V3_INCERTIDUMBRE_TIF = GEOQ_MAPS_DIR / "GeoAI_std.tif"
 PATH_V3_BENCHMARK_CSV = GEOQ_DIR / "benchmark_summary.csv"
 PATH_V3_RESUMEN_JSON = GEOQ_DIR / "fusion_summary.json"

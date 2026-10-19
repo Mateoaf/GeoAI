@@ -50,11 +50,11 @@ export const GLOSSARY: Record<string, GlossaryEntry> = {
   },
 
   pu_learning: {
-    title: "Favorabilidad PU Calibrada (c=0.72)",
+    title: "Favorabilidad Aurífera Calibrada",
     category: "Predicción de IA",
     summary:
-      "Técnica avanzada de IA ('Positive-Unlabeled Learning'). El reto en minería es que sabemos dónde hay oro confirmado (Positivos), pero del resto de España no podemos decir que esté vacío, simplemente 'no se ha explorado todavía' (No etiquetado). Este modelo corrige ese sesgo para no penalizar zonas inexploradas.",
-    example: "c=0.72 significa que el modelo estima que conocemos aproximadamente el 72% de las evidencias superficiales.",
+      "Resultado de un modelo de aprendizaje Positivo-No etiquetado (PU): sabemos dónde hay oro confirmado (Positivos), pero del resto de España solo podemos decir que 'no se ha explorado todavía'. La puntuación bruta del modelo infravalora de forma sistemática la tasa de acierto real, así que se calibra con predicciones sobre territorios reservados (validación espacial con buffer de 15 km). La calibración no cambia el orden de las celdas, solo alinea la escala con lo observado.",
+    example: "Un valor de 0.60 indica que, entre celdas con esa puntuación en territorio reservado, aproximadamente el 60% eran celdas con indicio conocido. No es la probabilidad de hallar oro en un km² cualquiera: para comparar territorios use el percentil.",
     badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/40"
   },
 
