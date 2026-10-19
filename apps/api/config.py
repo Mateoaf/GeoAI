@@ -72,9 +72,17 @@ PATH_COEFS_CSV = RUN_DIR_H / "interpretability" / "coeficientes_estandarizados.c
 
 # Modelos y Rásteres Especializados v2 (Experimento 787 Indicios - LightGBM)
 PATH_COG_EXP_DIR = REPO_ROOT / "reports" / "experimento_600_indicios" / "maps"
-PATH_COG_GLOBAL_V2 = PATH_COG_EXP_DIR / "mapa_nacional_oro_global_score.tif"
-PATH_COG_ROCA = PATH_COG_EXP_DIR / "mapa_nacional_oro_roca_score.tif"
-PATH_COG_ALUVIAL = PATH_COG_EXP_DIR / "mapa_nacional_oro_aluvial_score.tif"
+PATH_COG_GLOBAL_V2 = PATH_COG_SCORE if _USE_CALIBRATED else (PATH_COG_EXP_DIR / "mapa_nacional_oro_global_score.tif")
+PATH_COG_ROCA = (
+    (PATH_COG_EXP_DIR / "mapa_nacional_oro_roca_score_calibrated.tif")
+    if _USE_CALIBRATED and (PATH_COG_EXP_DIR / "mapa_nacional_oro_roca_score_calibrated.tif").exists()
+    else (PATH_COG_EXP_DIR / "mapa_nacional_oro_roca_score.tif")
+)
+PATH_COG_ALUVIAL = (
+    (PATH_COG_EXP_DIR / "mapa_nacional_oro_aluvial_score_calibrated.tif")
+    if _USE_CALIBRATED and (PATH_COG_EXP_DIR / "mapa_nacional_oro_aluvial_score_calibrated.tif").exists()
+    else (PATH_COG_EXP_DIR / "mapa_nacional_oro_aluvial_score.tif")
+)
 
 # Modelos y Rásteres de Producción Oficial (Score PU, Incertidumbre y Fiabilidad Territorial con Geoquímica)
 PATH_V3_DIR = REPO_ROOT / "reports" / "experimento_v3_riguroso"

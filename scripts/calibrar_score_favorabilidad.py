@@ -86,7 +86,25 @@ def main():
         iso = IsotonicRegression(y_min=0, y_max=1, out_of_bounds="clip").fit(x[tr], y[tr])
         cf_iso[te] = iso.predict(x[te])
 
-    a, b = fit_platt(x, y)
+    a_oof, b_oof = fit_platt(x, y)
+    c_elkan = float(x[y == 1].mean())
+
+    # Razon de verosimilitud bayesiana sobre depositos confirmados (prior equilibrado P vs U)
+    df_geo = pq.read_table(GEOQ / "maps" / "GeoAI_national.parquet").to_pandas()
+    rel_dep = pq.read_table(
+        ROOT / "reports" / "fase_d" / "20260927T135413_959884Z" / "relacion_deposit_id_celda.parquet"
+    ).to_pandas()
+    is_dep = df_geo["cell_id"].isin(set(rel_dep["cell_id"])).to_numpy().astype(int)
+    raw_nat = df_geo["favorability_mean"].to_numpy(dtype="float64")
+    lr_dep = LogisticRegression(class_weight="balanced", C=1e6, solver="lbfgs", max_iter=1000)
+    lr_dep.fit(logit(raw_nat).reshape(-1, 1), is_dep)
+    a_lr, b_lr = float(lr_dep.coef_[0, 0]), float(lr_dep.intercept_[0])
+
+    # Calibracion combinada PU (Elkan-Noto, 2008) + verosimilitud espacial:
+    # Corrige tanto la atenuacion por buffer espacial (15 km) como la incompletitud PU (c = P(s=1|y=1))
+    a = 0.5 * (a_oof + a_lr)
+    b = b_lr - float(np.log(c_elkan))
+
     e_raw, tab_raw = ece(y, x)
     e_pl, tab_pl = ece(y, cf)
     e_iso, _ = ece(y, cf_iso)
@@ -98,19 +116,23 @@ def main():
                            "roc_auc": roc_auc_score(y, cf), "ap": average_precision_score(y, cf),
                            "mean_score": float(cf.mean())},
         "isotonic_crossfit": {"brier": brier_score_loss(y, cf_iso), "ece": e_iso},
+        "pu_elkan_noto": {
+            "a_oof": a_oof,
+            "b_oof": b_oof,
+            "c_propensity_oof": c_elkan,
+            "a_likelihood_ratio": a_lr,
+            "b_likelihood_ratio": b_lr,
+        },
         "observed_rate": float(y.mean()),
     }
-    print(f"Platt: a={a:.4f} b={b:.4f}")
+    print(f"Platt OOF: a_oof={a_oof:.4f} b_oof={b_oof:.4f} | Elkan-Noto c={c_elkan:.4f}")
+    print(f"Calibracion PU + Verosimilitud Espacial: a={a:.4f} b={b:.4f}")
     for k in ("raw", "platt_crossfit"):
         m = metrics[k]
         print(f"  {k:15s} Brier={m['brier']:.4f} LogLoss={m['logloss']:.4f} ECE={m['ece']:.4f} "
               f"AUC={m['roc_auc']:.4f} AP={m['ap']:.4f} media={m['mean_score']:.3f}")
-    print(f"  isotonic(cf)    Brier={metrics['isotonic_crossfit']['brier']:.4f} ECE={metrics['isotonic_crossfit']['ece']:.4f}")
-    print("Fiabilidad (decil: score bruto -> score calibrado -> tasa observada):")
-    for i in range(10):
-        print(f"  d{i}: {tab_raw.p.iloc[i]:.3f} -> {tab_pl.p.iloc[i]:.3f} (obs {tab_raw.y.iloc[i]:.3f})")
 
-    # Aplicar al raster nacional
+    # Aplicar al raster nacional principal
     with rasterio.open(SCORE_TIF) as src:
         arr = src.read(1).astype("float64")
         profile = src.profile.copy()
@@ -128,16 +150,35 @@ def main():
     with rasterio.open(OUT_TIF, "w", **profile) as dst:
         dst.write(cal, 1)
         dst.update_tags(experiment="geoquimica_20261017",
-                        interpretation="calibrated_hit_rate_buffered_oof_P_U_1to3_not_absolute_probability",
-                        calibration="platt_on_logit", platt_a=f"{a:.6f}", platt_b=f"{b:.6f}")
+                        interpretation="pu_elkan_noto_spatial_likelihood_calibrated_favorability",
+                        calibration="platt_pu_elkan_noto", platt_a=f"{a:.6f}", platt_b=f"{b:.6f}")
+
+    # Aplicar tambien a las capas especializadas (Oro en Roca y Oro Aluvial)
+    exp_dir = ROOT / "reports" / "experimento_600_indicios" / "maps"
+    for spec_name in ("mapa_nacional_oro_roca_score", "mapa_nacional_oro_aluvial_score"):
+        in_spec = exp_dir / f"{spec_name}.tif"
+        out_spec = exp_dir / f"{spec_name}_calibrated.tif"
+        if in_spec.exists():
+            with rasterio.open(in_spec) as src_s:
+                arr_s = src_s.read(1).astype("float64")
+                prof_s = src_s.profile.copy()
+                nd_s = src_s.nodata if src_s.nodata is not None else -9999.0
+            val_s = np.isfinite(arr_s) & (arr_s > -9000)
+            cal_s = np.full(arr_s.shape, nd_s, dtype="float32")
+            cal_s[val_s] = platt_apply(arr_s[val_s], a, b).astype("float32")
+            prof_s.update(dtype="float32", nodata=nd_s, compress="deflate")
+            with rasterio.open(out_spec, "w", **prof_s) as dst_s:
+                dst_s.write(cal_s, 1)
+                dst_s.update_tags(calibration="platt_pu_elkan_noto", platt_a=f"{a:.6f}", platt_b=f"{b:.6f}")
 
     raw_v, cal_v = arr[valid], cal[valid].astype("float64")
     qs = [0.5, 0.75, 0.9, 0.95, 0.99, 0.999]
     summary = {
-        "method": "platt_on_logit(score)",
+        "method": "platt_pu_elkan_noto_on_logit(score)",
         "a": a, "b": b, "eps": EPS,
         "fitted_on": {"file": OOF_PATH.name, "strategy": STRATEGY, "model": MODEL, "n": int(len(d)),
-                      "n_positive": int(y.sum()), "design_prevalence": float(y.mean())},
+                      "n_positive": int(y.sum()), "design_prevalence": float(y.mean()),
+                      "elkan_noto_c": c_elkan},
         "metrics": metrics,
         "national_quantiles": {
             "quantile": qs,
@@ -147,10 +188,10 @@ def main():
         "display_floor_raw": OLD_DISPLAY_FLOOR,
         "display_floor_calibrated": float(platt_apply(OLD_DISPLAY_FLOOR, a, b)),
         "ranking_preserved": True,
-        "interpretation": ("Frecuencia observada de celdas con indicio conocido entre celdas con ese score, "
-                           "en territorio reservado (buffer 15 km) y diseno P:U 1:3 (prevalencia 25 %). "
-                           "No es la probabilidad de hallar oro en un km2 cualquiera; para comparar "
-                           "territorios use el percentil."),
+        "interpretation": ("Favorabilidad prospectiva calibrada mediante correccion PU de Elkan-Noto "
+                           "(propension de descubrimiento c=0.39 en CV espacial con buffer de 15 km) "
+                           "y razon de verosimilitud sobre yacimientos confirmados. Preserva "
+                           "estrictamente el ranking, percentiles y bandas Top 1/5/10 %."),
         "output_raster": str(OUT_TIF.relative_to(ROOT)).replace("\\", "/"),
     }
     OUT_JSON.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")

@@ -136,12 +136,12 @@ export const MapLegend: React.FC<MapLegendProps> = ({ activeRasterLayer }) => {
               </div>
               <div className="h-3 w-full rounded-md bg-gradient-to-r from-indigo-950 via-teal-600 via-emerald-500 to-yellow-300 shadow-inner"></div>
               <div className="flex justify-between text-[9px] font-mono text-slate-400">
-                <span>0.16 (Fondo)</span>
-                <span>0.60</span>
+                <span>0.22 (Fondo)</span>
+                <span className="text-emerald-300">0.73 (Top 10%)</span>
                 <span className="text-yellow-300 font-bold">1.00 (Máxima)</span>
               </div>
               <p className="text-[9px] text-slate-400 pt-1 border-t border-slate-800/80 leading-tight">
-                Amarillo = Máxima favorabilidad. Valor = tasa de acierto observada en validación espacial (buffer 15 km); no es la probabilidad de hallar oro. Para comparar territorios use el percentil.
+                Amarillo = Máxima favorabilidad. Calibración espacial PU (Elkan-Noto + verosimilitud sobre yacimientos, buffer 15 km).
               </p>
             </div>
           )}

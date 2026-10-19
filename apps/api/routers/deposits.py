@@ -9,6 +9,7 @@ from typing import Optional
 from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 
+from .. import calibration
 from ..data_loader import get_data_loader
 
 router = APIRouter(tags=["Mineral Deposits & Occurrences"])
@@ -116,12 +117,12 @@ def get_buffer_analysis(
     max_score = round(max(scores_in_r), 4) if scores_in_r else 0.0
     mean_score = round(sum(scores_in_r) / len(scores_in_r), 4) if scores_in_r else 0.0
 
-    # Clasificación del radio
-    if max_score >= 0.833:
+    # Clasificación del radio según umbrales calibrados activos
+    if max_score >= float(calibration.calibrate(0.7226)):
         tier = "Muy Alta (Top 1% Nacional)"
-    elif max_score >= 0.653:
+    elif max_score >= float(calibration.calibrate(0.3978)):
         tier = "Alta (Top 5% Nacional)"
-    elif max_score >= 0.518:
+    elif max_score >= float(calibration.calibrate(0.2482)):
         tier = "Moderada-Alta (Top 10% Nacional)"
     else:
         tier = "Fondo Territorial"

@@ -152,7 +152,7 @@ class TileService:
             # Solo hacer visibles celdas con señal para no tapar el mapa con un fondo opaco.
             # Umbrales históricos (0.06 -> 0.56) expresados en la escala activa del ráster, de modo
             # que la calibración (monótona) no cambie qué celdas son visibles.
-            if layer == "global_v2_score" or not calibration.is_active():
+            if not calibration.is_active():
                 floor, full = 0.06, 0.56
             else:
                 floor, full = calibration.display_floor(0.06), calibration.display_floor(0.56)
@@ -175,18 +175,26 @@ class TileService:
             norm_vals = np.clip(dst_array, 0.0, 1.0)
             colored = self.cmap_magma(norm_vals)
             rgb = (colored[:, :, :3] * 255).astype(np.uint8)
-            show_mask = valid_mask & (dst_array >= 0.10)
+            if not calibration.is_active():
+                floor, full = 0.10, 0.60
+            else:
+                floor, full = calibration.display_floor(0.10), calibration.display_floor(0.60)
+            show_mask = valid_mask & (dst_array >= floor)
             rgba[show_mask, :3] = rgb[show_mask]
-            alpha_scaled = np.clip((dst_array[show_mask] - 0.10) / 0.5, 0.0, 1.0)
+            alpha_scaled = np.clip((dst_array[show_mask] - floor) / (full - floor), 0.0, 1.0)
             rgba[show_mask, 3] = (100 + alpha_scaled * 140).astype(np.uint8)
 
         elif layer == "alluvial_score":
             norm_vals = np.clip(dst_array, 0.0, 1.0)
             colored = self.cmap_cividis(norm_vals)
             rgb = (colored[:, :, :3] * 255).astype(np.uint8)
-            show_mask = valid_mask & (dst_array >= 0.08)
+            if not calibration.is_active():
+                floor, full = 0.08, 0.53
+            else:
+                floor, full = calibration.display_floor(0.08), calibration.display_floor(0.53)
+            show_mask = valid_mask & (dst_array >= floor)
             rgba[show_mask, :3] = rgb[show_mask]
-            alpha_scaled = np.clip((dst_array[show_mask] - 0.08) / 0.45, 0.0, 1.0)
+            alpha_scaled = np.clip((dst_array[show_mask] - floor) / (full - floor), 0.0, 1.0)
             rgba[show_mask, 3] = (90 + alpha_scaled * 145).astype(np.uint8)
 
         elif layer == "percentile":

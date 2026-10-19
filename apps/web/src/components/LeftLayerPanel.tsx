@@ -481,14 +481,14 @@ export const LeftLayerPanel: React.FC<LeftLayerPanelProps> = ({
               <div className="h-3 w-full rounded bg-gradient-to-r from-[#440154] via-[#21908d] to-[#fde725] border border-slate-700/60 shadow-inner"></div>
               <div className="flex justify-between text-[9px] font-mono text-slate-400 mt-1">
                 <span>0.00 (Fondo)</span>
-                <span className="text-cyan-300 font-semibold">0.30 (Moderado)</span>
-                <span className="text-amber-300 font-semibold">0.60 (Alto)</span>
-                <span className="text-emerald-300 font-bold">1.00 (Máxima)</span>
+                <span className="text-cyan-300 font-semibold">0.50 (Moderado)</span>
+                <span className="text-amber-300 font-semibold">0.73 (Top 10%)</span>
+                <span className="text-emerald-300 font-bold">0.98+ (Top 1%)</span>
               </div>
               <div className="text-[9px] text-purple-300/80 font-mono mt-1 text-center">
                 {activeRasterLayer === "global_v2_score"
                   ? "Integración sinérgica de modelos roca y aluvial"
-                  : "Calibrada con validación espacial (buffer 15 km)"}
+                  : "Calibración PU (Elkan-Noto + verosimilitud espacial)"}
               </div>
             </div>
           )}

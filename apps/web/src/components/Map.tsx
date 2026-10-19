@@ -26,7 +26,7 @@ import {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 // Versión de teselas: incrementar al cambiar la escala/ráster servido (el backend las marca como immutable)
-const TILE_VERSION = "cal1";
+const TILE_VERSION = "cal2";
 
 interface MapProps {
   activeRasterLayer: RasterLayerType;
